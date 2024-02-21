@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Kolker+Brush&family=Protest+Strike&display=swap');
+@import url('https://fonts.googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Headland+One&display=swap');
+
+
+.custom_font_family{
+  font-family: "Kolker Brush", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.alegreya-sans-regular {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.murecho {
+  font-family: "Murecho", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.inspiration {
+  font-family: "Inspiration", cursive;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.headland {
+  font-family: "Headland One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cover{
+  background-image: url('Designer.jpeg');
+  background-size: 100% 100%;
+  
+  background-repeat: no-repeat;
+}
+.loginbg{
+  background-image: url('logbg.png');
+   /* background-size: 100%; */
+  height: 40rem;
+}
+.box{
+  background-image: url('logbg.png');
+  background-size: 100%;
+  height:fit-content
+  
+}
+.home{
+  background-image: linear-gradient(#FFECB3 , #F94B00 90%);
+  
+}
+.homebg{
+  background-image: url('homebg.png');
+  background-size: 100% 100%;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  height: fit-content;
+}
+.basicbg{
+  background-image: url('homebg.png');
+  background-size: 100% 100%;
+  height: 40rem;
+}
+.basicbg2{
+  background-image: url('homebg.png');
+  background-size: 100% 100%;
+  height: fit-content;
+}
