@@ -1,6 +1,6 @@
 import React from 'react'
 import toy from './toy.png'
-import kids from './kids.png'
+import kidsbrwn from '../Admin/kidsbrwn.png'
 
 
 
@@ -20,9 +20,7 @@ const Home = () => {
                  <p className='pt-5 headland font-bold text-sm'>We help the helpless to survive these hard time.In a world where <br /> single act of kindness can spark a chain reaction of positivity,your <br /> donation holds immense power.</p>
           </div>
           <div className='ps-12'>
-            <div className='absolute top-[13rem]'> <img className=' h-[25rem]' src={kids} alt="" /></div>
-            
-            <div className='bg-amber-950 w-[20rem] h-[25rem] m-auto ms-8 '></div>
+            <div className=''> <img className=' h-[25rem]' src={kidsbrwn} alt="" /></div>
           </div>
         </div>
         

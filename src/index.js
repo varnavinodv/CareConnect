@@ -32,7 +32,13 @@ import Viewoprhdtluser from './User/Viewoprhdtluser';
 import Contriuser from './User/Contriuser';
 import Vworderuser from './User/Vworderuser';
 import Vwcontriuser from './User/Vwcontriuser';
+import Navorg from './Organization/Navorg';
+import Homeorg from './Organization/Homeorg';
+import Donatnreqorg from './Organization/Donatnreqorg';
+import Viewproductorg from './Organization/Viewproductorg';
 
+
+import Viewproductdtlorg from './Organization/Viewproductdtlorg';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -73,6 +79,13 @@ root.render(
         <Route path='viewcontributionuser' element={<Vwcontriuser/>}/>
       
       </Route> 
+      <Route path='/organization' element={<Navorg/>}>
+        <Route index element={<Homeorg/>}/>
+        <Route path='donationrequestorg' element={<Donatnreqorg/>}/>
+        <Route path='viewproductorg' element={<Viewproductorg/>}/>
+        
+
+      </Route>
     </Routes>
     </BrowserRouter>
   </React.StrictMode>

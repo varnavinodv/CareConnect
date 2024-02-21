@@ -14,12 +14,12 @@ import logout from '../Admin/logout.png'
 
 const Usersidenav = () => {
   return (
-    <div>
-        <div className='w-[13%] h-[40rem] bg-[#FFEFBD]'>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+   
+        <div className='w-[250px] h-[40rem] bg-[#FFEFBD]'>
+            {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]  ' src={user1} alt="" />
                 <p className='text-lg font-normal'>User</p>
-            </div >
+            </div > */}
             <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]'src={product} alt="" />
                 <p className='text-lg font-normal'>Products</p>
@@ -28,10 +28,10 @@ const Usersidenav = () => {
                 <img className='w-[30px] h-[25px]' src={org} alt="" />
                 <p className='text-lg font-normal'>Organizations</p>
             </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={donatn} alt="" />
                 <p className='text-lg font-normal'>Donations</p>
-            </div>
+            </div> */}
             <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={contri} alt="" />
                 <p className='text-lg font-normal'>Contributions</p>
@@ -40,26 +40,26 @@ const Usersidenav = () => {
                 <img className='w-[30px] h-[25px]' src={orph} alt="" />
                 <p className='text-lg font-normal'>Orphanages</p>
             </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'> 
+            {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'> 
                 <img className='w-[30px] h-[25px]' src={event} alt="" />
                 <p className='text-lg font-normal'>Events</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div> */}
+            {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={spon} alt="" />
                 <p className='text-lg font-normal' >Sponsorships</p>
-            </div >
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div > */}
+            {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={report} alt="" />
                 <p className='text-lg font-normal'>Reports</p>
-            </div>
+            </div> */}
             <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={order} alt="" />
                 <p className='text-lg font-normal'>Orders</p>
             </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={review} alt="" />
                 <p className='text-lg font-normal'>Reviews</p>
-            </div>
+            </div> */}
             <div className='ps-8 pt-20'>
                 <button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
                     <div className='text-white'>LOGOUT </div>
@@ -73,7 +73,7 @@ const Usersidenav = () => {
         </div>
       
       
-    </div>
+ 
   )
 }
 

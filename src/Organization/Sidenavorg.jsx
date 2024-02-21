@@ -1,26 +1,25 @@
 import React from 'react'
-import contri from './contri.png'
-import donatn from './donatn.png'
-import event from './event.png'
-import order from './order.png'
-import orph from './orph.png'
-import product from './product.png'
-import report from './report.png'
-import review from './review.png'
-import spon from './spon.png'
-import user1 from './user1.png'
-import org from './org.png'
-import logout from './logout.png'
+import contri from '../Admin/contri.png'
+import donatn from '../Admin/donatn.png'
+import event from '../Admin/event.png'
+import order from '../Admin/order.png'
+import orph from '../Admin/orph.png'
+import product from '../Admin/product.png'
+import report from '../Admin/report.png'
+import review from '../Admin/review.png'
+import spon from '../Admin/spon.png'
+import user1 from '../Admin/user1.png'
+import org from '../Admin/org.png'
+import logout from '../Admin/logout.png'
+import delivery from './Delivery.png'
+import requests from './Requests.png'
+import cart from './Cart.png'
 
-
-const Sidenav = () => {
+const Sidenavorg = () => {
   return (
     <div  >
         <div className='w-[13%] h-[40rem] bg-[#FFEFBD]'>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
-                <img className='w-[30px] h-[25px]  ' src={user1} alt="" />
-                <p className='text-lg font-normal'>User</p>
-            </div >
+            
             <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]'src={product} alt="" />
                 <p className='text-lg font-normal'>Products</p>
@@ -34,20 +33,20 @@ const Sidenav = () => {
                 <p className='text-lg font-normal'>Donations</p>
             </div>
             <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
-                <img className='w-[30px] h-[25px]' src={contri} alt="" />
-                <p className='text-lg font-normal'>Contributions</p>
+                <img className='w-[30px] h-[25px]' src={delivery} alt="" />
+                <p className='text-lg font-normal'>Delivery boy</p>
             </div>
             <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4] '>
-                <img className='w-[30px] h-[25px]' src={orph} alt="" />
-                <p className='text-lg font-normal'>Orphanages</p>
+                <img className='w-[30px] h-[25px]' src={requests} alt="" />
+                <p className='text-lg font-normal'>Requests</p>
             </div>
             <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'> 
                 <img className='w-[30px] h-[25px]' src={event} alt="" />
                 <p className='text-lg font-normal'>Events</p>
             </div>
             <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
-                <img className='w-[30px] h-[25px]' src={spon} alt="" />
-                <p className='text-lg font-normal' >Sponsorships</p>
+                <img className='w-[30px] h-[25px]' src={cart} alt="" />
+                <p className='text-lg font-normal' >Cart</p>
             </div >
             <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={report} alt="" />
@@ -77,4 +76,4 @@ const Sidenav = () => {
   )
 }
 
-export default Sidenav
+export default Sidenavorg
