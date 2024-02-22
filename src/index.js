@@ -36,9 +36,17 @@ import Navorg from './Organization/Navorg';
 import Homeorg from './Organization/Homeorg';
 import Donatnreqorg from './Organization/Donatnreqorg';
 import Viewproductorg from './Organization/Viewproductorg';
+import Vwproductdtlorg from './Organization/Vwproductdtlorg';
+import Vwdonatnorg from './Organization/Vwdonatnorg';
+import Vwdeliveryboyadm from './Admin/Vwdeliveryboyadm';
+import Assigndeliveryboy from './Organization/Assigndeliveryboy';
+import Vwordersorg from './Organization/Vwordersorg';
+import Vwcartorg from './Organization/Vwcartorg';
+import Vweventorg from './Organization/Vweventorg';
+import Sponsorshiporg from './Organization/Sponsorshiporg';
 
 
-import Viewproductdtlorg from './Organization/Viewproductdtlorg';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -63,6 +71,7 @@ root.render(
         <Route path='vieworder' element={<Vworderadm/>}/>   
         <Route path='viewreport' element={<Vwreportsadm/>}/>
         <Route path='viewreview' element={<Vwreviewadm/>}/>
+        <Route path='viewdeliveryboy' element={<Vwdeliveryboyadm/>}/>
 
       </Route>
       <Route path='/user' element={<Navuser/>}>
@@ -83,6 +92,13 @@ root.render(
         <Route index element={<Homeorg/>}/>
         <Route path='donationrequestorg' element={<Donatnreqorg/>}/>
         <Route path='viewproductorg' element={<Viewproductorg/>}/>
+        <Route path='viewproductdtlorg' element={<Vwproductdtlorg/>}/>
+        <Route path='viewdonationorg' element={<Vwdonatnorg/>}/>
+        <Route path='assigndeliveryboyorg' element={<Assigndeliveryboy/>}/>
+        <Route path='vieworderorg' element={<Vwordersorg/>}/>
+        <Route path='viewcartorg'element={<Vwcartorg/>}/>
+        <Route path='vieweventorg' element={<Vweventorg/>}/>
+        <Route path='sponsorshiporg' element={<Sponsorshiporg/>}/>
         
 
       </Route>
