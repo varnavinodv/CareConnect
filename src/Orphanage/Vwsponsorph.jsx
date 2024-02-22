@@ -1,12 +1,15 @@
 import React from 'react'
 
-const Vwcontriadm = () => {
+const Vwsponsorph = () => {
   return (
     <div>
-          
-                        <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
-            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>CONTRIBUTIONS</div>
-             
+         <div>
+        <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
+            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>SPONSORSHIPS</div>
+        
+
+
+{/* tableee */}
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-black dark:text-black">
@@ -28,8 +31,18 @@ const Vwcontriadm = () => {
                     Price
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Action
+                    Price
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    ACTION
+                </th>
+                
             </tr>
         </thead>
         <tbody>
@@ -50,11 +63,22 @@ const Vwcontriadm = () => {
                     $799
                 </td>
                 <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4 flex flex-wrap flex-col">
+                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
                     <a href="#" class="font-medium text-white hover:underline">Edit</a>
                 </td>
+                
             </tr>
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-blacks">
+                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
                     Microsoft Surface Pro
                 </th>
                 <td class="px-6 py-4">
@@ -70,8 +94,18 @@ const Vwcontriadm = () => {
                     $799
                 </td>
                 <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4">
                     <a href="#" class="font-medium text-white hover:underline">Edit</a>
                 </td>
+                
             </tr>
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
                 <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
@@ -90,8 +124,19 @@ const Vwcontriadm = () => {
                     $799
                 </td>
                 <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4 flex flex-wrap flex-col">
+                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
                     <a href="#" class="font-medium text-white hover:underline">Edit</a>
                 </td>
+                
             </tr>
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
                 <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
@@ -110,8 +155,19 @@ const Vwcontriadm = () => {
                     $799
                 </td>
                 <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4 flex flex-wrap flex-col">
+                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
                     <a href="#" class="font-medium text-white hover:underline">Edit</a>
                 </td>
+                
             </tr>
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
                 <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
@@ -130,21 +186,31 @@ const Vwcontriadm = () => {
                     $799
                 </td>
                 <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4">
+                    $799
+                </td>
+                <td class="px-6 py-4 flex flex-wrap flex-col">
+                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
                     <a href="#" class="font-medium text-white hover:underline">Edit</a>
                 </td>
+                
             </tr>
         </tbody>
     </table>
 </div>
 
 
+    </div>  
+    </div>
 
-          
-        
-        </div>
       
     </div>
   )
 }
 
-export default Vwcontriadm
+export default Vwsponsorph

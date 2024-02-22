@@ -1,8 +1,7 @@
 import React from 'react'
 import purpledress from './purpledress.png'
 
-
-const Vwproductdtlorg = () => {
+const Vwcartproductdtlorg = () => {
   return (
     <div>
       <div className='basicbg w-[100%] '>
@@ -48,15 +47,16 @@ const Vwproductdtlorg = () => {
 
             </form>
 
-            <div className='py-6 '><button className='bg-orange-500 py-3 px-5 rounded-lg'>ADD TO CART</button></div>
+            {/* <div className='py-6 '><button className='bg-orange-500 py-3 px-5 rounded-lg'>ADD TO CART</button></div> */}
 
           </div>
 
         </div>
 
       </div>
+
     </div>
   )
 }
 
-export default Vwproductdtlorg
+export default Vwcartproductdtlorg

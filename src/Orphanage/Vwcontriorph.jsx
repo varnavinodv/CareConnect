@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Vwcontriadm = () => {
+const Vwcontriorph = () => {
   return (
     <div>
-          
-                        <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
+        
+        <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>CONTRIBUTIONS</div>
              
 
@@ -143,8 +143,10 @@ const Vwcontriadm = () => {
         
         </div>
       
+
+      
     </div>
   )
 }
 
-export default Vwcontriadm
+export default Vwcontriorph

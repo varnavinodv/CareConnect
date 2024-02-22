@@ -1,12 +1,18 @@
 import React from 'react'
+import add from '../User/addbtn.png'
+import edit from '../User/edit.png'
+import dlt from '../User/delete.png'
 
-const Vwcontriadm = () => {
+const Vwreportsorg = () => {
   return (
     <div>
-          
-                        <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
-            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>CONTRIBUTIONS</div>
-             
+                              <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
+            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>REPORTS</div>
+             {/* button */}
+             <button className='bg-orange-500 flex flex-wrap py-1 pe-2 rounded-lg m-auto items-center mb-8'>
+                    <div><img  className='w-[55px] h-[30px] '  src={add} alt="" /></div>
+                    <div className='text-white'>ADD REPORT </div>
+                </button>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-black dark:text-black">
@@ -49,12 +55,13 @@ const Vwcontriadm = () => {
                 <td class="px-6 py-4">
                     $799
                 </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+                <td class="px-6 py-4 flex flex-wrap justify-normal">
+                    <img className='w-[45px] h-[30px]' src={edit} alt="" />
+                    <img  className='w-[40px] h-[30px]' src={dlt} alt="" />
                 </td>
             </tr>
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-blacks">
+                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
                     Microsoft Surface Pro
                 </th>
                 <td class="px-6 py-4">
@@ -69,8 +76,9 @@ const Vwcontriadm = () => {
                 <td class="px-6 py-4">
                     $799
                 </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+                <td class="px-6 py-4 flex flex-wrap justify-normal">
+                    <img className='w-[45px] h-[30px]' src={edit} alt="" />
+                    <img  className='w-[40px] h-[30px]' src={dlt} alt="" />
                 </td>
             </tr>
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
@@ -89,8 +97,9 @@ const Vwcontriadm = () => {
                 <td class="px-6 py-4">
                     $799
                 </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+                <td class="px-6 py-4 flex flex-wrap justify-normal">
+                    <img className='w-[45px] h-[30px]' src={edit} alt="" />
+                    <img  className='w-[40px] h-[30px]' src={dlt} alt="" />
                 </td>
             </tr>
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
@@ -109,8 +118,9 @@ const Vwcontriadm = () => {
                 <td class="px-6 py-4">
                     $799
                 </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+                <td class="px-6 py-4 flex flex-wrap justify-normal">
+                    <img className='w-[45px] h-[30px]' src={edit} alt="" />
+                    <img  className='w-[40px] h-[30px]' src={dlt} alt="" />
                 </td>
             </tr>
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
@@ -129,8 +139,9 @@ const Vwcontriadm = () => {
                 <td class="px-6 py-4">
                     $799
                 </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+                <td class="px-6 py-4 flex flex-wrap justify-normal">
+                    <img className='w-[45px] h-[30px]' src={edit} alt="" />
+                    <img  className='w-[40px] h-[30px]' src={dlt} alt="" />
                 </td>
             </tr>
         </tbody>
@@ -142,9 +153,10 @@ const Vwcontriadm = () => {
           
         
         </div>
+
       
     </div>
   )
 }
 
-export default Vwcontriadm
+export default Vwreportsorg

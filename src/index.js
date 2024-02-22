@@ -44,6 +44,29 @@ import Vwordersorg from './Organization/Vwordersorg';
 import Vwcartorg from './Organization/Vwcartorg';
 import Vweventorg from './Organization/Vweventorg';
 import Sponsorshiporg from './Organization/Sponsorshiporg';
+import Vwreportsorg from './Organization/Vwreportsorg';
+import Addreportorg from './Organization/Addreportorg';
+import Vwcartproductdtlorg from './Organization/Vwcartproductdtlorg';
+import Vwrevieworg from './Organization/Vwrevieworg';
+import Vworphorg from './Organization/Vworphorg';
+import Vworphdtlorg from './Organization/Vworphdtlorg';
+import Navorph from './Orphanage/Navorph';
+import Homeorph from './Orphanage/Homeorph';
+import Vieworgorph from './Orphanage/Vieworgorph';
+import Vworgdtlorph from './Orphanage/Vworgdtlorph';
+import Addrevieworph from './Orphanage/Addrevieworph';
+import Vwdonatnrequestorph from './Orphanage/Vwdonatnrequestorph';
+import Addrequest from './Orphanage/Addrequest';
+import Viewdonatnorph from './Orphanage/Viewdonatnorph';
+import Vwcontriorph from './Orphanage/Vwcontriorph';
+import Vweventorph from './Orphanage/Vweventorph';
+import Addeventorph from './Orphanage/Addeventorph';
+import Updateeventorph from './Orphanage/Updateeventorph';
+import Vwsponsorph from './Orphanage/Vwsponsorph';
+import Homedeliveryb from './Delivery boy/Homedeliveryb';
+import Navdeliveryb from './Delivery boy/Navdeliveryb';
+import Vwdonatndboy from './Delivery boy/Vwdonatndboy';
+import Userreg from './Userreg';
 
 
 
@@ -56,6 +79,7 @@ root.render(
       <Route path='/' element={<App/>}>
          <Route index element={<Landing/>}/>
          <Route path='/login' element={<Login/>}/>
+         <Route path='/reguser' element={<Userreg/>}/>
          
       </Route>
       <Route path='/admin' element={<Navadm/>}>
@@ -97,9 +121,36 @@ root.render(
         <Route path='assigndeliveryboyorg' element={<Assigndeliveryboy/>}/>
         <Route path='vieworderorg' element={<Vwordersorg/>}/>
         <Route path='viewcartorg'element={<Vwcartorg/>}/>
+        <Route path='viewcartproductdtlorg' element={<Vwcartproductdtlorg/>}/>
         <Route path='vieweventorg' element={<Vweventorg/>}/>
         <Route path='sponsorshiporg' element={<Sponsorshiporg/>}/>
+        <Route path='viewreportsorg' element={<Vwreportsorg/>}/>
+        <Route path='addreportorg' element={<Addreportorg/>}/>
+        <Route path='viewrevieworg' element={<Vwrevieworg/>}/>
+        <Route path='vieworphorg' element={<Vworphorg/>}/>
+        <Route path='vieworphdtlorg' element={<Vworphdtlorg/>}/>
         
+
+      </Route>
+      <Route path='/orphanage' element={<Navorph/>}>
+      <Route index element={<Homeorph/>}/>
+      <Route path='vieworgorph' element={<Vieworgorph/>}/>
+      <Route path='vieworgdtlorph' element={<Vworgdtlorph/>}/>
+      <Route path='addrevieworph' element={<Addrevieworph/>}/>
+      <Route path='viewdonatnreqstorph' element={<Vwdonatnrequestorph/>}/>
+      <Route path='addrequestorph' element={<Addrequest/>}/>
+      <Route path='viewdonatnorph' element={<Viewdonatnorph/>}/>
+      <Route path='viewcontributnorph' element={<Vwcontriorph/>}/>
+      <Route path='vieweventorph' element={<Vweventorph/>}/>
+      <Route path='addweventorph' element={<Addeventorph/>}/>
+      <Route path='updateeventorph' element={<Updateeventorph/>}/>
+      <Route path='viewsponsorshiporph' element={<Vwsponsorph/>}/>
+      </Route>
+
+
+      <Route path='/deliveryboy' element={<Navdeliveryb/>}>
+      <Route index element={<Homedeliveryb/>}/> 
+      <Route path='viewdonatndeliveryb' element={<Vwdonatndboy/>}/>
 
       </Route>
     </Routes>

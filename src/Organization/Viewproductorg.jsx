@@ -12,7 +12,7 @@ import backpack from './backpack.png'
 const Viewproductorg = () => {
   return (
     <div>
-        <div className='basicbg w-[100%]  pt-7 '>
+        <div className='basicbg2 w-[100%]  pt-7 '>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ORGANIZATIONS</div>
 
             {/* --searchbar--- */}
