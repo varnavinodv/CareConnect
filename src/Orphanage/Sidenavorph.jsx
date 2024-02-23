@@ -10,15 +10,16 @@ import spon from '../Admin/spon.png'
 import user1 from '../Admin/user1.png'
 import org from '../Admin/org.png'
 import logout from '../Admin/logout.png'
+import user1 from '../Admin/user1.png'
 
 const Sidenavorph = () => {
   return (
     <div>
         <div className='w-[13%] h-[40rem] bg-[#FFEFBD]'>
-            {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]  ' src={user1} alt="" />
-                <p className='text-lg font-normal'>User</p>
-            </div > */}
+                <p className='text-lg font-normal'>Profile</p>
+            </div >
             {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]'src={product} alt="" />
                 <p className='text-lg font-normal'>Products</p>

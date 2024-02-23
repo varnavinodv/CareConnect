@@ -67,6 +67,14 @@ import Homedeliveryb from './Delivery boy/Homedeliveryb';
 import Navdeliveryb from './Delivery boy/Navdeliveryb';
 import Vwdonatndboy from './Delivery boy/Vwdonatndboy';
 import Userreg from './Userreg';
+import Orgreg from './Orgreg';
+import Orphreg from './Orphreg';
+import Adddeliveryboy from './Organization/Adddeliveryboy';
+import Vwordersdboy from './Delivery boy/Vwordersdboy'
+import Editprofiledeliveryb from './Delivery boy/Editprofiledeliveryb';
+import Editprofileorph from './Orphanage/Editprofileorph';
+import Editprofileorg from './Organization/Editprofileorg';
+import Editprofileuser from './User/Editprofileuser';
 
 
 
@@ -80,6 +88,8 @@ root.render(
          <Route index element={<Landing/>}/>
          <Route path='/login' element={<Login/>}/>
          <Route path='/reguser' element={<Userreg/>}/>
+         <Route path='/regorg' element={<Orgreg/>}/>
+         <Route path='/regorph' element={<Orphreg/>}/>
          
       </Route>
       <Route path='/admin' element={<Navadm/>}>
@@ -87,15 +97,15 @@ root.render(
         <Route path='viewuser' element={<Vwuseradm/>}/>
         <Route path='viewproduct' element={<Vwproductadm/>}/>         
         <Route path='vieworganization' element={<Vworgadm/>}/> 
-        <Route path='vieworphanage' element={<Vworphadm/>}/>
         <Route path='viewdonation' element={<Vwdonatnadm/>}/>
         <Route path='viewcontribution' element={<Vwcontriadm/>}/> 
+        <Route path='vieworphanage' element={<Vworphadm/>}/>
+        <Route path='viewdeliveryboy' element={<Vwdeliveryboyadm/>}/>
         <Route path='viewevent' element={<Vweventadm/>}/>   
         <Route path='viewsponsorship' element={<Vwsponsadm/>}/> 
-        <Route path='vieworder' element={<Vworderadm/>}/>   
         <Route path='viewreport' element={<Vwreportsadm/>}/>
+        <Route path='vieworder' element={<Vworderadm/>}/>   
         <Route path='viewreview' element={<Vwreviewadm/>}/>
-        <Route path='viewdeliveryboy' element={<Vwdeliveryboyadm/>}/>
 
       </Route>
       <Route path='/user' element={<Navuser/>}>
@@ -110,6 +120,7 @@ root.render(
         <Route path='contributionuser' element={<Contriuser/>}/>
         <Route path='vieworderuser' element={<Vworderuser/>}/>
         <Route path='viewcontributionuser' element={<Vwcontriuser/>}/>
+        <Route path='editprofileuser' element={<Editprofileuser/>}/>
       
       </Route> 
       <Route path='/organization' element={<Navorg/>}>
@@ -129,6 +140,9 @@ root.render(
         <Route path='viewrevieworg' element={<Vwrevieworg/>}/>
         <Route path='vieworphorg' element={<Vworphorg/>}/>
         <Route path='vieworphdtlorg' element={<Vworphdtlorg/>}/>
+        <Route path='adddeliveryboy' element={<Adddeliveryboy/>}/>
+        <Route path='editprofileorg' element={<Editprofileorg/>}/>
+
         
 
       </Route>
@@ -145,12 +159,15 @@ root.render(
       <Route path='addweventorph' element={<Addeventorph/>}/>
       <Route path='updateeventorph' element={<Updateeventorph/>}/>
       <Route path='viewsponsorshiporph' element={<Vwsponsorph/>}/>
+      <Route path='editprofileorph' element={<Editprofileorph/>}/>
       </Route>
 
 
       <Route path='/deliveryboy' element={<Navdeliveryb/>}>
       <Route index element={<Homedeliveryb/>}/> 
       <Route path='viewdonatndeliveryb' element={<Vwdonatndboy/>}/>
+      <Route path='vieworderdeliveryb' element={<Vwordersdboy/>}/>
+      <Route path='editprofiledeliberyb' element={<Editprofiledeliveryb/>}/>
 
       </Route>
     </Routes>

@@ -5,7 +5,8 @@ import locatn from './locatnbrwn.png'
 
 const Contriuser = () => {
   return (
-    <div className='basicbg2 w-[100%]  pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
+    <div className='w-[100%] '>
+    <div className='basicbg2   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
         
         <div>
         <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORPHANAGE</div>
@@ -58,6 +59,7 @@ const Contriuser = () => {
         <div>
             {/* <img src="" alt="" /> */}
         </div>
+    </div>
     </div>
   )
 }

@@ -15,11 +15,12 @@ import logout from '../Admin/logout.png'
 const Usersidenav = () => {
   return (
    
-        <div className='w-[250px] h-[40rem] bg-[#FFEFBD]'>
-            {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+        <div className='w-[250px]  bg-[#FFEFBD] flex flex-col justify-between pb-11'>
+           <div> 
+            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]  ' src={user1} alt="" />
                 <p className='text-lg font-normal'>User</p>
-            </div > */}
+            </div >
             <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]'src={product} alt="" />
                 <p className='text-lg font-normal'>Products</p>
@@ -60,12 +61,14 @@ const Usersidenav = () => {
                 <img className='w-[30px] h-[25px]' src={review} alt="" />
                 <p className='text-lg font-normal'>Reviews</p>
             </div> */}
-            <div className='ps-8 pt-20'>
+            </div>
+            <div>
+              <div className='ps-8 pt-20'>
                 <button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
                     <div className='text-white'>LOGOUT </div>
                     <div><img src={logout} alt="" /></div>
                 </button>
-                
+              </div>   
             </div>
 
 

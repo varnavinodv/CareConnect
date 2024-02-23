@@ -15,10 +15,15 @@ import delivery from './Delivery.png'
 import requests from './Requests.png'
 import cart from './Cart.png'
 
+
 const Sidenavorg = () => {
   return (
     <div  >
         <div className='w-[13%] h-[40rem] bg-[#FFEFBD]'>
+        <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+                <img className='w-[30px] h-[25px]  ' src={user1} alt="" />
+                <p className='text-lg font-normal'>Profile</p>
+            </div >
             
             <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]'src={product} alt="" />

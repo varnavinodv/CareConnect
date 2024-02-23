@@ -13,8 +13,8 @@ const Vworgdtluser = () => {
 
   }
   return (
-    <div>
-        <div className='basicbg w-[100%]  ps-40 flex flex-wrap justify-between'>
+    <div className='w-[100%]'>
+        <div className='basicbg   ps-40 flex flex-wrap justify-between'>
           <div >
             <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORGANIZATION</div>
             <div>

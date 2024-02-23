@@ -6,8 +6,8 @@ import kidsbrwn from '../Admin/kidsbrwn.png'
 
 const Home = () => {
   return (
-    <div>
-      <div className='basicbg w-[100%]  pt-7'>
+    <div className='w-[100%]'>
+      <div className='basicbg   pt-7'>
         <div className='flex flex-wrap justify-center inspiration font-semibold '>
           <div className='text-5xl text-[#A02525]  '>Welcome to Care Connect</div>
           <div className='w-[50px] h-[50px] '><img src={toy} alt="" /></div>

@@ -2,8 +2,8 @@ import React from 'react'
 
 const Vwsponsadm = () => {
   return (
-    <div>
-                <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
+    <div className='w-[100%]'>
+                <div className='basicbg pt-7 ps-10 pe-10'>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>SPONSORSHIPS</div>
              
 
@@ -12,126 +12,47 @@ const Vwsponsadm = () => {
         <thead class="text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Product name
+                    SL NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Color
+                    EVENT NAME
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Category
+                    ORPHANAGE
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    ORGANIZATION
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    PURPOSE
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Action
+                    STATUS
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Apple MacBook Pro 17"
-                </th>
+            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
                 <td class="px-6 py-4">
-                    Silver
+                    1.
                 </td>
                 <td class="px-6 py-4">
-                    Laptop
+                    CHILDREN'S DAY
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                    LTP ORPHANAGE
                 </td>
                 <td class="px-6 py-4">
-                    $799
+                    POI ORGANIZATION
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
+                    Food
                 </td>
                 <td class="px-6 py-4">
-                    Laptop PC
-                </td>
-                <td class="px-6 py-4">
-                    $1999
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+                    Accepted
                 </td>
             </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                    Google Pixel Phone
-                </th>
-                <td class="px-6 py-4">
-                    Gray
-                </td>
-                <td class="px-6 py-4">
-                    Phone
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                    Apple Watch 5
-                </th>
-                <td class="px-6 py-4">
-                    Red
-                </td>
-                <td class="px-6 py-4">
-                    Wearables
-                </td>
-                <td class="px-6 py-4">
-                    $999
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
+            
         </tbody>
     </table>
 </div>
