@@ -75,6 +75,11 @@ import Editprofiledeliveryb from './Delivery boy/Editprofiledeliveryb';
 import Editprofileorph from './Orphanage/Editprofileorph';
 import Editprofileorg from './Organization/Editprofileorg';
 import Editprofileuser from './User/Editprofileuser';
+import Vwdelboys from './Organization/Vwdelboys';
+import Editreportorg from './Organization/Editreportorg';
+import Vwsponsorg from './Organization/Vwsponsorg';
+import Editeventorph from './Orphanage/Editeventorph';
+import Sponshistoryorph from './Orphanage/Sponshistoryorph';
 
 
 
@@ -92,6 +97,8 @@ root.render(
          <Route path='/regorph' element={<Orphreg/>}/>
          
       </Route>
+
+
       <Route path='/admin' element={<Navadm/>}>
         <Route index element={<Home/>}/>
         <Route path='viewuser' element={<Vwuseradm/>}/>
@@ -110,42 +117,48 @@ root.render(
       </Route>
       <Route path='/user' element={<Navuser/>}>
         <Route index element={<Homeuser/>}/>
+        <Route path='editprofileuser' element={<Editprofileuser/>}/>
         <Route path='viewproductuser' element={<Vwproductuser/>}/>
+        <Route path='vieworguser' element={<Vworguser/>}/>
+        <Route path='viewcontributionuser' element={<Vwcontriuser/>}/>
+        <Route path='vieworphuser' element={<Vworphuser/>}/>
+        <Route path='vieworderuser' element={<Vworderuser/>}/>
         <Route path='addproduct' element={<Addproductuser/>}/>
         <Route path='updateproduct' element={<Updateproductuser/>}/>
-        <Route path='vieworguser' element={<Vworguser/>}/>
         <Route path='vieworgdtluser' element={<Vworgdtluser/>}/>
-        <Route path='vieworphuser' element={<Vworphuser/>}/>
         <Route path='vieworphdtluser' element={<Viewoprhdtluser/>}/>
         <Route path='contributionuser' element={<Contriuser/>}/>
-        <Route path='vieworderuser' element={<Vworderuser/>}/>
-        <Route path='viewcontributionuser' element={<Vwcontriuser/>}/>
-        <Route path='editprofileuser' element={<Editprofileuser/>}/>
-      
       </Route> 
+
+
+
       <Route path='/organization' element={<Navorg/>}>
         <Route index element={<Homeorg/>}/>
-        <Route path='donationrequestorg' element={<Donatnreqorg/>}/>
-        <Route path='viewproductorg' element={<Viewproductorg/>}/>
-        <Route path='viewproductdtlorg' element={<Vwproductdtlorg/>}/>
-        <Route path='viewdonationorg' element={<Vwdonatnorg/>}/>
-        <Route path='assigndeliveryboyorg' element={<Assigndeliveryboy/>}/>
-        <Route path='vieworderorg' element={<Vwordersorg/>}/>
-        <Route path='viewcartorg'element={<Vwcartorg/>}/>
-        <Route path='viewcartproductdtlorg' element={<Vwcartproductdtlorg/>}/>
-        <Route path='vieweventorg' element={<Vweventorg/>}/>
-        <Route path='sponsorshiporg' element={<Sponsorshiporg/>}/>
-        <Route path='viewreportsorg' element={<Vwreportsorg/>}/>
-        <Route path='addreportorg' element={<Addreportorg/>}/>
-        <Route path='viewrevieworg' element={<Vwrevieworg/>}/>
-        <Route path='vieworphorg' element={<Vworphorg/>}/>
-        <Route path='vieworphdtlorg' element={<Vworphdtlorg/>}/>
-        <Route path='adddeliveryboy' element={<Adddeliveryboy/>}/>
         <Route path='editprofileorg' element={<Editprofileorg/>}/>
-
-        
-
+        <Route path='viewproductorg' element={<Viewproductorg/>}/>
+        <Route path='vieworphorg' element={<Vworphorg/>}/>
+        <Route path='viewdeliveryboyorg' element={<Vwdelboys/>}/>
+        <Route path='donationrequestorg' element={<Donatnreqorg/>}/>
+        <Route path='vieweventorg' element={<Vweventorg/>}/>
+        <Route path='viewcartorg'element={<Vwcartorg/>}/>
+        <Route path='viewreportsorg' element={<Vwreportsorg/>}/>
+        <Route path='vieworderorg' element={<Vwordersorg/>}/>
+        <Route path='viewrevieworg' element={<Vwrevieworg/>}/>
+        <Route path='viewdonationorg' element={<Vwdonatnorg/>}/>
+        <Route path='viewproductdtlorg' element={<Vwproductdtlorg/>}/>
+        <Route path='vieworphdtlorg' element={<Vworphdtlorg/>}/>
+        <Route path='assigndeliveryboyorg/:id' element={<Assigndeliveryboy/>}/>
+        <Route path='viewcartproductdtlorg' element={<Vwcartproductdtlorg/>}/>
+        <Route path='sponsorshiporg' element={<Sponsorshiporg/>}/>
+        <Route path='addreportorg' element={<Addreportorg/>}/>
+        <Route path='adddeliveryboy' element={<Adddeliveryboy/>}/>
+        <Route path='editreportorg' element={<Editreportorg/>}/>
+        <Route path='vwsponsorg' element={<Vwsponsorg/>}/>
       </Route>
+
+
+
+
       <Route path='/orphanage' element={<Navorph/>}>
       <Route index element={<Homeorph/>}/>
       <Route path='vieworgorph' element={<Vieworgorph/>}/>
@@ -156,10 +169,12 @@ root.render(
       <Route path='viewdonatnorph' element={<Viewdonatnorph/>}/>
       <Route path='viewcontributnorph' element={<Vwcontriorph/>}/>
       <Route path='vieweventorph' element={<Vweventorph/>}/>
-      <Route path='addweventorph' element={<Addeventorph/>}/>
+      <Route path='addeventorph' element={<Addeventorph/>}/>
       <Route path='updateeventorph' element={<Updateeventorph/>}/>
       <Route path='viewsponsorshiporph' element={<Vwsponsorph/>}/>
       <Route path='editprofileorph' element={<Editprofileorph/>}/>
+      <Route path='editeventorph' element={<Editeventorph/>}/>
+      <Route path='sponshistory' element={<Sponshistoryorph/>}/>
       </Route>
 
 

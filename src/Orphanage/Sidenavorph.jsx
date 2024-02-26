@@ -10,48 +10,50 @@ import spon from '../Admin/spon.png'
 import user1 from '../Admin/user1.png'
 import org from '../Admin/org.png'
 import logout from '../Admin/logout.png'
-import user1 from '../Admin/user1.png'
+
+import { Link } from 'react-router-dom'
 
 const Sidenavorph = () => {
   return (
     <div>
-        <div className='w-[13%] h-[40rem] bg-[#FFEFBD]'>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+        <div className='w-[250px] h-[100%] bg-[#FFEFBD] flex flex-col justify-between pb-11'>
+            <div>
+            <Link to='/Orphanage/editprofileorph'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]  ' src={user1} alt="" />
                 <p className='text-lg font-normal'>Profile</p>
-            </div >
+            </div ></Link>
             {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]'src={product} alt="" />
                 <p className='text-lg font-normal'>Products</p>
             </div> */}
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+           <Link to='/orphanage/vieworgorph'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={org} alt="" />
                 <p className='text-lg font-normal'>Organizations</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div></Link> 
+           <Link to='/orphanage/viewdonatnorph'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={donatn} alt="" />
                 <p className='text-lg font-normal'>Donations</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div></Link>
+           <Link to ='/orphanage/viewcontributnorph'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={contri} alt="" />
                 <p className='text-lg font-normal'>Contributions</p>
-            </div>
+            </div></Link> 
             {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4] '>
                 <img className='w-[30px] h-[25px]' src={orph} alt="" />
                 <p className='text-lg font-normal'>Orphanages</p>
             </div> */}
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'> 
+           <Link to ='/orphanage/vieweventorph'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'> 
                 <img className='w-[30px] h-[25px]' src={event} alt="" />
                 <p className='text-lg font-normal'>Events</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div></Link>
+           <Link to='/orphanage/sponshistory'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={spon} alt="" />
                 <p className='text-lg font-normal' >Sponsorships</p>
-            </div >
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div ></Link>
+           <Link to='/orphanage/viewdonatnreqstorph'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={request} alt="" />
                 <p className='text-lg font-normal'>Requests</p>
-            </div>
+            </div></Link>
             {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={order} alt="" />
                 <p className='text-lg font-normal'>Orders</p>
@@ -60,11 +62,12 @@ const Sidenavorph = () => {
                 <img className='w-[30px] h-[25px]' src={review} alt="" />
                 <p className='text-lg font-normal'>Reviews</p>
             </div> */}
+            </div>
             <div className='ps-8 pt-20'>
-                <button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
+            <Link to ='/'><button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
                     <div className='text-white'>LOGOUT </div>
                     <div><img src={logout} alt="" /></div>
-                </button>
+                </button></Link>
                 
             </div>
 

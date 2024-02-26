@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Vworphuser = () => {
   return (
-    <div>
-        <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
+    <div className='w-[100%] '>
+        <div className='basicbg  pt-7 ps-10 pe-10'>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ORPHANAGES</div>
             {/* searchbar */}
             
@@ -26,10 +27,13 @@ const Vworphuser = () => {
         <thead class="text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Product name
+                    SL NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Color
+                    ORPHANAGE
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    EMAIL
                 </th>
                 
                 <th scope="col" class="px-6 py-3">
@@ -39,74 +43,23 @@ const Vworphuser = () => {
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Apple MacBook Pro 17"
-                </th>
+            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
+                <td  class="px-6 py-4 ">
+                    1.
+                </td>
                 <td class="px-6 py-4">
-                    Silver
+                    WER ORPH
                </td>
-                <td class="px-6 py-4 flex flex-wrap flex-col">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+               <td class="px-6 py-4">
+                    wer@gmail.com
+               </td>
+               <td class="px-6 py-4  hover:font-bold ">
+                     <Link to='/user/vieworphdtluser'><button className='hover:underline '>View</button></Link>
                     
                 </td>
                 
             </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
-                </td>
-                
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-                
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-               
-                <td class="px-6 py-4 flex flex-wrap flex-col">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                   
-                </td>
-                
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Google Pixel Phone
-                </th>
-                <td class="px-6 py-4">
-                    Gray
-                </td>
-                
-                <td class="px-6 py-4 flex flex-wrap flex-col">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                    
-                </td>
-                
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Apple Watch 5
-                </th>
-                <td class="px-6 py-4">
-                    Red
-                </td>
-               
-                <td class="px-6 py-4 flex flex-wrap flex-col">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                    
-                </td>
-                
-            </tr>
+           
         </tbody>
     </table>
 </div>

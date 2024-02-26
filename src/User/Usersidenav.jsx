@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import contri from '../Admin/contri.png'
 import donatn from '../Admin/donatn.png'
 import event from '../Admin/event.png'
@@ -17,30 +18,30 @@ const Usersidenav = () => {
    
         <div className='w-[250px]  bg-[#FFEFBD] flex flex-col justify-between pb-11'>
            <div> 
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            <Link to='/user/editprofileuser'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]  ' src={user1} alt="" />
-                <p className='text-lg font-normal'>User</p>
-            </div >
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+                <p className='text-lg font-normal'>Profile</p>
+            </div ></Link>
+            <Link to='/user/viewproductuser'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]'src={product} alt="" />
                 <p className='text-lg font-normal'>Products</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div></Link>
+            <Link to ='/user/vieworguser'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={org} alt="" />
                 <p className='text-lg font-normal'>Organizations</p>
-            </div>
+            </div></Link>
             {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={donatn} alt="" />
                 <p className='text-lg font-normal'>Donations</p>
             </div> */}
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            <Link to ='/user/viewcontributionuser'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={contri} alt="" />
                 <p className='text-lg font-normal'>Contributions</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4] '>
+            </div></Link>
+           <Link to ='/user/vieworphuser'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4] '>
                 <img className='w-[30px] h-[25px]' src={orph} alt="" />
                 <p className='text-lg font-normal'>Orphanages</p>
-            </div>
+            </div></Link>
             {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'> 
                 <img className='w-[30px] h-[25px]' src={event} alt="" />
                 <p className='text-lg font-normal'>Events</p>
@@ -53,10 +54,10 @@ const Usersidenav = () => {
                 <img className='w-[30px] h-[25px]' src={report} alt="" />
                 <p className='text-lg font-normal'>Reports</p>
             </div> */}
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            <Link to='/user/vieworderuser'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={order} alt="" />
                 <p className='text-lg font-normal'>Orders</p>
-            </div>
+            </div></Link>
             {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={review} alt="" />
                 <p className='text-lg font-normal'>Reviews</p>
@@ -64,10 +65,10 @@ const Usersidenav = () => {
             </div>
             <div>
               <div className='ps-8 pt-20'>
-                <button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
+                <Link to='/'><button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
                     <div className='text-white'>LOGOUT </div>
                     <div><img src={logout} alt="" /></div>
-                </button>
+                </button></Link>
               </div>   
             </div>
 

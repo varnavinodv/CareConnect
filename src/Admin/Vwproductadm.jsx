@@ -35,9 +35,9 @@ const Vwproductadm = () => {
         </thead>
         <tbody>
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap  dark:text-black">
+                <td  class="px-6 py-4" >
                     1
-                </th>
+                </td>
                 <td class="px-6 py-4">
                     story book
                 </td>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import Footer from '../Footer'
 import profile from '../Admin/prof icon.png'
 import menu from '../Admin/menubar.png'
@@ -16,12 +16,12 @@ const Navdeliveryb = () => {
             <div className='text-white flex flex-wrap justify-evenly gap-12 pe-5 items-center '>
                <div className='flex flex-wrap items-center'>
                   <div className='w-[50px] h-[50px] mt-4'><img src={profile} alt="" /></div>
-                  <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Deliveryb</div>
+                  <Link to='/deliveryboy/editprofiledeliberyb'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Deliveryb</div></Link>
                </div>
-               <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Home</div>
-               <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Orders</div>
-               <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Donations</div>
-               <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Logout</div>
+               <Link to='/deliveryboy'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Home</div></Link>
+               <Link to='/deliveryboy/vieworderdeliveryb'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Orders</div></Link>
+               <Link to='/deliveryboy/viewdonatndeliveryb'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Donations</div></Link>
+               <Link to='/'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Logout</div></Link>
                
 
             </div>

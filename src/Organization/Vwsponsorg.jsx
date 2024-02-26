@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Viewdonatnorph = () => {
+const Vwsponsorg = () => {
   return (
     <div className='w-[100%]'>
-    <div className='basicbg   pt-7 ps-10 pe-10'>
-<div className='text-3xl text-[#431515] font-semibold text-center pb-7'>DONATION REQUESTS</div>
+    <div className='basicbg pt-7 ps-10 pe-10'>
+<div className='text-3xl text-[#431515] font-semibold text-center pb-7'>SPONSORSHIPS</div>
  
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -15,38 +15,42 @@ const Viewdonatnorph = () => {
         SL NO.
     </th>
     <th scope="col" class="px-6 py-3">
+        EVENT NAME
+    </th>
+    <th scope="col" class="px-6 py-3">
         ORPHANAGE
     </th>
     <th scope="col" class="px-6 py-3">
-        PRODUCT
+        ORGANIZATION
     </th>
     <th scope="col" class="px-6 py-3">
-        COUNT
+        PURPOSE
     </th>
     <th scope="col" class="px-6 py-3">
-      STATUS
+        STATUS
     </th>
-    
 </tr>
 </thead>
 <tbody>
-<tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] text-black font-semibold">
-    <td  class="px-6 py-4 ">
-       1.
+<tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
+    <td class="px-6 py-4">
+        1.
     </td>
     <td class="px-6 py-4">
-        TRS orph
+        CHILDREN'S DAY
     </td>
     <td class="px-6 py-4">
-        Bag
+        LTP ORPHANAGE
     </td>
     <td class="px-6 py-4">
-       3
+        POI ORGANIZATION
+    </td>
+    <td class="px-6 py-4">
+        Food
     </td>
     <td class="px-6 py-4">
         Accepted
     </td>
-   
 </tr>
 
 </tbody>
@@ -58,8 +62,10 @@ const Viewdonatnorph = () => {
 
 
 </div>
+
+
 </div>
   )
 }
 
-export default Viewdonatnorph
+export default Vwsponsorg

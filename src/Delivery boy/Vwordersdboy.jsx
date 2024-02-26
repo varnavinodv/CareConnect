@@ -1,6 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 const Vwordersdboy = () => {
+    const [det,setDet]= useState(false)
+     let status=()=>{
+         setDet(!det)
+     }
   return (
     <div>
     <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
@@ -15,28 +19,28 @@ const Vwordersdboy = () => {
     <thead class="text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black">
         <tr>
             <th scope="col" class="px-6 py-3">
-                Product name
+               SL NO.
             </th>
             <th scope="col" class="px-6 py-3">
-                Color
+                USER
             </th>
             <th scope="col" class="px-6 py-3">
-                Category
+                PRODUCT
             </th>
             <th scope="col" class="px-6 py-3">
-                Price
+                COUNT
             </th>
             <th scope="col" class="px-6 py-3">
-                Price
+                ADDRESS
             </th>
             <th scope="col" class="px-6 py-3">
-                Price
+                PHONE NO.
             </th>
             <th scope="col" class="px-6 py-3">
-                Price
+                DATE
             </th>
             <th scope="col" class="px-6 py-3">
-                Price
+                STATUS
             </th>
             <th scope="col" class="px-6 py-3">
                 ACTION
@@ -45,160 +49,48 @@ const Vwordersdboy = () => {
         </tr>
     </thead>
     <tbody>
-        <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                Apple MacBook Pro 17"
-            </th>
-            <td class="px-6 py-4">
-                Silver
+        <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] text-black font-semibold">
+            <td  class="px-6 py-4 ">
+                1.
             </td>
             <td class="px-6 py-4">
-                Laptop
+                Abi
             </td>
             <td class="px-6 py-4">
-                $2999
+                Book
             </td>
             <td class="px-6 py-4">
-                $799
+                2
             </td>
             <td class="px-6 py-4">
-                $799
+            puthiyottil,
+puthiyangadi,
+calicut-9
             </td>
             <td class="px-6 py-4">
-                $799
+            8606574318
             </td>
             <td class="px-6 py-4">
-                $799
+            12/3/2023
+            </td>
+            <td class="px-6 py-4">
+            Accepted
             </td>
             <td class="px-6 py-4 flex flex-wrap flex-col">
-                <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                <a href="#" class="font-medium text-white hover:underline">Edit</a>
+
+                <button className='text-white bg-orange-500 py-3 px-1 rounded-lg'onClick={status}>Update status</button>
+                {det &&
+                        
+                        <div className='  p-1 bg-white text-black text-base  font-semibold rounded-lg  '>
+                            <p className='hover:bg-slate-400 p-1 rounded-lg'>Out for pick up</p>
+                            <p className='hover:bg-slate-400 p-1 rounded-lg'>Picked</p>
+                            <p className='hover:bg-slate-400 p-1 rounded-lg'>Delivered</p>
+                          </div> 
+                     }
             </td>
             
         </tr>
-        <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                Microsoft Surface Pro
-            </th>
-            <td class="px-6 py-4">
-                White
-            </td>
-            <td class="px-6 py-4">
-                Laptop PC
-            </td>
-            <td class="px-6 py-4">
-                $1999
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                <a href="#" class="font-medium text-white hover:underline">Edit</a>
-            </td>
-            
-        </tr>
-        <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                Magic Mouse 2
-            </th>
-            <td class="px-6 py-4">
-                Black
-            </td>
-            <td class="px-6 py-4">
-                Accessories
-            </td>
-            <td class="px-6 py-4">
-                $99
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4 flex flex-wrap flex-col">
-                <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                <a href="#" class="font-medium text-white hover:underline">Edit</a>
-            </td>
-            
-        </tr>
-        <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                Google Pixel Phone
-            </th>
-            <td class="px-6 py-4">
-                Gray
-            </td>
-            <td class="px-6 py-4">
-                Phone
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4 flex flex-wrap flex-col">
-                <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                <a href="#" class="font-medium text-white hover:underline">Edit</a>
-            </td>
-            
-        </tr>
-        <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                Apple Watch 5
-            </th>
-            <td class="px-6 py-4">
-                Red
-            </td>
-            <td class="px-6 py-4">
-                Wearables
-            </td>
-            <td class="px-6 py-4">
-                $999
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4">
-                $799
-            </td>
-            <td class="px-6 py-4 flex flex-wrap flex-col">
-                <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                <a href="#" class="font-medium text-white hover:underline">Edit</a>
-            </td>
-            
-        </tr>
+        
     </tbody>
 </table>
 </div>

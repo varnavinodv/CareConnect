@@ -17,7 +17,7 @@ const App = () => {
               </div>
               <div className='text-white flex flex-wrap justify-evenly gap-12 pe-5 items-center '>
                  <Link to ='/'><div>Home</div></Link>
-                 <div>About</div>
+                 <Link to='/abt'><div>About</div></Link>
                  <div>Contact</div>
                  <div><span  onClick={dropdown}>
                   Register

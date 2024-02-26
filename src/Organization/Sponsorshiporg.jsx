@@ -4,11 +4,12 @@ import email from '../User/emailbrwn.png'
 import locatn from '../User/locatnbrwn.png'
 import date from '../User/date.png'
 import time from '../User/time.png'
+import { Link } from 'react-router-dom'
 
 const Sponsorshiporg = () => {
   return (
-    <div>
-        <div className='basicbg w-[100%]  pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
+    <div className='w-[100%]'>
+        <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div className='ps-36'>
                         <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORPHANAGE</div>
                         <div className='text-xl font-semibold'>
@@ -76,7 +77,7 @@ const Sponsorshiporg = () => {
   
   
   
- <div className='text-center'><button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center  ">PAY</button></div> 
+ <div className='text-center'><Link to='/organization/vwsponsorg'><button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center  ">PAY</button></Link></div> 
 </form>
 </div>
 

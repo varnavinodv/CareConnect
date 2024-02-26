@@ -1,10 +1,11 @@
 import React from 'react'
 import toy from '../Admin/toy.png'
+import { Link } from 'react-router-dom'
 
 const Addreportorg = () => {
   return (
-    <div>
-        <div className='basicbg w-[100%]  pt-7 ps-10 pe-10 flex flex-wrap justify-around'>
+    <div className='w-[100%] '>
+        <div className='basicbg  pt-7 ps-10 pe-10 flex flex-wrap justify-around'>
           <div>
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ADD REPORT</div>
                                      
@@ -32,7 +33,7 @@ const Addreportorg = () => {
   
   
   
-  <button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">ADD PRODUCT</button>
+  <Link to='/organization/viewreportsorg'><button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">ADD REPORT</button></Link>
 </form>
 </div>
 

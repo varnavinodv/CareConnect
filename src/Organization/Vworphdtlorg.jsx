@@ -4,11 +4,12 @@ import email from '../User/emailbrwn.png'
 import locatn from '../User/locatnbrwn.png'
 import date from '../User/date.png'
 import time from '../User/time.png'
+import { Link } from 'react-router-dom'
 
 const Vworphdtlorg = () => {
   return (
-    <div>
-        <div className='basicbg2 w-[100%]  pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
+    <div className=' w-[100%] '>
+        <div className='basicbg2 pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div >
             <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORPHANAGE</div>
             <div className='text-xl font-semibold'>
@@ -50,6 +51,7 @@ const Vworphdtlorg = () => {
                         <img  className='w-[30px] h-[30px]'  src={time} alt="" />
                         <p>4:00pm</p>
                       </div>
+                      <Link to='/organization/sponsorshiporg'><div className='hover:underline text-orange-500 font-bold'>SPONSOR</div></Link>
                     </div>
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>

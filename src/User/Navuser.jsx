@@ -1,5 +1,5 @@
 import React,{useState}from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet,Link } from 'react-router-dom'
 import Footer from '../Footer'
 import profile from '../Admin/prof icon.png'
 import menu from '../Admin/menubar.png'
@@ -24,7 +24,7 @@ const Navuser = () => {
                     <div className='w-[50px] h-[50px] mt-4'><img src={profile} alt="" /></div>
                     <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>User</div>
                  </div>
-                 <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Home</div>
+                 <Link to='/user'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Home</div></Link>
                  
 
               </div>

@@ -1,19 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import sbook from '../Admin/sbook.jpg'
-import add from './addbtn.png'
-import edit from './edit.png'
-import dlt from './delete.png'
+import add from '../User/addbtn.png'
+import edit from '../User/edit.png'
+import dlt from '../User/delete.png'
+import hide from './hide.png'
 
-const Vwproductuser = () => {
+const Vwdelboys = () => {
   return (
-    <div className='w-[100%] '>
+    <div className='w-[100%]'>
+        <div className=' '>
                                 <div className='basicbg  pt-7 ps-10 pe-10'>
-            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>PRODUCTS</div>
+            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>DELIVERY BOYS</div>
              {/* button */}
-             <Link to='/user/addproduct'><button className='bg-orange-500 flex flex-wrap py-1 pe-2 rounded-lg m-auto hover:px-2 hover:py-2   items-center mb-8'>
+             <Link to='/organization/adddeliveryboy'><button className='bg-orange-500 flex flex-wrap py-1 pe-2 rounded-lg m-auto hover:px-2 hover:py-2   items-center mb-8'>
                     <div><img  className='w-[55px] h-[30px] '  src={add} alt="" /></div>
-                    <div className='text-white '>ADD PRODUCT </div>
+                    <div className='text-white '>ADD </div>
                 </button></Link>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -24,16 +26,25 @@ const Vwproductuser = () => {
                     SL NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    PRODUCT NAME
+                    NAME
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    CATEGORY
+                    AGE
                 </th>
                 <th scope="col" class="px-6 py-3">
-                   COUNT
+                  EMAIL
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    IMAGE
+                    PHONE NO.
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    LICENSE NO.
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    LICENSE
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    ADDRESS
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Action
@@ -46,19 +57,29 @@ const Vwproductuser = () => {
                     1.
                 </td>
                 <td class="px-6 py-4">
-                   Storybook
+                   Balu
                 </td>
                 <td class="px-6 py-4">
-                    Book
+                   34
                 </td>
                 <td class="px-6 py-4">
-                    3
+                   b@gmail.com
+                </td>
+                <td class="px-6 py-4">
+                   9876172652
+                </td>
+                <td class="px-6 py-4">
+                   IYTWC23455
                 </td>
                 <td class="px-6 py-4">
                     <img  className='h-14 w-14' src={sbook} alt="" />
                 </td>
-                <td class="px-6 py-6 flex flex-wrap justify-around ">
-                   <Link to='/user/updateproduct'> <img className='w-[45px] h-[30px] hover:bg-blue-400' src={edit} alt="" /></Link>
+                <td class="px-6 py-4">
+                wyuoo,Ho,P.O Kommeri,calicut-7
+                </td>
+
+                <td class="px-6 py-6 flex flex-wrap justify-evenly items-center ">
+                    <img className='w-[30px] h-[20px] hover:bg-blue-400' src={hide} alt="" />
                     <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
             </tr>
@@ -73,7 +94,9 @@ const Vwproductuser = () => {
         
         </div>
     </div>
+      
+    </div>
   )
 }
 
-export default Vwproductuser
+export default Vwdelboys

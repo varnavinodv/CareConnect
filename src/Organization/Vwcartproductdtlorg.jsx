@@ -3,8 +3,8 @@ import purpledress from './purpledress.png'
 
 const Vwcartproductdtlorg = () => {
   return (
-    <div>
-      <div className='basicbg w-[100%] '>
+    <div className=' w-[100%] '>
+      <div className='basicbg'>
         {/* <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>PRODUCTS</div> */}
         <div className='flex flex-wrap'>
           <div className='bg-yellow-300/40 w-[50%] flex h-[40rem]'>

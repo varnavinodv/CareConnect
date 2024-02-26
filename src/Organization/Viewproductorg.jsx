@@ -9,10 +9,11 @@ import storybook from './storybook.png'
 import frock from './frock.png'
 import toyset from './toyset.png'
 import backpack from './backpack.png'
+import { Link } from 'react-router-dom'
 const Viewproductorg = () => {
   return (
-    <div>
-        <div className='basicbg2 w-[100%]  pt-7 '>
+    <div className='w-[100%]' >
+        <div className='basicbg2  pt-7 '>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ORGANIZATIONS</div>
 
             {/* --searchbar--- */}
@@ -63,10 +64,10 @@ const Viewproductorg = () => {
     <img  className='h-[200px] w-[200px] pt-4 ps-4' src={storybook} alt="" />
         <p className='text-center font-semibold pt -1'>Story book</p>
     </div>
-    <div>
+    <Link to='/organization/viewproductdtlorg'><div>
     <img  className='h-[200px] w-[200px] pt-4 ps-4' src={frock} alt="" />
         <p className='text-center font-semibold pt-1'>Frock</p>
-    </div>
+    </div></Link>
     <div>
     <img  className='h-[200px] w-[200px] pt-4 ps-4' src={toyset} alt="" />
         <p className='text-center font-semibold pt-1'>Toyset</p>

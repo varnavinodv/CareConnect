@@ -2,9 +2,9 @@ import React from 'react'
 
 const Donatnreqorg = () => {
   return (
-    <div>
-        <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
-            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ORGANIZATIONS</div>
+    <div className=' w-[100%] '>
+        <div className='basicbg pt-7 ps-10 pe-10'>
+            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>DONATION REQUESTS</div>
          
 {/* tableee */}
 
@@ -13,29 +13,24 @@ const Donatnreqorg = () => {
         <thead class="text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Product name
+                    SL NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Color
+                   ORPHANAGE
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Category
+                PRODUCT
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    CATEGORY
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    COUNT
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    STATUS
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
+               
                 <th scope="col" class="px-6 py-3">
                     ACTION
                 </th>
@@ -43,160 +38,33 @@ const Donatnreqorg = () => {
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Apple MacBook Pro 17"
-                </th>
-                <td class="px-6 py-4">
-                    Silver
+            <tr class="bg-[#f8d2a0] border-b border-orange-600 text-black font-semibold hover:bg-[#f7b866d4]">
+                <td  class="px-6 py-4 ">
+                  1.
                 </td>
                 <td class="px-6 py-4">
-                    Laptop
+                    SDT Org
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                    Hand bags
                 </td>
                 <td class="px-6 py-4">
-                    $799
+                 bags
                 </td>
                 <td class="px-6 py-4">
-                    $799
+                   3
                 </td>
                 <td class="px-6 py-4">
-                    $799
+                   pending
                 </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
+                
                 <td class="px-6 py-4 flex flex-wrap flex-col">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+                <a href="#" class="font-bold text-sm text-green-600 hover:underline hover:bg-white p-1 hover:rounded-lg">Accept</a>
+                    <a href="#" class="font-bold text-sm text-red-600 hover:underline hover:bg-white p-1 hover:rounded-lg" >Reject</a>
                 </td>
                 
             </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
-                </td>
-                <td class="px-6 py-4">
-                    Laptop PC
-                </td>
-                <td class="px-6 py-4">
-                    $1999
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-                
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4 flex flex-wrap flex-col">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-                
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Google Pixel Phone
-                </th>
-                <td class="px-6 py-4">
-                    Gray
-                </td>
-                <td class="px-6 py-4">
-                    Phone
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4 flex flex-wrap flex-col">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-                
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Apple Watch 5
-                </th>
-                <td class="px-6 py-4">
-                    Red
-                </td>
-                <td class="px-6 py-4">
-                    Wearables
-                </td>
-                <td class="px-6 py-4">
-                    $999
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4 flex flex-wrap flex-col">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-                
-            </tr>
+           
         </tbody>
     </table>
 </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import call from './callbrwn.png'
 import email from './emailbrwn.png'
 import locatn from './locatnbrwn.png'
+import { Link } from 'react-router-dom'
 
 const Contriuser = () => {
   return (
@@ -52,7 +53,7 @@ const Contriuser = () => {
   
   
   
- <div className='text-center'><button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center  ">PAY</button></div> 
+ <div className='text-center'><Link to='/user/viewcontributionuser'><button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center  ">PAY</button></Link></div> 
 </form>
 </div>
         </div>

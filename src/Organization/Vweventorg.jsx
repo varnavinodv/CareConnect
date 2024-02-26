@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Vweventorg = () => {
   return (
-    <div>
-        <div className='basicbg w-[100%]  pt-7 ps-10 pe-10 pb-10'>
+    <div className=' w-[100%]'>
+        <div className='basicbg  pt-7 ps-10 pe-10 pb-10'>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>EVENTS</div>
              
 
@@ -12,126 +13,59 @@ const Vweventorg = () => {
         <thead class="text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Product name
+                  SL NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Color
+                   ORPHANAGE
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Category
+                    EVENT
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                   VENUE
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                   DATE
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Action
+                   TIME
+                </th>
+                <th scope="col" class="px-6 py-3">
+                   STATUS
+                </th>
+                <th scope="col" class="px-6 py-3">
+                   ACTION
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Apple MacBook Pro 17"
+                <th  class="px-6 py-4 ">
+                   1.
                 </th>
                 <td class="px-6 py-4">
-                    Silver
+                   AGF org
                 </td>
                 <td class="px-6 py-4">
-                    Laptop
+                   Children's day
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                  ade auditorium
                 </td>
                 <td class="px-6 py-4">
-                    $799
+                  14/9/2021
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+                 4:00pm
+                </td>
+                <td class="px-6 py-4">
+               pending
+                </td>
+                <td class="px-6 py-4">
+                   <Link to='/organization/sponsorshiporg'> <button className='bg-orange-500 p-1 rounded-md'>Sent sponsorship request</button></Link>
                 </td>
             </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-blacks">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
-                </td>
-                <td class="px-6 py-4">
-                    Laptop PC
-                </td>
-                <td class="px-6 py-4">
-                    $1999
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Google Pixel Phone
-                </th>
-                <td class="px-6 py-4">
-                    Gray
-                </td>
-                <td class="px-6 py-4">
-                    Phone
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Apple Watch 5
-                </th>
-                <td class="px-6 py-4">
-                    Red
-                </td>
-                <td class="px-6 py-4">
-                    Wearables
-                </td>
-                <td class="px-6 py-4">
-                    $999
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
+            
         </tbody>
     </table>
 </div>

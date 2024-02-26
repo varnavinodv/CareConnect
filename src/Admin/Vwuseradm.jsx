@@ -33,9 +33,9 @@ const Vwuseradm = () => {
         </thead>
         <tbody>
             <tr class="bg-[#f8d2a0] border-b font-semibold border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4  text-black whitespace-nowrap dark:text-black">
+                <td  class="px-6 py-4">
                     1
-                </th>
+                </td>
                 <td class="px-6 py-4">
                     Saniga
                 </td>

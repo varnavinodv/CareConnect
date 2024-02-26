@@ -14,62 +14,70 @@ import logout from '../Admin/logout.png'
 import delivery from './Delivery.png'
 import requests from './Requests.png'
 import cart from './Cart.png'
+import spons from '../Admin/spon.png'
+import { Link } from 'react-router-dom'
 
 
 const Sidenavorg = () => {
   return (
-    <div  >
-        <div className='w-[13%] h-[40rem] bg-[#FFEFBD]'>
-        <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+   
+        <div className='w-[250px]  bg-[#FFEFBD] flex flex-col justify-between pb-11'>
+         <div> 
+        <Link to='/organization/editprofileorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]  ' src={user1} alt="" />
                 <p className='text-lg font-normal'>Profile</p>
-            </div >
+            </div ></Link>
             
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+           <Link to='/organization/viewproductorg'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]'src={product} alt="" />
                 <p className='text-lg font-normal'>Products</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
-                <img className='w-[30px] h-[25px]' src={org} alt="" />
-                <p className='text-lg font-normal'>Organizations</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div></Link>
+            <Link to='/organization/vieworphorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+                <img className='w-[30px] h-[25px]' src={orph} alt="" />
+                <p className='text-lg font-normal'>Orphanages</p>
+            </div></Link>
+            <Link to='/organization/viewdonationorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={donatn} alt="" />
                 <p className='text-lg font-normal'>Donations</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div></Link>
+            <Link to ='/organization/viewdeliveryboyorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={delivery} alt="" />
                 <p className='text-lg font-normal'>Delivery boy</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4] '>
+            </div></Link>
+            <Link to='/organization/donationrequestorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4] '>
                 <img className='w-[30px] h-[25px]' src={requests} alt="" />
                 <p className='text-lg font-normal'>Requests</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'> 
+            </div></Link>
+            <Link to='/organization/vieweventorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'> 
                 <img className='w-[30px] h-[25px]' src={event} alt="" />
                 <p className='text-lg font-normal'>Events</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div></Link>
+           <Link to ='/organization/viewcartorg'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={cart} alt="" />
                 <p className='text-lg font-normal' >Cart</p>
-            </div >
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div ></Link>
+            <Link to='/organization/viewreportsorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={report} alt="" />
                 <p className='text-lg font-normal'>Reports</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div></Link>
+           <Link to='/organization/vieworderorg'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={order} alt="" />
                 <p className='text-lg font-normal'>Orders</p>
-            </div>
-            <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            </div></Link>
+            <Link to='/organization/viewrevieworg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={review} alt="" />
                 <p className='text-lg font-normal'>Reviews</p>
-            </div>
+            </div></Link>
+            <Link to='/organization/vwsponsorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+                <img className='w-[30px] h-[25px]' src={spon} alt="" />
+                <p className='text-lg font-normal'>Sponsorships</p>
+            </div></Link>
+            </div>  
             <div className='ps-8 pt-20'>
-                <button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
+               <Link to='/'> <button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
                     <div className='text-white'>LOGOUT </div>
                     <div><img src={logout} alt="" /></div>
-                </button>
+                </button></Link>
                 
             </div>
 
@@ -77,7 +85,7 @@ const Sidenavorg = () => {
 
         </div>
       
-    </div>
+    
   )
 }
 

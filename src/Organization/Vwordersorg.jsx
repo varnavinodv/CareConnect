@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import bag from './bags.jpg'
 
 const Vwordersorg = () => {
   return (
@@ -12,126 +14,74 @@ const Vwordersorg = () => {
         <thead class="text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Product name
+                    SL NO
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Color
+                    OWNER
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Category
+                   ADDRESS
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    PRODUCT
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                   CATEGORY
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Action
+                  IMAGE
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    COUNT
+                </th>
+                <th scope="col" class="px-6 py-3">
+                   DATE
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  STATUS
+                </th>
+                
+                <th scope="col" class="px-6 py-3">
+                 ACTION
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Apple MacBook Pro 17"
-                </th>
+            <tr class="bg-[#f8d2a0] border-b border-orange-600 text-black font-semibold hover:bg-[#f7b866d4]">
                 <td class="px-6 py-4">
-                    Silver
+                  1.
                 </td>
                 <td class="px-6 py-4">
-                    Laptop
+                   Rihala
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                xyzw,
+calicut-8
+pin:673209
                 </td>
                 <td class="px-6 py-4">
-                    $799
+                Hand bags
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-blacks">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
+                   Bag
                 </td>
                 <td class="px-6 py-4">
-                    Laptop PC
+                   <img className='h-14 w-14' src={bag} alt="" />
                 </td>
                 <td class="px-6 py-4">
-                    $1999
+                   3
                 </td>
                 <td class="px-6 py-4">
-                    $799
+                   12/2/2021
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+                  pending
+                </td>
+                <td class="px-6 py-4">
+                <Link to ='/organization/assigndeliveryboyorg/orders'> <button className='bg-orange-500 text-black py-2 px-2 rounded-lg'>Assign delivery boy</button></Link>
                 </td>
             </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Google Pixel Phone
-                </th>
-                <td class="px-6 py-4">
-                    Gray
-                </td>
-                <td class="px-6 py-4">
-                    Phone
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Apple Watch 5
-                </th>
-                <td class="px-6 py-4">
-                    Red
-                </td>
-                <td class="px-6 py-4">
-                    Wearables
-                </td>
-                <td class="px-6 py-4">
-                    $999
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
+           
         </tbody>
     </table>
 </div>

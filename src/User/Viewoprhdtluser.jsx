@@ -4,11 +4,12 @@ import email from './emailbrwn.png'
 import locatn from './locatnbrwn.png'
 import date from './date.png'
 import time from './time.png'
+import { Link } from 'react-router-dom'
 
 const Viewoprhdtluser = () => {
   return (
-    <div>
-         <div className='basicbg w-[100%]  pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
+    <div className='w-[100%]'>
+         <div className='basicbg2   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div >
             <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORPHANAGE</div>
             <div className='text-xl font-semibold'>
@@ -28,7 +29,7 @@ const Viewoprhdtluser = () => {
                 </div>
             </div>
             <div className=' items-center ps-20 pt-5'>
-              <button className='bg-orange-500 py-2 px-3 rounded-lg text-white '>CONTRIBUTE</button>
+              <Link to='/user/contributionuser'><button className='bg-orange-500 py-2 px-3 rounded-lg text-white '>CONTRIBUTE</button></Link>
             </div>
             <div className=' pt-6'>
               <h1 className='text-amber-950 text-balance font-bold text-xl'>EVENTS</h1>
@@ -56,9 +57,7 @@ const Viewoprhdtluser = () => {
                 
             </div>
           </div>
-          <div className=''>
-            {/* <img className='h-[35rem] w-[35rem] items-end '   src={girls} alt="" /> */}
-          </div>
+          
 
 
 

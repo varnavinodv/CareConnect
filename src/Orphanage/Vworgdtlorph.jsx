@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 import call from '../User/callbrwn.png'
 import email from '../User/emailbrwn.png'
 import locatn from '../User/locatnbrwn.png'
 import arrow from '../User/arrow.png'
 import add from '../User/addbtn.png'
+import review from '../Admin/review.png'
 
 const Vworgdtlorph = () => {
     const [drop,setDrop]= useState(false)
@@ -13,8 +15,8 @@ const Vworgdtlorph = () => {
   
     }
     return (
-      <div>
-          <div className='basicbg w-[100%]  ps-40 flex flex-wrap justify-between'>
+      <div className=' w-[100%]'>
+          <div className='basicbg  ps-40 flex flex-wrap justify-between'>
             <div >
               <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORGANIZATION</div>
               <div>
@@ -47,14 +49,24 @@ const Vworgdtlorph = () => {
                           
                           </div> 
                      }
-                     <button className='bg-orange-500 py-2 px-3 rounded-lg'><div className='flex flex-wrap items-center'>
-                       <p className='text-white text-lg'>View reports</p>
+                    <Link to='/orphanage/addrevieworph'><button className='bg-orange-500 py-2 px-3 rounded-lg'><div className='flex flex-wrap items-center'>
                        <img className='w-[40px] h-[30px]'  src={add} alt="" />
+                       <p className='text-white text-lg'>Add review</p>
                        </div>
-                     </button>
+                     </button></Link> 
               </div>
               <div>
-                {/* reviews */}
+              <div className='bg-white  p-3 rounded-lg align-text-bottom mt-24'>
+                      <div className='flex flex-wrap'>
+                        <img className='h-[25px] w-[25px]'src={review} alt="" />
+                        <h3 className='text-slate-500 ps-1'>Review</h3>
+                         
+                        </div>
+                        <h1 className='font-semibold text-base text-gray-700'>ADS orph</h1>
+                      <p className='text-black text-sm'>provided all the necessary items on time</p>
+
+
+              </div>
               </div>
             </div>
             <div className=''>
