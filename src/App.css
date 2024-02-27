@@ -43,12 +43,12 @@
 .loginbg{
   background-image: url('logbg.png');
    /* background-size: 100%; */
-  height: 40rem;
+  /* height: 40rem; */
 }
 .box{
   background-image: url('logbg.png');
   background-size: 100%;
-  height:fit-content
+  /* height:fit-content */
   
 }
 .home{
@@ -86,4 +86,9 @@
 .running{
   background-image: url('./User/running.png');
   background-size: 100% 100%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

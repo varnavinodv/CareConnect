@@ -1,6 +1,22 @@
-import React from 'react'
+import React,{useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Editprofileorph = () => {
+  const navigate=useNavigate()
+  const [data,setData]=useState('')
+  // const [data1,setData1]=useState('')
+
+  let handleChange=(event)=>{
+    setData({...data,[event.target.name]:event.target.value})
+  }
+
+  let handleSubmit=(event)=>{
+    event.preventDefault()
+    setData(data)
+    console.log(data);
+    navigate('/orphanage/vieworgdtlorph')
+    
+  }
   return (
     <div className='w-[100%]'>
        <div className='registerbg  pb-5 pt-7'>
@@ -8,51 +24,51 @@ const Editprofileorph = () => {
          <div>
             
 {/* ----forms---- */}
-<form class="">
+<form onSubmit={handleSubmit}>
     <div className='flex flex-wrap justify-evenly '>
 
         <div>  
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3  pt-8">
            <label for="name" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Name</label>
-           <input type="text" id="name" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange} type="text" name="name" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
-           <label for="email" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Phone no.</label>
-           <input type="text" id="email" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <label for="phno" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Phone no.</label>
+           <input onChange={handleChange}   type="text" name="phno" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
-           <label for="hname" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Pin</label>
-           <input type="text" id="hname" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <label for="pin" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Pin</label>
+           <input onSubmit={handleSubmit}type="text" name="pin" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
-           <label for="pin" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">License no.</label>
-           <input type="text" id="pin" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <label for="licno" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">License no.</label>
+           <input onSubmit={handleSubmit} type="text" name="licno" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="pwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Password</label>
-           <input type="password" id="pwd" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onSubmit={handleSubmit} type="password" name="pwd" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
         </div> 
         <div>  
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3 pt-8 ">
-           <label for="name" class=" mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950 ">Email</label>
-           <input type="text" id="name" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600  w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <label for="email" class=" mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950 ">Email</label>
+           <input onSubmit={handleSubmit} type="email" name="email" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600  w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
-           <label for="email" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Address</label>
-           <input type="email" id="email" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <label for="address" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Address</label>
+           <input onSubmit={handleSubmit} type="text" name="address" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
-           <label for="hname" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">District</label>
-           <input type="text" id="hname" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <label for="district" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">District</label>
+           <input onSubmit={handleSubmit} type="text" name="district" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
-           <label for="pin" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">License </label>
-           <input type="text" id="pin" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <label for="license" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">License </label>
+           <input onSubmit={handleSubmit} type="file" name="license" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
-           <label for="pwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm Password</label>
-           <input type="password" id="pwd" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <label for="cpwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm Password</label>
+           <input onSubmit={handleSubmit} type="password" name="cpwd" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
         </div>  
   

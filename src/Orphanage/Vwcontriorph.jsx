@@ -45,7 +45,7 @@ const Vwcontriorph = () => {
                   12/2/2021
                 </td>
                 <td class="px-6 py-4">
-                   successul
+                   successful
                 </td>
                 
             </tr>

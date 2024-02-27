@@ -34,7 +34,7 @@ const Vworphdtlorg = () => {
             <div className=' pt-6'>
               <h1 className='text-amber-950 text-balance font-bold text-xl'>EVENTS</h1>
             </div>
-            <div className='flex flex-wrap py-4 gap-8'>
+            <div className='flex  m-auto flex-wrap py-4 gap-8'>
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%] text-center pt-5'>
                     <div>
                         <h1 className='font-bold text-amber-950 py-4 text-xl'>CHILDREN'S DAY</h1>
@@ -55,6 +55,7 @@ const Vworphdtlorg = () => {
                     </div>
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>
+                
                 
             </div>
           </div>

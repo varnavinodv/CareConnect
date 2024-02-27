@@ -6,7 +6,7 @@ import f3 from './f3.png'
 const Footer = () => {
   return (
     <div>
-        <div className='w-[100%]  flex flex-wrap  bg-orange-500 justify-normal sm:gap-72  text-white'>
+        <div className='w-[100%]  flex flex-wrap  bg-orange-500 justify-normal sm:gap-72  text-white' id='contact'>
             <div className='ps-9 my-5'>
                 <div className='my-3 text-xl font-bold'><h1>GET IN TOUCH</h1></div>
                 <div className='flex flex-wrap gap-1 mb-2 '>

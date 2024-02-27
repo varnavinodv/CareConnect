@@ -4,10 +4,10 @@ import purpledress from './purpledress.png'
 
 const Vwproductdtlorg = () => {
   return (
-    <div className=' w-[100%] '>
-      <div className='basicbg'>
+    <div className=' w-[100%]'>
+      <div className='basicbg2'>
         {/* <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>PRODUCTS</div> */}
-        <div className='flex flex-wrap'>
+        <div className='flex flex-wrap h-[100%]'>
           <div className='bg-yellow-300/40 w-[50%] flex h-[40rem]'>
             {/* <div className='w-[40px] h-[40px]'> <img src={backarrow} alt="" /></div> */}
             {/* <div className='pt-12  m-auto'> */}

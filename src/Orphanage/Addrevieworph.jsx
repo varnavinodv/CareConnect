@@ -1,10 +1,25 @@
-import React from 'react'
+import React,{useState} from 'react'
 import call from '../User/callbrwn.png'
 import email from '../User/emailbrwn.png'
 import locatn from '../User/locatnbrwn.png'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 
 const Addrevieworph = () => {
+  const navigate=useNavigate()
+  const [data,setData]=useState('')
+  // const [data1,setData1]=useState('')
+
+  let handleChange=(event)=>{
+    setData({...data,[event.target.name]:event.target.value})
+  }
+
+  let handleSubmit=(event)=>{
+    event.preventDefault()
+    setData(data)
+    console.log(data);
+    navigate('/orphanage/vieworgdtlorph')
+    
+  }
   return (
     <div className=' w-[100%] '>
     <div className='basicbg2 ps-40 flex flex-wrap justify-between'>
@@ -30,27 +45,27 @@ const Addrevieworph = () => {
             <div><h1 className='font-bold text-2xl pb-2 text-center'> ADD REVIEW</h1></div>
                   
 
-                  <form class="max-w-sm mx-auto">
+                  <form onSubmit={handleSubmit} class="max-w-sm mx-auto">
                     <div class="mb-5">
-                      <label for="pname" class="block mb-2 text-sm font-medium text-[#3E1B00]">Name</label>
-                      <input type="text" id="pname" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+                      <label for="name" class="block mb-2 text-sm font-medium text-[#3E1B00]">Name</label>
+                      <input onChange={handleChange} type="text" name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
                     </div>
                     <div class="mb-5">
                       <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Category</label>
-                      <input type="text" id="category" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+                      <input onChange={handleChange} type="text" name="category" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
                     </div>
                     <div class="mb-5">
                       <label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Image</label>
-                      <input type="file" id="img" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+                      <input onChange={handleChange} type="file" name="img" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
                     </div>
                     <div class="mb-5">
                       <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>
-                      <input type="number" id="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+                      <input onChange={handleChange} type="number" name="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
                     </div>
                     
                     
                     
-                    <Link to='/orphanage/vieworgdtlorph'><button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">ADD REVIEW</button></Link>
+                    <button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">ADD REVIEW</button>
                   </form>
                   </div>
                   

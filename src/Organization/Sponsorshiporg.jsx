@@ -1,12 +1,29 @@
-import React from 'react'
+import React,{useState} from 'react'
 import call from '../User/callbrwn.png'
 import email from '../User/emailbrwn.png'
 import locatn from '../User/locatnbrwn.png'
 import date from '../User/date.png'
 import time from '../User/time.png'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Sponsorshiporg = () => {
+  const navigate=useNavigate()
+  const [data,setData]=useState('')
+  // const [data1,setData1]=useState('')
+
+  let handleChange=(event)=>{
+    setData({...data,[event.target.name]:event.target.value})
+  }
+
+  let handleSubmit=(event)=>{
+    event.preventDefault()
+    setData(data)
+    console.log(data);
+    navigate('/organization/vwsponsorg')
+    
+  }
+
   return (
     <div className='w-[100%]'>
         <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
@@ -51,16 +68,16 @@ const Sponsorshiporg = () => {
                                   </div>
                                 </div>
             </div>
-           <div className='w-[25rem] h-[28rem] bg-red-500/30 m-auto rounded-2xl pt-3 px-6 '>
+           <div className='w-[25rem] h-[15rem] bg-red-500/30 m-auto rounded-2xl pt-3 px-6 '>
                   
 
-<form class="max-w-sm mx-auto">
+<form class="max-w-sm mx-auto" onSubmit={handleSubmit} >
   <div class="mb-5">
   <h1 className='font-bold text-xl text-center mb-6'>SPONSORSHIP DETAILS</h1>
-    <label for="name" class="block mb-2 text-sm font-medium text-[#3E1B00]">Card holder name</label>
-    <input type="text" id="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <label for="purpose" class="block mb-2 text-sm font-medium text-[#3E1B00]">Purpose</label>
+    <input onChange={handleChange}  type="text" name="purpose" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
-  <div class="mb-5">
+  {/* <div class="mb-5">
     <label for="cvv" class="block mb-2 text-sm font-medium text-[#3E1B00]">CVV</label>
     <input type="text" id="cvv" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
@@ -72,12 +89,12 @@ const Sponsorshiporg = () => {
 <div class="flex items-center pb-3">
     <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 pb-3"></input>
     <label for="link-checkbox" class="ms-2 text-sm text-amber-950 font-semibold ">Hide identity</label>
-</div>
+</div> */}
 
   
   
   
- <div className='text-center'><Link to='/organization/vwsponsorg'><button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center  ">PAY</button></Link></div> 
+ <div className='text-center'><button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center  ">SENT REQUEST</button></div> 
 </form>
 </div>
 

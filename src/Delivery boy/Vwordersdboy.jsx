@@ -31,6 +31,9 @@ const Vwordersdboy = () => {
                 COUNT
             </th>
             <th scope="col" class="px-6 py-3">
+            IMAGE
+            </th>
+            <th scope="col" class="px-6 py-3">
                 ADDRESS
             </th>
             <th scope="col" class="px-6 py-3">
@@ -61,6 +64,9 @@ const Vwordersdboy = () => {
             </td>
             <td class="px-6 py-4">
                 2
+            </td>
+            <td class="px-6 py-4">
+                <img src="" alt="" />
             </td>
             <td class="px-6 py-4">
             puthiyottil,
