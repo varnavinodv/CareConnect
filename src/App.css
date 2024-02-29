@@ -42,12 +42,14 @@
 }
 .loginbg{
   background-image: url('logbg.png');
+  background-size: 100% 100%;
    /* background-size: 100%; */
   /* height: 40rem; */
 }
 .box{
   background-image: url('logbg.png');
   background-size: 100%;
+  background-repeat: no-repeat;
   /* height:fit-content */
   
 }
@@ -67,10 +69,11 @@
   background-size: 100% 100%;
   height:40rem;
 }
+
 .basicbg2{
   background-image: url('homebg.png');
   background-size: 100% 100%;
-  height: fit-content;
+  /* height: fit-content; */
 }
 .registerbg{
   background-image: url('regbg.png');
@@ -92,3 +95,5 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+ 

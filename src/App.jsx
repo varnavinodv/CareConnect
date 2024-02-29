@@ -8,6 +8,10 @@ const App = () => {
     setDrop(!drop)
 
 
+
+  }
+  let dropclose=()=>{
+    setDrop(false)
   }
   return (
     <div>
@@ -38,9 +42,10 @@ const App = () => {
               
 
       </div>
-     
+     <div onClick={dropclose}>
       <Outlet/>
       <Footer/>
+      </div>
     </div>
   )
 }

@@ -29,6 +29,9 @@ const Vwdeliveryboyadm = () => {
                 <th scope="col" class="px-6 py-3">
                     ADDRESS
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    ORGANIZATION
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -50,7 +53,10 @@ const Vwdeliveryboyadm = () => {
                 </td>
                 <td class="px-6 py-4">
                 wyuoo,Ho,P.O Kommeri,calicut-7
+                </td><td class="px-6 py-4">
+                    ADS org
                 </td>
+
             </tr>
            
         </tbody>

@@ -7,10 +7,15 @@ import { Link,useNavigate } from 'react-router-dom'
 const Contriuser = () => {
   const navigate=useNavigate()
   const [data,setData]=useState('')
+  const[check,setcheck]=useState(false)
   // const [data1,setData1]=useState('')
-
+console.log(check);
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
+  }
+
+  let checkedValue=(e)=>{
+    console.log(e.target.value);
   }
 
   let handleSubmit=(event)=>{
@@ -61,7 +66,7 @@ const Contriuser = () => {
   </div>
    
 <div class="flex items-center pb-3">
-    <input  onChecked={handleChange} name="link-checkbox" type="checkbox" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 pb-3"></input>
+    <input  onChange={()=>{setcheck(!check)}} name="link-checkbox" type="checkbox" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 pb-3"></input>
     <label for="link-checkbox" class="ms-2 text-sm text-amber-950 font-semibold ">Hide identity</label>
 </div>
 

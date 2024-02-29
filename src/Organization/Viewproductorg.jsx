@@ -14,7 +14,7 @@ const Viewproductorg = () => {
   return (
     <div className='w-[100%]' >
         <div className='basicbg2  pt-7 '>
-            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ORGANIZATIONS</div>
+            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>PRODUCTS</div>
 
             {/* --searchbar--- */}
             <div>

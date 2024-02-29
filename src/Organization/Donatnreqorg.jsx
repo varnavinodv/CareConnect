@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Donatnreqorg = () => {
   return (
@@ -59,8 +60,8 @@ const Donatnreqorg = () => {
                 </td>
                 
                 <td class="px-6 py-4 flex flex-wrap flex-col">
-                <a href="#" class="font-bold text-sm text-green-600 hover:underline hover:bg-white p-1 hover:rounded-lg">Accept</a>
-                    <a href="#" class="font-bold text-sm text-red-600 hover:underline hover:bg-white p-1 hover:rounded-lg" >Reject</a>
+                <Link to='/organization/viewdonationorg'><div class="font-bold text-sm text-green-600 hover:underline hover:bg-white p-1 hover:rounded-lg">Accept</div></Link>
+                    <div class="font-bold text-sm text-red-600 hover:underline hover:bg-white p-1 hover:rounded-lg" >Reject</div>
                 </td>
                 
             </tr>

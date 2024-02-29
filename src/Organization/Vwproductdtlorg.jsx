@@ -1,5 +1,6 @@
 import React from 'react'
 import purpledress from './purpledress.png'
+import { Link } from 'react-router-dom'
 
 
 const Vwproductdtlorg = () => {
@@ -48,7 +49,7 @@ const Vwproductdtlorg = () => {
 
             </form>
 
-            <div className='py-6 '><button className='bg-orange-500 py-3 px-5 rounded-lg'>ADD TO CART</button></div>
+            <div className='py-6 '><Link to='/organization/viewproductorg'><button className='bg-orange-500 py-3 px-5 rounded-lg'>ADD TO CART</button></Link></div>
 
           </div>
 

@@ -80,6 +80,7 @@ import Editreportorg from './Organization/Editreportorg';
 import Vwsponsorg from './Organization/Vwsponsorg';
 import Editeventorph from './Orphanage/Editeventorph';
 import Sponshistoryorph from './Orphanage/Sponshistoryorph';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 

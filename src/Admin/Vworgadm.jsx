@@ -3,11 +3,22 @@ import React,{useState} from 'react'
 
 const Vworgadm = () => {
     const [drop,setDrop]= useState(false)
+    const [status,setStatus]=useState('')
   let dropdown=()=>{
     setDrop(!drop)
   }
   let dropdownClose=()=>{
+    setStatus('Accepted')
+    setDrop(false)
 
+  }
+  let dropdownClose1=()=>{
+    setStatus('Rejected')
+    setDrop(false)
+
+  }
+  let dropdownClose2=()=>{
+    setStatus('')
     setDrop(false)
 
   }
@@ -20,7 +31,8 @@ const Vworgadm = () => {
 <form class="max-w-lg mx-auto pb-10">
     <div class="flex items-center">
        <div>
-        <button  onClick={dropdown} id="dropdown-button" data-dropdown-toggle="dropdown" className="h-[42px] inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-orange-500 border border-gray-300 rounded-s-lg hover:bg-[#f7b866d4] focus:ring-4 focus:outline-none focus:ring-orange-500 dark:bg-orange-500 dark:hover:bg-[#f7b866d4] dark:focus:ring-orange-500 dark:text-white dark:border-orange-500" type="button">All categories <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+
+        <button  onClick={dropdown} id="dropdown-button" data-dropdown-toggle="dropdown" className="h-[42px] inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-orange-500 border border-gray-300 rounded-s-lg hover:bg-[#f7b866d4] focus:ring-4 focus:outline-none focus:ring-orange-500 dark:bg-orange-500 dark:hover:bg-[#f7b866d4] dark:focus:ring-orange-500 dark:text-white dark:border-orange-500" type="button">{status=='Accepted' ? <span>Accepted</span> : status=='Rejected' ? <span>Rejected</span> : <span>All categories</span>} <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
   </svg></button>
   {drop &&
@@ -30,10 +42,10 @@ const Vworgadm = () => {
                 <button type="button" onClick={dropdownClose} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">Accepted</button>
             </li>
             <li>
-                <button type="button" onClick={dropdownClose} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">Rejected</button>
+                <button type="button" onClick={dropdownClose1} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">Rejected</button>
             </li>
             <li>
-                <button type="button" onClick={dropdownClose} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">All</button>
+                <button type="button" onClick={dropdownClose2} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">All</button>
             </li>
             </ul>
         </div>
