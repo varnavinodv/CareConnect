@@ -21,56 +21,56 @@ import { Link } from 'react-router-dom'
 const Sidenavorg = () => {
   return (
    
-        <div className='w-[250px]  bg-[#FFEFBD] flex flex-col justify-between pb-5 '>
+        <div className='sm:w-[250px] w-[40px]  bg-[#FFEFBD] flex flex-col sm:justify-between pb-5 '>
          <div> 
         <Link to='/organization/editprofileorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]  ' src={user1} alt="" />
-                <p className='text-lg font-normal'>Profile</p>
+                <p className='text-lg hidden sm:block font-normal'>Profile</p>
             </div ></Link>
             
            <Link to='/organization/viewproductorg'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]'src={product} alt="" />
-                <p className='text-lg font-normal'>Products</p>
+                <p className='text-lg hidden sm:block font-normal'>Products</p>
             </div></Link>
             <Link to='/organization/vieworphorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={orph} alt="" />
-                <p className='text-lg font-normal'>Orphanages</p>
+                <p className='text-lg hidden sm:block font-normal'>Orphanages</p>
             </div></Link>
             <Link to='/organization/viewdonationorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={donatn} alt="" />
-                <p className='text-lg font-normal'>Donations</p>
+                <p className='text-lg hidden sm:block font-normal'>Donations</p>
             </div></Link>
             <Link to ='/organization/viewdeliveryboyorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={delivery} alt="" />
-                <p className='text-lg font-normal'>Delivery boy</p>
+                <p className='text-lg hidden sm:block font-normal'>Delivery boy</p>
             </div></Link>
             <Link to='/organization/donationrequestorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4] '>
                 <img className='w-[30px] h-[25px]' src={requests} alt="" />
-                <p className='text-lg font-normal'>Requests</p>
+                <p className='text-lg hidden sm:block font-normal'>Requests</p>
             </div></Link>
             <Link to='/organization/vieweventorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'> 
                 <img className='w-[30px] h-[25px]' src={event} alt="" />
-                <p className='text-lg font-normal'>Events</p>
+                <p className='text-lg hidden sm:block font-normal'>Events</p>
             </div></Link>
            <Link to ='/organization/viewcartorg'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={cart} alt="" />
-                <p className='text-lg font-normal' >Cart</p>
+                <p className='text-lg hidden sm:block font-normal' >Cart</p>
             </div ></Link>
             <Link to='/organization/viewreportsorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={report} alt="" />
-                <p className='text-lg font-normal'>Reports</p>
+                <p className='text-lg hidden sm:block font-normal'>Reports</p>
             </div></Link>
            <Link to='/organization/vieworderorg'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={order} alt="" />
-                <p className='text-lg font-normal'>Orders</p>
+                <p className='text-lg hidden sm:block font-normal'>Orders</p>
             </div></Link>
             <Link to='/organization/viewrevieworg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={review} alt="" />
-                <p className='text-lg font-normal'>Reviews</p>
+                <p className='text-lg hidden sm:block font-normal'>Reviews</p>
             </div></Link>
             <Link to='/organization/vwsponsorg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={spon} alt="" />
-                <p className='text-lg font-normal'>Sponsorships</p>
+                <p className='text-lg hidden sm:block font-normal'>Sponsorships</p>
             </div></Link>
             </div>  
             <div className='ps-8 '>
