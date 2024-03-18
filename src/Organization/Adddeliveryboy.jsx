@@ -1,5 +1,6 @@
 import React,{ useState } from 'react'
 import { Link,useNavigate  } from 'react-router-dom'
+import axios from 'axios'
 
 const Adddeliveryboy = () => {
   const navigate=useNavigate()
@@ -10,11 +11,13 @@ const Adddeliveryboy = () => {
     setData({...data,[event.target.name]:event.target.value})
   }
 
-  let handleSubmit=(event)=>{
+  let handleSubmit=async (event)=>{
     event.preventDefault()
-    setData(data)
-    console.log(data);
+    // setData(data)
+    // console.log(data);
     navigate('/organization/viewdeliveryboyorg')
+    let response=await axios.post('http://localhost:4000/organization/addDeliveryBoy',{...data,userType:'deliveryboy'})
+  console.log(response);
     
   }
   return (
@@ -38,7 +41,7 @@ const Adddeliveryboy = () => {
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] sm:pr-0 sm:pl-0 pr-[22px] pl-[22px] justify-between py-3">
            <label for="hname" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">House name</label>
-           <input onChange={handleChange}   type="text" name="hname" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange}   type="text" name="houseName" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] sm:pr-0 sm:pl-0 pr-[22px] pl-[22px] justify-between py-3">
            <label for="pin" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Pin</label>
@@ -54,7 +57,7 @@ const Adddeliveryboy = () => {
            </div> */}
            <div class="mb-2 flex flex-wrap w-[25rem] sm:pr-0 sm:pl-0 pr-[22px] pl-[22px] justify-between py-3">
            <label for="pwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Password</label>
-           <input onChange={handleChange}  type="password" name="pwd" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange}  type="password" name="password" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
         </div> 
         <div>
@@ -72,7 +75,7 @@ const Adddeliveryboy = () => {
            </div> */}
           <div class="mb-2 flex flex-wrap w-[25rem] sm:pr-0 sm:pl-0 pr-[22px] pl-[22px]  justify-between py-3">
            <label for="postofc" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Post office</label>
-           <input onChange={handleChange}   type="text" name="postofc" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange}   type="text" name="postoffice" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] sm:pr-0 sm:pl-0 pr-[22px] pl-[22px] justify-between py-3">
            <label for="district" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">District</label>
@@ -84,7 +87,7 @@ const Adddeliveryboy = () => {
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] sm:pr-0 sm:pl-0 pr-[22px] pl-[22px] justify-between py-3">
            <label for="cpwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm Password</label>
-           <input onChange={handleChange}  type="password" name="cpwd" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange}  type="password" name="cpassword" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
         </div>  
   

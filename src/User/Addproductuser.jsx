@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import toy from '../Admin/toy.png'
 import { Link,useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Addproductuser = () => {
   const navigate=useNavigate()
@@ -11,11 +12,13 @@ const Addproductuser = () => {
     setData({...data,[event.target.name]:event.target.value})
   }
 
-  let handleSubmit=(event)=>{
+  let handleSubmit=async (event)=>{
     event.preventDefault()
-    setData(data)
-    console.log(data);
+    // setData(data)
+    // console.log(data);
     navigate('/user/viewproductuser')
+    let response=await axios.post('http://localhost:4000/user/addProduct',data)
+  console.log(response);
     
   }
   return (

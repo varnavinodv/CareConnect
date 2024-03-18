@@ -1,9 +1,24 @@
 import React from 'react'
 import purpledress from './purpledress.png'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useState } from 'react'
 
 
 const Vwproductdtlorg = () => {
+  const [data,setData]=useState('')
+
+
+ 
+    let handleChange=(event)=>{
+        setData({...data,[event.target.name]:event.target.value})
+    }
+    let handleSubmit=async (event)=>{
+        event.preventDefault()
+       let response=await axios.post('http://localhost:4000/organization/cart',data)
+       console.log(response);
+        
+    }
   return (
     <div className=' w-[100%]'>
       <div className='basicbg2'>
@@ -39,7 +54,7 @@ const Vwproductdtlorg = () => {
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
                   </svg>
                 </button>
-                <input type="text" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation" class="bg-orange-200 border-x-0 border-orange-500 h-11 text-center text-black text-sm focus:ring-orange-500 focus:border-orange-500 block w-full py-2.5 dark:bg-orange-200 dark:border-orange-500 dark:placeholder-slate-600 dark:text-black dark:focus:ring-orange-500 dark:focus:border-orange-500"  required />
+                <input type="text" id="quantity-input" name="count" onChange={handleChange} data-input-counter aria-describedby="helper-text-explanation" class="bg-orange-200 border-x-0 border-orange-500 h-11 text-center text-black text-sm focus:ring-orange-500 focus:border-orange-500 block w-full py-2.5 dark:bg-orange-200 dark:border-orange-500 dark:placeholder-slate-600 dark:text-black dark:focus:ring-orange-500 dark:focus:border-orange-500"  required />
                 <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-orange-200 dark:bg-orange-200 dark:hover:bg-orange-400 dark:border-orange-500 hover:bg-orange-400 border border-orange-500  rounded-e-lg p-3 h-11 focus:ring-orange-500 dark:focus:ring-orange-500  focus:ring-2 focus:outline-none">
                   <svg class="w-3 h-3 text-black " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
@@ -49,7 +64,7 @@ const Vwproductdtlorg = () => {
 
             </form>
 
-            <div className='py-6 '><Link to='/organization/viewproductorg'><button className='bg-orange-500 py-3 px-5 rounded-lg'>ADD TO CART</button></Link></div>
+            <div className='py-6 '><Link to='/organization/viewproductorg'><button onClick={handleSubmit} className='bg-orange-500 py-3 px-5 rounded-lg'>ADD TO CART</button></Link></div>
 
           </div>
 

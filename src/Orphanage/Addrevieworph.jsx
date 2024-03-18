@@ -3,6 +3,7 @@ import call from '../User/callbrwn.png'
 import email from '../User/emailbrwn.png'
 import locatn from '../User/locatnbrwn.png'
 import { Link,useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Addrevieworph = () => {
   const navigate=useNavigate()
@@ -13,10 +14,12 @@ const Addrevieworph = () => {
     setData({...data,[event.target.name]:event.target.value})
   }
 
-  let handleSubmit=(event)=>{
+  let handleSubmit=async (event)=>{
     event.preventDefault()
-    setData(data)
-    console.log(data);
+    // setData(data)
+    // console.log(data);
+    let response=await axios.post('http://localhost:4000/orphanage/postreview',data)
+    console.log(response);
     navigate('/orphanage/vieworgdtlorph')
     
   }
@@ -41,16 +44,16 @@ const Addrevieworph = () => {
                          Kochi</p>
             </div>
         </div>
-        <div className='w-[25rem] h-[30rem] bg-red-500/30 m-auto rounded-2xl pt-6 mb-4 px-10 '>
+        <div className='w-[25rem] h-[20rem] bg-red-500/30 m-auto rounded-2xl pt-6 mb-4 px-10 '>
             <div><h1 className='font-bold text-2xl pb-2 text-center'> ADD REVIEW</h1></div>
                   
 
                   <form onSubmit={handleSubmit} class="max-w-sm mx-auto">
                     <div class="mb-5">
-                      <label for="name" class="block mb-2 text-sm font-medium text-[#3E1B00]">Name</label>
-                      <input onChange={handleChange} type="text" name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+                      <label for="name" class="block mb-2 text-sm font-medium text-[#3E1B00]">Review</label>
+                      <input onChange={handleChange} type="text" name="review" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
                     </div>
-                    <div class="mb-5">
+                    {/* <div class="mb-5">
                       <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Category</label>
                       <input onChange={handleChange} type="text" name="category" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
                     </div>
@@ -61,7 +64,7 @@ const Addrevieworph = () => {
                     <div class="mb-5">
                       <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>
                       <input onChange={handleChange} type="number" name="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
-                    </div>
+                    </div> */}
                     
                     
                     

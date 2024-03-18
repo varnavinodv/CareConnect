@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import sbook from '../Admin/sbook.jpg'
 
 const Vwordersdboy = () => {
     const [det,setDet]= useState(false)
@@ -66,7 +67,7 @@ const Vwordersdboy = () => {
                 2
             </td>
             <td class="px-6 py-4">
-                <img src="" alt="" />
+                <img className='w-14 h-14' src={sbook} alt="" />
             </td>
             <td class="px-6 py-4">
             puthiyottil,

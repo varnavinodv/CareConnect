@@ -1,6 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ReactPaginate from 'react-paginate';
 
 const Vwdeliveryboyadm = () => {
+    const [currentPage, setCurrentPage] = useState(0);
+    const [itemsPerPage] = useState(8);
+
+
+    const deliveryboy = [
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    ]
+    const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = deliveryboy.slice(indexOfFirstItem, indexOfLastItem);
+
+
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
   return (
     <div className='w-[100%]'>
               <div className='basicbg   pt-7 ps-10 pe-10'>
@@ -35,33 +63,49 @@ const Vwdeliveryboyadm = () => {
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
+        {currentItems.map((deliveryboy, index) => (
+            <tr key={index} class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
                 <td className=' px-6 py-4'>
-                   1.
+                {deliveryboy.slno}
                 </td>
                 <td class="px-6 py-4">
-                    Avinash
+                {deliveryboy.name}
                 </td>
                 <td class="px-6 py-4">
-                    30
+                    {deliveryboy.age}
                 </td>
                 <td class="px-6 py-4">
-                    avin@gmail.com
+                    {deliveryboy.email}
                 </td>
                 <td class="px-6 py-4">
-                    +9876543245
+                    {deliveryboy.phno}
                 </td>
                 <td class="px-6 py-4">
-                wyuoo,Ho,P.O Kommeri,calicut-7
+               {deliveryboy.address}
                 </td><td class="px-6 py-4">
-                    ADS org
+                   {deliveryboy.organization}
                 </td>
 
             </tr>
-           
+           ))} 
         </tbody>
     </table>
 </div>
+{/* Pagination */}
+
+
+
+          
+<div className="flex justify-center mt-5">
+        <ReactPaginate
+          pageCount={Math.ceil(deliveryboy.length / itemsPerPage)}
+          pageRangeDisplayed={5}
+          marginPagesDisplayed={2}
+          onPageChange={handlePageChange}
+          containerClassName="pagination"
+          activeClassName="active"
+        />
+      </div>
         
         </div>
       

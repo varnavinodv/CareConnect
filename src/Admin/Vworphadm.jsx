@@ -1,4 +1,5 @@
 import React,{useState}  from 'react'
+import license from './license.png'
 
 const Vworphadm = () => {
     const [drop,setDrop]= useState(false)
@@ -97,7 +98,7 @@ const Vworphadm = () => {
                    PLY8753
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                    <img className='w-[50px] h-[30px]' src={license} alt="" />
                 </td>
                 <td class="px-6 py-4">
                    abc@gmail.com

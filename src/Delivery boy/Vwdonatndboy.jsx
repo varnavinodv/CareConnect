@@ -1,9 +1,17 @@
 import React,{useState} from 'react'
+import axios from 'axios'
 
 const Vwdonatndboy = () => {
     const [det,setDet]= useState(false)
+    // const [data,setData]= useState(false)
 let status=()=>{
     setDet(!det)
+}
+let updateStatus=async (statusupdation)=>{
+    console.log(statusupdation)
+    let response=await axios.post('http://localhost:4000/deliveryboy/orderStatus',{status:statusupdation})
+  console.log(response);
+
 }
 return (
 <div>
@@ -84,8 +92,8 @@ calicut-9
            {det &&
                    
                    <div className='  p-1 bg-white text-black text-base  font-semibold rounded-lg  '>
-                       <p className='hover:bg-slate-400 p-1 rounded-lg'>Out for delivery</p>
-                       <p className='hover:bg-slate-400 p-1 rounded-lg'>Delivered</p>
+                       <button onClick={()=>updateStatus('outForDelivery')} className='hover:bg-slate-400 p-1 rounded-lg'>Out for delivery</button>
+                       <p onClick={()=>updateStatus('Delivered')}className='hover:bg-slate-400 p-1 rounded-lg'>Delivered</p>
                      </div> 
                 }
        </td>

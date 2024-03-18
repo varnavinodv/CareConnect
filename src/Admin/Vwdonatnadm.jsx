@@ -1,6 +1,32 @@
-import React from 'react'
+import React,{useState} from 'react'
+import ReactPaginate from 'react-paginate';
 
 const Vwdonatnadm = () => {
+    const [currentPage, setCurrentPage] = useState(0);
+    const [itemsPerPage] = useState(8);
+
+    const donation=[
+
+      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"},  
+      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"},  
+      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"}  ,
+      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"}  ,
+      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"},  
+      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+    ]
+    const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = donation.slice(indexOfFirstItem, indexOfLastItem);
+  
+  
+    const handlePageChange = ({ selected }) => {
+      setCurrentPage(selected);
+    };
   return (
     <div className='w-[100%] '>
                 <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
@@ -35,34 +61,50 @@ const Vwdonatnadm = () => {
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
+        {currentItems.map((donation, index) => (
+            <tr  key={index}  class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
                 <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                   1
+                   {donation.slno}
                 </th>
                 <td class="px-6 py-4">
-                    story book
+                    {donation.name}
                 </td>
                 <td class="px-6 py-4">
-                    Books
+                   {donation.category}
                 </td>
                 <td class="px-6 py-4">
-                    4
+                    {donation.count}
                 </td>
                 <td class="px-6 py-4">
-                    abcd org
+                    {donation.organization}
                 </td>
                 <td class="px-6 py-4">
-                    hjasg Orphanage
+                   {donation.orphanage}
                 </td>
                 <td class="px-6 py-4">
-                    Accepted
+                    {donation.status}
                 </td>
             </tr>
-            
+            ))} 
         </tbody>
     </table>
 </div>
+{/* Pagination */}
 
+
+
+          
+<div className="flex justify-center mt-5">
+        <ReactPaginate
+          pageCount={Math.ceil(donation.length / itemsPerPage)}
+          pageRangeDisplayed={5}
+          marginPagesDisplayed={2}
+          onPageChange={handlePageChange}
+          containerClassName="pagination"
+          activeClassName="active"
+        />
+      </div>
+        
 
 
           

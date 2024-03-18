@@ -6,6 +6,7 @@ import date from '../User/date.png'
 import time from '../User/time.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Sponsorshiporg = () => {
   const navigate=useNavigate()
@@ -16,10 +17,12 @@ const Sponsorshiporg = () => {
     setData({...data,[event.target.name]:event.target.value})
   }
 
-  let handleSubmit=(event)=>{
+  let handleSubmit=async (event)=>{
     event.preventDefault()
-    setData(data)
-    console.log(data);
+    // setData(data)
+    // console.log(data);
+    let response=await axios.post('http://localhost:4000/organization/sponsorship',data)
+    console.log(response);
     navigate('/organization/vwsponsorg')
     
   }

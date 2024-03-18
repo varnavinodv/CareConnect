@@ -1,4 +1,5 @@
 import React from 'react'
+import sbook from './sbook.jpg'
 
 const Vworderadm = () => {
   return (
@@ -22,6 +23,9 @@ const Vworderadm = () => {
                 </th>
                 <th scope="col" class="px-6 py-3">
                     PRODUCT
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    IMAGE
                 </th>
                 <th scope="col" class="px-6 py-3">
                     CATEGORY
@@ -50,6 +54,9 @@ const Vworderadm = () => {
                 </td>
                 <td class="px-6 py-4">
                     Story book
+                </td>
+                <td class="px-6 py-4">
+                    <img className='h-14 w-14' src={sbook} alt="" />
                 </td>
                 <td class="px-6 py-4">
                     Book

@@ -90,10 +90,58 @@
   background-image: url('./User/running.png');
   background-size: 100% 100%;
 }
-input::-webkit-outer-spin-button,
+/* input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
- 
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.navcolor{
+  background-color: #0F3053;
+}
+.borders{
+  border: 10px solid #617DB2;
+}
+.ward{
+  background-image: url("bg.jpg");
+   height: 47rem;
+   background-repeat: no-repeat;
+   background-size: 100%;
+} */
+
+/* pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.pagination li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.pagination li a {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+}
+
+.pagination li.active a {
+  background-color: #ff9100;
+  color: #fff;
+}
+
+.pagination li a:hover {
+  background-color: #f0f0f0;
+} 

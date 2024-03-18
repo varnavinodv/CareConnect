@@ -3,6 +3,7 @@ import call from './callbrwn.png'
 import email from './emailbrwn.png'
 import locatn from './locatnbrwn.png'
 import { Link,useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Contriuser = () => {
   const navigate=useNavigate()
@@ -18,10 +19,12 @@ console.log(check);
     console.log(e.target.value);
   }
 
-  let handleSubmit=(event)=>{
+  let handleSubmit=async (event)=>{
     event.preventDefault()
-    setData(data)
-    console.log(data);
+    // setData(data)
+    // console.log(data);
+    let response=await axios.post('http://localhost:4000/user/contribution',data)
+    console.log(response);
     navigate('/user/viewcontributionuser')
     
   }
@@ -54,7 +57,7 @@ console.log(check);
   <div class="mb-5">
   <h1 className='font-bold text-xl text-center mb-6'>PAYMENT DETAILS</h1>
     <label for="chname" class="block mb-2 text-sm font-medium text-[#3E1B00]">Card holder name</label>
-    <input  onChange={handleChange} type="text" name="chname" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input  onChange={handleChange} type="text" name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   <div class="mb-5">
     <label for="cvv" class="block mb-2 text-sm font-medium text-[#3E1B00]">CVV</label>
@@ -62,7 +65,7 @@ console.log(check);
   </div>
   <div class="mb-5">
     <label for="amt" class="block mb-2 text-sm font-medium text-[#3E1B00]">Amount</label>
-    <input  onChange={handleChange} type="text" name="amt" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input  onChange={handleChange} type="text" name="amount" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
    
 <div class="flex items-center pb-3">
