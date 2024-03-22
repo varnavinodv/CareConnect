@@ -1,29 +1,41 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import ReactPaginate from 'react-paginate';
-
+import axios from 'axios';
 const Vwdeliveryboyadm = () => {
+
+    const [data,setdata]=useState([''])
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage] = useState(8);
 
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/admin/viewdeliveryboy')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
 
-    const deliveryboy = [
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-        {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
-    ]
+
+    // const deliveryboy = [
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    //     {slno:1,name:"vinay",age:52,email:"as@gmail.com",phno:9876543,address:"agshdfhg",organization:"rew"},
+    // ]
     const indexOfLastItem = (currentPage + 1) * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = deliveryboy.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
 
   const handlePageChange = ({ selected }) => {
@@ -63,27 +75,31 @@ const Vwdeliveryboyadm = () => {
             </tr>
         </thead>
         <tbody>
-        {currentItems.map((deliveryboy, index) => (
-            <tr key={index} class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
+        {data.map((item,index)=>(
+            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
                 <td className=' px-6 py-4'>
-                {deliveryboy.slno}
+                {index +1 }
                 </td>
                 <td class="px-6 py-4">
-                {deliveryboy.name}
+                {item.name}
                 </td>
                 <td class="px-6 py-4">
-                    {deliveryboy.age}
+                    {item.age}
                 </td>
                 <td class="px-6 py-4">
-                    {deliveryboy.email}
+                    {item.email}
                 </td>
                 <td class="px-6 py-4">
-                    {deliveryboy.phno}
+                    {item.phno}
                 </td>
                 <td class="px-6 py-4">
-               {deliveryboy.address}
+               {item.houseName} <br />
+               P.O {item.postoffice} <br />
+               pin:{item.pin} <br />
+               {item.district}
+
                 </td><td class="px-6 py-4">
-                   {deliveryboy.organization}
+                   {item.organization}
                 </td>
 
             </tr>
@@ -98,7 +114,7 @@ const Vwdeliveryboyadm = () => {
           
 <div className="flex justify-center mt-5">
         <ReactPaginate
-          pageCount={Math.ceil(deliveryboy.length / itemsPerPage)}
+          pageCount={Math.ceil(data.length / itemsPerPage)}
           pageRangeDisplayed={5}
           marginPagesDisplayed={2}
           onPageChange={handlePageChange}

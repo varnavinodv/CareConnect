@@ -1,33 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
+import add from '../User/addbtn.png'
+import axios from 'axios';
 
 const Vwcontriadm = () => {
+  const [data,setdata]=useState([''])
+  useEffect(()=>{
+    let fetchdata=async ()=>{
+      let response=await axios.get('http://localhost:4000/admin/viewcontrireq',data)
+      console.log(response.data);
+      setdata(response.data)
+    }
+    fetchdata()
+  },[])
+
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage] = useState(8);
 
 
-    const contribution = [
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
-        { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    // const contribution = [
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
+    //     { slno: '1', username: 'riya', orphanage:'avsd org' ,amount:'12,000',date:'12/2/2021',status:'pending' },
         
         
-        // Add more application objects here
-      ];
+    //     // Add more application objects here
+    //   ];
 
       const indexOfLastItem = (currentPage + 1) * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = contribution.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
 
   const handlePageChange = ({ selected }) => {
@@ -35,11 +48,12 @@ const Vwcontriadm = () => {
   };
   
   return (
-    <div className='w-[100%]'>
-          
-                        <div className='basicbg   pt-7 ps-10 pe-10'>
-            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>CONTRIBUTIONS</div>
+    <div className=' w-[100%]'>
+        
+        <div className='basicbg  pt-7 ps-10 pe-10'>
+            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>CONTRIBUTION REQUESTS</div>
              
+            
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-black dark:text-black">
@@ -49,66 +63,60 @@ const Vwcontriadm = () => {
                     SL NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    USER NAME
+                   PURPOSE
                 </th>
                 <th scope="col" class="px-6 py-3">
-                   ORPHANAGE
+                   DESCRIPTION
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    AMOUNT
+                   AMOUNT
+                </th>
+
+                <th scope="col" class="px-6 py-3">
+                  STATUS
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    DATE
+                  ACTION
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    STATUS
-                </th>
+               
             </tr>
         </thead>
         <tbody>
-        {currentItems.map((contribution, index) => (
-            <tr key={index} class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
+          {data.map((item,index)=>(
+            <tr class="bg-[#f8d2a0] border-b text-black font-semibold border-orange-600 hover:bg-[#f7b866d4]">
                 <td class="px-6 py-4">
-                    {contribution.slno }
+                   {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    {contribution.username}
+                  {item.purpose}
                 </td>
                 <td class="px-6 py-4">
-                    {contribution.orphanage}
+                  {item.description}
                 </td>
                 <td class="px-6 py-4">
-                    {contribution.amount}
+                  {item.amount}
+                </td>
+                
+                <td class="px-6 py-4">
+                   pending
                 </td>
                 <td class="px-6 py-4">
-                    {contribution.date}
-                </td>
-                <td class="px-6 py-4">
-                    {contribution.status}
+                <Link to={`/admin/viewcontridetailsadm/${item._id}`}> <a href="#" class=" font-semibold text-black hover:underline">View Contributions</a></Link><br/>
+                
                 </td>
             </tr>
-           ))} 
+          ))}  
         </tbody>
     </table>
-    
 </div>
-{/* Pagination */}
 
 
 
           
-        <div className="flex justify-center mt-5">
-        <ReactPaginate
-          pageCount={Math.ceil(contribution.length / itemsPerPage)}
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={2}
-          onPageChange={handlePageChange}
-          containerClassName="pagination"
-          activeClassName="active"
-        />
-      </div>
-        </div>
         
+        </div>
+      
+
       
     </div>
     

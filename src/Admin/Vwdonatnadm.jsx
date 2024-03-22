@@ -60,7 +60,7 @@ const Vwdonatnadm = () => {
                 </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody> 
         {currentItems.map((donation, index) => (
             <tr  key={index}  class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
                 <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">

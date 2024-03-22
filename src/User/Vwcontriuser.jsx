@@ -18,6 +18,12 @@ const Vwcontriuser = () => {
                     ORGANIZATION
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    PURPOSE
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    DESCRIPTION
+                </th>
+                <th scope="col" class="px-6 py-3">
                     AMOUNT
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -36,6 +42,12 @@ const Vwcontriuser = () => {
                 </td>
                 <td class="px-6 py-4">
                     RET ORG
+                </td>
+                <td class="px-6 py-4">
+                    Education
+                </td>
+                <td class="px-6 py-4">
+                    ggfgfghjhfhgfh
                 </td>
                 <td class="px-6 py-4">
                     1200

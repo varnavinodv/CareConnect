@@ -1,7 +1,20 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import purpledress from './purpledress.png'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 const Vwcartproductdtlorg = () => {
+  let id=useParams()
+  console.log(id);
+    const [data,setdata]=useState([''])
+    useEffect(()=>{
+        let fetchdata=async ()=>{
+          let response=await axios.get(`http://localhost:4000/orphanage/viewproductdltorg/${id}`)
+          console.log(response.data);
+          setdata(response.data)
+        }
+        fetchdata()
+      },[])
   return (
     <div className=' w-[100%] '>
       <div className='basicbg'>

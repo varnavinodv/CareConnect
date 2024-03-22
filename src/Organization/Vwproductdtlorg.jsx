@@ -1,12 +1,19 @@
 import React from 'react'
 import purpledress from './purpledress.png'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
 
 const Vwproductdtlorg = () => {
+  let id=localStorage.getItem('id')
+
+  let {pid}=useParams()
+  console.log(pid);
   const [data,setData]=useState('')
+  const [data1,setdata1]=useState([''])
+
+  const [data2,setdata2]=useState([''])
 
 
  
@@ -15,10 +22,24 @@ const Vwproductdtlorg = () => {
     }
     let handleSubmit=async (event)=>{
         event.preventDefault()
-       let response=await axios.post('http://localhost:4000/organization/cart',data)
+       let response=await axios.post('http://localhost:4000/organization/cart',{...data,useId:id})
        console.log(response);
         
     }
+
+    useEffect(()=>{
+      let fetchdata=async ()=>{
+        // let response=await axios.get('http://localhost:4000/orphanage/viewproductdltorg',data)
+        // console.log(response.data);
+        // setdata1(response.data)
+        let response1=await axios.get(`http://localhost:4000/orphanage/viewproductdltorganisation/${pid}`)
+        console.log(response1);
+        setdata2(response1.data)
+      }
+      fetchdata()
+
+      
+    },[])
   return (
     <div className=' w-[100%]'>
       <div className='basicbg2'>
@@ -34,8 +55,8 @@ const Vwproductdtlorg = () => {
           <div className='mx-auto my-16'>
             <div className='text-center  w-[100%] m-auto'>
               <h1 className='font-bold text-3xl py-4'>FROCK FOR 6-YR OLD</h1>
-              <p className='font-semibold text-xl text-start py-2'>Category      :  Dresses</p>
-              <p className='font-semibold text-xl text-start py-2'>Count            :   3</p>
+              <p className='font-semibold text-xl text-start py-2'>Category      :  {data2.category} </p>
+              <p className='font-semibold text-xl text-start py-2'>Count            :   {data2.count}</p>
             </div>
             <div className='text-center  w-[100%] m-auto'>
               <h1 className='font-bold text-3xl py-4 text-start'>OWNER’S DETAILS</h1>

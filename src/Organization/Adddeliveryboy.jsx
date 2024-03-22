@@ -3,6 +3,7 @@ import { Link,useNavigate  } from 'react-router-dom'
 import axios from 'axios'
 
 const Adddeliveryboy = () => {
+  let id=localStorage.getItem('id')
   const navigate=useNavigate()
   const [data,setData]=useState('')
   // const [data1,setData1]=useState('')
@@ -16,7 +17,7 @@ const Adddeliveryboy = () => {
     // setData(data)
     // console.log(data);
     navigate('/organization/viewdeliveryboyorg')
-    let response=await axios.post('http://localhost:4000/organization/addDeliveryBoy',{...data,userType:'deliveryboy'})
+    let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'deliveryboy',organizationId:id})
   console.log(response);
     
   }

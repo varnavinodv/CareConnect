@@ -58,10 +58,10 @@ const Sidenavorph = () => {
                 <img className='w-[30px] h-[25px]' src={order} alt="" />
                 <p className='text-lg font-normal'>Orders</p>
             </div> */}
-            {/* <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
-                <img className='w-[30px] h-[25px]' src={review} alt="" />
-                <p className='text-lg font-normal'>Reviews</p>
-            </div> */}
+            <Link to='/orphanage/viewreports'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+                <img className='w-[30px] h-[25px]' src={report} alt="" />
+                <p className='text-lg font-normal'>Reports</p>
+            </div></Link>
             </div>
             <div className='ps-8 pt-20'>
             <Link to ='/'><button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>

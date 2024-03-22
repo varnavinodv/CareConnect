@@ -70,7 +70,7 @@ useEffect(()=>{
         <div>  
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3 pt-8 ">
            <label for="age" class=" mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950 ">Age</label>
-           <input onChange={handleChange} placeholder={userData.age} type="text" name="age" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600  w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} placeholder={userData.age} type="number" name="age" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600  w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="phno" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Phone no.</label>
@@ -78,7 +78,7 @@ useEffect(()=>{
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="postoffice" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Post office</label>
-           <input onChange={handleChange} placeholder={userData.postoffice} type="text" name="postofc" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} placeholder={userData.postoffice} type="text" name="postoffice" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="district" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">District </label>

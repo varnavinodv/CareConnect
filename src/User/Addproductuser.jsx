@@ -4,6 +4,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Addproductuser = () => {
+  let id=localStorage.getItem('id')
   const navigate=useNavigate()
   const [data,setData]=useState('')
   // const [data1,setData1]=useState('')
@@ -11,13 +12,26 @@ const Addproductuser = () => {
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
   }
-
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
+  }
   let handleSubmit=async (event)=>{
     event.preventDefault()
     // setData(data)
     // console.log(data);
     navigate('/user/viewproductuser')
-    let response=await axios.post('http://localhost:4000/user/addProduct',data)
+    let formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('category', data.category);
+        formData.append('count', data.count);
+        formData.append('img', data.img);
+        formData.append('userId',id)
+    let response=await axios.post('http://localhost:4000/user/addProduct',formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'  // Set the content type for FormData
+      }})
   console.log(response);
     
   }
@@ -42,7 +56,7 @@ const Addproductuser = () => {
   </div>
   <div class="mb-5">
     <label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Image</label>
-    <input  onChange={handleChange} type="file" name="img" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input  onChange={handlefile} type="file" name="img" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   <div class="mb-5">
     <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>

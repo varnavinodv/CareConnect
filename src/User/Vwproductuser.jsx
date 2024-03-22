@@ -1,11 +1,23 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import { Link } from 'react-router-dom'
 import sbook from '../Admin/sbook.jpg'
 import add from './addbtn.png'
 import edit from './edit.png'
 import dlt from './delete.png'
+import axios from 'axios'
 
 const Vwproductuser = () => {
+    let id=localStorage.getItem('id')
+    const [data,setdata]=useState([''])
+
+    useEffect(()=>{
+        let fetchdata=async ()=>{
+          let response=await axios.get('http://localhost:4000/user/viewproduct',{...data,userId:id})
+          console.log(response.data);
+          setdata(response.data)
+        }
+        fetchdata()
+      },[])
   return (
     <div className='w-[100%] '>
                                 <div className='basicbg  pt-7 ps-10 pe-10'>
@@ -41,28 +53,29 @@ const Vwproductuser = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 font-semibold hover:bg-[#f7b866d4] ">
                 <td class="px-6 py-4">
-                    1.
+                    {index}
                 </td>
                 <td class="px-6 py-4">
-                   Storybook
+                   {item.name}
                 </td>
                 <td class="px-6 py-4">
-                    Book
+                    {item.category}
                 </td>
                 <td class="px-6 py-4">
-                    3
+                    {item.count}
                 </td>
                 <td class="px-6 py-4">
-                    <img  className='h-14 w-14' src={sbook} alt="" />
+                    <img  className='h-14 w-14' src={`http://localhost:4000/uploads/${item.img}`} alt="" />
                 </td>
                 <td class="px-6 py-6 flex flex-wrap justify-around ">
                    <Link to='/user/updateproduct'> <img className='w-[45px] h-[30px] hover:bg-blue-400' src={edit} alt="" /></Link>
                     <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
             </tr>
-            
+          ))}  
         </tbody>
     </table>
 </div>

@@ -2,10 +2,13 @@ import React,{useState} from 'react'
 import call from './callbrwn.png'
 import email from './emailbrwn.png'
 import locatn from './locatnbrwn.png'
-import { Link,useNavigate } from 'react-router-dom'
+import { Link,useNavigate,useParams} from 'react-router-dom'
 import axios from 'axios'
 
 const Contriuser = () => {
+  let id=localStorage.getItem('id')
+  let {cid}=useParams()
+  console.log(cid);
   const navigate=useNavigate()
   const [data,setData]=useState('')
   const[check,setcheck]=useState(false)
@@ -23,7 +26,8 @@ console.log(check);
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    let response=await axios.post('http://localhost:4000/user/contribution',data)
+    
+    let response=await axios.post('http://localhost:4000/user/contribution',{...data,userId:id,contributionRequestId:cid})
     console.log(response);
     navigate('/user/viewcontributionuser')
     
@@ -34,22 +38,31 @@ console.log(check);
         
         <div>
         <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORPHANAGE</div>
-        <div className='text-xl font-semibold'>
+        {/* <div className='flex flex-wrap justify-end w-full gap-8'> */}
+        {/* <div className='text-xl font-semibold'>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img  className='w-[30px] h-[30px]' src={call} alt="" />
                   <p>+91 81130493822</p>
-                </div>
-                <div className='flex flex-wrap justify-start gap-3 pb-3 '>
-                  <img className='w-[30px] h-[30px]' src={email} alt="" />
+                </div> */}
+                <div className='flex flex-wrap align-middle justify-start gap-3 pb-3 '>
+                  <img className='w-[20px] h-[20px]' src={email} alt="" />
                   <p>abcd@gmail.com</p>
                 </div>
-                <div className='flex flex-wrap justify-start gap-3  pb-3 '>
+                {/* <div className='flex flex-wrap justify-start gap-3  pb-3 '>
                   <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
                   <p>ghsjhj hsisjk,<br />P.O huyaf, <br />
                              pin-526713 <br />
                              Kochi</p>
                 </div>
+            </div> */}
+            <div className=' h-fit p-5 mb-6  bg-white'>
+              <h1 className='text-black font-bold'>Education-Rs.10,000 needed</h1>
+              <h2 className='text-gray-800'>For the education purpose of 6 children 10000 rupees is required</h2>
+              <h3 className='text-gray-700 font-semibold'>8000 rupees raised</h3>
+              
+
             </div>
+            {/* </div> */}
             <div className='w-[25rem] h-[28rem] bg-red-500/30 m-auto rounded-2xl pt-10 px-10  pb-6 mb-4'>
                   
 

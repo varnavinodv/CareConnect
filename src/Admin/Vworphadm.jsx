@@ -1,8 +1,21 @@
-import React,{useState}  from 'react'
+import React,{useState,useEffect}  from 'react'
 import license from './license.png'
+import axios from 'axios'
 
 const Vworphadm = () => {
+    const [data,setdata]=useState([''])
     const [drop,setDrop]= useState(false)
+
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/admin/vieworphanage')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
+
     let dropdown=()=>{
       setDrop(!drop)
     }
@@ -87,29 +100,32 @@ const Vworphadm = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b  font-semibold border-orange-600 hover:bg-[#f7b866d4]">
                 <td class="px-6 py-4 font-semibold">
-                    1.
+                    {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    Abcd orph
+                   {item.name}
                 </td>
                 <td class="px-6 py-4">
-                   PLY8753
+                  {item.licenseNo}
                 </td>
                 <td class="px-6 py-4">
-                    <img className='w-[50px] h-[30px]' src={license} alt="" />
+                    {item.license}
                 </td>
                 <td class="px-6 py-4">
-                   abc@gmail.com
+                   {item.email}
                 </td>
                 <td class="px-6 py-4">
-                    09876543124
+                   {item.phno}
                 </td>
                 <td class="px-6 py-4">
-                adcd,
-calicut-9,
-pin:673550
+                {item.place} <br />
+                P.O {item.postoffice} <br />
+                pin:{item.pin} <br />
+                {item.district}
+
                 </td>
                 <td class="px-6 py-4">
                     Pending
@@ -120,7 +136,7 @@ pin:673550
                 </td>
                 
             </tr>
-            
+            ))}    
         </tbody>
     </table>
 </div>

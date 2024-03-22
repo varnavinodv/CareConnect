@@ -1,6 +1,18 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
+import axios from 'axios'
 
 const Vwreviewadm = () => {
+    const [data,setdata]=useState([''])
+
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/admin/viewreview')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
   return (
     <div className='w-[100%]'>
                       <div className='basicbg   pt-7 ps-10 pe-10'>
@@ -27,9 +39,10 @@ const Vwreviewadm = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold border">
                 <td class="px-6 py-4">
-                    1.
+                    {index+1}
                 </td>
                 <td class="px-6 py-4">
                     ADS ORPH
@@ -38,11 +51,11 @@ const Vwreviewadm = () => {
                     KJY ORG
                 </td>
                 <td class="px-6 py-4">
-                provided all the necessary items on time
+                {item.review}
                 </td>
                 
             </tr>
-           
+          ))}  
         </tbody>
     </table>
 </div>

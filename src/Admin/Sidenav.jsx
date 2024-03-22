@@ -12,6 +12,7 @@ import spon from './spon.png'
 import user1 from './user1.png'
 import org from './org.png'
 import logout from './logout.png'
+import report from './report.png'
 
 
 const Sidenav = () => {
@@ -59,6 +60,14 @@ const Sidenav = () => {
            <Link to ='/admin/viewreview/'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={review} alt="" />
                 <p className='text-lg font-normal'>Reviews</p>
+            </div></Link>
+            <Link to='/admin/viewevent'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+                <img className='w-[30px] h-[25px]'src={event} alt="" />
+                <p className='text-lg font-normal'>Events</p>
+            </div></Link>
+            <Link to='/admin/viewreport'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+                <img className='w-[30px] h-[25px]'src={report} alt="" />
+                <p className='text-lg font-normal'>Reports</p>
             </div></Link>
             </div>
            <div className='ps-8 pt-20'>

@@ -1,19 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Editprofiledeliveryb = () => {
   
+  let id=localStorage.getItem('id')
+  const [userData,setUserData]=useState('')
+  const [refresh,setrefresh]=useState(false)
   const [data,setData]=useState('')
   
+  useEffect(()=>{
+    let fetchdata=async ()=>{
+      let response=await axios.get(`http://localhost:4000/user/viewprofile/${id}`)
+      console.log(response.data);
+      setUserData(response.data)
+    }
+    fetchdata()
+},[refresh])
 
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
   }
 
-  let handleSubmit=(event)=>{
+  let handleSubmit=async (event)=>{
     event.preventDefault()
-    setData(data)
-    console.log(data);
+    // setData(data)
+    // console.log(data);
+    setrefresh(!refresh)
+    let response=await axios.put(`http://localhost:4000/user/editprofile/${id}`,data)
+    console.log(response);
+    // if(data.cpassword!=data.password){
+    //   toast.error('password doesnt match')
+    // }
     
     
   }
@@ -30,45 +48,45 @@ const Editprofiledeliveryb = () => {
         <div>  
            <div class="mb-2  sm:pl-0 pl-[22px] sm:pr-0 pr-[22px] flex flex-wrap w-[24rem] justify-between py-3  pt-8">
            <label for="name" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Name</label>
-           <input onChange={handleChange} type="text" name="name" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange} placeholder={userData.name} type="text" name="name" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
            </div>
            <div class="mb-2 sm:pl-0 pl-[22px] sm:pr-0 pr-[22px] flex flex-wrap w-[24rem] justify-between py-3">
            <label for="phno" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Phone no.</label>
-           <input onChange={handleChange}  type="email" name="phno" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange} placeholder={userData.phno} type="number" name="phno" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
            </div>
            <div class="mb-2 sm:pl-0 pl-[22px] sm:pr-0 pr-[22px] flex flex-wrap w-[24rem] justify-between py-3">
            <label for="idno" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">ID no.</label>
-           <input onChange={handleChange} v type="text" name="idno" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange} placeholder={userData.idno} type="text" name="idno" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
            </div>
            {/* <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="pin" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Password </label>
-           <input type="text" id="pin" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input type="text" id="pin" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
            </div> */}
            <div class="mb-2 sm:pl-0 pl-[22px] sm:pr-0 pr-[22px] flex flex-wrap w-[24rem] justify-between py-3">
            <label for="password" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Password</label>
-           <input onChange={handleChange} type="password" name="password" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange} placeholder={userData.password} type="password" name="password" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
            </div>
         </div> 
         <div>  
            <div class="mb-2 sm:pl-0 pl-[22px] sm:pr-0 pr-[22px] flex flex-wrap w-[24rem] justify-between py-3 pt-8 ">
            <label for="email" class=" mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950 ">Email</label>
-           <input onChange={handleChange}  type="email" name="email" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600  w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange} placeholder={userData.email} type="email" name="email" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600  w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
            </div>
            {/* <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="email" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Email</label>
-           <input type="email" id="email" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input type="email" id="email" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
            </div> */}
            <div class="mb-2 sm:pl-0 pl-[22px] sm:pr-0 pr-[22px] flex flex-wrap w-[24rem] justify-between py-3">
-           <label for="address" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Address</label>
-           <input onChange={handleChange}  type="text" name="address" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <label for="address" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">House name</label>
+           <input onChange={handleChange} placeholder={userData.houseName}  type="text" name="houseName" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
            </div>
            <div class="mb-2 sm:pl-0 pl-[22px] sm:pr-0 pr-[22px] flex flex-wrap w-[24rem] justify-between py-3">
            <label for="idproof" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">ID Proof </label>
-           <input onChange={handleChange}  type="file" name="idproof" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange} placeholder={userData.idproof}  type="file" name="idproof" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
            </div>
            <div class="mb-2 sm:pl-0 pl-[22px] sm:pr-0 pr-[2px]  flex flex-wrap w-[24rem] justify-between py-3">
            <label for="cpassword" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm Password</label>
-           <input type="password" name="cpassword" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange} placeholder={userData.cpassword} type="password" name="cpassword" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
            </div>
         </div>  
   

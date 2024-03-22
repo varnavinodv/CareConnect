@@ -1,29 +1,27 @@
-import React, { useState } from 'react'
+import React,{useState} from 'react'
 import toy from '../Admin/toy.png'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const Addreportorg = () => {
+const Addreports = () => {
   let id=localStorage.getItem('id')
-  const navigate=useNavigate()
+
+    const navigate=useNavigate()
   const [data,setData]=useState('')
-  // const [data1,setData1]=useState('')
 
-  let handleChange=(event)=>{
-    setData({...data,[event.target.name]:event.target.value})
-  }
 
-  let handleSubmit=async (event)=>{
-    event.preventDefault()
-    // setData(data)
-    // console.log(data);
-    let response=await axios.post('http://localhost:4000/organization/addreport',{...data,userId:id})
-  console.log(response);
-    
-    navigate('/organization/viewreportsorg')
-    
-  }
+    let handleChange=(event)=>{
+        setData({...data,[event.target.name]:event.target.value})
+      }
+      let handleSubmit=async (event)=>{
+        event.preventDefault()
+        // setData(data)
+        // console.log(data);
+        let response=await axios.post('http://localhost:4000/orphanage/addreport',{...data,orphanageId:id})
+        console.log(response);
+        navigate('/orphanage/viewreports')
 
+      }
   return (
     <div className='w-[100%] '>
         <div className='basicbg  pt-7 ps-10 pe-10 flex flex-wrap justify-around'>
@@ -68,4 +66,4 @@ const Addreportorg = () => {
   )
 }
 
-export default Addreportorg
+export default Addreports

@@ -18,7 +18,7 @@ const Addeventorph = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    let response=await axios.post('http://localhost:4000/orphanage/addevent',{...data,userId:id})
+    let response=await axios.post('http://localhost:4000/orphanage/addevent',{...data,orphanageId:id})
     console.log(response);
     navigate('/orphanage/vieweventorph')
     

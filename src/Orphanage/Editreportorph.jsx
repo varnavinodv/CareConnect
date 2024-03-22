@@ -3,23 +3,21 @@ import toy from '../Admin/toy.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-const Editreportorg = () => {
-  const navigate=useNavigate()
-  const [data,setData]=useState('')
-  // const [data1,setData1]=useState('')
+const Editreportorph = () => {
+    const navigate=useNavigate()
+    const [data,setData]=useState('')
 
-  let handleChange=(event)=>{
-    setData({...data,[event.target.name]:event.target.value})
-  }
+    let handleChange=(event)=>{
+        setData({...data,[event.target.name]:event.target.value})
+      }
 
-  let handleSubmit=(event)=>{
-    event.preventDefault()
-    setData(data)
-    console.log(data);
-    navigate('/organization/viewreportsorg')
-    
-  }
-  
+      let handleSubmit=(event)=>{
+        event.preventDefault()
+        setData(data)
+        console.log(data);
+        navigate('/orphanage/viewreports')
+        
+      }
   return (
     <div className='w-[100%] '>
     <div className='basicbg  pt-7 ps-10 pe-10 flex flex-wrap justify-around'>
@@ -64,4 +62,4 @@ const Editreportorg = () => {
   )
 }
 
-export default Editreportorg
+export default Editreportorph

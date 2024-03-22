@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import book from './book.png'
 import dress from './dresses.png'
 import toys from './toyss.jpg'
@@ -10,7 +10,18 @@ import frock from './frock.png'
 import toyset from './toyset.png'
 import backpack from './backpack.png'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 const Viewproductorg = () => {
+    let id=localStorage.getItem('id')
+    const [data,setdata]=useState([''])
+    useEffect(()=>{
+        let fetchdata=async ()=>{
+          let response=await axios.get('http://localhost:4000/orphanage/viewproductorg',data)
+          console.log(response.data);
+          setdata(response.data)
+        }
+        fetchdata()
+      },[])
   return (
     <div className='w-[100%]' >
         <div className='basicbg2  pt-7 '>
@@ -58,51 +69,24 @@ const Viewproductorg = () => {
         <p className='text-center font-semibold pt-1'>Others</p>
      </div>
 </div>
-
-<div className='bg-yellow-300/40 m-auto h-fit flex flex-wrap  justify-evenly pb-1'>
+<div className='bg-yellow-300/40 w-[60rem] m-auto h-fit flex flex-wrap  justify-evenly pb-1'>
+{data.map((item,index)=>(
+    
     <div >
-    <img  className='h-[200px] w-[200px] pt-4 ps-4' src={storybook} alt="" />
-        <p className='text-center font-semibold pt -1'>Story book</p>
+    <Link to={`/organization/viewproductdtlorg/${item._id}`}>
+    <img  className='h-[200px] w-[200px] pt-4 ps-4' src={`http://localhost:4000/uploads/${item.img}`} alt="" /></Link>
+        <p className='text-center font-semibold pt -1'>{item.name}</p>
     </div>
-    <Link to='/organization/viewproductdtlorg'><div>
-    <img  className='h-[200px] w-[200px] pt-4 ps-4' src={frock} alt="" />
-        <p className='text-center font-semibold pt-1'>Frock</p>
-    </div></Link>
-    <div>
-    <img  className='h-[200px] w-[200px] pt-4 ps-4' src={toyset} alt="" />
-        <p className='text-center font-semibold pt-1'>Toyset</p>
-    </div>
-    <div>
-    <img  className='h-[200px] w-[200px] pt-4 ps-4' src={backpack} alt="" />
-        <p className='text-center font-semibold pt-1'>Back pack</p>
-    </div>
+        
     
-   </div>
-<div className='bg-yellow-300/40 m-auto h-fit flex flex-wrap  justify-evenly pb-1'>
-    <div className=''>
-    <img  className='h-[200px] w-[200px] pt-4 ps-4' src={storybook} alt="" />
-        <p className='text-center font-semibold pt-1'>Story book</p>
-    </div>
-    <div>
-    <img  className='h-[200px] w-[200px] pt-4 ps-4' src={frock} alt="" />
-        <p className='text-center font-semibold pt-1'>Frock</p>
-    </div>
-    <div>
-    <img  className='h-[200px] w-[200px] pt-4 ps-4' src={toyset} alt="" />
-        <p className='text-center font-semibold pt-1'>Toyset</p>
-    </div>
-    <div>
-    <img  className='h-[200px] w-[200px] pt-4 ps-4' src={backpack} alt="" />
-        <p className='text-center font-semibold pt-1'>Back pack</p>
-    </div>
+        ))}
+        </div>
+
     
     
 
 
 
-
-
-</div>
 
 
 

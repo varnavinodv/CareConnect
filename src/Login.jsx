@@ -32,6 +32,9 @@ const Login = () => {
       else if(response.data.userType=='deliveryboy'){
         Navigate('/deliveryboy')
       }
+      else if(response.data.userType=='admin'){
+        Navigate('/admin')
+      }
     }
     else{
       alert('invalid username or password')

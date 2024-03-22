@@ -1,9 +1,22 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
+import axios from 'axios'
 
 
 const Vworgadm = () => {
+    const [data,setdata]=useState([''])
     const [drop,setDrop]= useState(false)
     const [status,setStatus]=useState('')
+
+
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/admin/vieworganization')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
   let dropdown=()=>{
     setDrop(!drop)
   }
@@ -101,29 +114,31 @@ const Vworgadm = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b  font-semibold border-orange-600 hover:bg-[#f7b866d4]">
                 <td class="px-6 py-4 font-semibold">
-                    1.
+                    {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    Abcd org
+                    {item.name}
                 </td>
                 <td class="px-6 py-4">
-                   PLY8753
+                   {item.licenseNo}
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                   {item.license}
                 </td>
                 <td class="px-6 py-4">
-                   abc@gmail.com
+                  {item.email}
                 </td>
                 <td class="px-6 py-4">
-                    09876543124
+                    {item.phno}
                 </td>
                 <td class="px-6 py-4">
-                adcd,
-calicut-9,
-pin:673550
+                {item.place} <br />
+              P.O {item.postoffice} <br />
+              Pin:{item.pin} <br />
+              {item.district}
                 </td>
                 <td class="px-6 py-4">
                     Pending
@@ -134,7 +149,7 @@ pin:673550
                 </td>
                 
             </tr>
-            
+          ))}  
         </tbody>
     </table>
 </div>

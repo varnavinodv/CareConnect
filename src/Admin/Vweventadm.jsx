@@ -1,6 +1,21 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Vweventadm = () => {
+
+    const [data,setdata]=useState([''])
+
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/admin/viewevent')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
+    
   return (
     <div className='w-[100%]'>
                <div className='basicbg   pt-7 ps-10 pe-10'>
@@ -12,126 +27,55 @@ const Vweventadm = () => {
         <thead class="text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Product name
+                    SL NO
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Color
+                    ORGANIZATION
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Category
+                    EVENT
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    DATE
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    TIME
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Action
+                    VENUE
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    ACTION
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                    Apple MacBook Pro 17"
-                </th>
+        {data.map((item,index)=>(
+            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
+                
                 <td class="px-6 py-4">
-                    Silver
+                    {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    Laptop
+                    LP Org
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                    {item.name}
                 </td>
                 <td class="px-6 py-4">
-                    $799
+                    {item.date}
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
+                    {item.time}
                 </td>
                 <td class="px-6 py-4">
-                    Laptop PC
+                    {item.venue}
                 </td>
                 <td class="px-6 py-4">
-                    $1999
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+                <Link to='/admin/viewsponsorship'> <a href="#" class="font-medium text-black hover:underline">View sponsorships</a></Link>
                 </td>
             </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                    Google Pixel Phone
-                </th>
-                <td class="px-6 py-4">
-                    Gray
-                </td>
-                <td class="px-6 py-4">
-                    Phone
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
-                <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                    Apple Watch 5
-                </th>
-                <td class="px-6 py-4">
-                    Red
-                </td>
-                <td class="px-6 py-4">
-                    Wearables
-                </td>
-                <td class="px-6 py-4">
-                    $999
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
-                </td>
-            </tr>
+          ))}  
         </tbody>
     </table>
 </div>

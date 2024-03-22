@@ -6,6 +6,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Addrevieworph = () => {
+  let id=localStorage.getItem('id')
   const navigate=useNavigate()
   const [data,setData]=useState('')
   // const [data1,setData1]=useState('')
@@ -18,7 +19,7 @@ const Addrevieworph = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    let response=await axios.post('http://localhost:4000/orphanage/postreview',data)
+    let response=await axios.post('http://localhost:4000/orphanage/postreview',{...data,orphanageId:id})
     console.log(response);
     navigate('/orphanage/vieworgdtlorph')
     

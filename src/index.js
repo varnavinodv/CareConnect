@@ -80,7 +80,13 @@ import Editreportorg from './Organization/Editreportorg';
 import Vwsponsorg from './Organization/Vwsponsorg';
 import Editeventorph from './Orphanage/Editeventorph';
 import Sponshistoryorph from './Orphanage/Sponshistoryorph';
+import ContriRequest from './Orphanage/contriRequest';
 import 'react-toastify/dist/ReactToastify.css';
+import Viewcontridetailsorph from './Orphanage/Viewcontridetailsorph';
+import Vwcontridetailsadm from './Admin/Vwcontridetailsadm';
+import Vwreports from './Orphanage/Vwreports';
+import Addreports from './Orphanage/Addreports';
+import Editreportorph from './Orphanage/Editreportorph';
 
 
 
@@ -106,7 +112,8 @@ root.render(
         <Route path='viewproduct' element={<Vwproductadm/>}/>         
         <Route path='vieworganization' element={<Vworgadm/>}/> 
         <Route path='viewdonation' element={<Vwdonatnadm/>}/>
-        <Route path='viewcontribution' element={<Vwcontriadm/>}/> 
+        <Route path='viewcontribution' element={<Vwcontriadm/>}/>
+        <Route path='viewcontridetailsadm/:id' element={<Vwcontridetailsadm/>}/> 
         <Route path='vieworphanage' element={<Vworphadm/>}/>
         <Route path='viewdeliveryboy' element={<Vwdeliveryboyadm/>}/>
         <Route path='viewevent' element={<Vweventadm/>}/>   
@@ -128,7 +135,7 @@ root.render(
         <Route path='updateproduct' element={<Updateproductuser/>}/>
         <Route path='vieworgdtluser' element={<Vworgdtluser/>}/>
         <Route path='vieworphdtluser' element={<Viewoprhdtluser/>}/>
-        <Route path='contributionuser' element={<Contriuser/>}/>
+        <Route path='contributionuser/:cid' element={<Contriuser/>}/>
       </Route> 
 
 
@@ -146,7 +153,7 @@ root.render(
         <Route path='vieworderorg' element={<Vwordersorg/>}/>
         <Route path='viewrevieworg' element={<Vwrevieworg/>}/>
         <Route path='viewdonationorg' element={<Vwdonatnorg/>}/>
-        <Route path='viewproductdtlorg' element={<Vwproductdtlorg/>}/>
+        <Route path='viewproductdtlorg/:pid' element={<Vwproductdtlorg/>}/>
         <Route path='vieworphdtlorg' element={<Vworphdtlorg/>}/>
         <Route path='assigndeliveryboyorg/:id' element={<Assigndeliveryboy/>}/>
         <Route path='viewcartproductdtlorg' element={<Vwcartproductdtlorg/>}/>
@@ -176,6 +183,11 @@ root.render(
       <Route path='editprofileorph' element={<Editprofileorph/>}/>
       <Route path='editeventorph' element={<Editeventorph/>}/>
       <Route path='sponshistory' element={<Sponshistoryorph/>}/>
+      <Route path='contrirequest' element={<ContriRequest/>}/>
+      <Route path='viewcontridetails' element={<Viewcontridetailsorph/>}/>
+      <Route path='viewreports' element={<Vwreports/>}/>
+      <Route path='addreportorph' element={<Addreports/>}/>
+      <Route path='editreportorph' element={<Editreportorph/>}/>
       </Route>
 
 

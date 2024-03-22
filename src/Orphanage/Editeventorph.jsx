@@ -36,16 +36,16 @@ const Editeventorph = () => {
 <input onChange={handleChange} type="text" name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 <div class="mb-5">
-<label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Category</label>
-<input onChange={handleChange} type="text" name="category" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Date</label>
+<input onChange={handleChange} type="date" name="date" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 <div class="mb-5">
-<label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Image</label>
-<input onChange={handleChange} type="file" name="img" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Time</label>
+<input onChange={handleChange} type="time" name="time" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 <div class="mb-5">
-<label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>
-<input onChange={handleChange} type="number" name="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Venue</label>
+<input onChange={handleChange} type="text" name="venue" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 
 
