@@ -16,7 +16,7 @@ const Viewproductorg = () => {
     const [data,setdata]=useState([''])
     useEffect(()=>{
         let fetchdata=async ()=>{
-          let response=await axios.get('http://localhost:4000/orphanage/viewproductorg',data)
+          let response=await axios.get('http://localhost:4000/organization/viewproductorg',data)
           console.log(response.data);
           setdata(response.data)
         }

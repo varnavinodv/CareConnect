@@ -17,7 +17,7 @@ const Addreportorg = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    let response=await axios.post('http://localhost:4000/organization/addreport',{...data,userId:id})
+    let response=await axios.post('http://localhost:4000/organization/addreport',{...data,UserId:id})
   console.log(response);
     
     navigate('/organization/viewreportsorg')

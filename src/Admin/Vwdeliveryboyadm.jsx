@@ -81,25 +81,25 @@ const Vwdeliveryboyadm = () => {
                 {index +1 }
                 </td>
                 <td class="px-6 py-4">
-                {item.name}
+                {item.Deliveryboy?.name}
                 </td>
                 <td class="px-6 py-4">
-                    {item.age}
+                    {item.Deliveryboy?.age}
                 </td>
                 <td class="px-6 py-4">
-                    {item.email}
+                    {item.Deliveryboy?.email}
                 </td>
                 <td class="px-6 py-4">
-                    {item.phno}
+                    {item.Deliveryboy?.phno}
                 </td>
                 <td class="px-6 py-4">
-               {item.houseName} <br />
-               P.O {item.postoffice} <br />
-               pin:{item.pin} <br />
-               {item.district}
+               {item.Deliveryboy?.houseName} <br />
+               P.O {item.Deliveryboy?.postoffice} <br />
+               pin:{item.Deliveryboy?.pin} <br />
+               {item.Deliveryboy?.district}
 
                 </td><td class="px-6 py-4">
-                   {item.organization}
+                   {item.Organization?.name}
                 </td>
 
             </tr>

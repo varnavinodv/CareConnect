@@ -1,7 +1,19 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Link, useParams } from 'react-router-dom'
+import axios from 'axios'
 
 const Assigndeliveryboy = () => {
+
+    const [data,setdata]=useState([''])
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/organization/assigndboy')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
     const {id}=useParams()
     console.log(id);
     const [det,setDet]= useState(false)
@@ -36,18 +48,23 @@ const Assigndeliveryboy = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 text-black font-semibold hover:bg-[#f7b866d4]">
                 <td class="px-6 py-4 ">
-                    1.
+                {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    Abi
+                   {item.name}
                 </td>
                 <td class="px-6 py-4">
-                    9876571524
+                    {item.phno}
                 </td>
                 <td class="px-6 py-4">
-                wyuoo,Ho,P.O Kommeri,calicut-7
+                    {item.houseName} <br />
+                  P.O {item.postoffice} <br />
+                   Pin:{item.pin} <br />
+                    {item.district}
+                
                 </td>
                 
                 <td class="px-6 py-4">
@@ -74,7 +91,7 @@ const Assigndeliveryboy = () => {
                      }
                 </td>
             </tr>
-           
+            ))}  
         </tbody>
     </table>
 </div>

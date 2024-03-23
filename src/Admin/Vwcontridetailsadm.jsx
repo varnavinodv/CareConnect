@@ -44,9 +44,9 @@ const Vwcontridetailsadm = () => {
             <th scope="col" class="px-6 py-3">
                CONTRIBUTED AMOUNT
             </th>
-            <th scope="col" class="px-6 py-3">
+            {/* <th scope="col" class="px-6 py-3">
                BALANCE AMOUNT
-            </th>
+            </th> */}
             <th scope="col" class="px-6 py-3">
               DATE
             </th>
@@ -66,7 +66,7 @@ const Vwcontridetailsadm = () => {
              {item.contributionRequest?.purpose}
             </td>
             <td class="px-6 py-4">
-               riya
+               {item.user?.name}
             </td>
             <td class="px-6 py-4">
             {item.contributionRequest?.amount}
@@ -74,12 +74,12 @@ const Vwcontridetailsadm = () => {
             <td class="px-6 py-4">
             {item.contribution?.amount}
             </td>
+            {/* <td class="px-6 py-4">
+               {item.contributionRequest?.Bamount}
+            </td> */}
             <td class="px-6 py-4">
-               00000
-            </td>
-            <td class="px-6 py-4">
-               16/2/2022
-            </td>
+ { new Date(item.contribution?.date).toLocaleDateString()}
+</td>
             <td class="px-6 py-4">
                successful
             </td>

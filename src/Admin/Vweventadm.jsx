@@ -57,19 +57,19 @@ const Vweventadm = () => {
                     {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    LP Org
+                   {item.orphanage?.name}
                 </td>
                 <td class="px-6 py-4">
-                    {item.name}
+                    {item.event?.name}
                 </td>
                 <td class="px-6 py-4">
-                    {item.date}
+                    {item.event?.date}
                 </td>
                 <td class="px-6 py-4">
-                    {item.time}
+                    {item.event?.time}
                 </td>
                 <td class="px-6 py-4">
-                    {item.venue}
+                    {item.event?.venue}
                 </td>
                 <td class="px-6 py-4">
                 <Link to='/admin/viewsponsorship'> <a href="#" class="font-medium text-black hover:underline">View sponsorships</a></Link>

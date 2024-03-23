@@ -41,7 +41,7 @@ const ContriRequest = () => {
   </div>
   <div class="mb-5">
     <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Amount</label>
-    <input onChange={handleChange} type="text" name="amount" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input onChange={handleChange} type="numver" name="amount" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   <div class="mb-5">
     <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Description</label>
@@ -55,7 +55,7 @@ const ContriRequest = () => {
   
   
   
-  <Link to='/orphanage/viewcontributnorph'><button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">ADD</button></Link>
+ <button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">ADD</button>
 </form>
 </div>
 

@@ -1,16 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import sbook from '../Admin/sbook.jpg'
 import add from '../User/addbtn.png'
 import edit from '../User/edit.png'
 import dlt from '../User/delete.png'
 import hide from './hide.png'
+import axios from 'axios'
 
 const Vwdelboys = () => {
+    const [data,setdata]=useState([''])
+
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/organization/viewdeliveryboy')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
   return (
     <div className='w-[100%]'>
         <div className=' '>
-                                <div className='basicbg  pt-7 ps-10 pe-10'>
+                                <div className='basicbg3 pb-4  pt-7 ps-10 pe-10'>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>DELIVERY BOYS</div>
              {/* button */}
              <Link to='/organization/adddeliveryboy'><button className='bg-orange-500 flex flex-wrap py-1 pe-2 rounded-lg m-auto hover:px-2 hover:py-2   items-center mb-8'>
@@ -38,10 +50,10 @@ const Vwdelboys = () => {
                     PHONE NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    LICENSE NO.
+                    ID NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    LICENSE
+                   ID PROOF
                 </th>
                 <th scope="col" class="px-6 py-3">
                     ADDRESS
@@ -52,30 +64,34 @@ const Vwdelboys = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 font-semibold hover:bg-[#f7b866d4] ">
                 <td class="px-6 py-4">
-                    1.
+                    {index+1}
                 </td>
                 <td class="px-6 py-4">
-                   Balu
+                   {item.name}
                 </td>
                 <td class="px-6 py-4">
-                   34
+                   {item.age}
                 </td>
                 <td class="px-6 py-4">
-                   b@gmail.com
+                  {item.email}
                 </td>
                 <td class="px-6 py-4">
-                   9876172652
+                  {item.phno}
                 </td>
                 <td class="px-6 py-4">
-                   IYTWC23455
+                   {item.idno}
                 </td>
                 <td class="px-6 py-4">
-                    <img  className='h-14 w-14' src={sbook} alt="" />
+                    <img  className='h-14 w-14' src={item.idproof} alt="" />
                 </td>
                 <td class="px-6 py-4">
-                wyuoo,Ho,P.O Kommeri,calicut-7
+                    {item.houseName} <br />
+                    P.O{item.postoffice} <br />
+                   Pin:{item.pin} <br />
+                {item.district}
                 </td>
 
                 <td class="px-6 py-6 flex flex-wrap justify-evenly items-center ">
@@ -83,7 +99,7 @@ const Vwdelboys = () => {
                     <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
             </tr>
-            
+          ))}   
         </tbody>
     </table>
 </div>

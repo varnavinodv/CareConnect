@@ -51,19 +51,19 @@ const Vwproductadm = () => {
                     {index+1}
                 </td>
                 <td class="px-6 py-4">
-                   {item.name}
+                   {item.product?.name}
                 </td>
                 <td class="px-6 py-4">
-                    {item.category}
+                    {item.product?.category}
                 </td>
                 <td class="px-6 py-4 ">
-                    {item.count}
+                    {item.product?.count}
                 </td>
                 <td class="px-6 py-4">
-                   <img  className='h-14 w-14' src={`http://localhost:4000/uploads/${item.img}`}  alt="" />
+                   <img  className='h-14 w-14' src={`http://localhost:4000/uploads/${item.product?.img}`}  alt="" />
                 </td>
                 <td class="px-6 py-4 ">
-                    Saniga
+                    {item.users?.name}
                 </td>
                 
             </tr>

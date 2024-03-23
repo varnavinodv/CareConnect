@@ -102,13 +102,13 @@ const Vwreportsadm = () => {
                     {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    ABDC ORG/ORPH
+                    {item.user?.name}
                 </td>
                 <td class="px-6 py-4">
-                    {item.year}
+                    {item.report?.year}
                 </td>
                 <td class="px-6 py-4">
-                    {item.report}
+                    {item.report?.report}
                 </td>
             </tr>
            ))}  

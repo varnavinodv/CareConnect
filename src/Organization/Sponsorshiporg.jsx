@@ -4,12 +4,13 @@ import email from '../User/emailbrwn.png'
 import locatn from '../User/locatnbrwn.png'
 import date from '../User/date.png'
 import time from '../User/time.png'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Sponsorshiporg = () => {
   let id=localStorage.getItem('id')
+  let {sid}=useParams()
   const navigate=useNavigate()
   const [data,setData]=useState('')
   // const [data1,setData1]=useState('')
@@ -22,7 +23,7 @@ const Sponsorshiporg = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    let response=await axios.post('http://localhost:4000/organization/sponsorship',{...data,organizationId:id})
+    let response=await axios.post(`http://localhost:4000/organization/sponsorship/${sid}`,{...data,organizationId:id})
     console.log(response);
     navigate('/organization/vwsponsorg')
     

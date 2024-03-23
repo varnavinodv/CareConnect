@@ -45,13 +45,13 @@ const Vwreviewadm = () => {
                     {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    ADS ORPH
+                    {item.users?.name}
                 </td>
                 <td class="px-6 py-4">
                     KJY ORG
                 </td>
                 <td class="px-6 py-4">
-                {item.review}
+                {item.review?.review}
                 </td>
                 
             </tr>

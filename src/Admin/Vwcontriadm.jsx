@@ -69,7 +69,10 @@ const Vwcontriadm = () => {
                    DESCRIPTION
                 </th>
                 <th scope="col" class="px-6 py-3">
-                   AMOUNT
+                    TOTAL AMOUNT
+                </th>
+                <th scope="col" class="px-6 py-3">
+                   BALANCE AMOUNT
                 </th>
 
                 <th scope="col" class="px-6 py-3">
@@ -95,6 +98,9 @@ const Vwcontriadm = () => {
                 </td>
                 <td class="px-6 py-4">
                   {item.amount}
+                </td>
+                <td class="px-6 py-4">
+                  {item.Bamount}
                 </td>
                 
                 <td class="px-6 py-4">

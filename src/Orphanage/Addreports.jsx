@@ -17,7 +17,7 @@ const Addreports = () => {
         event.preventDefault()
         // setData(data)
         // console.log(data);
-        let response=await axios.post('http://localhost:4000/orphanage/addreport',{...data,orphanageId:id})
+        let response=await axios.post('http://localhost:4000/orphanage/addreport',{...data,userId:id})
         console.log(response);
         navigate('/orphanage/viewreports')
 
