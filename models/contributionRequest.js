@@ -3,7 +3,7 @@ import User from './user.js'
 
 
 const contributionRequestSchema=Schema({
-    userId:{
+    orphanageId:{
         type:mongoose.Types.ObjectId,
         ref:User
     },

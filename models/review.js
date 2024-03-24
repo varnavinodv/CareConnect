@@ -2,7 +2,7 @@ import mongoose,{ Schema, model } from "mongoose";
 import User from "./user.js";
 
 const reviewSchema=Schema({
-    userId:({
+    orphanageId:({
         type:mongoose.Types.ObjectId,
         ref:User
     }),

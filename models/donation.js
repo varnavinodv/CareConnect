@@ -1,29 +1,28 @@
 import mongoose,{Schema,model} from "mongoose";
-import User from "./user.js";
-import donationRequest from "./donationRequest.js";
+import User from './user.js'
 
-const donationSchema = Schema({
-    userId:{
+const donationSchema=Schema({
+       orphanageId:{
         type:mongoose.Types.ObjectId,
         ref:User
-    },
-    donationRequestId:{
-        type:mongoose.Types.ObjectId,
-        ref:donationRequest
-    },
-    product:{
+       },
+       product:{
         type:String,
         required:true
-    },
-    count:{
+       },
+       count:{
         type:Number,
         required:true
-
-    },
-    status:{
+       },
+       date:{
         type:String,
-    }
+        
+       },
+       status:{
+        type:String,
+        
+       }
 
 })
-const Donation=model('Donation',donationSchema)
-export default Donation
+const donation=model('donation',donationSchema)
+export default donation

@@ -45,12 +45,7 @@ router.post('/contribution',async(req,res)=>{
     res.json({message:"Contributed",savedContribution})
 })
 
-router.post('/contributionrequest',async(req,res)=>{
-    console.log(req.body);
-    const newcontributionRequest = new ContributionRequest({...req.body,Bamount:req.body.amount})
-    const savedcontributionRequest = await newcontributionRequest.save()
-    res.json({message:"Contribution request posted",savedcontributionRequest})
-})
+
 
 router.get('/viewprofile/:id',async(req,res)=>{
     let id=req.params.id
@@ -82,5 +77,42 @@ router.get('/viewcontrireq',async(req,res)=>{
     console.log(response);
     res.json(response)
 })
+
+router.get('/vieworg',async(req,res)=>{
+    console.log(req.body);
+    let response=await User.find({userType:'organization'})
+    console.log(response);
+    res.json(response)
+})
+
+router.get('/vieworgdetail/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let response=await User.findById(id)
+    console.log(response);
+    res.json(response)
+})
+
+// router.get('/viewcontributions/:id',async(req,res)=>{
+//     let id=req.params.id
+//     console.log(id);
+//     let response=await Contribution.findById(id)
+//     console.log(response);
+//     res.json(response)
+// })
+router.get('/vieworph',async(req,res)=>{
+    console.log(req.body);
+    let response=await User.find({userType:'orphanage'})
+    console.log(response);
+    res.json(response)
+})
+router.get('/vieworphdetail/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let response=await User.findById(id)
+    console.log(response);
+    res.json(response)
+})
+
 
 export default router

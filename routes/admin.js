@@ -115,8 +115,9 @@ router.get('/viewproduct',async(req,res)=>{
             product:newresponse,
             users:user
         });
-        console.log(responseData);
+        
     }
+    console.log(responseData);
     res.json(responseData);
 })
 
@@ -124,13 +125,49 @@ router.get('/viewreports',async(req,res)=>{
     console.log(req.body);
     let response=await Report.find()
     console.log(response);
-    res.json(response);
+    let responseData=[];
+    for (const newresponse of response){
+        let users=await User.findById(newresponse.UserId);
+        responseData.push({
+            report:newresponse,
+            user:users
+        })
+    }
+    console.log(responseData);
+    res.json(responseData);
 })
 router.get('/viewreview',async(req,res)=>{
     console.log(req.body);
     let response=await Review.find()
     console.log(response);
-    res.json(response);
+    let responseData=[];
+    for (const newresponse of response){
+        let user=await User.findById(newresponse.orphanageId);
+        responseData.push({
+            review:newresponse,
+            users:user
+        })
+    }
+    console.log(responseData);
+    res.json(responseData);
+})
+
+
+router.get('/viewsponsorship',async(req,res)=>{
+    console.log(req.body);
+    let response=await Sponsosrship.find()
+    console.log(response);
+    let responseData=[];
+    for (const newresponse of response){
+        let user=await User.findById(newresponse.organizationId);
+        responseData.push({
+            sponsosrship:newresponse,
+            users:user
+
+        })
+    }
+    console.log(responseData);
+    res.json(responseData);
 })
 
 export default router
