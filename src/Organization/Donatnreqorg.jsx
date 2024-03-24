@@ -1,7 +1,19 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Donatnreqorg = () => {
+    const [data,setdata]=useState([''])
+
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/organization/viewdonationrequests')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
   return (
     <div className=' w-[100%] '>
         <div className='basicbg pt-7 ps-10 pe-10'>
@@ -22,9 +34,9 @@ const Donatnreqorg = () => {
                 <th scope="col" class="px-6 py-3">
                 PRODUCT
                 </th>
-                <th scope="col" class="px-6 py-3">
+                {/* <th scope="col" class="px-6 py-3">
                     CATEGORY
-                </th>
+                </th> */}
                 <th scope="col" class="px-6 py-3">
                     COUNT
                 </th>
@@ -39,21 +51,22 @@ const Donatnreqorg = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 text-black font-semibold hover:bg-[#f7b866d4]">
                 <td  class="px-6 py-4 ">
-                  1.
+                 {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    SDT Org
+                    {item.orphanage?.name}
                 </td>
-                <td class="px-6 py-4">
+                {/* <td class="px-6 py-4">
                     Hand bags
+                </td> */}
+                <td class="px-6 py-4">
+                {item.donation?.product}
                 </td>
                 <td class="px-6 py-4">
-                 bags
-                </td>
-                <td class="px-6 py-4">
-                   3
+                  {item.donation?.count}
                 </td>
                 <td class="px-6 py-4">
                    pending
@@ -65,7 +78,7 @@ const Donatnreqorg = () => {
                 </td>
                 
             </tr>
-           
+           ))}  
         </tbody>
     </table>
 </div>

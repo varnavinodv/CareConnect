@@ -1,7 +1,19 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Vworphorg = () => {
+    const [data,setdata]=useState([''])
+
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/organization/vieworphanage')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
   return (
     <div className='w-[100%]'>
        
@@ -44,23 +56,24 @@ const Vworphorg = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
                 <td  class="px-6 py-4 ">
-                    1.
+                  {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    WER ORPH
+                   {item.name}
                </td>
                <td class="px-6 py-4">
-                    wer@gmail.com
+                   {item.email}
                </td>
                <td class="px-6 py-4  hover:font-bold ">
-                     <Link to='/organization/vieworphdtlorg'><button className='hover:underline '>View</button></Link>
+                     <Link to={`/organization/vieworphdtlorg/${item._id}`}><button className='hover:underline '>View</button></Link>
                     
                 </td>
                 
             </tr>
-           
+            ))} 
         </tbody>
     </table>
 </div>

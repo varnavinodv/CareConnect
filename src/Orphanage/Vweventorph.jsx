@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import add from '../User/addbtn.png'
 import edit from '../User/edit.png'
 import dlt from '../User/delete.png'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import axios from 'axios'
 
 const Vweventorph = () => {
+    const [data,setdata]=useState([''])
+    let id=localStorage.getItem('id')
+
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get(`http://localhost:4000/orphanage/viewevent/${id}`)
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
   return (
     <div className='w-[100%]'>
                              <div className='basicbg   pt-7 ps-10 pe-10'>
@@ -22,9 +35,9 @@ const Vweventorph = () => {
                 <th scope="col" class="px-6 py-3">
                    SL NO.
                 </th>
-                <th scope="col" class="px-6 py-3">
+                {/* <th scope="col" class="px-6 py-3">
                    NAME
-                </th>
+                </th> */}
                 <th scope="col" class="px-6 py-3">
                   VENUE
                 </th>
@@ -43,21 +56,22 @@ const Vweventorph = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 font-semibold text-black hover:bg-[#f7b866d4]">
                 <td  class="px-6 py-4 ">
-                  1.
+                  {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    Children's day
+                    {item.name}
                 </td>
-                <td class="px-6 py-4">
+                {/* <td class="px-6 py-4">
                    orphanage
+                </td> */}
+                <td class="px-6 py-4">
+                   {item.date}
                 </td>
                 <td class="px-6 py-4">
-                   14/09/2024
-                </td>
-                <td class="px-6 py-4">
-                   4:00pm
+                   {item.time}
                 </td>
                 
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
@@ -65,10 +79,10 @@ const Vweventorph = () => {
                     <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
                 <td class="px-6 py-4">
-                   <Link to='/orphanage/viewsponsorshiporph'><button className='bg-orange-500 rounded-lg p-1'>View requests</button></Link>
+                   <Link to={`/orphanage/viewsponsorshiporph/${item._id}`}><button className='bg-orange-500 rounded-lg p-1'>View requests</button></Link>
                 </td>
             </tr>
-            
+            ))}  
         </tbody>
     </table>
 </div>

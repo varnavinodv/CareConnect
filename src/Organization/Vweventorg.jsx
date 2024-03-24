@@ -1,7 +1,21 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Vweventorg = () => {
+
+   const [data,setdata]=useState([''])
+
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/organization/viewevent')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
+
   return (
     <div className=' w-[100%]'>
         <div className='basicbg  pt-7 ps-10 pe-10 pb-10'>
@@ -39,33 +53,35 @@ const Vweventorg = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
                 <th  class="px-6 py-4 ">
-                   1.
+                   {index+1}
                 </th>
                 <td class="px-6 py-4">
-                   AGF org
+                {item.orphanage?.name}
                 </td>
                 <td class="px-6 py-4">
-                   Children's day
+                {item.event?.name}
                 </td>
                 <td class="px-6 py-4">
-                  ade auditorium
+                {item.event?.venue}
                 </td>
                 <td class="px-6 py-4">
-                  14/9/2021
+                {item.event?.date}
                 </td>
                 <td class="px-6 py-4">
-                 4:00pm
+                 {item.event?.time}
                 </td>
                 <td class="px-6 py-4">
                pending
                 </td>
                 <td class="px-6 py-4">
-                   <Link to='/organization/sponsorshiporg'> <button className='bg-orange-500 p-1 rounded-md'>Sent sponsorship request</button></Link>
+                  
+                   <Link to={`/organization/sponsorshiporg/${item.event?._id}`}> <button className='bg-orange-500 p-1 rounded-md'>Sent sponsorship request</button></Link>
                 </td>
             </tr>
-            
+            ))}  
         </tbody>
     </table>
 </div>

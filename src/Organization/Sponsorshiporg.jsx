@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import call from '../User/callbrwn.png'
 import email from '../User/emailbrwn.png'
 import locatn from '../User/locatnbrwn.png'
@@ -10,9 +10,10 @@ import axios from 'axios'
 
 const Sponsorshiporg = () => {
   let id=localStorage.getItem('id')
-  let {sid}=useParams()
+  let {eid}=useParams()
   const navigate=useNavigate()
   const [data,setData]=useState('')
+  const [data2,setdata2]=useState([''])
   // const [data1,setData1]=useState('')
 
   let handleChange=(event)=>{
@@ -23,31 +24,42 @@ const Sponsorshiporg = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    let response=await axios.post(`http://localhost:4000/organization/sponsorship/${sid}`,{...data,organizationId:id})
+    let response=await axios.post('http://localhost:4000/organization/sponsorship',{...data,organizationId:id,eventId:eid})
     console.log(response);
     navigate('/organization/vwsponsorg')
     
   }
 
+
+  useEffect(()=>{
+      let fetchdata=async()=>{
+         let response1=await axios.get('http://localhost:4000/organization/viewevent')
+         console.log(response1.data);
+         setdata2(response1.data);
+
+      }
+      fetchdata()
+   },[])
+
   return (
     <div className='w-[100%]'>
         <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div className='ps-36'>
-                        <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORPHANAGE</div>
+                        <div className='font-bold text-4xl text-amber-950 py-8'>{data2.orphanage?.name}</div>
                         <div className='text-xl font-semibold'>
                             <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                               <img  className='w-[30px] h-[30px]' src={call} alt="" />
-                              <p>+91 81130493822</p>
+                              <p>{data2.orphanage?.phno}</p>
                             </div>
                             <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                               <img className='w-[30px] h-[30px]' src={email} alt="" />
-                              <p>abcd@gmail.com</p>
+                              <p>{data2.orphanage?.email}</p>
                             </div>
                             <div className='flex flex-wrap justify-start gap-3  pb-3 '>
                               <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
-                              <p>ghsjhj hsisjk,<br />P.O huyaf, <br />
-                                         pin-526713 <br />
-                                         Kochi</p>
+                              <p>{data2.orphanage?.place}<br />P.O {data2.orphanage?.postoffice} <br />
+                                         pin:{data2.orphanage?.pin} <br />
+                                         {data2.orphanage?.district}</p>
                             </div>
                         </div>
             
@@ -57,19 +69,19 @@ const Sponsorshiporg = () => {
                                 <div><h1 className='font-bold text-black py-4 text-xl'>CHILDREN'S DAY</h1></div>
                                 <div className='text-lg font-semibold'>
                                 <div className=' ps-3 gap-2 py-1 '>
-                                    <p>Name:    Children’s Day </p>
+                                    <p>Name:   {data2.event?.name} </p>
                                   </div>
                                   <div className=' ps-3 gap-2 py-1'>
                                     
-                                    <p>Venue:    Orphanage</p>
+                                    <p>Venue:   {data2.event?.venue}</p>
                                   </div>
                                   <div className=' ps-3 gap-2 py-1'>
                                     
-                                    <p>Date:14/11/2024</p>
+                                    <p>Date:{data2.event?.date}</p>
                                   </div>
                                   <div className=' ps-3 gap-2 py-1'>
                                     
-                                    <p>Time:4:00pm</p>
+                                    <p>Time:{data2.event?.time}</p>
                                   </div>
                                 </div>
             </div>

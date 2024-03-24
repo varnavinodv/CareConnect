@@ -5,16 +5,22 @@ import locatn from './locatnbrwn.png'
 import date from './date.png'
 import time from './time.png'
 import arrow from './arrow.png'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const Viewoprhdtluser = () => {
   const [data,setdata]=useState([''])
+  const [data2,setdata2]=useState('')
+  let {id} =useParams()
+  console.log(id);
   useEffect(()=>{
     let fetchdata=async ()=>{
       let response=await axios.get('http://localhost:4000/user/viewcontrireq',data)
       console.log(response.data);
       setdata(response.data)
+      let response1=await axios.get(`http://localhost:4000/user/vieworgdetail/${id}`)
+      console.log(response);
+      setdata2(response1.data)
     }
     fetchdata()
   },[])
@@ -28,22 +34,22 @@ const Viewoprhdtluser = () => {
     <div className='w-[100%]'>
          <div className='basicbg2   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div >
-            <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORPHANAGE</div>
+            <div className='font-bold text-4xl text-amber-950 py-8'>{data2.name}</div>
             <div className='flex flex-wrap justify-end w-full gap-8'>
             <div className='text-xl font-semibold'>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img  className='w-[30px] h-[30px]' src={call} alt="" />
-                  <p>+91 81130493822</p>
+                  <p>{data2.phno}</p>
                 </div>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img className='w-[30px] h-[30px]' src={email} alt="" />
-                  <p>abcd@gmail.com</p>
+                  <p>{data2.email}</p>
                 </div>
                 <div className='flex flex-wrap justify-start gap-3  pb-3 '>
                   <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
-                  <p>ghsjhj hsisjk,<br />P.O huyaf, <br />
-                             pin-526713 <br />
-                             Kochi</p>
+                  <p>{data2.place}<br />P.O {data2.postoffice} <br />
+                             pin:{data2.pin}<br />
+                             {data2.district}</p>
                 </div>
             </div>
             {data.map((item,index)=>(

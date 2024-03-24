@@ -1,6 +1,23 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 
 const Vwsponsorg = () => {
+
+    const [data,setData]=useState([''])
+    let {id} =useParams()
+    console.log(id);
+    useEffect(()=>{
+        let fetchdata=async ()=>{
+          let response=await axios.get(`http://localhost:4000/organization/viewsponshistory/${id}`)
+          console.log(response);
+          setData(response.data)
+        }
+        fetchdata()
+    
+        
+      },[])
+
   return (
     <div className='w-[100%]'>
     <div className='basicbg pt-7 ps-10 pe-10'>
@@ -32,27 +49,28 @@ const Vwsponsorg = () => {
 </tr>
 </thead>
 <tbody>
+{data.map((item,index)=>(
 <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
     <td class="px-6 py-4">
-        1.
+        {index+1}
     </td>
     <td class="px-6 py-4">
-        CHILDREN'S DAY
+        {item.event?.name}
     </td>
     <td class="px-6 py-4">
         LTP ORPHANAGE
     </td>
     <td class="px-6 py-4">
-        POI ORGANIZATION
+        {item.organization?.name}
     </td>
     <td class="px-6 py-4">
-        Food
+        {item.spons?.purpose}
     </td>
     <td class="px-6 py-4">
         Accepted
     </td>
 </tr>
-
+))}
 </tbody>
 </table>
 </div>

@@ -1,6 +1,21 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 
 const Viewcontridetailsorph = () => {
+   const [data,setdata]=useState([''])
+   let {id}=useParams()
+  console.log(id);
+  useEffect(()=>{
+
+   let fetchdata=async()=>{
+      let response=await axios.get(`http://localhost:4000/orphanage/viewcontridetails/${id}`)
+      console.log(response.data);
+      setdata(response.data)
+
+   }
+   fetchdata()
+},[])
   return (
     <div className=' w-[100%]'>
         
@@ -28,9 +43,7 @@ const Viewcontridetailsorph = () => {
             <th scope="col" class="px-6 py-3">
                CONTRIBUTED AMOUNT
             </th>
-            <th scope="col" class="px-6 py-3">
-               BALANCE AMOUNT
-            </th>
+            
             <th scope="col" class="px-6 py-3">
               DATE
             </th>
@@ -41,34 +54,33 @@ const Viewcontridetailsorph = () => {
         </tr>
     </thead>
     <tbody>
+    {data.map((item,index)=>(
         <tr class="bg-[#f8d2a0] border-b text-black font-semibold border-orange-600 hover:bg-[#f7b866d4]">
             <td class="px-6 py-4">
-               1.
+               {index+1}
             </td>
             <td class="px-6 py-4">
-             Education
+            {item.contrirequest?.purpose}
             </td>
             <td class="px-6 py-4">
-               riya
+               {item.user?.name}
             </td>
             <td class="px-6 py-4">
-              10000
+            {item.contrirequest?.amount}
             </td>
             <td class="px-6 py-4">
-               4000
+              {item.contrirequest?.Bamount}
             </td>
+            
             <td class="px-6 py-4">
-               6000
-            </td>
-            <td class="px-6 py-4">
-               16/2/2022
+            { new Date(item.contribution?.date).toLocaleDateString()}
             </td>
             <td class="px-6 py-4">
                successful
             </td>
             
         </tr>
-        
+        ))}    
     </tbody>
 </table>
 </div>

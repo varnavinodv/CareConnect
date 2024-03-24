@@ -1,6 +1,18 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const Vwcontriuser = () => {
+    // const [data,setdata]=useState([''])
+    // let id=localStorage.getItem('id')
+    // useEffect(()=>{
+    //     let fetchdata=async()=>{
+    //        let response=await axios.get(`http://localhost:4000/user/viewcontributions/${id}`)
+    //        console.log(response.data);
+    //        setdata(response.data)
+  
+    //     }
+    //     fetchdata()
+    //  },[]) 
   return (
     <div className='w-[100%]'>
          <div className='basicbg   pt-7 ps-10 pe-10'>
@@ -36,9 +48,10 @@ const Vwcontriuser = () => {
             </tr>
         </thead>
         <tbody>
+        {/* {data.map((item,index)=>( */}
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
                 <td  class="px-6 py-4 ">
-                    1.
+                   1
                 </td>
                 <td class="px-6 py-4">
                     RET ORG
@@ -60,7 +73,7 @@ const Vwcontriuser = () => {
                 </td>
                 
             </tr>
-   
+        {/* ))} */}
         </tbody>
     </table>
 </div>

@@ -1,12 +1,28 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import call from './callbrwn.png'
 import email from './emailbrwn.png'
 import locatn from './locatnbrwn.png'
 import arrow from './arrow.png'
 import running from './running.png'
 import review from '../Admin/review.png'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 const Vworgdtluser = () => {
+
+  const [data,setData]=useState('')
+  let {id} =useParams()
+  console.log(id);
+  useEffect(()=>{
+    let fetchdata=async ()=>{
+      let response=await axios.get(`http://localhost:4000/user/vieworgdetail/${id}`)
+      console.log(response);
+      setData(response.data)
+    }
+    fetchdata()
+
+    
+  },[])
   const [drop,setDrop]= useState(false)
   let dropdown=()=>{
     setDrop(!drop)
@@ -17,21 +33,21 @@ const Vworgdtluser = () => {
     <div className='w-[100%]'>
         <div className='basicbg2   sm:ps-40 flex flex-wrap justify-between'>
           <div >
-            <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORGANIZATION</div>
+            <div className='font-bold text-4xl text-amber-950 py-8'>{data.name}</div>
             <div>
                 <div className='flex flex-wrap justify-center gap-3 pb-3'>
                   <img  className='w-[30px] h-[30px]' src={call} alt="" />
-                  <p>+91 81130493822</p>
+                  <p>{data.phno}</p>
                 </div>
                 <div className='flex flex-wrap justify-center gap-3 pb-3'>
                   <img className='w-[30px] h-[30px]' src={email} alt="" />
-                  <p>abcd@gmail.com</p>
+                  <p>{data.email}</p>
                 </div>
                 <div className='flex flex-wrap justify-center gap-3 pe-8 pb-3'>
                   <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
-                  <p>ghsjhj hsisjk,<br />P.O huyaf, <br />
-                             pin-526713 <br />
-                             Kochi</p>
+                  <p>{data.place}<br />P.O {data.postoffice} <br />
+                             pin:{data.pin} <br />
+                             {data.district}</p>
                 </div>
             </div>
             <div>

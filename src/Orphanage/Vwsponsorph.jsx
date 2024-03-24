@@ -1,6 +1,22 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 
 const Vwsponsorph = () => {
+
+    const [data,setData]=useState('')
+    let {id} =useParams()
+    console.log(id);
+    useEffect(()=>{
+        let fetchdata=async ()=>{
+          let response=await axios.get(`http://localhost:4000/orphanage/viewspons/${id}`)
+          console.log(response);
+          setData(response.data)
+        }
+        fetchdata()
+    
+        
+      },[])
   return (
     <div className='w-[100%] '>
          <div>
@@ -38,18 +54,19 @@ const Vwsponsorph = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold text-black">
                 <td class="px-6 py-4 ">
-                   1.
+                   {index+1}
                 </td>
                 <td class="px-6 py-4">
-                   children's day
+                  {item.event?.name}
                    </td>
                 <td class="px-6 py-4">
-                  LJK Org
+                  {item.organization?.name}
                 </td>
                 <td class="px-6 py-4">
-                   food
+                   {item.sponsorship?.purpose}
                 </td>
                 <td class="px-6 py-4">
                    pending
@@ -60,7 +77,7 @@ const Vwsponsorph = () => {
                 </td>
                 
             </tr>
-            
+             ))}   
         </tbody>
     </table>
 </div>

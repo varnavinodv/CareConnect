@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import add from '../User/addbtn.png'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Vwcontriorph = () => {
+
+  const [data,setdata]=useState([''])
+  let id=localStorage.getItem('id')
+
+  useEffect(()=>{
+      let fetchdata=async()=>{
+         let response=await axios.get(`http://localhost:4000/orphanage/viewcontrireq/${id}`)
+         console.log(response.data);
+         setdata(response.data)
+
+      }
+      fetchdata()
+   },[])
   return (
     <div className=' w-[100%]'>
         
@@ -30,6 +44,9 @@ const Vwcontriorph = () => {
                 <th scope="col" class="px-6 py-3">
                    AMOUNT
                 </th>
+                <th scope="col" class="px-6 py-3">
+                   BALANCE AMOUNT
+                </th>
 
                 <th scope="col" class="px-6 py-3">
                   STATUS
@@ -41,29 +58,33 @@ const Vwcontriorph = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b text-black font-semibold border-orange-600 hover:bg-[#f7b866d4]">
                 <td class="px-6 py-4">
-                   1.
+                   {index+1}
                 </td>
                 <td class="px-6 py-4">
-                  Education
+                 {item.purpose}
                 </td>
                 <td class="px-6 py-4">
-                  ekfahsdhfj
+                  {item.description}
                 </td>
                 <td class="px-6 py-4">
-                  10,0000
+                  {item.amount}
+                </td>
+                <td class="px-6 py-4">
+                  {item.Bamount}
                 </td>
                 
                 <td class="px-6 py-4">
                    pending
                 </td>
                 <td class="px-6 py-4">
-                <Link to='/orphanage/viewcontridetails'> <a href="#" class=" font-semibold text-green-600 hover:underline">View Contributions</a></Link><br/>
+                <Link to={`/orphanage/viewcontridetails/${item._id}`}> <a href="#" class=" font-semibold text-green-600 hover:underline">View Contributions</a></Link><br/>
                 <a href="#" class="font-semibold text-red-600 hover:underline">Delete request</a>
                 </td>
             </tr>
-            
+           ))}    
         </tbody>
     </table>
 </div>

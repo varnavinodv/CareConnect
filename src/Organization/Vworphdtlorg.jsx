@@ -1,13 +1,27 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import call from '../User/callbrwn.png'
 import email from '../User/emailbrwn.png'
 import locatn from '../User/locatnbrwn.png'
 import date from '../User/date.png'
 import time from '../User/time.png'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import arrow from '../User/arrow.png'
+import axios from 'axios'
 
 const Vworphdtlorg = () => {
+  const [data,setData]=useState('')
+  let {id}=useParams()
+  console.log(id);
+  useEffect(()=>{
+    let fetchdata=async ()=>{
+      let response=await axios.get(`http://localhost:4000/organization/vieworphdetail/${id}`)
+      console.log(response);
+      setData(response.data)
+    }
+    fetchdata()
+
+    
+  },[])
   const [drop,setDrop]= useState(false)
   let dropdown=()=>{
     setDrop(!drop)
@@ -18,22 +32,22 @@ const Vworphdtlorg = () => {
     <div className=' w-[100%] '>
         <div className='basicbg2 pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div >
-            <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORPHANAGE</div>
+            <div className='font-bold text-4xl text-amber-950 py-8'>{data.name}</div>
             <div className='flex flex-wrap justify-end w-full gap-8'>
             <div className='text-xl font-semibold'>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img  className='w-[30px] h-[30px]' src={call} alt="" />
-                  <p>+91 81130493822</p>
+                  <p>{data.phno}</p>
                 </div>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img className='w-[30px] h-[30px]' src={email} alt="" />
-                  <p>abcd@gmail.com</p>
+                  <p>{data.email}</p>
                 </div>
                 <div className='flex flex-wrap justify-start gap-3  pb-3 '>
                   <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
-                  <p>ghsjhj hsisjk,<br />P.O huyaf, <br />
-                             pin-526713 <br />
-                             Kochi</p>
+                  <p>{data.place}<br />P.O {data.postoffice} <br />
+                             pin:{data.pin} <br />
+                            {data.district}</p>
                 </div>
             </div>
             <div className=' h-fit p-2 ms-16 bg-white'>

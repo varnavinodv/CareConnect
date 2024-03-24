@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import add from '../User/addbtn.png'
 import edit from '../User/edit.png'
 import dlt from '../User/delete.png'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Vwreportsorg = () => {
+    let id=localStorage.getItem('id')
+    const [data,setdata]=useState([''])
+
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get(`http://localhost:4000/organization/viewreports/${id}`)
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
   return (
     <div className='w-[100%]'>
                               <div className='basicbg   pt-7 ps-10 pe-10'>
@@ -35,22 +48,23 @@ const Vwreportsorg = () => {
             </tr>
         </thead>
         <tbody>
+        {/* {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold text-black">
                 <td class="px-6 py-4 ">
-                    1.
+                    {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    2021
+                    {item.year}
                 </td>
                 <td class="px-6 py-4">
-                    report.pdf
+                   {item.report}
                 </td>
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
                     <Link to='/organization/editreportorg'><img className='w-[45px] h-[30px] hover:bg-blue-400' src={edit} alt="" /></Link>
                     <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
             </tr>
-            
+             ))}    */}
         </tbody>
     </table>
 </div>

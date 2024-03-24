@@ -1,7 +1,19 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Vworphuser = () => {
+
+    const [data,setdata]=useState([''])
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/user/vieworph')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[]) 
   return (
     <div className='w-[100%] '>
         <div className='basicbg  pt-7 ps-10 pe-10'>
@@ -43,23 +55,24 @@ const Vworphuser = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
                 <td  class="px-6 py-4 ">
-                    1.
+                    {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    WER ORPH
+                    {item.name}
                </td>
                <td class="px-6 py-4">
-                    wer@gmail.com
+                   {item.email}
                </td>
                <td class="px-6 py-4  hover:font-bold ">
-                     <Link to='/user/vieworphdtluser'><button className='hover:underline '>View</button></Link>
+                     <Link to={`/user/vieworphdtluser/${item._id}`}><button className='hover:underline '>View</button></Link>
                     
                 </td>
                 
             </tr>
-           
+        ))}
         </tbody>
     </table>
 </div>

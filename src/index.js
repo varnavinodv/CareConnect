@@ -133,8 +133,8 @@ root.render(
         <Route path='vieworderuser' element={<Vworderuser/>}/>
         <Route path='addproduct' element={<Addproductuser/>}/>
         <Route path='updateproduct' element={<Updateproductuser/>}/>
-        <Route path='vieworgdtluser' element={<Vworgdtluser/>}/>
-        <Route path='vieworphdtluser' element={<Viewoprhdtluser/>}/>
+        <Route path='vieworgdtluser/:id' element={<Vworgdtluser/>}/>
+        <Route path='vieworphdtluser/:id' element={<Viewoprhdtluser/>}/>
         <Route path='contributionuser/:cid' element={<Contriuser/>}/>
       </Route> 
 
@@ -154,10 +154,10 @@ root.render(
         <Route path='viewrevieworg' element={<Vwrevieworg/>}/>
         <Route path='viewdonationorg' element={<Vwdonatnorg/>}/>
         <Route path='viewproductdtlorg/:pid' element={<Vwproductdtlorg/>}/>
-        <Route path='vieworphdtlorg' element={<Vworphdtlorg/>}/>
+        <Route path='vieworphdtlorg/:id' element={<Vworphdtlorg/>}/>
         <Route path='assigndeliveryboyorg/:id' element={<Assigndeliveryboy/>}/>
         <Route path='viewcartproductdtlorg' element={<Vwcartproductdtlorg/>}/>
-        <Route path='sponsorshiporg' element={<Sponsorshiporg/>}/>
+        <Route path='sponsorshiporg/:eid' element={<Sponsorshiporg/>}/>
         <Route path='addreportorg' element={<Addreportorg/>}/>
         <Route path='adddeliveryboy' element={<Adddeliveryboy/>}/>
         <Route path='editreportorg' element={<Editreportorg/>}/>
@@ -170,7 +170,7 @@ root.render(
       <Route path='/orphanage' element={<Navorph/>}>
       <Route index element={<Homeorph/>}/>
       <Route path='vieworgorph' element={<Vieworgorph/>}/>
-      <Route path='vieworgdtlorph' element={<Vworgdtlorph/>}/>
+      <Route path='vieworgdtlorph/:id' element={<Vworgdtlorph/>}/>
       <Route path='addrevieworph' element={<Addrevieworph/>}/>
       <Route path='viewdonatnreqstorph' element={<Vwdonatnrequestorph/>}/>
       <Route path='addrequestorph' element={<Addrequest/>}/>
@@ -179,12 +179,12 @@ root.render(
       <Route path='vieweventorph' element={<Vweventorph/>}/>
       <Route path='addeventorph' element={<Addeventorph/>}/>
       <Route path='updateeventorph' element={<Updateeventorph/>}/>
-      <Route path='viewsponsorshiporph' element={<Vwsponsorph/>}/>
+      <Route path='viewsponsorshiporph/:id' element={<Vwsponsorph/>}/>
       <Route path='editprofileorph' element={<Editprofileorph/>}/>
       <Route path='editeventorph' element={<Editeventorph/>}/>
       <Route path='sponshistory' element={<Sponshistoryorph/>}/>
       <Route path='contrirequest' element={<ContriRequest/>}/>
-      <Route path='viewcontridetails' element={<Viewcontridetailsorph/>}/>
+      <Route path='viewcontridetails/:id' element={<Viewcontridetailsorph/>}/>
       <Route path='viewreports' element={<Vwreports/>}/>
       <Route path='addreportorph' element={<Addreports/>}/>
       <Route path='editreportorph' element={<Editreportorph/>}/>

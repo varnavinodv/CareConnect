@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import add from '../User/addbtn.png'
 import edit from '../User/edit.png'
 import dlt from '../User/delete.png'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Vwdonatnrequestorph = () => {
+    const [data,setdata]=useState([''])
+
+    let id=localStorage.getItem('id')
+  
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get(`http://localhost:4000/orphanage/donationreq/${id}`)
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
   return (
     <div className='w-[100%] '>
                              <div className='basicbg  pt-7 ps-10 pe-10'>
@@ -40,15 +54,16 @@ const Vwdonatnrequestorph = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b font-semibold text-black border-orange-600 hover:bg-[#f7b866d4]">
                 <td class="px-6 py-4 ">
-                    1.
+                   {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    Hand bag
+                    {item.product}
                 </td>
                 <td class="px-6 py-4">
-                    3
+                    {item.count}
                 </td>
                 <td class="px-6 py-4">
                     pending
@@ -61,7 +76,7 @@ const Vwdonatnrequestorph = () => {
                     <img  className='w-[40px] h-[30px]' src={dlt} alt="" />
                 </td>
             </tr>
-            
+            ))}   
         </tbody>
     </table>
 </div>

@@ -29,10 +29,7 @@ const Vwproductdtlorg = () => {
 
     useEffect(()=>{
       let fetchdata=async ()=>{
-        // let response=await axios.get('http://localhost:4000/orphanage/viewproductdltorg',data)
-        // console.log(response.data);
-        // setdata1(response.data)
-        let response1=await axios.get(`http://localhost:4000/orphanage/viewproductdltorganisation/${pid}`)
+        let response1=await axios.get(`http://localhost:4000/organization/viewproductdltorganisation/${pid}`)
         console.log(response1);
         setdata2(response1.data)
       }
