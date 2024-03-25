@@ -8,6 +8,7 @@ import product from '../models/product.js';
 import User from '../models/user.js';
 import donation from '../models/donation.js';
 import Event from '../models/event.js';
+import ContributionRequest from '../models/contributionRequest.js';
 
 const router=express()
 
@@ -20,7 +21,7 @@ const router=express()
 //     res.json({message:"DeliveryBoy added",savedDeliveryBoy})
 // })
 
-router.post('/cart',async(req,res)=>{
+router.post('/addtocart',async(req,res)=>{
     console.log(req.body);
     const newCart = new Cart(req.body)
     const savedCart = await newCart.save()
@@ -41,6 +42,28 @@ router.post('/sponsorship',async(req,res)=>{
     res.json({message:"provided sponsorship",savedSponsorship})
 })
 
+
+router.get('/viewcart/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(req.body);
+    let response=await Cart.find({organizationId:id})
+    console.log(response);
+    let responseData=[];
+      for (const newresponse of response){
+        let organizations = await User.findById(newresponse.organizationId);
+        let products = await product.findById(newresponse.productId);
+        let users=await User.findById(products?.userId)
+        responseData.push({
+            organization: organizations,
+            product:products,
+            user:users,
+            cart: newresponse
+        });
+      }
+      console.log(responseData);
+      res.json(responseData);
+})
+
 router.get('/viewproductorg',async(req,res)=>{
 
     console.log(req.body);
@@ -54,7 +77,10 @@ router.get('/viewproductdltorganisation/:id',async(req,res)=>{
     console.log(id);
     let response=await product.findById(id)
     console.log(response);
-    res.json(response)
+     
+       let users=await User.findById(response.userId)
+   
+     res.json({response,users});
 })
 
 
@@ -86,8 +112,10 @@ router.get('/vieworphdetail/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
     let response=await User.findById(id)
+    let events=await Event.find({orphanageId:id})
+    let contrireq=await ContributionRequest.find({orphanageId:id})
     console.log(response);
-    res.json(response)
+    res.json({response,events,contrireq})
 })
 
 router.get('/viewdonationrequests',async(req,res)=>{
@@ -169,6 +197,12 @@ router.get('/viewsponshistory/:id',async(req,res)=>{
   res.json(responseData);
 
 })
+
+// router.get('/vieworder/:id',async(req,res)=>{
+//     let id=req.params.id
+//     console.log(id);
+//     let response=await Orders.find()
+// })
 
 
 

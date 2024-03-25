@@ -6,6 +6,10 @@ const reviewSchema=Schema({
         type:mongoose.Types.ObjectId,
         ref:User
     }),
+    organizationId:({
+        type:mongoose.Types.ObjectId,
+        ref:User
+    }),
     review:({
         type:String,
         required:true

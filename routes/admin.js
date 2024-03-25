@@ -7,8 +7,18 @@ import Event from '../models/event.js';
 import product  from '../models/product.js'
 import Report from '../models/report.js';
 import Review from '../models/review.js';
+import donation from '../models/donation.js';
+import Sponsosrship from '../models/sponsorship.js';
 
 const router=express()
+
+router.get('/viewuser',async(req,res)=>{
+    console.log(req.body);
+    let response=await User.find({userType:'user'})
+    console.log(response);
+    res.json(response)
+
+})
 router.get('/viewcontrireq',async(req,res)=>{
     console.log(req.body);
     let response=await ContributionRequest.find()
@@ -142,10 +152,12 @@ router.get('/viewreview',async(req,res)=>{
     console.log(response);
     let responseData=[];
     for (const newresponse of response){
-        let user=await User.findById(newresponse.orphanageId);
+        let orphanages=await User.findById(newresponse.orphanageId);
+        let organizations=await User.findById(newresponse.organizationId);
         responseData.push({
             review:newresponse,
-            users:user
+            organization:organizations,
+            orphanage:orphanages
         })
     }
     console.log(responseData);
@@ -167,6 +179,71 @@ router.get('/viewsponsorship',async(req,res)=>{
         })
     }
     console.log(responseData);
+    res.json(responseData);
+})
+
+router.get('/viewdonation',async(req,res)=>{
+    console.log(req.body);
+    let response=await donation.find()
+    console.log(response);
+    let responseData=[];
+    for (const newresponse of response){
+        let orphanages=await User.findById(newresponse.orphanageId);
+        responseData.push({
+            donation:newresponse,
+           orphanage:orphanages
+
+        })
+    }
+    console.log(responseData);
+    res.json(responseData);
+})
+
+router.get('/viewsponshistory',async(req,res)=>{
+    console.log(req.body);
+    let response=await Sponsosrship.find()
+    console.log(response);
+    let responseData=[];
+    for (const newresponse of response){
+        let organizations=await User.findById(newresponse.organizationId);
+        let events=await Event.findById(newresponse.eventId);
+        
+        console.log(events,'events');
+        let orphanages=await User.findById(events?.orphanageId)
+        console.log(orphanages,'orphanage ------------------');
+        responseData.push({
+            sponsorship:newresponse,
+           organization:organizations,
+           event:events,
+           orphanage:orphanages
+
+        })
+    }
+    console.log(responseData);
+    res.json(responseData);
+})
+
+
+router.get('/viewspons/:id',async(req,res)=>{
+    let id=req.params.id
+
+    let response=await Sponsosrship.find({eventId:id})
+ 
+    let responseData=[];
+    for (const newresponse of response){
+        let organizations=await User.findById(newresponse.organizationId);
+        let events=await Event.findById(newresponse.eventId);
+        let orphanages=await User.findById(events?.orphanageId)
+    
+        responseData.push({
+            spons:newresponse,
+           organization:organizations,
+           orphanage:orphanages,
+           event:events,
+
+        })
+    } 
+
     res.json(responseData);
 })
 

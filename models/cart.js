@@ -3,18 +3,14 @@ import User from './user.js'
 import product from "./product.js";
 
 const cartSchema = Schema({
-    userId:{
-        type:mongoose.Types.ObjectId,
-        ref:User
-    },
     productId:{
         type:mongoose.Types.ObjectId,
         ref:product
     },
-    // organizationId:{
-    //     type:mongoose.Types.ObjectId,
-    //     ref:Organization
-    // },
+    organizationId:{
+        type:mongoose.Types.ObjectId,
+        ref:User
+    },
     count:{
         type:Number,
         required:true
