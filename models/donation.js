@@ -6,6 +6,10 @@ const donationSchema=Schema({
         type:mongoose.Types.ObjectId,
         ref:User
        },
+       organizationId:{
+              type:mongoose.Types.ObjectId,
+              ref:User
+             },
        product:{
         type:String,
         required:true

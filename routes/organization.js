@@ -155,7 +155,7 @@ router.get('/viewevent',async(req,res)=>{
 router.get('/viewreports/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
-    let response=await Report.findById(id)
+    let response=await Report.find({UserId:id})
     console.log(response);
     res.json(response)
 
@@ -196,6 +196,21 @@ router.get('/viewsponshistory/:id',async(req,res)=>{
   console.log(responseData);
   res.json(responseData);
 
+})
+
+router.get('/viewdonation/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let response=await donation.find({organizationId:id})
+    console.log(response);
+})
+
+router.get('/vieworpheventdetailspons/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let events=await  Event.findById(id)
+    let orph=await User.findById(events?.orphanageId)
+    res.json({events,orph})
 })
 
 // router.get('/vieworder/:id',async(req,res)=>{
