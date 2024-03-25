@@ -17,7 +17,7 @@ import Vworphadm from './Admin/Vworphadm';
 import Vwdonatnadm from './Admin/Vwdonatnadm';
 import Vwcontriadm from './Admin/Vwcontriadm';
 import Vweventadm from './Admin/Vweventadm';
-import Vwsponsadm from './Admin/Vwsponsadm';
+import Vwsponsadm from './Admin/Vwsponshistoryadm';
 import Vworderadm from './Admin/Vworderadm';
 import Vwreportsadm from './Admin/Vwreportsadm';
 import Vwreviewadm from './Admin/Vwreviewadm';
@@ -87,6 +87,8 @@ import Vwcontridetailsadm from './Admin/Vwcontridetailsadm';
 import Vwreports from './Orphanage/Vwreports';
 import Addreports from './Orphanage/Addreports';
 import Editreportorph from './Orphanage/Editreportorph';
+import Vwsponshistoryadm from './Admin/Vwsponshistoryadm';
+import Viewsponsadm from './Admin/Viewsponsadm';
 
 
 
@@ -117,7 +119,8 @@ root.render(
         <Route path='vieworphanage' element={<Vworphadm/>}/>
         <Route path='viewdeliveryboy' element={<Vwdeliveryboyadm/>}/>
         <Route path='viewevent' element={<Vweventadm/>}/>   
-        <Route path='viewsponsorship' element={<Vwsponsadm/>}/> 
+        <Route path='viewsponsorshiphistory' element={<Vwsponshistoryadm/>}/> 
+        <Route path='viewsponsadm/:id' element={<Viewsponsadm/>}/>
         <Route path='viewreport' element={<Vwreportsadm/>}/>
         <Route path='vieworder' element={<Vworderadm/>}/>   
         <Route path='viewreview' element={<Vwreviewadm/>}/>
@@ -150,7 +153,7 @@ root.render(
         <Route path='vieweventorg' element={<Vweventorg/>}/>
         <Route path='viewcartorg'element={<Vwcartorg/>}/>
         <Route path='viewreportsorg' element={<Vwreportsorg/>}/>
-        <Route path='vieworderorg' element={<Vwordersorg/>}/>
+        <Route path='vieworderorg/:id' element={<Vwordersorg/>}/>
         <Route path='viewrevieworg' element={<Vwrevieworg/>}/>
         <Route path='viewdonationorg' element={<Vwdonatnorg/>}/>
         <Route path='viewproductdtlorg/:pid' element={<Vwproductdtlorg/>}/>
@@ -171,7 +174,7 @@ root.render(
       <Route index element={<Homeorph/>}/>
       <Route path='vieworgorph' element={<Vieworgorph/>}/>
       <Route path='vieworgdtlorph/:id' element={<Vworgdtlorph/>}/>
-      <Route path='addrevieworph' element={<Addrevieworph/>}/>
+      <Route path='addrevieworph/:oid' element={<Addrevieworph/>}/>
       <Route path='viewdonatnreqstorph' element={<Vwdonatnrequestorph/>}/>
       <Route path='addrequestorph' element={<Addrequest/>}/>
       <Route path='viewdonatnorph' element={<Viewdonatnorph/>}/>

@@ -32,28 +32,28 @@ const Vworphdtlorg = () => {
     <div className=' w-[100%] '>
         <div className='basicbg2 pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div >
-            <div className='font-bold text-4xl text-amber-950 py-8'>{data.name}</div>
+            <div className='font-bold text-4xl text-amber-950 py-8'>{data.response?.name}</div>
             <div className='flex flex-wrap justify-end w-full gap-8'>
             <div className='text-xl font-semibold'>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img  className='w-[30px] h-[30px]' src={call} alt="" />
-                  <p>{data.phno}</p>
+                  <p>{data.response?.phno}</p>
                 </div>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img className='w-[30px] h-[30px]' src={email} alt="" />
-                  <p>{data.email}</p>
+                  <p>{data.response?.email}</p>
                 </div>
                 <div className='flex flex-wrap justify-start gap-3  pb-3 '>
                   <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
-                  <p>{data.place}<br />P.O {data.postoffice} <br />
-                             pin:{data.pin} <br />
-                            {data.district}</p>
+                  <p>{data.response?.place}<br />P.O {data.response?.postoffice} <br />
+                             pin:{data.response?.pin} <br />
+                            {data.response?.district}</p>
                 </div>
             </div>
             <div className=' h-fit p-2 ms-16 bg-white'>
-              <h1 className='text-black font-bold'>Education-Rs.10,000 needed</h1>
+              <h1 className='text-black font-bold'>{data.contrireq?.purpose}-Rs.{data.contrireq?.amount} needed</h1>
               <h2 className='text-gray-800'>For the education purpose of 6 children 10000 rupees is required</h2>
-              <h3 className='text-gray-700 font-semibold'>8000 rupees raised</h3>
+              <h3 className='text-gray-700 font-semibold'>{data.contrireq?.amount-data.contrireq?.Bamount} rupees raised</h3>
               {/* <Link to='/user/contributionuser'><button className='bg-orange-500 py-1 px-1 rounded-lg text-white '>CONTRIBUTE</button></Link> */}
 
             </div>
@@ -83,19 +83,19 @@ const Vworphdtlorg = () => {
             <div className='flex  m-auto flex-wrap py-4 gap-8'>
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%] text-center pt-5'>
                     <div>
-                        <h1 className='font-bold text-amber-950 py-4 text-xl'>CHILDREN'S DAY</h1>
+                        <h1 className='font-bold text-amber-950 py-4 text-xl'>{data.events?.name}</h1>
                     </div>
                     <div className='flex flex-wrap justify-start ps-3 gap-2 py-1 '>
                         <img  className='w-[30px] h-[30px] ' src={locatn} alt="" />
-                        <p>+91 81130493822</p>
+                        <p>{data.events?.venue}</p>
                       </div>
                       <div className='flex flex-wrap justify-start ps-3 gap-2 py-1'>
                         <img className='w-[30px] h-[30px]  ' src={date} alt="" />
-                        <p>14/11/2024</p>
+                        <p>{data.event?.date}</p>
                       </div>
                       <div className='flex flex-wrap justify-start ps-3 gap-2 py-1'>
                         <img  className='w-[30px] h-[30px]'  src={time} alt="" />
-                        <p>4:00pm</p>
+                        <p>{data.event?.time}</p>
                       </div>
                       <Link to='/organization/sponsorshiporg'><div className='hover:underline text-orange-500 font-bold'>SPONSOR</div></Link>
                     </div>

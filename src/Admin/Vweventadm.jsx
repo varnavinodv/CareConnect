@@ -72,7 +72,7 @@ const Vweventadm = () => {
                     {item.event?.venue}
                 </td>
                 <td class="px-6 py-4">
-                <Link to='/admin/viewsponsorship'> <a href="#" class="font-medium text-black hover:underline">View sponsorships</a></Link>
+                <Link to={`/admin/viewsponsadm/${item.event?._id}`}> <a href="#" class="font-medium text-black hover:underline">View sponsorships</a></Link>
                 </td>
             </tr>
           ))}  

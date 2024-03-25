@@ -1,27 +1,37 @@
-import React,{useState} from 'react'
+import axios from 'axios';
+import React,{useEffect, useState} from 'react'
 import ReactPaginate from 'react-paginate';
 
 const Vwdonatnadm = () => {
+    const [data,setdata]=useState([''])
+    useEffect(()=>{
+      let fetchdata=async ()=>{
+        let response=await axios.get('http://localhost:4000/admin/viewdonation',data)
+        console.log(response.data);
+        setdata(response.data)
+      }
+      fetchdata()
+    },[])
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage] = useState(8);
 
-    const donation=[
+    // const donation=[
 
-      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"},  
-      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
-      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
-      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"},  
-      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
-      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
-      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"}  ,
-      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
-      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"}  ,
-      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"},  
-      {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
-    ]
+    //   {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"},  
+    //   {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+    //   {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+    //   {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"},  
+    //   {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+    //   {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+    //   {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"}  ,
+    //   {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+    //   {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"}  ,
+    //   {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"},  
+    //   {slno:1,name:"pim",category:"book",count:8,organization:"pookknnn",orphanage:"ftftf",status:"pending"} , 
+    // ]
     const indexOfLastItem = (currentPage + 1) * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = donation.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
   
   
     const handlePageChange = ({ selected }) => {
@@ -43,9 +53,7 @@ const Vwdonatnadm = () => {
                 <th scope="col" class="px-6 py-3">
                     PRODUCT NAME
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    CATEGORY
-                </th>
+                
                 <th scope="col" class="px-6 py-3">
                     COUNT
                 </th>
@@ -61,28 +69,26 @@ const Vwdonatnadm = () => {
             </tr>
         </thead>
         <tbody> 
-        {currentItems.map((donation, index) => (
+        {currentItems.map((data, index) => (
             <tr  key={index}  class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
                 <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black">
-                   {donation.slno}
+                   {index+1}
                 </th>
                 <td class="px-6 py-4">
-                    {donation.name}
+                    {data.donation?.product}
+                </td>
+                
+                <td class="px-6 py-4">
+                    {data.donation?.count}
                 </td>
                 <td class="px-6 py-4">
-                   {donation.category}
+                    orghghajgdgd
                 </td>
                 <td class="px-6 py-4">
-                    {donation.count}
+                   {data.orphanage?.name}
                 </td>
                 <td class="px-6 py-4">
-                    {donation.organization}
-                </td>
-                <td class="px-6 py-4">
-                   {donation.orphanage}
-                </td>
-                <td class="px-6 py-4">
-                    {donation.status}
+                   pending
                 </td>
             </tr>
             ))} 
@@ -96,7 +102,7 @@ const Vwdonatnadm = () => {
           
 <div className="flex justify-center mt-5">
         <ReactPaginate
-          pageCount={Math.ceil(donation.length / itemsPerPage)}
+          pageCount={Math.ceil(data.length / itemsPerPage)}
           pageRangeDisplayed={5}
           marginPagesDisplayed={2}
           onPageChange={handlePageChange}

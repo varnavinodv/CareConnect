@@ -59,7 +59,7 @@ const Vworgdtlorph = () => {
             </div>
             </button>
             <div>
-            <Link to='/orphanage/addrevieworph'><button className='bg-orange-500 py-2 px-3 rounded-lg'><div className='flex flex-wrap items-center'>
+            <Link to={`/orphanage/addrevieworph/${data._id}`}><button className='bg-orange-500 py-2 px-3 rounded-lg'><div className='flex flex-wrap items-center'>
               <img className='w-[40px] h-[30px]' src={add} alt="" />
               <p className='text-white text-lg'>Add review</p>
             </div>

@@ -1,11 +1,13 @@
 import React from 'react'
 import purpledress from './purpledress.png'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useState,useEffect } from 'react'
 
 
 const Vwproductdtlorg = () => {
+
+  const navigate=useNavigate()
   let id=localStorage.getItem('id')
 
   let {pid}=useParams()
@@ -21,8 +23,10 @@ const Vwproductdtlorg = () => {
         setData({...data,[event.target.name]:event.target.value})
     }
     let handleSubmit=async (event)=>{
-        event.preventDefault()
-       let response=await axios.post('http://localhost:4000/organization/cart',{...data,useId:id})
+      event.preventDefault()
+      
+      navigate('/organization/viewproductorg')
+       let response=await axios.post('http://localhost:4000/organization/addtocart',{...data,organizationId:id,productId:pid})
        console.log(response);
         
     }
@@ -37,6 +41,7 @@ const Vwproductdtlorg = () => {
 
       
     },[])
+    console.log(data2);
   return (
     <div className=' w-[100%]'>
       <div className='basicbg2'>
@@ -45,22 +50,23 @@ const Vwproductdtlorg = () => {
           <div className='bg-yellow-300/40 w-[50%] flex h-[40rem]'>
             {/* <div className='w-[40px] h-[40px]'> <img src={backarrow} alt="" /></div> */}
             {/* <div className='pt-12  m-auto'> */}
-              <img className=' h-[25rem] w-[20rem] m-auto rounded-2xl ' src={purpledress} alt="" />
+              <img className=' h-[25rem] w-[20rem] m-auto rounded-2xl ' src={`http://localhost:4000/uploads/${data2.response?.img}`} alt="" />
             {/* </div> */}
 
           </div>
           <div className='mx-auto my-16'>
             <div className='text-center  w-[100%] m-auto'>
-              <h1 className='font-bold text-3xl py-4'>FROCK FOR 6-YR OLD</h1>
-              <p className='font-semibold text-xl text-start py-2'>Category      :  {data2.category} </p>
-              <p className='font-semibold text-xl text-start py-2'>Count            :   {data2.count}</p>
+              <h1 className='font-bold text-3xl py-4'>{data2.product?.name}</h1>
+              <p className='font-semibold text-xl text-start py-2'>Category      :  {data2.response?.category} </p>
+              <p className='font-semibold text-xl text-start py-2'>Count            :   {data2.response?.count}</p>
             </div>
             <div className='text-center  w-[100%] m-auto'>
               <h1 className='font-bold text-3xl py-4 text-start'>OWNER’S DETAILS</h1>
-              <p className='font-semibold text-xl text-start py-2'>Name           :  Abcde</p>
-              <p className='font-semibold text-xl text-start py-2'>Address       :  xyzas,<br />
-                Calicut-9,<br />
-                pin-672309</p>
+              <p className='font-semibold text-xl text-start py-2'>Name           : {data2.users?.name}</p>
+              <p className='font-semibold text-xl text-start py-2'>Address       :  {data2.users?.houseName}<br />
+                P.O {data2.users?.postoffice}<br />
+                pin:{data2.users?.pin} <br />
+                {data2.users?.district}</p>
             </div>
             {/* ----count button----- */}
 
@@ -82,7 +88,7 @@ const Vwproductdtlorg = () => {
 
             </form>
 
-            <div className='py-6 '><Link to='/organization/viewproductorg'><button onClick={handleSubmit} className='bg-orange-500 py-3 px-5 rounded-lg'>ADD TO CART</button></Link></div>
+            <div className='py-6 '><button onClick={handleSubmit} className='bg-orange-500 py-3 px-5 rounded-lg'>ADD TO CART</button></div>
 
           </div>
 

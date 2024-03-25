@@ -1,22 +1,26 @@
-import React,{useState,useEffect} from 'react'
 import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-const Vwreviewadm = () => {
+const Viewsponsadm = () => {
+
     const [data,setdata]=useState([''])
+    let {id}=useParams()
 
     useEffect(()=>{
         let fetchdata=async()=>{
-           let response=await axios.get('http://localhost:4000/admin/viewreview')
+           let response=await axios.get(`http://localhost:4000/admin/viewspons/${id}`)
            console.log(response.data);
            setdata(response.data)
   
         }
         fetchdata()
      },[])
+    
   return (
     <div className='w-[100%]'>
-                      <div className='basicbg   pt-7 ps-10 pe-10'>
-            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>REVIEWS</div>
+                <div className='basicbg pt-7 ps-10 pe-10'>
+            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>SPONSORSHIP HISTORY</div>
              
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -27,35 +31,45 @@ const Vwreviewadm = () => {
                     SL NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    EVENT NAME
+                </th>
+                <th scope="col" class="px-6 py-3">
                     ORPHANAGE
                 </th>
                 <th scope="col" class="px-6 py-3">
-                   ORGANIZATION
+                    ORGANIZATION
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    REVIEW
+                    PURPOSE
                 </th>
-                
+                <th scope="col" class="px-6 py-3">
+                    STATUS
+                </th>
             </tr>
         </thead>
         <tbody>
         {data.map((item,index)=>(
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold border">
+            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
                 <td class="px-6 py-4">
                     {index+1}
+                </td>
+                <td class="px-6 py-4">
+                    {item.event?.name}
                 </td>
                 <td class="px-6 py-4">
                     {item.orphanage?.name}
                 </td>
                 <td class="px-6 py-4">
-                   {item.organization?.name }
+                    {item.organization?.name}
                 </td>
                 <td class="px-6 py-4">
-                {item.review?.review}
+                {item.spons.purpose}
                 </td>
-                
+                <td class="px-6 py-4">
+                    Accepted
+                </td>
             </tr>
-          ))}  
+        ))}   
         </tbody>
     </table>
 </div>
@@ -71,4 +85,4 @@ const Vwreviewadm = () => {
   )
 }
 
-export default Vwreviewadm
+export default Viewsponsadm

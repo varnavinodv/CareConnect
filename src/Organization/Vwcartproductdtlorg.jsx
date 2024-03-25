@@ -4,6 +4,8 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
 const Vwcartproductdtlorg = () => {
+
+  let oid=localStorage.getItem('id')
   let id=useParams()
   console.log(id);
     const [data,setdata]=useState([''])

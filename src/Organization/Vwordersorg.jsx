@@ -1,10 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import bag from './bags.jpg'
 
 const Vwordersorg = () => {
+
+  let id=useParams()
+  
+
   return (
-    <div>
+    <div className='w-[100%] '>
          <div className='basicbg w-[100%]  pt-7 ps-10 pe-10 pb-10'>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ORDERS</div>
              

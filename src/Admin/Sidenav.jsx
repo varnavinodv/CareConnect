@@ -48,7 +48,7 @@ const Sidenav = () => {
                 <img className='w-[30px] h-[25px]' src={dboy} alt="" />
                 <p className='text-lg font-normal'>Delivery boys</p>
             </div></Link>
-            <Link to ='/admin/viewsponsorship/'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+            <Link to ='/admin/viewsponsorshiphistory/'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={spon} alt="" />
                 <p className='text-lg font-normal' >Sponsorships</p>
             </div ></Link>

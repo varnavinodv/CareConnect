@@ -1,6 +1,19 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const Vwuseradm = () => {
+
+    const [data,setdata]=useState([''])
+
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get('http://localhost:4000/admin/viewuser')
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
   return (
     <div className=' w-[100%]'>
         <div className='basicbg  pt-7 ps-10 pe-10'>
@@ -32,29 +45,31 @@ const Vwuseradm = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b font-semibold border-orange-600 hover:bg-[#f7b866d4]">
                 <td  class="px-6 py-4">
-                    1
+                  {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    Saniga
+                   {item.name}
                 </td>
                 <td class="px-6 py-4">
-                    24
+                   {item.age}
                 </td>
                 <td class="px-6 py-4">
-                    saniga@gmail.con
+                    {item.email}
                 </td>
                 <td class="px-6 py-4">
-                    9876543210
+                   {item.phno}
                 </td>
                 <td class="px-6 py-4">
-                    avbc(ho),
-                    p.o pavangad,
-                    calicut
+                   {item.houseName} <br />
+                    p.o {item.postoffice} <br />
+                    pin:{item.pin} <br />
+                    {item.district}
                 </td>
             </tr>
-            
+        ))} 
         </tbody>
     </table>
 </div>
