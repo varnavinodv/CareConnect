@@ -9,6 +9,7 @@ import User from '../models/user.js';
 import donation from '../models/donation.js';
 import Event from '../models/event.js';
 import ContributionRequest from '../models/contributionRequest.js';
+import Review from '../models/review.js';
 
 const router=express()
 
@@ -161,17 +162,18 @@ router.get('/viewreports/:id',async(req,res)=>{
 
 })
 
-router.get('/viewreviews',async(req,res)=>{
+router.get('/viewreviews/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
-    let response=await Review.findById(id)
+    let response=await Review.find({organizationId:id})
     console.log(response);
+    
     let responseData=[];
     for (const newresponse of response){
       let orphanage = await User.findById(newresponse.orphanageId);
       responseData.push({
           orphanage: orphanage,
-          event: newresponse
+          review: newresponse
       });
     }
     console.log(responseData);
@@ -180,9 +182,9 @@ router.get('/viewreviews',async(req,res)=>{
 
 router.get('/viewsponshistory/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(id);
-    let response=await Sponsosrship.findById({organizationId:id})
-    console.log(response);
+    console.log(id,'dsds');
+    let response=await Sponsosrship.find({organizationId:id})
+    // console.log(response);
     let responseData=[];
     for (const newresponse of response){
       let events = await Event.findById(newresponse.eventId);
@@ -193,7 +195,7 @@ router.get('/viewsponshistory/:id',async(req,res)=>{
         spons: newresponse
     });
   }
-  console.log(responseData);
+//   console.log(responseData);
   res.json(responseData);
 
 })

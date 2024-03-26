@@ -2,7 +2,7 @@ import mongoose,{Schema,model} from "mongoose";
 import Event from "./event.js";
 import User from "./user.js";
 
-const sponsosrshipSchema=Schema({
+const sponsosrshipSchema=  new Schema({
     eventId:{
          type:mongoose.Types.ObjectId,
          ref:Event

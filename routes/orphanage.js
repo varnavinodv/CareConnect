@@ -110,6 +110,45 @@ router.get('/viewevent/:id',async(req,res)=>{
     res.json(response)
 })
 
+
+router.get('/orgdetailonpostreview/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let response=await User.findById(id)
+    console.log(response);
+    res.json(response)
+})
+
+
+// router.get('/viewsponshistory/:id',async(req,res)=>{
+//     let id=req.params.id
+//     console.log(id);
+//     let response=await Sponsosrship.aggregate([
+//         {
+//             $lookup:{
+//                 from:"events",
+//                 foreignField:"_id",
+//                 localField:"eventId",
+//                 as:"eventInfo"
+//             }
+//         },
+//         {$unwind:"$eventInfo"}
+//     ])
+
+//     let arr = []
+
+//     console.log();
+
+//     for( let data of response ){
+//         if(data.eventInfo.orphanageId+"" === id+""){
+//             arr.push(data)
+//         }
+//         // console.log(data);
+//     }
+
+//     res.json(arr)
+// })
+
 // router.get('/viewspons/:id',async(req,res)=>{
 //     let id=req.params.id
 //     console.log(id);

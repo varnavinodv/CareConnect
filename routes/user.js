@@ -115,4 +115,25 @@ router.get('/vieworphdetail/:id',async(req,res)=>{
 })
 
 
+router.get('/viewcontribution/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let response=await Contribution.find({userId:id})
+    console.log(response);
+    let responseData=[];
+    for (const newresponse of response){
+    //   let orphanage = await User.findById(newresponse.orphanageId);
+      let contrireq=await ContributionRequest.findById(newresponse.contributionRequestId);
+      let  orphanage=await User.findById(contrireq?.orphanageId)
+      responseData.push({
+          orphanage: orphanage,
+          contrireq:contrireq,
+          contribution: newresponse
+      });
+    }
+    console.log(responseData);
+    res.json(responseData);
+
+})
+
 export default router
