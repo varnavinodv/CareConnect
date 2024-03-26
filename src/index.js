@@ -153,7 +153,7 @@ root.render(
         <Route path='vieweventorg' element={<Vweventorg/>}/>
         <Route path='viewcartorg'element={<Vwcartorg/>}/>
         <Route path='viewreportsorg' element={<Vwreportsorg/>}/>
-        <Route path='vieworderorg/:id' element={<Vwordersorg/>}/>
+        <Route path='vieworderorg' element={<Vwordersorg/>}/>
         <Route path='viewrevieworg' element={<Vwrevieworg/>}/>
         <Route path='viewdonationorg' element={<Vwdonatnorg/>}/>
         <Route path='viewproductdtlorg/:pid' element={<Vwproductdtlorg/>}/>

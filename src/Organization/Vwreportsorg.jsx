@@ -48,7 +48,7 @@ const Vwreportsorg = () => {
             </tr>
         </thead>
         <tbody>
-        {/* {data.map((item,index)=>(
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold text-black">
                 <td class="px-6 py-4 ">
                     {index+1}
@@ -64,7 +64,7 @@ const Vwreportsorg = () => {
                     <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
             </tr>
-             ))}    */}
+             ))}   
         </tbody>
     </table>
 </div>

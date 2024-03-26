@@ -50,13 +50,16 @@ const Vworphdtlorg = () => {
                             {data.response?.district}</p>
                 </div>
             </div>
-            <div className=' h-fit p-2 ms-16 bg-white'>
-              <h1 className='text-black font-bold'>{data.contrireq?.purpose}-Rs.{data.contrireq?.amount} needed</h1>
-              <h2 className='text-gray-800'>For the education purpose of 6 children 10000 rupees is required</h2>
-              <h3 className='text-gray-700 font-semibold'>{data.contrireq?.amount-data.contrireq?.Bamount} rupees raised</h3>
+            {data?.contrireq?.map((item)=>(
+
+              <div className=' h-fit p-2 ms-16 bg-white'>
+              <h1 className='text-black font-bold'>{item?.purpose}-Rs.{item?.amount} needed</h1>
+              <h2 className='text-gray-800'>{item?.description}</h2>
+              <h3 className='text-gray-700 font-semibold'>{item?.amount-item?.Bamount} rupees raised</h3>
               {/* <Link to='/user/contributionuser'><button className='bg-orange-500 py-1 px-1 rounded-lg text-white '>CONTRIBUTE</button></Link> */}
 
             </div>
+              ))}
             </div>
             <div>
               <button className='bg-orange-500 py-2 px-3 rounded-lg' onClick={dropdown}><div className='flex flex-wrap items-center'>
@@ -81,24 +84,26 @@ const Vworphdtlorg = () => {
               <h1 className='text-amber-950 text-balance font-bold text-xl'>EVENTS</h1>
             </div>
             <div className='flex  m-auto flex-wrap py-4 gap-8'>
+            {data?.events?.map((item)=>(
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%] text-center pt-5'>
                     <div>
-                        <h1 className='font-bold text-amber-950 py-4 text-xl'>{data.events?.name}</h1>
+                        <h1 className='font-bold text-amber-950 py-4 text-xl'>{item?.name}</h1>
                     </div>
                     <div className='flex flex-wrap justify-start ps-3 gap-2 py-1 '>
                         <img  className='w-[30px] h-[30px] ' src={locatn} alt="" />
-                        <p>{data.events?.venue}</p>
+                        <p>{item?.venue}</p>
                       </div>
                       <div className='flex flex-wrap justify-start ps-3 gap-2 py-1'>
                         <img className='w-[30px] h-[30px]  ' src={date} alt="" />
-                        <p>{data.event?.date}</p>
+                        <p>{item?.date}</p>
                       </div>
                       <div className='flex flex-wrap justify-start ps-3 gap-2 py-1'>
                         <img  className='w-[30px] h-[30px]'  src={time} alt="" />
-                        <p>{data.event?.time}</p>
+                        <p>{item?.time}</p>
                       </div>
-                      <Link to='/organization/sponsorshiporg'><div className='hover:underline text-orange-500 font-bold'>SPONSOR</div></Link>
+                      <Link to={`/organization/sponsorshiporg/${item?._id}`}><div className='hover:underline text-orange-500 font-bold'>SPONSOR</div></Link>
                     </div>
+            ))}
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>
                 

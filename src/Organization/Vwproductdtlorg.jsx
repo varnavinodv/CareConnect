@@ -56,7 +56,7 @@ const Vwproductdtlorg = () => {
           </div>
           <div className='mx-auto my-16'>
             <div className='text-center  w-[100%] m-auto'>
-              <h1 className='font-bold text-3xl py-4'>{data2.product?.name}</h1>
+              <h1 className='font-bold text-3xl py-4'>{data2.response?.name}</h1>
               <p className='font-semibold text-xl text-start py-2'>Category      :  {data2.response?.category} </p>
               <p className='font-semibold text-xl text-start py-2'>Count            :   {data2.response?.count}</p>
             </div>

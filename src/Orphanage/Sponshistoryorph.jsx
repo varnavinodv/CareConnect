@@ -1,6 +1,23 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const Sponshistoryorph = () => {
+
+    const [data,setData]= useState([])
+
+    useEffect(()=>{
+
+        let fetchdata=async()=>{
+           let response=await axios.get(`http://localhost:4000/orphanage/viewsponshistory/${localStorage.getItem("id")}`)
+           console.log(response.data);
+           setData(response.data)
+     
+        }
+        fetchdata()
+     },[])
+    
+
+
   return (
     <div className='w-[100%] '>
     <div>

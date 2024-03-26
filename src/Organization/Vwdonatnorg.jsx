@@ -1,8 +1,20 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 const Vwdonatnorg = () => {
-    const {id}=useParams()
+    const id= localStorage.getItem('id')
+    const [data,setdata]=useState([''])
+    useEffect(()=>{
+
+        let fetchdata=async()=>{
+           let response=await axios.get(`http://localhost:4000/organization/viewdonation/${id}`)
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[])
   return (
     <div className='w-[100%] '>
        

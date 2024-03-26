@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import call from '../User/callbrwn.png'
 import email from '../User/emailbrwn.png'
 import locatn from '../User/locatnbrwn.png'
@@ -11,11 +11,22 @@ const Addrevieworph = () => {
   console.log(oid);
   const navigate=useNavigate()
   const [data,setData]=useState('')
-  // const [data1,setData1]=useState('')
+  const [data1,setData1]=useState('')
 
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
   }
+
+  useEffect(()=>{
+
+    let fetchdata=async()=>{
+       let response=await axios.get(`http://localhost:4000/orphanage/orgdetailonpostreview/${oid}`)
+       console.log(response.data);
+       setData1(response.data)
+ 
+    }
+    fetchdata()
+ },[])
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
@@ -30,21 +41,21 @@ const Addrevieworph = () => {
     <div className=' w-[100%] '>
     <div className='basicbg2 ps-40 flex flex-wrap justify-between'>
       <div >
-        <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORGANIZATION</div>
+        <div className='font-bold text-4xl text-amber-950 py-8'>{data1.name}</div>
         <div>
             <div className='flex flex-wrap justify-center gap-3 pb-3'>
               <img  className='w-[30px] h-[30px]' src={call} alt="" />
-              <p>+91 81130493822</p>
+              <p>{data1.phno}</p>
             </div>
             <div className='flex flex-wrap justify-center gap-3 pb-3'>
               <img className='w-[30px] h-[30px]' src={email} alt="" />
-              <p>abcd@gmail.com</p>
+              <p>{data1.email}</p>
             </div>
             <div className='flex flex-wrap justify-center gap-3 pe-8 pb-3'>
               <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
-              <p>ghsjhj hsisjk,<br />P.O huyaf, <br />
-                         pin-526713 <br />
-                         Kochi</p>
+              <p>{data1.place}<br />P.O {data1.postoffice} <br />
+                         pin:{data1.pin} <br />
+                        {data.district}</p>
             </div>
         </div>
         <div className='w-[25rem] h-[20rem] bg-red-500/30 m-auto rounded-2xl pt-6 mb-4 px-10 '>

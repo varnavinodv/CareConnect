@@ -2,17 +2,17 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Vwcontriuser = () => {
-    // const [data,setdata]=useState([''])
-    // let id=localStorage.getItem('id')
-    // useEffect(()=>{
-    //     let fetchdata=async()=>{
-    //        let response=await axios.get(`http://localhost:4000/user/viewcontributions/${id}`)
-    //        console.log(response.data);
-    //        setdata(response.data)
+    const [data,setdata]=useState([''])
+    let id=localStorage.getItem('id')
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get(`http://localhost:4000/user/viewcontribution/${id}`)
+           console.log(response.data);
+           setdata(response.data)
   
-    //     }
-    //     fetchdata()
-    //  },[]) 
+        }
+        fetchdata()
+     },[]) 
   return (
     <div className='w-[100%]'>
          <div className='basicbg   pt-7 ps-10 pe-10'>
@@ -27,7 +27,7 @@ const Vwcontriuser = () => {
                     SL NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    ORGANIZATION
+                ORPHANAGE
                 </th>
                 <th scope="col" class="px-6 py-3">
                     PURPOSE
@@ -48,32 +48,32 @@ const Vwcontriuser = () => {
             </tr>
         </thead>
         <tbody>
-        {/* {data.map((item,index)=>( */}
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
                 <td  class="px-6 py-4 ">
-                   1
+              {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    RET ORG
+                  {item.orphanage?.name} 
                 </td>
                 <td class="px-6 py-4">
-                    Education
+                   {item.contrireq?.purpose}
                 </td>
                 <td class="px-6 py-4">
-                    ggfgfghjhfhgfh
+                   {item.contrireq?.description}
                 </td>
                 <td class="px-6 py-4">
-                    1200
+                   {item.contribution?.amount}
                 </td>
                 <td class="px-6 py-4">
-                   12/3/2021
+                { new Date(item.contribution?.date).toLocaleDateString()}
                 </td>
                 <td class="px-6 py-4">
                     successfull
                 </td>
                 
             </tr>
-        {/* ))} */}
+            ))} 
         </tbody>
     </table>
 </div>

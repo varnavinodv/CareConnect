@@ -63,7 +63,7 @@ const Viewsponsadm = () => {
                     {item.organization?.name}
                 </td>
                 <td class="px-6 py-4">
-                {item.spons.purpose}
+                {item.spons?.purpose}
                 </td>
                 <td class="px-6 py-4">
                     Accepted

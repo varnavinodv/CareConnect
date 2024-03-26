@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 const Vwsponsorg = () => {
 
     const [data,setData]=useState([''])
-    let {id} =useParams()
+    let id =localStorage.getItem('id')
     console.log(id);
     useEffect(()=>{
         let fetchdata=async ()=>{
@@ -49,7 +49,7 @@ const Vwsponsorg = () => {
 </tr>
 </thead>
 <tbody>
-{data.map((item,index)=>(
+ {data.map((item,index)=>(
 <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
     <td class="px-6 py-4">
         {index+1}
@@ -70,7 +70,7 @@ const Vwsponsorg = () => {
         Accepted
     </td>
 </tr>
-))}
+))} 
 </tbody>
 </table>
 </div>

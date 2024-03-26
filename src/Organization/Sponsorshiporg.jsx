@@ -33,7 +33,7 @@ const Sponsorshiporg = () => {
 
   useEffect(()=>{
       let fetchdata=async()=>{
-         let response1=await axios.get('http://localhost:4000/organization/viewevent')
+         let response1=await axios.get(`http://localhost:4000/organization/vieworpheventdetailspons/${eid}`)
          console.log(response1.data);
          setdata2(response1.data);
 
@@ -45,43 +45,41 @@ const Sponsorshiporg = () => {
     <div className='w-[100%]'>
         <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div className='ps-36'>
-                        <div className='font-bold text-4xl text-amber-950 py-8'>{data2.orphanage?.name}</div>
+                        <div className='font-bold text-4xl text-amber-950 py-8'>{data2.orph?.name}</div>
                         <div className='text-xl font-semibold'>
                             <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                               <img  className='w-[30px] h-[30px]' src={call} alt="" />
-                              <p>{data2.orphanage?.phno}</p>
+                              <p>{data2.orph?.phno}</p>
                             </div>
                             <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                               <img className='w-[30px] h-[30px]' src={email} alt="" />
-                              <p>{data2.orphanage?.email}</p>
+                              <p>{data2.orph?.email}</p>
                             </div>
                             <div className='flex flex-wrap justify-start gap-3  pb-3 '>
                               <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
-                              <p>{data2.orphanage?.place}<br />P.O {data2.orphanage?.postoffice} <br />
-                                         pin:{data2.orphanage?.pin} <br />
-                                         {data2.orphanage?.district}</p>
+                              <p>{data2.orph?.place}<br />P.O {data2.orph?.postoffice} <br />
+                                         pin:{data2.orph?.pin} <br />
+                                         {data2.orph?.district}</p>
                             </div>
                         </div>
             
                         <div className=' pt-6 text-amber-950 text-balance font-bold text-3xl'>EVENTS DETAILS</div>
                         
                             
-                                <div><h1 className='font-bold text-black py-4 text-xl'>CHILDREN'S DAY</h1></div>
+                                <div><h1 className='font-bold text-black py-4 text-xl'>{data2.events?.name}</h1></div>
                                 <div className='text-lg font-semibold'>
-                                <div className=' ps-3 gap-2 py-1 '>
-                                    <p>Name:   {data2.event?.name} </p>
+                                
+                                  <div className=' ps-3 gap-2 py-1'>
+                                    
+                                    <p>Venue:   {data2.events?.venue}</p>
                                   </div>
                                   <div className=' ps-3 gap-2 py-1'>
                                     
-                                    <p>Venue:   {data2.event?.venue}</p>
+                                    <p>Date:{data2.events?.date}</p>
                                   </div>
                                   <div className=' ps-3 gap-2 py-1'>
                                     
-                                    <p>Date:{data2.event?.date}</p>
-                                  </div>
-                                  <div className=' ps-3 gap-2 py-1'>
-                                    
-                                    <p>Time:{data2.event?.time}</p>
+                                    <p>Time:{data2.events?.time}</p>
                                   </div>
                                 </div>
             </div>

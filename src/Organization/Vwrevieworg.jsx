@@ -6,15 +6,15 @@ const Vwrevieworg = () => {
     console.log(id);
     const [data,setdata]=useState([''])
 
-    // useEffect(()=>{
-    //     let fetchdata=async()=>{
-    //        let response=await axios.get(`http://localhost:4000/organization/viewreviews/${id}`)
-    //        console.log(response.data);
-    //        setdata(response.data)
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get(`http://localhost:4000/organization/viewreviews/${id}`)
+           console.log(response.data);
+           setdata(response.data)
   
-    //     }
-    //     fetchdata()
-    //  },[])
+        }
+        fetchdata()
+     },[])
   return (
     <div className='w-[100%]'>
          <div className='basicbg   pt-7 ps-10 pe-10'>
@@ -29,7 +29,7 @@ const Vwrevieworg = () => {
                     SL NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    USER NAME
+                   ORPHANAGE
                 </th>
                 <th scope="col" class="px-6 py-3">
                    REVIEW
@@ -38,21 +38,21 @@ const Vwrevieworg = () => {
             </tr>
         </thead>
         <tbody>
-        {/* {data.map((item,index)=>(
+         {data.map((item,index)=>( 
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold text-black ">
                 <td  class="px-6 py-4 ">
                    {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    Sani
+                    {item.orphanage?.name}
                 </td>
             
                 <td class="px-6 py-4">
-                provided all the necessary items on time 
+                {item.review?.review}
                 </td>
                 
             </tr>
-           ))}  */}
+           ))} 
         </tbody>
     </table>
 </div>
