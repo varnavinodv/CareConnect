@@ -14,30 +14,27 @@ import { upload } from '../multer.js'
 
 const router=express()
 
-// router.post('/addDeliveryBoy',async(req,res)=>{
-//     console.log(req.body);
-//     const newDeliveryBoy = new DeliveryBoy(req.body)
-//     const savedDeliveryBoy = await newDeliveryBoy.save()
-//     console.log(newDeliveryBoy);
-//     console.log(savedDeliveryBoy);
-//     res.json({message:"DeliveryBoy added",savedDeliveryBoy})
-// })
+
+
+
+
+
+
 
 router.post('/addtocart', async (req, res) => {
     try {
-        // Assuming req.body contains productId, status, count, organizationId, deliveryboyId, cartstatus
         const { productId, status, count, organizationId, deliveryboyId, cartstatus } = req.body;
 
-        // Find the existing cart for the organizationId and cartstatus
-        let existingCart = await Cart.findOne({ organizationId, cartstatus });
+        // Find the existing cart for the organizationId
+        let existingCart = await Cart.findOne({ organizationId });
 
         // If no existing cart found, create a new cart object
         if (!existingCart) {
             existingCart = new Cart({
                 products: [],
                 organizationId,
-                deliveryboyId,
-                cartstatus
+                deliveryboyId, // Assuming deliveryboyId should be added at cart level, if not, adjust accordingly
+                cartstatus // Assuming cartstatus should be added at cart level, if not, adjust accordingly
             });
         }
 
@@ -64,6 +61,52 @@ router.post('/addtocart', async (req, res) => {
         res.status(400).json({ message: error.message }); // Respond with an error if something goes wrong
     }
 });
+
+
+
+// -----------------------cart code 
+// router.post('/addtocart', async (req, res) => {
+//     try {
+//         // Assuming req.body contains productId, status, count, organizationId, deliveryboyId, cartstatus
+//         const { productId, status, count, organizationId, deliveryboyId, cartstatus } = req.body;
+
+//         // Find the existing cart for the organizationId and cartstatus
+//         let existingCart = await Cart.findOne({ organizationId, cartstatus });
+
+//         // If no existing cart found, create a new cart object
+//         if (!existingCart) {
+//             existingCart = new Cart({
+//                 products: [],
+//                 organizationId,
+//                 deliveryboyId,
+//                 cartstatus
+//             });
+//         }
+//         console.log(product.productId,'==============================');
+
+//         // Check if the product already exists in the cart
+//         const existingProductIndex = existingCart.products.findIndex(product => product.productId === productId);
+
+//         if (existingProductIndex !== -1) {
+//             // If product already exists, update its count
+//             existingCart.products[existingProductIndex].count += count;
+//         } else {
+//             // If product doesn't exist, add it to the products array
+//             existingCart.products.push({
+//                 productId,
+//                 status,
+//                 count
+//             });
+//         }
+
+//         // Save the updated cart object to the database
+//         const savedCartItem = await existingCart.save();
+
+//         res.status(201).json(savedCartItem); // Respond with the saved cart item
+//     } catch (error) {
+//         res.status(400).json({ message: error.message }); // Respond with an error if something goes wrong
+//     }
+// });
   
 
 // ------------add report
@@ -275,6 +318,16 @@ router.get('/viewdonation/:id',async(req,res)=>{
     console.log(id);
     let response=await donation.find({organizationId:id})
     console.log(response);
+   
+    let responseData=[];
+    for(const newresponse of response){
+        let orphanages=await User.findById(newresponse.orphanageId);
+        responseData.push({
+             orphanage:orphanages,
+             donation:newresponse
+        });
+    }
+    res.json(responseData);
 })
 
 router.get('/vieworpheventdetailspons/:id',async(req,res)=>{
@@ -300,7 +353,15 @@ router.put('/changecartstatus/:id',async(req,res)=>{
     let cart=await Cart.findByIdAndUpdate(carts._id,req.body)
     console.log(cart);
 })
+  
 
+router.put('/acceptdonation/:id',async(req,res)=>{
+    let id=req.params.id
+    // console.log(id);
+    // console.log(req.body);
+    let response=await donation.findByIdAndUpdate(id,req.body)
+    console.log(response);
+})
 
 
 export default router

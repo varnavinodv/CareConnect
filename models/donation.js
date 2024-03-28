@@ -23,9 +23,9 @@ const donationSchema=Schema({
         
        },
        status:{
-        type:String,
-        
-       }
+              type:String,
+              default:'pending'
+          }
 
 })
 const donation=model('donation',donationSchema)
