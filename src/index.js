@@ -135,7 +135,7 @@ root.render(
         <Route path='vieworphuser' element={<Vworphuser/>}/>
         <Route path='vieworderuser' element={<Vworderuser/>}/>
         <Route path='addproduct' element={<Addproductuser/>}/>
-        <Route path='updateproduct' element={<Updateproductuser/>}/>
+        <Route path='updateproduct/:id' element={<Updateproductuser/>}/>
         <Route path='vieworgdtluser/:id' element={<Vworgdtluser/>}/>
         <Route path='vieworphdtluser/:id' element={<Viewoprhdtluser/>}/>
         <Route path='contributionuser/:cid' element={<Contriuser/>}/>
@@ -163,7 +163,7 @@ root.render(
         <Route path='sponsorshiporg/:eid' element={<Sponsorshiporg/>}/>
         <Route path='addreportorg' element={<Addreportorg/>}/>
         <Route path='adddeliveryboy' element={<Adddeliveryboy/>}/>
-        <Route path='editreportorg' element={<Editreportorg/>}/>
+        <Route path='editreportorg/:id' element={<Editreportorg/>}/>
         <Route path='vwsponsorg' element={<Vwsponsorg/>}/>
       </Route>
 
@@ -184,13 +184,13 @@ root.render(
       <Route path='updateeventorph' element={<Updateeventorph/>}/>
       <Route path='viewsponsorshiporph/:id' element={<Vwsponsorph/>}/>
       <Route path='editprofileorph' element={<Editprofileorph/>}/>
-      <Route path='editeventorph' element={<Editeventorph/>}/>
+      <Route path='editeventorph/:id' element={<Editeventorph/>}/>
       <Route path='sponshistory' element={<Sponshistoryorph/>}/>
       <Route path='contrirequest' element={<ContriRequest/>}/>
       <Route path='viewcontridetails/:id' element={<Viewcontridetailsorph/>}/>
       <Route path='viewreports' element={<Vwreports/>}/>
       <Route path='addreportorph' element={<Addreports/>}/>
-      <Route path='editreportorph' element={<Editreportorph/>}/>
+      <Route path='editreportorph/:id' element={<Editreportorph/>}/>
       </Route>
 
 

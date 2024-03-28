@@ -15,12 +15,12 @@ const Viewoprhdtluser = () => {
   console.log(id);
   useEffect(()=>{
     let fetchdata=async ()=>{
-      let response=await axios.get('http://localhost:4000/user/viewcontrireq',data)
-      console.log(response.data);
-      setdata(response.data)
-      let response1=await axios.get(`http://localhost:4000/user/vieworgdetail/${id}`)
+      // let response=await axios.get('http://localhost:4000/user/viewcontrireq',data)
+      // console.log(response.data);
+      
+      let response=await axios.get(`http://localhost:4000/user/vieworphdetail/${id}`)
       console.log(response);
-      setdata2(response1.data)
+      setdata(response.data)
     }
     fetchdata()
   },[])
@@ -34,33 +34,33 @@ const Viewoprhdtluser = () => {
     <div className='w-[100%]'>
          <div className='basicbg2   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div >
-            <div className='font-bold text-4xl text-amber-950 py-8'>{data2.name}</div>
+            <div className='font-bold text-4xl text-amber-950 py-8'>{data.response?.name}</div>
             <div className='flex flex-wrap justify-end w-full gap-8'>
             <div className='text-xl font-semibold'>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img  className='w-[30px] h-[30px]' src={call} alt="" />
-                  <p>{data2.phno}</p>
+                  <p>{data.response?.phno}</p>
                 </div>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img className='w-[30px] h-[30px]' src={email} alt="" />
-                  <p>{data2.email}</p>
+                  <p>{data.response?.email}</p>
                 </div>
                 <div className='flex flex-wrap justify-start gap-3  pb-3 '>
                   <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
-                  <p>{data2.place}<br />P.O {data2.postoffice} <br />
-                             pin:{data2.pin}<br />
-                             {data2.district}</p>
+                  <p>{data.response?.place}<br />P.O {data.response?.postoffice} <br />
+                             pin:{data.response?.pin}<br />
+                             {data.response?.district}</p>
                 </div>
             </div>
-            {data.map((item,index)=>(
+            {data?.contrireq?.map((item)=>(
             <div className=' h-fit p-2 ms-11 bg-white'>
-              <h1 className='text-black font-bold'>{item.purpose}</h1>
-              <h2 className='text-gray-800'>{item.description}</h2>
-              <h3 className='text-gray-700 font-semibold'>{item.amount}</h3>
-              <Link to={`/user/contributionuser/${item._id}`}><button className='bg-orange-500 py-1 px-1 rounded-lg text-white '>CONTRIBUTE</button></Link>
+              <h1 className='text-black font-bold'>{item?.purpose}-Rs.{item?.amount} needed</h1>
+              <h2 className='text-gray-800'>{item?.description}</h2>
+              <h3 className='text-gray-700 font-semibold'>{item?.amount-item?.Bamount} rupees raised</h3>
+              <Link to={`/user/contributionuser/${item?._id}`}><button className='bg-orange-500 py-1 px-1 rounded-lg text-white '>CONTRIBUTE</button></Link>
 
             </div>
-            ))}  
+             ))}   
             </div>
             
             <div>
@@ -86,26 +86,28 @@ const Viewoprhdtluser = () => {
               <h1 className='text-amber-950 text-balance font-bold text-xl'>EVENTS</h1>
             </div>
             <div className='flex flex-wrap py-4 gap-8'>
+            {data?.events?.map((item)=>(
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%] text-center pt-5'>
                     <div>
-                        <h1 className='font-bold text-amber-950 py-4 text-xl'>CHILDREN'S DAY</h1>
+                        <h1 className='font-bold text-amber-950 py-4 text-xl'>{item?.name}</h1>
                     </div>
                     <div className='flex flex-wrap justify-start ps-3 gap-2 py-1 '>
                         <img  className='w-[30px] h-[30px] ' src={locatn} alt="" />
-                        <p>+91 81130493822</p>
+                        <p>{item?.venue}</p>
                       </div>
                       <div className='flex flex-wrap justify-start ps-3 gap-2 py-1'>
                         <img className='w-[30px] h-[30px]  ' src={date} alt="" />
-                        <p>14/11/2024</p>
+                        <p>{item?.date}</p>
                       </div>
                       <div className='flex flex-wrap justify-start ps-3 gap-2 py-1'>
                         <img  className='w-[30px] h-[30px]'  src={time} alt="" />
-                        <p>4:00pm</p>
+                        <p>{item?.time}</p>
                       </div>
                      
 
 
                     </div>
+                    ))}
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>
                 <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>
                 

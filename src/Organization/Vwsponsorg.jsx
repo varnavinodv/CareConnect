@@ -58,7 +58,7 @@ const Vwsponsorg = () => {
         {item.event?.name}
     </td>
     <td class="px-6 py-4">
-        LTP ORPHANAGE
+       {item.orph?.name}
     </td>
     <td class="px-6 py-4">
         {item.organization?.name}

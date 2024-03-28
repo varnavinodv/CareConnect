@@ -75,7 +75,7 @@ const Vweventorph = () => {
                 </td>
                 
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
-                   <Link to='/orphanage/editeventorph'> <img className='w-[45px] h-[30px] hover:bg-blue-500' src={edit} alt="" /></Link>
+                   <Link to={`/orphanage/editeventorph/${item._id}`}> <img className='w-[45px] h-[30px] hover:bg-blue-500' src={edit} alt="" /></Link>
                     <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
                 <td class="px-6 py-4">

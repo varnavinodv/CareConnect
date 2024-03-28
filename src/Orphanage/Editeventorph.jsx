@@ -1,22 +1,36 @@
 
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import toy from '../Admin/toy.png'
-import { Link,useNavigate } from 'react-router-dom'
+import { Link,useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios'
 
 const Editeventorph = () => {
   const navigate=useNavigate()
   const [data,setData]=useState('')
+  let {id}=useParams()
+    console.log(id);
+    const [userData,setUserData]=useState('')
+    useEffect(()=>{
+      let fetchdata=async ()=>{
+        let response=await axios.get(`http://localhost:4000/orphanage/vieweventupdate/${id}`)
+        console.log(response.data);
+        setUserData(response.data)
+      }
+      fetchdata()
+    },[])
   // const [data1,setData1]=useState('')
 
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
   }
 
-  let handleSubmit=(event)=>{
+  let handleSubmit=async (event)=>{
     event.preventDefault()
-    setData(data)
-    console.log(data);
+    // setData(data)
+    // console.log(data);
     navigate('/orphanage/vieweventorph')
+    let response=await axios.put(`http://localhost:4000/orphanage/updateevent/${id}`,data)
+    console.log(response);
     
   }
   return (
@@ -33,19 +47,19 @@ const Editeventorph = () => {
 <form class="max-w-sm mx-auto" onSubmit={handleSubmit}>
 <div class="mb-5">
 <label for="name" class="block mb-2 text-sm font-medium text-[#3E1B00]">Name</label>
-<input onChange={handleChange} type="text" name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handleChange} type="text" placeholder={userData.name}  name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 <div class="mb-5">
 <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Date</label>
-<input onChange={handleChange} type="date" name="date" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handleChange} type="date"  placeholder={userData.date}  name="date" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 <div class="mb-5">
 <label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Time</label>
-<input onChange={handleChange} type="time" name="time" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handleChange} type="time" name="time"  placeholder={userData.time}  class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 <div class="mb-5">
 <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Venue</label>
-<input onChange={handleChange} type="text" name="venue" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handleChange} type="text" name="venue"  placeholder={userData.venue}  class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 
 

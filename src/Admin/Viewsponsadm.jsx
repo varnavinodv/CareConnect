@@ -20,7 +20,7 @@ const Viewsponsadm = () => {
   return (
     <div className='w-[100%]'>
                 <div className='basicbg pt-7 ps-10 pe-10'>
-            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>SPONSORSHIP HISTORY</div>
+            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>SPONSORSHIPS</div>
              
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

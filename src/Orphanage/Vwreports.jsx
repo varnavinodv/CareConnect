@@ -12,7 +12,7 @@ const Vwreports = () => {
   
     useEffect(()=>{
         let fetchdata=async()=>{
-           let response=await axios.get(`http://localhost:4000/orphanage/viewreport/${id}`)
+           let response=await axios.get(`http://localhost:4000/organization/viewreports/${id}`)
            console.log(response.data);
            setdata(response.data)
   
@@ -24,7 +24,7 @@ const Vwreports = () => {
                               <div className='basicbg   pt-7 ps-10 pe-10'>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>REPORTS</div>
              {/* button */}
-             <Link to='/organization/addreportorg'><button className='bg-orange-500 flex flex-wrap py-1 pe-2 rounded-lg m-auto items-center mb-8'>
+             <Link to='/orphanage/addreportorph'><button className='bg-orange-500 flex flex-wrap py-1 pe-2 rounded-lg m-auto items-center mb-8'>
                     <div><img  className='w-[55px] h-[30px] '  src={add} alt="" /></div>
                     <div className='text-white'>ADD REPORT </div>
                 </button></Link>
@@ -58,10 +58,11 @@ const Vwreports = () => {
                     {item.year}
                 </td>
                 <td class="px-6 py-4">
-                    {item.report}
+                    <a href="#" class=" text-sm text-black hover:underline hover:text-blue-600 p-1" >{item.report}</a>
+                {/* <img  className='h-[3rem] w-[3rem] pt-4 ps-4' src={`http://localhost:4000/uploads/${item.report}`} alt="" /> */}
                 </td>
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
-                    <Link to='/orphanage/editreportorph'><img className='w-[45px] h-[30px] hover:bg-blue-400' src={edit} alt="" /></Link>
+                    <Link to={`/orphanage/editreportorph/${item._id}`}><img className='w-[45px] h-[30px] hover:bg-blue-400' src={edit} alt="" /></Link>
                     <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
             </tr>

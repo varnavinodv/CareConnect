@@ -4,11 +4,12 @@ import React, { useEffect, useState } from 'react'
 const Sponshistoryorph = () => {
 
     const [data,setData]= useState([])
+    let id=localStorage.getItem('id')
 
     useEffect(()=>{
 
         let fetchdata=async()=>{
-           let response=await axios.get(`http://localhost:4000/orphanage/viewsponshistory/${localStorage.getItem("id")}`)
+           let response=await axios.get(`http://localhost:4000/orphanage/viewsponshistory/${id}`)
            console.log(response.data);
            setData(response.data)
      
@@ -53,26 +54,29 @@ const Sponshistoryorph = () => {
        </tr>
    </thead>
    <tbody>
+   {data.map((item,index)=>(
        <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold text-black">
            <td class="px-6 py-4 ">
-              1.
+              {index+1}
            </td>
            <td class="px-6 py-4">
-              children's day
+             {item.event?.name}
               </td>
            <td class="px-6 py-4">
-             LJK Org
+             {item.organization?.name}
            </td>
+           {item?.sponsor.map((item1,index)=>(
            <td class="px-6 py-4">
-              food
+              {item1.purpose}
            </td>
+           ))}
            <td class="px-6 py-4">
              Accepted
            </td>
           
            
        </tr>
-       
+   ))} 
    </tbody>
 </table>
 </div>

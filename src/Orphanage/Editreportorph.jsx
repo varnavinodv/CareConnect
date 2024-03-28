@@ -1,21 +1,36 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import toy from '../Admin/toy.png'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Editreportorph = () => {
     const navigate=useNavigate()
     const [data,setData]=useState('')
+    let {id}=useParams()
+    console.log(id);
+    const [userData,setUserData]=useState('')
+  useEffect(()=>{
+    let fetchdata=async ()=>{
+      let response=await axios.get(`http://localhost:4000/organization/viewreportupdate/${id}`)
+      console.log(response.data);
+      setUserData(response.data)
+    }
+    fetchdata()
+  },[])
 
     let handleChange=(event)=>{
         setData({...data,[event.target.name]:event.target.value})
       }
 
-      let handleSubmit=(event)=>{
+      let handleSubmit=async (event)=>{
         event.preventDefault()
-        setData(data)
-        console.log(data);
+        // setData(data)
+        // console.log(data);
         navigate('/orphanage/viewreports')
+        let response=await axios.put(`http://localhost:4000/organization/updatereport/${id}`,data)
+    console.log(response);
+        
         
       }
   return (
@@ -31,11 +46,11 @@ const Editreportorph = () => {
 <form onSubmit={handleSubmit}  class="max-w-sm mx-auto">
 <div class="mb-5">
 <label for="year" class="block mb-2 text-sm font-medium text-[#3E1B00]">Year</label>
-<input onChange={handleChange}  type="number" id="year" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handleChange}  type="number" placeholder={userData.year} name="year" id="year" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 <div class="mb-5">
 <label for="report" class="block mb-2 text-sm font-medium text-[#3E1B00]">Report</label>
-<input onChange={handleChange}  type="file" id="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handleChange}  type="file" placeholder={userData.report} name="report" id="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 
 

@@ -60,7 +60,7 @@ const Vwreportsorg = () => {
                    {item.report}
                 </td>
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
-                    <Link to='/organization/editreportorg'><img className='w-[45px] h-[30px] hover:bg-blue-400' src={edit} alt="" /></Link>
+                    <Link to={`/organization/editreportorg/${item._id}`}><img className='w-[45px] h-[30px] hover:bg-blue-400' src={edit} alt="" /></Link>
                     <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
             </tr>

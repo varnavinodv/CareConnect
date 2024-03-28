@@ -4,11 +4,17 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Addreports = () => {
+ 
   let id=localStorage.getItem('id')
-
     const navigate=useNavigate()
   const [data,setData]=useState('')
 
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
+  }
+ 
 
     let handleChange=(event)=>{
         setData({...data,[event.target.name]:event.target.value})
@@ -17,9 +23,17 @@ const Addreports = () => {
         event.preventDefault()
         // setData(data)
         // console.log(data);
-        let response=await axios.post('http://localhost:4000/orphanage/addreport',{...data,userId:id})
-        console.log(response);
         navigate('/orphanage/viewreports')
+        let formData = new FormData();
+        formData.append('year', data.year);
+        formData.append('report', data.report);
+        formData.append('UserId', id)
+        let response=await axios.post('http://localhost:4000/organization/addreport',formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+      }})
+        console.log(response);
+        
 
       }
   return (
@@ -39,7 +53,7 @@ const Addreports = () => {
   </div>
   <div class="mb-5">
     <label for="report" class="block mb-2 text-sm font-medium text-[#3E1B00]">Report</label>
-    <input onChange={handleChange} type="file" name="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input onChange={handlefile} type="file" name="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   
   
