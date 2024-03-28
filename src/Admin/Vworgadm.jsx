@@ -6,6 +6,7 @@ const Vworgadm = () => {
     const [data,setdata]=useState([''])
     const [drop,setDrop]= useState(false)
     const [status,setStatus]=useState('')
+    const[refresh,setrefresh]=useState(false)
 
 
     useEffect(()=>{
@@ -16,15 +17,16 @@ const Vworgadm = () => {
   
         }
         fetchdata()
-     },[])
+     },[refresh])
 
-     let handleSubmit=async (event)=>{
-        event.preventDefault()
+     let handleSubmit=async (status,id)=>{
+        setrefresh(!refresh)
         // setData(data)
         // console.log(data);
         // navigate('/organization/viewdeliveryboyorg')
-        let response=await axios.post('http://localhost:4000/admin/acceptusers',{...data,status:'eccepted'})
+        let response=await axios.put(`http://localhost:4000/admin/acceptusers/${id}`,{...data,status:status})
       console.log(response);
+      setdata('')
         
       }
 
@@ -158,8 +160,9 @@ const Vworgadm = () => {
                 </td>
                 <td class="px-6 py-4 flex flex-wrap flex-col">
                     
-                <form onSubmit={handleSubmit}><a href="#" class="font-bold text-sm text-green-600 hover:underline hover:bg-white p-1">Accept</a></form>
-                    <a href="#" class="font-bold text-sm text-red-600 hover:underline hover:bg-white p-1" >Reject</a>
+                <button onClick={()=>{handleSubmit('Accepted',item._id)}} href="#" className="font-bold text-green-600  hover:underline">Accept</button>
+                <button onClick={()=>{handleSubmit('Rejected',item._id)}} href="#" className="font-bold text-red-600  hover:underline">Reject</button>
+                    
                 </td>
                 
             </tr>

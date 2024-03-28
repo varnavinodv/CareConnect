@@ -65,20 +65,20 @@ const Updateproductuser = () => {
 <form onSubmit={handleSubmit} class="max-w-sm mx-auto">
   <div class="mb-5">
     <label for="pname" class="block mb-2 text-sm font-medium text-[#3E1B00]">Name</label>
-    <input onChange={handleChange} placeholder={userData.name} type="text" name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input onChange={handleChange} placeholder={userData.name} type="text" name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
   </div>
   <div class="mb-5">
     <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Category</label>
-    <input onChange={handleChange}  placeholder={userData.category} type="text" name="category" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input onChange={handleChange}  placeholder={userData.category} type="text" name="category" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
   </div>
-  {/* <div class="mb-5">
+  <div class="mb-5">
     <label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Image</label>
-    <input  onChange={handlefile}   type="file" name="img" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input  onChange={handlefile}   type="file" name="img" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
     <img className='h-14 w-14 pt-2' src={`http://localhost:4000/uploads/${userData.img}`} alt="" />
-  </div> */}
+  </div>
   <div class="mb-5">
     <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>
-    <input onChange={handleChange}  placeholder={userData.count} type="number" name="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input onChange={handleChange}  placeholder={userData.count} type="number" name="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
   </div>
   
   
