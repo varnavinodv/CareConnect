@@ -5,6 +5,8 @@ import axios from 'axios'
 const Vworphadm = () => {
     const [data,setdata]=useState([''])
     const [drop,setDrop]= useState(false)
+    const [status,setStatus]=useState('')
+    const[refresh,setrefresh]=useState(false)
 
     useEffect(()=>{
         let fetchdata=async()=>{
@@ -14,15 +16,40 @@ const Vworphadm = () => {
   
         }
         fetchdata()
-     },[])
+     },[refresh])
 
-    let dropdown=()=>{
-      setDrop(!drop)
-    }
-    let dropdownClose=()=>{
-  
-      setDrop(false)
-    }  
+     let handleSubmit=async (status,id)=>{
+        setrefresh(!refresh)
+        // setData(data)
+        // console.log(data);
+        // navigate('/organization/viewdeliveryboyorg')
+        let response=await axios.put(`http://localhost:4000/admin/acceptusers/${id}`,{...data,status:status})
+      console.log(response);
+      setdata('')
+        
+      }
+
+
+
+      let dropdown=()=>{
+        setDrop(!drop)
+      }
+      let dropdownClose=()=>{
+        setStatus('Accepted')
+        setDrop(false)
+    
+      }
+      let dropdownClose1=()=>{
+        setStatus('Rejected')
+        setDrop(false)
+    
+      }
+      let dropdownClose2=()=>{
+        setStatus('')
+        setDrop(false)
+    
+      }
+    
   return (
     <div className=' w-[100%]'>
          <div className='basicbg  pt-7 ps-10 pe-10'>
@@ -31,24 +58,25 @@ const Vworphadm = () => {
         
         <form class="max-w-lg mx-auto pb-10">
     <div class="flex items-center">
-       <div>
-        <button  onClick={dropdown} id="dropdown-button" data-dropdown-toggle="dropdown" className="h-[42px] inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-orange-500 border border-gray-300 rounded-s-lg hover:bg-[#f7b866d4] focus:ring-4 focus:outline-none focus:ring-orange-500 dark:bg-orange-500 dark:hover:bg-[#f7b866d4] dark:focus:ring-orange-500 dark:text-white dark:border-orange-500" type="button">All categories <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-  </svg></button>
-  {drop &&
-        <div id="dropdown" class="z-10 absolute   bg-orange-500 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-orange-500">
-            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-            <li>
-                <button type="button" onClick={dropdownClose} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">Accepted</button>
-            </li>
-            <li>
-                <button type="button" onClick={dropdownClose} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">Rejected</button>
-            </li>
-            <li>
-                <button type="button" onClick={dropdownClose} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">All</button>
-            </li>
-            </ul>
-        </div>
+    <div>
+
+<button  onClick={dropdown} id="dropdown-button" data-dropdown-toggle="dropdown" className="h-[42px] inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-orange-500 border border-gray-300 rounded-s-lg hover:bg-[#f7b866d4] focus:ring-4 focus:outline-none focus:ring-orange-500 dark:bg-orange-500 dark:hover:bg-[#f7b866d4] dark:focus:ring-orange-500 dark:text-white dark:border-orange-500" type="button">{status=='Accepted' ? <span>Accepted</span> : status=='Rejected' ? <span>Rejected</span> : <span>All categories</span>} <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+</svg></button>
+{drop &&
+<div id="dropdown" class="z-10 absolute   bg-orange-500 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-orange-500">
+    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+    <li>
+        <button type="button" onClick={dropdownClose} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">Accepted</button>
+    </li>
+    <li>
+        <button type="button" onClick={dropdownClose1} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">Rejected</button>
+    </li>
+    <li>
+        <button type="button" onClick={dropdownClose2} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">All</button>
+    </li>
+    </ul>
+</div>
 }
 </div>
         <div class="relative w-full">
@@ -128,11 +156,13 @@ const Vworphadm = () => {
 
                 </td>
                 <td class="px-6 py-4">
-                    Pending
+                    {item.status}
                 </td>
-                <td class="px-6 py-4 flex flex-wrap flex-col">
-                    <a href="#" class="font-bold text-sm text-green-600 hover:underline hover:bg-white p-1">Accept</a>
-                    <a href="#" class="font-bold text-sm text-red-600 hover:underline hover:bg-white p-1" >Reject</a>
+                 <td class="px-6 py-4 flex flex-wrap flex-col">
+                    
+                <button onClick={()=>{handleSubmit('Accepted',item._id)}} href="#" className="font-bold text-green-600  hover:underline">Accept</button>
+                <button onClick={()=>{handleSubmit('Rejected',item._id)}} href="#" className="font-bold text-red-600  hover:underline">Reject</button>
+                    
                 </td>
                 
             </tr>

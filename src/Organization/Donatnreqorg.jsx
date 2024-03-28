@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Donatnreqorg = () => {
+    let oid = localStorage.getItem('id')
     const [data,setdata]=useState([''])
+    const[refresh,setrefresh]=useState(false)
 
     useEffect(()=>{
         let fetchdata=async()=>{
@@ -13,7 +15,18 @@ const Donatnreqorg = () => {
   
         }
         fetchdata()
-     },[])
+     },[refresh])
+
+     let handleSubmit=async (status,id,oid)=>{
+        setrefresh(!refresh)
+        // setData(data)
+        // console.log(data);
+        // navigate('/organization/viewdeliveryboyorg')
+        let response=await axios.put(`http://localhost:4000/organization/acceptdonation/${id}`,{status:status,organizationId:oid})
+      console.log(response);
+      setdata('')
+        
+      }
   return (
     <div className=' w-[100%] '>
         <div className='basicbg pt-7 ps-10 pe-10'>
@@ -69,13 +82,20 @@ const Donatnreqorg = () => {
                   {item.donation?.count}
                 </td>
                 <td class="px-6 py-4">
-                   pending
+                  {item.donation?.status}
                 </td>
-                
                 <td class="px-6 py-4 flex flex-wrap flex-col">
+                    
+                <Link to='/organization/viewdonationorg'>
+                    <button onClick={()=>{handleSubmit('Accepted',item.donation?._id,oid)}} href="#" className="font-bold text-green-600 text-left hover:underline">Accept</button></Link>
+                    <button onClick={()=>{handleSubmit('Rejected',item.donation?._id)}} href="#" className="font-bold text-red-600 text-left  hover:underline">Reject</button>
+                        
+                    </td>
+                
+                {/* <td class="px-6 py-4 flex flex-wrap flex-col">
                 <Link to='/organization/viewdonationorg'><div class="font-bold text-sm text-green-600 hover:underline hover:bg-white p-1 hover:rounded-lg">Accept</div></Link>
                     <div class="font-bold text-sm text-red-600 hover:underline hover:bg-white p-1 hover:rounded-lg" >Reject</div>
-                </td>
+                </td> */}
                 
             </tr>
            ))}  

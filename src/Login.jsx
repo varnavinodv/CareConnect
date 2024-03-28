@@ -24,10 +24,21 @@ const Login = () => {
         Navigate('/user')
       }
       else if(response.data.userType=='organization'){
-        Navigate('/organization')
+        if(response.data.status=='Accepted'){
+
+          Navigate('/organization')
+        }
+        else{
+          alert('Cannot login right now')
+        }
       }
       else if(response.data.userType=='orphanage'){
+        if(response.data.status=='Accepted'){
         Navigate('/orphanage')
+      }
+      else{
+        alert('Cannot login right now')
+      }
       }
       else if(response.data.userType=='deliveryboy'){
         Navigate('/deliveryboy')

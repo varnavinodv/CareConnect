@@ -37,12 +37,6 @@ const Vwcartorg = () => {
         <div className='basicbg2   pt-7 ps-10 pe-10 pb-10'>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>CART</div>
             <div className='flex flex-wrap justify-evenly pt-7 pb-12'>
-                  {/* <div className='h-fit w-[220px] bg-white'>
-                     <img  className='h-[200px] w-[200px] pt-4 ps-4' src={book} alt="" />
-                     <p className='text-center font-semibold pt-1'>Storybook</p>
-                     <p className='text-center font-semibold  text-gray-800 text-sm'>Rihala</p>
-                     <p className='text-center font-semibold  text-gray-800 text-sm'>Count:2</p>
-                  </div> */}
                   <Link to='/organization/viewcartproductdtlorg'>
                   {data.map((item)=>(
                     

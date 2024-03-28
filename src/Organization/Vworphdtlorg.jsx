@@ -33,7 +33,7 @@ const Vworphdtlorg = () => {
         <div className='basicbg2 pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div >
             <div className='font-bold text-4xl text-amber-950 py-8'>{data.response?.name}</div>
-            <div className='flex flex-wrap justify-end w-full gap-8'>
+            <div className='flex flex-wrap  w-full gap-8'>
             <div className='text-xl font-semibold'>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img  className='w-[30px] h-[30px]' src={call} alt="" />
@@ -104,8 +104,7 @@ const Vworphdtlorg = () => {
                       <Link to={`/organization/sponsorshiporg/${item?._id}`}><div className='hover:underline text-orange-500 font-bold'>SPONSOR</div></Link>
                     </div>
             ))}
-                <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>
-                <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>
+               
                 
                 
             </div>

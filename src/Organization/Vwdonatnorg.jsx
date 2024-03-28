@@ -50,31 +50,32 @@ const Vwdonatnorg = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b text-black font-semibold border-orange-600 hover:bg-[#f7b866d4]">
                 <td class="px-6 py-4">
-                   1
+                   {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    ASD orph
+                   {item.orphanage?.name}
                 </td>
                 <td class="px-6 py-4">
-                    Bags
+                    {item.donation?.product}
                 </td>
                 <td class="px-6 py-4">
-                   3
+                {item.donation?.count}
                 </td>
                 <td class="px-6 py-4">
-                    12/3/2021
+                  ----------
                 </td>
                 <td class="px-6 py-4">
-                accpted
+                {item.donation?.status}
                 </td>
                 <td class="px-6 py-4">
                     
                   <Link to ='/organization/assigndeliveryboyorg/donation'> <button className='bg-orange-500 text-black py-2 px-2 rounded-lg'>Assign delivery boy</button></Link>
                 </td>
             </tr>
-          
+        ))} 
         </tbody>
     </table>
 </div>
