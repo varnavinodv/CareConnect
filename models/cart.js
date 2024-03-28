@@ -14,6 +14,14 @@ const cartSchema = Schema({
     count:{
         type:Number,
         required:true
+    },
+    deliveryboyId:{
+        type:mongoose.Types.ObjectId,
+        required:User
+    },
+    status:{
+        type:String,
+        required:true
     }
 })
 

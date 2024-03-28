@@ -1,4 +1,4 @@
-import  express, { request }  from "express";
+import  express, { request, response }  from "express";
 import Event from "../models/event.js";
 import Review from "../models/review.js";
 // import donationRequest from "../models/donationRequest.js";
@@ -9,6 +9,7 @@ import User from "../models/user.js";
 import Contribution from "../models/contribution.js";
 import Sponsosrship from "../models/sponsorship.js";
 import Report from "../models/report.js";
+import { upload } from "../multer.js";
 
 const router=express()
 
@@ -34,12 +35,13 @@ router.post('/addrequest',async(req,res)=>{
     res.json({message:"request posted",savedRequest})
 })
 
-router.post('/addreport',async(req,res)=>{
-    console.log(req.body);
-    const newReport = new Report(req.body)
-    const savedReport = await newReport.save()
-    res.json({message:"Report added",savedReport})
-})
+// router.post('/addreport',upload.single('report'),async(req,res)=>{
+//     console.log(req.file);
+//     let reportpath=req.file.filename
+//     const newReport = new Report({...req.body,report:reportpath})
+//     const savedReport = await newReport.save()
+//     res.json({message:"Report added",savedReport})
+// })
 
 router.post('/contributionRequest',async(req,res)=>{
     console.log(req.body);
@@ -101,6 +103,24 @@ router.get('/viewcontridetails/:id',async(req,res)=>{
 })
 
 
+router.get('/vieweventupdate/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let response=await Event.findById(id)
+    console.log(response);
+    res.json(response)
+})
+
+router.put('/updateevent/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    console.log(req.body );
+    let response=await Event.findByIdAndUpdate(id,req.body)
+    console.log(response);
+
+})
+
+
 router.get('/viewevent/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
@@ -120,34 +140,32 @@ router.get('/orgdetailonpostreview/:id',async(req,res)=>{
 })
 
 
-// router.get('/viewsponshistory/:id',async(req,res)=>{
-//     let id=req.params.id
-//     console.log(id);
-//     let response=await Sponsosrship.aggregate([
-//         {
-//             $lookup:{
-//                 from:"events",
-//                 foreignField:"_id",
-//                 localField:"eventId",
-//                 as:"eventInfo"
-//             }
-//         },
-//         {$unwind:"$eventInfo"}
-//     ])
+router.get('/viewsponshistory/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+let events=await Event.find({orphanageId:id})
+console.log(events);
+let responseData=[]
+for (let x of events){
+    let sponsors=await Sponsosrship.find({eventId:x._id})
+    console.log(sponsors,'sd');
+    console.log(sponsors.organizationId,'-----------------------------------------');
+    for( let sp of sponsors){
 
-//     let arr = []
+        let organizations=await User.findById(sp.organizationId)
+        let myevents=await Event.findById(sp.eventId)
+        console.log(organizations,'sds');
+        responseData.push({
+            sponsor:sponsors,
+            organization:organizations,
+            event:myevents
+        })
+    }
+}
+console.log(responseData);
+res.json(responseData)
 
-//     console.log();
-
-//     for( let data of response ){
-//         if(data.eventInfo.orphanageId+"" === id+""){
-//             arr.push(data)
-//         }
-//         // console.log(data);
-//     }
-
-//     res.json(arr)
-// })
+})
 
 // router.get('/viewspons/:id',async(req,res)=>{
 //     let id=req.params.id
@@ -177,6 +195,12 @@ router.get('/orgdetailonpostreview/:id',async(req,res)=>{
 // })
 
 
+// router.get('/viewsponshistory/:id',async(req,res)=>{
+//     let id=req.params.id;
+//     console.log('id')
+// })
+
+
 router.get('/donationreq/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
@@ -187,13 +211,13 @@ router.get('/donationreq/:id',async(req,res)=>{
 })
 
 
-router.get('/viewreport/:id',async(req,res)=>{
-    let id=req.params.id
-    console.log(id);
-    // res.json(id)
-    let response=await Report.find({UserId:id})
-    console.log(response);
-    res.json(response)  
-})
+// router.get('/viewreport/:id',async(req,res)=>{
+//     let id=req.params.id
+//     console.log(id);
+//     // res.json(id)
+//     let response=await Report.find({UserId:id})
+//     console.log(response);
+//     res.json(response)  
+// })
 
 export default router

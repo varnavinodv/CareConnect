@@ -4,6 +4,7 @@ import product  from '../models/product.js'
 import Contribution from '../models/contribution.js'
 import ContributionRequest from '../models/contributionRequest.js'
 import { upload } from '../multer.js'
+import Event from '../models/event.js'
 
 
 const router=express()
@@ -29,6 +30,30 @@ router.post('/addProduct',upload.single('img'),async(req,res)=>{
     const newProduct = new product({...req.body,img:imagepath})
     const savedProduct = await newProduct.save()
     res.json({message:"Product added",savedProduct}) 
+})
+
+router.get('/viewupdateproduct/:id',async(req,res)=>{
+      let id=req.params.id
+      console.log(id);
+      let response=await product.findById(id)
+      console.log(response);
+      res.json(response)
+})
+
+router.put('/updateproduct/:id',upload.fields([{name:'img'}]),async(req,res)=>{
+    try{
+        if(req.files['img']){
+            const image =req.file['img]'][0].filename;
+            console.log(image)
+            req.body={...req.body,img:image}
+        }
+        let id=req.params.id
+        console.log(req.body)
+        let response=await product.findByIdAndUpdate(id,req.body)
+    }
+    catch(e){
+        res.json(e.message)
+    }
 })
 
 
@@ -110,8 +135,10 @@ router.get('/vieworphdetail/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
     let response=await User.findById(id)
+    let events=await Event.find({orphanageId:id})
+    let contrireq=await ContributionRequest.find({orphanageId:id})
     console.log(response);
-    res.json(response)
+    res.json({response,events,contrireq})
 })
 
 

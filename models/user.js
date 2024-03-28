@@ -78,6 +78,10 @@ const userSchema = Schema({
        
 
     },
+    status:{
+        type:String,
+        default:'pending'
+    }
 })
 
  const User = model('user',userSchema);

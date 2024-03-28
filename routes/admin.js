@@ -12,6 +12,15 @@ import Sponsosrship from '../models/sponsorship.js';
 
 const router=express()
 
+
+
+// router.post('/acceptusers',async(req,res)=>{
+//     console.log(req.body);
+//     const newuser=new User(req.body)
+//     const savedUser=await newuser.save()
+//     res.json({message:"accepted user",savedUser})
+// })
+
 router.get('/viewuser',async(req,res)=>{
     console.log(req.body);
     let response=await User.find({userType:'user'})

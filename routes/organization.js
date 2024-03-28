@@ -10,6 +10,7 @@ import donation from '../models/donation.js';
 import Event from '../models/event.js';
 import ContributionRequest from '../models/contributionRequest.js';
 import Review from '../models/review.js';
+import { upload } from '../multer.js'
 
 const router=express()
 
@@ -28,13 +29,47 @@ router.post('/addtocart',async(req,res)=>{
     const savedCart = await newCart.save()
     res.json({message:"Cart",savedCart}) 
 })
+  
 
-
-router.post('/addreport',async(req,res)=>{
-    console.log(req.body);
-    const newReport = new Report(req.body)
+// ------------add report
+router.post('/addreport',upload.single('report'),async(req,res)=>{
+    console.log(req.file);
+    let reportpath=req.file.filename
+    const newReport = new Report({...req.body,report:reportpath})
     const savedReport = await newReport.save()
     res.json({message:"Report added",savedReport})
+})
+
+
+// ----------viewreport update
+router.get('/viewreportupdate/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let response=await Report.findById(id)
+    console.log(response);
+    res.json(response)
+
+})
+
+
+// ----------update report
+router.put('/updatereport/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    console.log(req.body );
+    let response=await Report.findByIdAndUpdate(id,req.body)
+    console.log(response);
+
+})
+
+// ----------viewreports
+router.get('/viewreports/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let response=await Report.find({UserId:id})
+    console.log(response);
+    res.json(response)
+
 })
 
 router.post('/sponsorship',async(req,res)=>{
@@ -153,14 +188,7 @@ router.get('/viewevent',async(req,res)=>{
       res.json(responseData);
 })
 
-router.get('/viewreports/:id',async(req,res)=>{
-    let id=req.params.id
-    console.log(id);
-    let response=await Report.find({UserId:id})
-    console.log(response);
-    res.json(response)
 
-})
 
 router.get('/viewreviews/:id',async(req,res)=>{
     let id=req.params.id
@@ -188,14 +216,16 @@ router.get('/viewsponshistory/:id',async(req,res)=>{
     let responseData=[];
     for (const newresponse of response){
       let events = await Event.findById(newresponse.eventId);
+      let orphanages=await User.findById(events?.orphanageId);
       let organizations=await User.findById(newresponse.organizationId);
       responseData.push({
         event: events,
         organization:organizations,
+        orph:orphanages,
         spons: newresponse
     });
   }
-//   console.log(responseData);
+
   res.json(responseData);
 
 })
