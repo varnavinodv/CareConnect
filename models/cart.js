@@ -3,25 +3,32 @@ import User from './user.js'
 import product from "./product.js";
 
 const cartSchema = Schema({
-    productId:{
-        type:mongoose.Types.ObjectId,
-        ref:product
-    },
+    products: [{
+        productId:{
+            type:mongoose.Types.ObjectId,
+            ref:product
+        },
+        status: {
+            type: String
+        },
+        count:{
+            type:Number,
+            required:true
+        },
+
+    }],
     organizationId:{
         type:mongoose.Types.ObjectId,
         ref:User
     },
-    count:{
-        type:Number,
-        required:true
-    },
+  
     deliveryboyId:{
         type:mongoose.Types.ObjectId,
-        required:User
+        
     },
-    status:{
+    cartstatus:{
         type:String,
-        required:true
+        default:'pending'
     }
 })
 

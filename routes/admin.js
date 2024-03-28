@@ -14,12 +14,13 @@ const router=express()
 
 
 
-// router.post('/acceptusers',async(req,res)=>{
-//     console.log(req.body);
-//     const newuser=new User(req.body)
-//     const savedUser=await newuser.save()
-//     res.json({message:"accepted user",savedUser})
-// })
+router.put('/acceptusers/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    console.log(req.body);
+    let response=await User.findByIdAndUpdate(id,req.body)
+    console.log(response);
+})
 
 router.get('/viewuser',async(req,res)=>{
     console.log(req.body);

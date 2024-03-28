@@ -23,12 +23,47 @@ const router=express()
 //     res.json({message:"DeliveryBoy added",savedDeliveryBoy})
 // })
 
-router.post('/addtocart',async(req,res)=>{
-    console.log(req.body);
-    const newCart = new Cart(req.body)
-    const savedCart = await newCart.save()
-    res.json({message:"Cart",savedCart}) 
-})
+router.post('/addtocart', async (req, res) => {
+    try {
+        // Assuming req.body contains productId, status, count, organizationId, deliveryboyId, cartstatus
+        const { productId, status, count, organizationId, deliveryboyId, cartstatus } = req.body;
+
+        // Find the existing cart for the organizationId and cartstatus
+        let existingCart = await Cart.findOne({ organizationId, cartstatus });
+
+        // If no existing cart found, create a new cart object
+        if (!existingCart) {
+            existingCart = new Cart({
+                products: [],
+                organizationId,
+                deliveryboyId,
+                cartstatus
+            });
+        }
+
+        // Check if the product already exists in the cart
+        const existingProductIndex = existingCart.products.findIndex(product => product.productId === productId);
+
+        if (existingProductIndex !== -1) {
+            // If product already exists, update its count
+            existingCart.products[existingProductIndex].count += count;
+        } else {
+            // If product doesn't exist, add it to the products array
+            existingCart.products.push({
+                productId,
+                status,
+                count
+            });
+        }
+
+        // Save the updated cart object to the database
+        const savedCartItem = await existingCart.save();
+
+        res.status(201).json(savedCartItem); // Respond with the saved cart item
+    } catch (error) {
+        res.status(400).json({ message: error.message }); // Respond with an error if something goes wrong
+    }
+});
   
 
 // ------------add report
@@ -87,15 +122,20 @@ router.get('/viewcart/:id',async(req,res)=>{
     let responseData=[];
       for (const newresponse of response){
         let organizations = await User.findById(newresponse.organizationId);
-        let products = await product.findById(newresponse.productId);
-        let users=await User.findById(products?.userId)
-        responseData.push({
-            organization: organizations,
-            product:products,
-            user:users,
-            cart: newresponse
-        });
-      }
+        
+        for (const x of newresponse.products){
+            let products=await product.findById(x.productId)
+            console.log(products);
+            let users=await User.findById(products.userId)
+
+            responseData.push({
+                organization: organizations,
+                users:users,
+                cart: newresponse,
+                product:products
+            });
+        }
+        }
       console.log(responseData);
       res.json(responseData);
 })
@@ -250,6 +290,16 @@ router.get('/vieworpheventdetailspons/:id',async(req,res)=>{
 //     console.log(id);
 //     let response=await Orders.find()
 // })
+
+router.put('/changecartstatus/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    console.log(req.body);
+    let carts=await Cart.find({organizationId:id})
+    console.log(carts)
+    let cart=await Cart.findByIdAndUpdate(carts._id,req.body)
+    console.log(cart);
+})
 
 
 
