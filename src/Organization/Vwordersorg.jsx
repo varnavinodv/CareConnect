@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import bag from './bags.jpg'
+import axios from 'axios'
 
 const Vwordersorg = () => {
 
-  let id=useParams()
+  let id=localStorage.getItem('id')
+  const [data,setData]=useState([''])
+
+  useEffect(()=>{
+    let fetchdata=async ()=>{
+      let response=await axios.get(`http://localhost:4000/organization/vieworder/${id}`)
+      console.log(response);
+      setData(response.data)
+    }
+    fetchdata()
+
+    
+  },[])
+
   
 
   return (
@@ -51,17 +65,19 @@ const Vwordersorg = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 text-black font-semibold hover:bg-[#f7b866d4]">
                 <td class="px-6 py-4">
-                  1.
+                 {index+1}
                 </td>
                 <td class="px-6 py-4">
-                   Rihala
+                  {item.user?.name}
                 </td>
                 <td class="px-6 py-4">
-                xyzw,
-calicut-8
-pin:673209
+                {item.user?.houseName} <br />
+                P.O {item.user?.postoffice} <br />
+                pin:{item.user?.pin} <br />
+                {item.district}
                 </td>
                 <td class="px-6 py-4">
                 Hand bags
@@ -85,7 +101,7 @@ pin:673209
                 <Link to ='/organization/assigndeliveryboyorg/orders'> <button className='bg-orange-500 text-black py-2 px-2 rounded-lg'>Assign delivery boy</button></Link>
                 </td>
             </tr>
-           
+        ))}  
         </tbody>
     </table>
 </div>

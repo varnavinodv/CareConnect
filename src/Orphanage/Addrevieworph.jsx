@@ -43,15 +43,15 @@ const Addrevieworph = () => {
       <div >
         <div className='font-bold text-4xl text-amber-950 py-8'>{data1.name}</div>
         <div>
-            <div className='flex flex-wrap justify-center gap-3 pb-3'>
+            <div className='flex flex-wrap  gap-3 pb-3'>
               <img  className='w-[30px] h-[30px]' src={call} alt="" />
               <p>{data1.phno}</p>
             </div>
-            <div className='flex flex-wrap justify-center gap-3 pb-3'>
+            <div className='flex flex-wrap  gap-3 pb-3'>
               <img className='w-[30px] h-[30px]' src={email} alt="" />
               <p>{data1.email}</p>
             </div>
-            <div className='flex flex-wrap justify-center gap-3 pe-8 pb-3'>
+            <div className='flex flex-wrap  gap-3 pe-8 pb-3'>
               <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
               <p>{data1.place}<br />P.O {data1.postoffice} <br />
                          pin:{data1.pin} <br />

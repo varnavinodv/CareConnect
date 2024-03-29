@@ -36,22 +36,22 @@ const Vworgdtlorph = () => {
         <div >
           <div className='font-bold text-4xl text-amber-950 py-8'>{data.name}</div>
           <div>
-            <div className='flex flex-wrap justify-center gap-3 pb-3'>
+            <div className='flex flex-wrap  gap-3 pb-3'>
               <img className='w-[30px] h-[30px]' src={call} alt="" />
               <p>{data.phno}</p>
             </div>
-            <div className='flex flex-wrap justify-center gap-3 pb-3'>
+            <div className='flex flex-wrap  gap-3 pb-3'>
               <img className='w-[30px] h-[30px]' src={email} alt="" />
               <p>{data.email}</p>
             </div>
-            <div className='flex flex-wrap justify-center gap-3 pe-8 pb-3'>
+            <div className='flex flex-wrap  gap-3 pe-8 pb-3'>
               <img className='w-[30px] h-[30px]' src={locatn} alt="" />
               <p>{data.place}<br />P.O {data.postoffice} <br />
                 pin:{data.pin}<br />
                 {data.district}</p>
             </div>
           </div>
-          <div className='flex flex-wrap justify-between w-100%'>
+          <div className='flex flex-wrap justify-between gap-2 w-100%'>
             <button className='bg-orange-500 py-2 px-3 rounded-lg' onClick={dropdown}>
               <div className='flex flex-wrap items-center'>
               <p className='text-white text-lg'>View reports</p>

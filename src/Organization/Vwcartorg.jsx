@@ -57,7 +57,7 @@ const Vwcartorg = () => {
                   
      
             </div>
-            {/* <Link to='/organization/vieworderorg'> */}
+            {/* <Link to='/organization/vieworderorg/'> */}
              <div className='text-center'><button onClick={()=>{handleSubmit('Ordered',id)}} className='bg-orange-500 py-3 px-5 rounded-lg font-bold '>ORDER NOW</button></div>
         </div>    
       
