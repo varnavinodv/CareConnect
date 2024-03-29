@@ -11,15 +11,9 @@ import Event from '../models/event.js';
 import ContributionRequest from '../models/contributionRequest.js';
 import Review from '../models/review.js';
 import { upload } from '../multer.js'
+import Orders from '../models/order.js';
 
 const router=express()
-
-
-
-
-
-
-
 
 router.post('/addtocart', async (req, res) => {
     try {
@@ -61,6 +55,8 @@ router.post('/addtocart', async (req, res) => {
         res.status(400).json({ message: error.message }); // Respond with an error if something goes wrong
     }
 });
+
+
 
 
 
@@ -161,6 +157,7 @@ router.get('/viewcart/:id',async(req,res)=>{
     let id=req.params.id
     console.log(req.body);
     let response=await Cart.find({organizationId:id})
+    
     console.log(response);
     let responseData=[];
       for (const newresponse of response){
@@ -344,15 +341,38 @@ router.get('/vieworpheventdetailspons/:id',async(req,res)=>{
 //     let response=await Orders.find()
 // })
 
-router.put('/changecartstatus/:id',async(req,res)=>{
-    let id=req.params.id
-    console.log(id);
-    console.log(req.body);
-    let carts=await Cart.find({organizationId:id})
-    console.log(carts)
-    let cart=await Cart.findByIdAndUpdate(carts._id,req.body)
-    console.log(cart);
-})
+router.put('/changecartstatus/:id', async (req, res) => {
+    try {
+        let id = req.params.id;
+        console.log(id);
+
+        console.log(req.body);
+
+        // Find the cart based on organizationId
+        let cart = await Cart.findOne({ organizationId: id });
+        console.log(cart);
+
+        // Create a new order based on the cart data
+        let newOrder = new Orders({
+            products: cart.products, // Assuming products structure is similar between Cart and Order
+            organizationId: cart.organizationId,
+            // Add other properties from cart if needed
+        });
+        
+        // Save the new order to the database
+        let savedOrder = await newOrder.save();
+        console.log(savedOrder);
+
+        // Remove the cart now that the order is created
+        let deletedCart = await Cart.findByIdAndDelete(cart._id);
+        console.log(deletedCart);
+
+        res.status(200).json({ message: 'Order created successfully.' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while processing the request.' });
+    }
+});
   
 
 router.put('/acceptdonation/:id',async(req,res)=>{
@@ -361,6 +381,29 @@ router.put('/acceptdonation/:id',async(req,res)=>{
     // console.log(req.body);
     let response=await donation.findByIdAndUpdate(id,req.body)
     console.log(response);
+})
+
+
+
+router.get('/vieworder/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let response=await Orders.find({organizationId:id}) 
+    
+    console.log(response);
+    let responseData=[]
+    for (const newresponse of response){
+        for (const x of newresponse.products){
+        let products=await product.findById(x.productId)
+        let user=await User.findById(products.userId)
+        responseData.push({
+            product:products,
+            user:user,
+            order:newresponse
+        })
+         } }
+    res.json(responseData)
+
 })
 
 

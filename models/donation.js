@@ -10,6 +10,10 @@ const donationSchema=Schema({
               type:mongoose.Types.ObjectId,
               ref:User
              },
+       deliveryboyId:{
+              type:mongoose.Types.ObjectId,
+              ref:User
+       },
        product:{
         type:String,
         required:true
@@ -22,6 +26,7 @@ const donationSchema=Schema({
         type:String,
         
        },
+       
        status:{
               type:String,
               default:'pending'

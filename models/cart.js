@@ -2,7 +2,7 @@ import mongoose,{Schema,model} from "mongoose";
 import User from './user.js'
 import product from "./product.js";
 
-const cartSchema = Schema({
+const cartSchema =new Schema({
     products: [{
         productId:{
             type:mongoose.Types.ObjectId,
