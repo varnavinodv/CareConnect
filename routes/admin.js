@@ -9,6 +9,7 @@ import Report from '../models/report.js';
 import Review from '../models/review.js';
 import donation from '../models/donation.js';
 import Sponsosrship from '../models/sponsorship.js';
+import Orders from '../models/order.js';
 
 const router=express()
 
@@ -255,6 +256,27 @@ router.get('/viewspons/:id',async(req,res)=>{
     } 
 
     res.json(responseData);
+})
+
+
+
+router.get('/vieworders',async(req,res)=>{
+    let response=await Orders.find()   
+    console.log(response);
+    // res.json(response)
+    let responseData=[]
+    for (const newresponse of response){
+        for (const x of newresponse.products){
+        let products=await product.findById(x.productId)
+        let user=await User.findById(products.userId)
+        responseData.push({
+            product:products,
+            user:user,
+            order:newresponse
+        })
+         } }
+    res.json(responseData)
+
 })
 
 export default router

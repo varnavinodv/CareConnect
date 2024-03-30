@@ -44,7 +44,7 @@ router.put('/updateproduct/:id',upload.fields([{name:'img'}]),async(req,res)=>{
     try{
         if(req.files['img']){
             const image =req.files['img'][0].filename;
-            console.log(image)
+            console.log(image);
             req.body={...req.body,img:image}
         }
         let id=req.params.id

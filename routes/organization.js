@@ -18,7 +18,7 @@ const router=express()
 router.post('/addtocart', async (req, res) => {
     try {
         const { productId, status, count, organizationId, deliveryboyId, cartstatus } = req.body;
-
+        console.log(productId,'[[[[');
         // Find the existing cart for the organizationId
         let existingCart = await Cart.findOne({ organizationId });
 
@@ -27,17 +27,18 @@ router.post('/addtocart', async (req, res) => {
             existingCart = new Cart({
                 products: [],
                 organizationId,
-                deliveryboyId, // Assuming deliveryboyId should be added at cart level, if not, adjust accordingly
-                cartstatus // Assuming cartstatus should be added at cart level, if not, adjust accordingly
+                deliveryboyId,
+                cartstatus
             });
         }
 
         // Check if the product already exists in the cart
-        const existingProductIndex = existingCart.products.findIndex(product => product.productId === productId);
+        const productInCart = existingCart.products.find(product=>product==productId);
+        console.log(productInCart,'=======================');
 
-        if (existingProductIndex !== -1) {
+        if (productInCart) {
             // If product already exists, update its count
-            existingCart.products[existingProductIndex].count += count;
+            productInCart.count += count;
         } else {
             // If product doesn't exist, add it to the products array
             existingCart.products.push({
@@ -55,6 +56,44 @@ router.post('/addtocart', async (req, res) => {
         res.status(400).json({ message: error.message }); // Respond with an error if something goes wrong
     }
 });
+
+
+
+
+// router.post('/addtocart', async (req, res) => {
+//     try {
+//         const { productId, status, count, organizationId, deliveryboyId, cartstatus } = req.body;
+         
+
+
+//         // Find the existing cart for the organizationId
+//         let existingCart = await Cart.findOne({ organizationId });
+
+//         // If no existing cart found, create a new cart object
+//         if (!existingCart) {
+//             existingCart = new Cart({
+//                 products: [],
+//                 organizationId,
+//                 deliveryboyId, // Assuming deliveryboyId should be added at cart level, if not, adjust accordingly
+//                 cartstatus // Assuming cartstatus should be added at cart level, if not, adjust accordingly
+//             });
+//         }
+// console.log(existingCart.products,'--------------------');
+//         const productInCart = existingCart.products.find({productId:productId});
+//             existingCart.products.push({
+//                 productId,
+//                 status,
+//                 count
+//             });
+        
+//         // Save the updated cart object to the database
+//         const savedCartItem = await existingCart.save();
+
+//         res.status(201).json(savedCartItem); // Respond with the saved cart item
+//     } catch (error) {
+//         res.status(400).json({ message: error.message }); // Respond with an error if something goes wrong
+//     }
+// });
 
 
 
@@ -126,15 +165,35 @@ router.get('/viewreportupdate/:id',async(req,res)=>{
 })
 
 
-// ----------update report
-router.put('/updatereport/:id',async(req,res)=>{
+
+router.put('/updatereport/:id',upload.fields([{name:'report'}]),async(req,res)=>{
+    try{
+        if(req.files['report']){
+            const report =req.files['report'][0].filename;
+            console.log(report);
+            req.body={...req.body,report:report}
+        }
+    
     let id=req.params.id
-    console.log(id);
     console.log(req.body );
     let response=await Report.findByIdAndUpdate(id,req.body)
     console.log(response);
+}
+catch(e){
+    res.json(e.message)
+}
 
 })
+
+// ----------update report
+// router.put('/updatereport/:id',async(req,res)=>{
+//     let id=req.params.id
+//     console.log(id);
+//     console.log(req.body );
+//     let response=await Report.findByIdAndUpdate(id,req.body)
+//     console.log(response);
+
+// })
 
 // ----------viewreports
 router.get('/viewreports/:id',async(req,res)=>{
