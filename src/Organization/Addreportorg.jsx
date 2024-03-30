@@ -13,14 +13,29 @@ const Addreportorg = () => {
     setData({...data,[event.target.name]:event.target.value})
   }
 
+
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
+  }
+
   let handleSubmit=async (event)=>{
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    let response=await axios.post('http://localhost:4000/organization/addreport',{...data,UserId:id})
-  console.log(response);
-    
     navigate('/organization/viewreportsorg')
+    let formData = new FormData();
+    formData.append('year', data.year);
+    formData.append('report', data.report);
+    formData.append('UserId', id)
+    let response=await axios.post('http://localhost:4000/organization/addreport',formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+  }})
+    console.log(response);
+    
+   
     
   }
 
@@ -41,7 +56,7 @@ const Addreportorg = () => {
   </div>
   <div class="mb-5">
     <label for="report" class="block mb-2 text-sm font-medium text-[#3E1B00]">Report</label>
-    <input onChange={handleChange} type="file" name="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input onChange={handlefile} type="file" name="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   
   

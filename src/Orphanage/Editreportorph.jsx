@@ -23,14 +23,31 @@ const Editreportorph = () => {
         setData({...data,[event.target.name]:event.target.value})
       }
 
+      let handlefile=(event)=>{
+        console.log(event.target.files);
+        setData({...data,[event.target.name]:event.target.files[0]})
+        console.log(data);
+      }
+    
+
       let handleSubmit=async (event)=>{
         event.preventDefault()
         // setData(data)
         // console.log(data);
         navigate('/orphanage/viewreports')
-        let response=await axios.put(`http://localhost:4000/organization/updatereport/${id}`,data)
-    console.log(response);
-        
+        const formData=new FormData();
+        for (const key in data){
+          if(data[key]){
+            formData.append(key,data[key]);
+          }
+        }
+        let response=await axios.put(`http://localhost:4000/organization/updatereport/${id}`,formData,{
+          headers:{
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        console.log(response);
+        setData('')
         
       }
   return (
@@ -50,7 +67,7 @@ const Editreportorph = () => {
 </div>
 <div class="mb-5">
 <label for="report" class="block mb-2 text-sm font-medium text-[#3E1B00]">Report</label>
-<input onChange={handleChange}  type="file" placeholder={userData.report} name="report" id="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handlefile}  type="file" placeholder={userData.report} name="report" id="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 
 

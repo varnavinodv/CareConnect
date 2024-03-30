@@ -9,6 +9,7 @@ const Vwcartorg = () => {
    let id=localStorage.getItem('id')
 
    const [data,setData]=useState([''])
+   const[refresh,setrefresh]=useState(false)
 
    useEffect(()=>{
       let fetchdata=async ()=>{
@@ -19,9 +20,10 @@ const Vwcartorg = () => {
       fetchdata()
 
       
-    },[])
+    },[refresh])
 
     let handleSubmit=async (status,id)=>{
+      setrefresh(!refresh)
    
       // setData(data)
       // console.log(data);
@@ -34,29 +36,49 @@ const Vwcartorg = () => {
 
   return (
     <div className='w-[100%]'>
-        <div className='basicbg2   pt-7 ps-10 pe-10 pb-10'>
+        <div className='basicbg   pt-7 ps-10 pe-10 pb-10'>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>CART</div>
-            <div className='flex flex-wrap justify-evenly pt-7 pb-12'>
+            {/* <div className='flex flex-wrap justify-evenly pt-7 pb-12'>
                   <Link to='/organization/viewcartproductdtlorg'>
                   {data.map((item)=>(
                     
                      <div className='h-fit w-[220px] bg-white'>
-                         {item.cart?.products?.map((item1)=>(
-                           <>
                      <img  className='h-[200px] w-[200px] pt-4 ps-4' src={`http://localhost:4000/uploads/${item.product?.img}`} alt="" />
                      <p className='text-center font-semibold pt-1'>{item.product?.name}</p>
          
                      <p className='text-center font-semibold  text-gray-800 text-sm'>{item.users?.name}</p>
-                     <p className='text-center font-semibold  text-gray-800 text-sm'>Count:{item1.count}</p>
-                     </>
+                     {item?.cart?.products?.map((counts)=>(
+
+                       <p className='text-center font-semibold  text-gray-800 text-sm'>Count:{counts.count}</p>
                      ))}
                   </div>
                    
                   ))}
                   </Link>
                   
+                  
      
-            </div>
+            </div> */}
+
+
+<div className='flex flex-wrap justify-evenly pt-7 pb-12'>
+      {data.map((item, index) => (
+        <Link key={index} to='/organization/viewcartproductdtlorg'>
+          <div className='h-fit w-[220px] bg-white'>
+            <img className='h-[200px] w-[200px] pt-4 ps-4' src={`http://localhost:4000/uploads/${item.product?.img}`} alt="" />
+            <p className='text-center font-semibold pt-1'>{item.product?.name}</p>
+            <p className='text-center font-semibold text-gray-800 text-sm'>{item.users?.name}</p>
+            {/* Display count for each product */}
+            {item?.cart?.products?.map((product, idx) => (
+              // Only display count if product's ID matches
+              product.productId === item.product?._id && (
+                <p key={idx} className='text-center font-semibold text-gray-800 text-sm'>Count: {product.count}</p>
+              )
+            ))}
+          </div>
+        </Link>
+      ))}
+    </div>
             {/* <Link to='/organization/vieworderorg/'> */}
              <div className='text-center'><button onClick={()=>{handleSubmit('Ordered',id)}} className='bg-orange-500 py-3 px-5 rounded-lg font-bold '>ORDER NOW</button></div>
         </div>    

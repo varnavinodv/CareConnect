@@ -29,13 +29,32 @@ const Editreportorg = () => {
     setData({...data,[event.target.name]:event.target.value})
   }
 
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
+  }
+
   let handleSubmit=async (event)=>{
     event.preventDefault()
     // setData(data)
     // console.log(data);
     navigate('/organization/viewreportsorg')
-    let response=await axios.put(`http://localhost:4000/organization/updatereport/${id}`,data)
+    const formData=new FormData();
+    for (const key in data){
+      if(data[key]){
+        formData.append(key,data[key]);
+      }
+    }
+    console.log(data);
+    console.log(formData);
+    let response=await axios.put(`http://localhost:4000/organization/updatereport/${id}`,formData,{
+      headers:{
+        'Content-Type': 'multipart/form-data'
+      }
+    })
     console.log(response);
+    setData('')
     
     
   }
@@ -57,7 +76,7 @@ const Editreportorg = () => {
 </div>
 <div class="mb-5">
 <label for="report" class="block mb-2 text-sm font-medium text-[#3E1B00]">Report</label>
-<input onChange={handleChange} placeholder={userData.report} name="report" type="file" id="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input  onChange={handlefile} placeholder={userData.report} name="report" type="file" id="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
 </div>
 
 
