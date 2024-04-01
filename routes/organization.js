@@ -12,6 +12,7 @@ import ContributionRequest from '../models/contributionRequest.js';
 import Review from '../models/review.js';
 import { upload } from '../multer.js'
 import Orders from '../models/order.js';
+import mongoose from 'mongoose';
 
 const router=express()
 
@@ -20,7 +21,7 @@ router.post('/addtocart', async (req, res) => {
         const { productId, status, count, organizationId, deliveryboyId, cartstatus } = req.body;
         console.log(productId,'[[[[');
         // Find the existing cart for the organizationId
-        let existingCart = await Cart.findOne({ organizationId });
+        let existingCart = await Cart.findOne({ organizationId:new mongoose.Types.ObjectId(organizationId),});
 
         // If no existing cart found, create a new cart object
         if (!existingCart) {
@@ -432,7 +433,7 @@ router.put('/changecartstatus/:id', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while processing the request.' });
     }
 });
-  
+
 
 router.put('/acceptdonation/:id',async(req,res)=>{
     let id=req.params.id
@@ -449,7 +450,7 @@ router.get('/vieworder/:id',async(req,res)=>{
     console.log(id);
     let response=await Orders.find({organizationId:id}) 
     
-    console.log(response);
+    console.log(response);  
     let responseData=[]
     for (const newresponse of response){
         for (const x of newresponse.products){
@@ -463,6 +464,10 @@ router.get('/vieworder/:id',async(req,res)=>{
          } }
     res.json(responseData)
 
+})
+
+router.put('/assignstatus',async(req,res)=>{
+    console.log(req.body);
 })
 
 
