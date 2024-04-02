@@ -20,6 +20,9 @@ const contributionSchema =Schema({
         default:Date.now()
         
     },
+    hideidentity:{
+        type:String
+    },
     status:{
         type:String,
         

@@ -16,6 +16,23 @@ const orderSchema=Schema({
             type:Number,
             required:true
         },
+        deliveryBoyId:{
+            type:mongoose.Types.ObjectId,
+        },
+        date:{
+            type:String,
+            default:''
+
+            
+        },
+        Ostatus:{
+            type:String,
+            default:'pending'
+        },
+        userId:{
+            type:mongoose.Types.ObjectId, 
+            ref:User
+        }
 
     }],
     organizationId:{
@@ -23,10 +40,7 @@ const orderSchema=Schema({
         ref:User
     },
   
-    deliveryboyId:{
-        type:mongoose.Types.ObjectId,
-        
-    },
+    
     orderstatus:{
         type:String,
         default:'pending'

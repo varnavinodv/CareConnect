@@ -18,7 +18,7 @@ const router=express()
 
 router.post('/addtocart', async (req, res) => {
     try {
-        const { productId, status, count, organizationId, deliveryboyId, cartstatus } = req.body;
+        const { productId, status, count, organizationId, deliveryboyId, cartstatus, userId } = req.body;
         console.log(productId,'[[[[');
         // Find the existing cart for the organizationId
         let existingCart = await Cart.findOne({ organizationId:new mongoose.Types.ObjectId(organizationId),});
@@ -45,7 +45,8 @@ router.post('/addtocart', async (req, res) => {
             existingCart.products.push({
                 productId,
                 status,
-                count
+                count,
+                userId
             });
         }
 
@@ -456,19 +457,82 @@ router.get('/vieworder/:id',async(req,res)=>{
         for (const x of newresponse.products){
         let products=await product.findById(x.productId)
         let user=await User.findById(products.userId)
+        let dboy=await User.findById(x.deliveryBoyId)
         responseData.push({
             product:products,
             user:user,
-            order:newresponse
+            order:newresponse,
+            delboy:dboy
         })
          } }
     res.json(responseData)
 
 })
 
-router.put('/assignstatus',async(req,res)=>{
-    console.log(req.body);
-})
+router.put('/assignorderdboy', async (req, res) => {
+    try {
+        console.log(req.body);
+        const { selectedOrders, deliveryboy, date ,orgId } = req.body;
+
+        // Find the order by ID
+        let order = await Orders.findById(orgId);
+        console.log(order)
+
+        // Find the product within the order
+        for (let x of selectedOrders){
+console.log(x,'xxxxxxxxxxxxxxxxxxx');
+            const product = order.products.find(p=>p.productId==x);
+            console.log(product,'========================');
+       
+
+        // Update the delivery boy ID and date for the product
+        product.deliveryBoyId = deliveryboy;
+        product.date = date;
+        product.Ostatus = 'assigned';
+
+        // Save the updated order
+        await order.save();
+    }
+        res.status(200).json({ message: "Delivery boy assigned successfully for the product." });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while processing the request.' });
+    }
+});
+
+
+
+// router.put('/assignorderdelboy', async (req, res) => {
+//     try {
+//         const productId = req.body.productId;
+//         const deliveryBoyId = req.body.deliveryBoyId;
+//         const deliveryDate = req.body.deliveryDate;
+
+//         // Find the order by ID
+//         let order = await Orders.findById(req.body.orderId);
+//         if (!order) {
+//             return res.status(404).json({ error: "Order not found." });
+//         }
+
+//         // Find the product within the order
+//         const productIndex = order.products.findIndex(product => product.productId === productId);
+//         if (productIndex === -1) {
+//             return res.status(404).json({ error: "Product not found in the order." });
+//         }
+
+//         // Update the delivery boy ID and date for the product
+//         order.products[productIndex].deliveryBoyId = deliveryBoyId;
+//         order.products[productIndex].deliveryDate = deliveryDate;
+
+//         // Save the updated order
+//         await order.save();
+
+//         res.status(200).json({ message: "Delivery boy assigned successfully for the product." });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: 'An error occurred while processing the request.' });
+//     }
+// });
 
 
 export default router

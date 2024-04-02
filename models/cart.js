@@ -15,6 +15,10 @@ const cartSchema =new Schema({
             type:Number,
             required:true
         },
+        userId:{
+            type:mongoose.Types.ObjectId, 
+            ref:User
+        }
 
     }],
     organizationId:{

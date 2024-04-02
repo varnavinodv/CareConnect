@@ -5,6 +5,7 @@ import Contribution from '../models/contribution.js'
 import ContributionRequest from '../models/contributionRequest.js'
 import { upload } from '../multer.js'
 import Event from '../models/event.js'
+import Orders from '../models/order.js'
 
 
 const router=express()
@@ -163,5 +164,35 @@ router.get('/viewcontribution/:id',async(req,res)=>{
     res.json(responseData);
 
 })
+
+router.get('/vieworder/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        console.log(id);
+        
+        const orders=await Orders.find()
+        let responseData = [];
+        console.log(orders);
+for (let ord of orders){
+console.log(ord,'----------------------');
+        console.log(product,'===================');
+        const orders1 = await ord.products.filter(p=>p.userId==id);
+        let org=await User.findById(orders1.organizationId)
+        console.log(orders1,'++++++++++++++++++++++++++++++++++++++++');
+        responseData.push({
+            order:orders1,
+            // organization:org
+            
+        });
+        
+}
+
+        res.status(200).json(responseData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while processing the request.' });
+    }
+});
+
 
 export default router
