@@ -69,7 +69,17 @@ const Updateproductuser = () => {
   </div>
   <div class="mb-5">
     <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Category</label>
-    <input onChange={handleChange}  placeholder={userData.category} type="text" name="category" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
+    {/* <input onChange={handleChange}  placeholder={userData.category} type="text" name="category" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   /> */}
+    <select onChange={handleChange} name="category" className="shadow-sm bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD] block p-2">
+  <option value="" disabled selected hidden>{userData.category ? userData.category : 'Select a category'}</option>
+  <option value="dress">Dress</option>
+  <option value="toys">Toys</option>
+  <option value="shoes">Shoes</option>
+  <option value="books">Books</option>
+  <option value="bags">Bags</option>
+  <option value="others">Others</option>
+</select>
+
   </div>
   <div class="mb-5">
     <label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Image</label>

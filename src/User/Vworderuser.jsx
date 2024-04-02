@@ -1,7 +1,21 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import sbook from '../Admin/sbook.jpg'
+import axios from 'axios'
 
 const Vworderuser = () => {
+
+    const [data,setdata]=useState([''])
+    let id=localStorage.getItem('id')
+    useEffect(()=>{
+        let fetchdata=async()=>{
+           let response=await axios.get(`http://localhost:4000/user/vieworder/${id}`)
+           console.log(response.data);
+           setdata(response.data)
+  
+        }
+        fetchdata()
+     },[]) 
+
     const [det,setDet]= useState(1)
      let details=()=>{
          setDet(1)
@@ -56,6 +70,7 @@ const Vworderuser = () => {
             </tr>
         </thead>
         <tbody>
+        {data.map((item,index)=>(
             
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-medium">
                 <td class="px-6 py-4 ">
@@ -118,7 +133,7 @@ det==3 &&
                 
                 
             </tr>
-           
+        ))}
         </tbody>
     </table>
 </div>

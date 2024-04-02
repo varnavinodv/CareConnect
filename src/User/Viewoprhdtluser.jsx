@@ -35,7 +35,7 @@ const Viewoprhdtluser = () => {
          <div className='basicbg2   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div >
             <div className='font-bold text-4xl text-amber-950 py-8'>{data.response?.name}</div>
-            <div className='flex flex-wrap justify-end w-full gap-8'>
+            <div className='flex flex-wrap  w-full gap-8'>
             <div className='text-xl font-semibold'>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img  className='w-[30px] h-[30px]' src={call} alt="" />

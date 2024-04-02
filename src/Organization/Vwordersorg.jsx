@@ -31,12 +31,13 @@ const Vwordersorg = () => {
   let assigndb=()=>{
      setassign(!assign)
   }
-
+const [order,setorder]=useState('')
   // Create a separate state for selected orders
   const [selectedOrders, setSelectedOrders] = useState([]);
 
-  const handleOrderCheckboxChange = (orderId) => {
+  const handleOrderCheckboxChange = (orderId,mainOrderId) => {
     // Check if the orderId is already selected
+    setorder(mainOrderId)
     const index = selectedOrders.indexOf(orderId);
     if (index === -1) {
       // If not selected, add it to the selectedOrders array
@@ -49,17 +50,23 @@ const Vwordersorg = () => {
   };
   console.log(selectedOrders);
 
+  let handleChange=(event)=>{
+    setData({...data,[event.target.name]:event.target.value})
+  }
+
 
   let handleSubmit = async (did) => {
     try {
         // Create a payload object to send with the request
         const payload = {
             selectedOrders: selectedOrders,
-            deliveryboy: did
+            deliveryboy: did,
+            date:data.date,
+            orgId:order
         };
 
         // Make the PUT request
-        let response2 = await axios.put('http://localhost:4000/organization/assignstatus', payload);
+        let response2 = await axios.put('http://localhost:4000/organization/assignorderdboy', payload);
         console.log(response2.data);
         console.log('jhgf');
     } catch (error) {
@@ -76,6 +83,7 @@ const Vwordersorg = () => {
         <div>
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ORDERS</div>
         <div class='relative overflow-x-auto shadow-md sm:rounded-lg'>
+        <button className='bg-orange-500 text-black  py-2 px-2 rounded-lg float-right' onClick={assigndb}>Assign delivery boy</button>
           <table class='w-full text-sm text-left rtl:text-right text-black dark:text-black'>
             <thead class='text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black'>
               <tr>
@@ -109,6 +117,9 @@ const Vwordersorg = () => {
                 <th scope='col' class='px-6 py-3'>
                   ACTION
                 </th>
+                <th scope='col' class='px-6 py-3'>
+                  DELIVERY BOY
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -131,15 +142,16 @@ const Vwordersorg = () => {
                     item1.productId == item.product?._id && 
                     <>
                     <td class='px-6 py-4'>{item1.count}</td>
-                  <td class='px-6 py-4'>---------------</td>
-                  <td class='px-6 py-4'>pending</td>
+                  <td class='px-6 py-4'>{item1.date}</td>
+                  <td class='px-6 py-4'>{item1.Ostatus}</td>
                   <td>
                     <input
                       type='checkbox'
                       checked={selectedOrders.includes(item1.productId)}
-                      onChange={() => handleOrderCheckboxChange(item1.productId)}
+                      onChange={() => handleOrderCheckboxChange(item1.productId,item.order._id)}
                     />
                   </td>
+                  <td class='px-6 py-4'>{item.delboy?.name}</td>
                   </>
 
                   ))}
@@ -147,7 +159,7 @@ const Vwordersorg = () => {
                   <td class='px-6 py-4'>
                     {/* <Link to='/organization/assigndeliveryboyorg/orders'> */}
                       {' '}
-                      <button className='bg-orange-500 text-black py-2 px-2 rounded-lg' onClick={assigndb}>Assign delivery boy</button>
+                      {/* <button className='bg-orange-500 text-black py-2 px-2 rounded-lg' onClick={assigndb}>Assign delivery boy</button> */}
                     {/* </Link> */}
                   </td>
                 </tr>
@@ -210,8 +222,8 @@ const Vwordersorg = () => {
                         
                         <div className=' right-[30px] text-center sm:right-[18px] p-4 w-fit bg-white text-black text-base  font-semibold rounded-lg sm:top-[60px] '>
                             <div className='flex flex-wrap justify-center gap-2 '>
-                               <label htmlFor="date" className='text-amber-950'>Date</label>
-                               <input type="date"className='border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1  dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600' ></input>
+                               <label  htmlFor="date" className='text-amber-950'>Date</label>
+                               <input onChange={handleChange}  type="date" name="date" className='border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1  dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600' ></input>
                             
                             </div>
                            
@@ -221,7 +233,6 @@ const Vwordersorg = () => {
                                 {/* <Link to='/organization/viewdonationorg'> <button className='bg-orange-500 p-1 rounded-lg '>SUBMIT</button></Link> */}
 
                            
-                            
                           </div> 
                      }
                 </td>

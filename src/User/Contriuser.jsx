@@ -18,16 +18,16 @@ console.log(check);
     setData({...data,[event.target.name]:event.target.value})
   }
 
-  let checkedValue=(e)=>{
-    console.log(e.target.value);
-  }
+  // let checkedValue=(e)=>{
+  //   console.log(e.target.value);
+  // }
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
     // setData(data)
     // console.log(data);
     
-    let response=await axios.post('http://localhost:4000/user/contribution',{...data,userId:id,contributionRequestId:cid})
+    let response=await axios.post('http://localhost:4000/user/contribution',{...data,userId:id,contributionRequestId:cid,hideidentity:check})
     console.log(response);
     navigate('/user/viewcontributionuser')
     
@@ -82,8 +82,8 @@ console.log(check);
   </div>
    
 <div class="flex items-center pb-3">
-    <input  onChange={()=>{setcheck(!check)}} name="link-checkbox" type="checkbox" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 pb-3"></input>
-    <label for="link-checkbox" class="ms-2 text-sm text-amber-950 font-semibold ">Hide identity</label>
+    <input  onChange={()=>{setcheck(!check)}} name="hideidentity" type="checkbox" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 pb-3"></input>
+    <label for="hideidentity" class="ms-2 text-sm text-amber-950 font-semibold ">Hide identity</label>
 </div>
 
   

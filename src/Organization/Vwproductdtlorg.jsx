@@ -26,7 +26,7 @@ const Vwproductdtlorg = () => {
       event.preventDefault()
       
       // navigate('/organization/viewproductorg')
-       let response=await axios.post('http://localhost:4000/organization/addtocart',{...data,organizationId:id,productId:pid})
+       let response=await axios.post('http://localhost:4000/organization/addtocart',{...data,organizationId:id,productId:pid,userId:data2.users._id})
        console.log(response);
         
     }
