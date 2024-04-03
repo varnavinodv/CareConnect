@@ -6,6 +6,7 @@ import ContributionRequest from '../models/contributionRequest.js'
 import { upload } from '../multer.js'
 import Event from '../models/event.js'
 import Orders from '../models/order.js'
+import mongoose from 'mongoose'
 
 
 const router=express()
@@ -170,27 +171,82 @@ router.get('/vieworder/:id', async (req, res) => {
         const id = req.params.id;
         console.log(id);
         
-        const orders=await Orders.find()
+        // Find orders associated with the user ID
+        const orders = await Orders.find({ 'products.userId': id });
         let responseData = [];
-        console.log(orders);
-for (let ord of orders){
-console.log(ord,'----------------------');
-        console.log(product,'===================');
-        const orders1 = await ord.products.filter(p=>p.userId==id);
-        let org=await User.findById(orders1.organizationId)
-        console.log(orders1,'++++++++++++++++++++++++++++++++++++++++');
-        responseData.push({
-            order:orders1,
-            // organization:org
-            
-        });
-        
-}
 
-        res.status(200).json(responseData);
+        for (let ord of orders) {
+            console.log(ord, '----------------------');
+            // Filter products based on userId
+            const products = ord.products.filter(p => p.userId == id);
+            const orgs=await User.findById(ord.organizationId)
+            for(let x of products){
+                
+                const productdetails=await product.findById(x.productId)
+                const delboys = await User.findById(x.deliveryBoyId)
+                    
+                
+                
+            
+
+            // Now products contains the filtered products for the user
+            console.log(products, '===================');
+
+            responseData.push({
+                products: products,
+                order:ord,
+                org:orgs,
+                productdetail:productdetails,
+                dboy:delboys
+            });
+        }
+        }
+
+        // Send the order details containing filtered products
+        res.json(responseData);
+        
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'An error occurred while processing the request.' });
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+router.put('/acceptorder/:id', async (req, res) => {
+    try {
+        const id = new mongoose.Types.ObjectId(req.params.id);
+        console.log(id);
+        console.log(req.body);
+        
+        // Find the order that contains the product with the given productId
+        const order = await Orders.findOne({ 'products.productId': id });
+        console.log(order,'oooooooooooooooooooooooooo');
+
+        // If the order containing the product is found
+        if (order) {    
+            // Update the Ostatus of the product with the given productId
+            order.products.forEach(product => {
+                console.log("Product ID:", product.productId); // Debugging: Log product ID
+                console.log("Target ID:", id); // Debugging: Log target ID
+                if (product.productId.equals(id)) {
+                    console.log(product,'-0-0-09-098');
+                    product.Ostatus = req.body.status; // Assuming Ostatus is updated from req.body
+                }
+            });
+
+            // Save the updated order
+            await order.save();
+
+            console.log("Order updated successfully:", order);
+            res.status(200).json({ message: "Order updated successfully" });
+        } else {
+            // If the order containing the product is not found
+            console.log("Order not found for the given productId:", id);
+            res.status(404).json({ message: "Order not found for the given productId" });
+        }
+    } catch (error) {
+        console.error("Error updating order:", error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 });
 
