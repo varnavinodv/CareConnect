@@ -22,7 +22,7 @@ const Vwdelboys = () => {
   return (
     <div className='w-[100%]'>
         <div className=' '>
-                                <div className='basicbg3 pb-4  pt-7 ps-10 pe-10'>
+                                <div className='basicbg pb-4  pt-7 ps-10 pe-10'>
             <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>DELIVERY BOYS</div>
              {/* button */}
              <Link to='/organization/adddeliveryboy'><button className='bg-orange-500 flex flex-wrap py-1 pe-2 rounded-lg m-auto hover:px-2 hover:py-2   items-center mb-8'>

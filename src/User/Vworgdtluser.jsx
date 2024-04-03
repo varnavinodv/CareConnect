@@ -35,15 +35,15 @@ const Vworgdtluser = () => {
           <div >
             <div className='font-bold text-4xl text-amber-950 py-8'>{data.name}</div>
             <div>
-                <div className='flex flex-wrap justify-center gap-3 pb-3'>
+                <div className='flex flex-wrap  gap-3 pb-3'>
                   <img  className='w-[30px] h-[30px]' src={call} alt="" />
                   <p>{data.phno}</p>
                 </div>
-                <div className='flex flex-wrap justify-center gap-3 pb-3'>
+                <div className='flex flex-wrap  gap-3 pb-3'>
                   <img className='w-[30px] h-[30px]' src={email} alt="" />
                   <p>{data.email}</p>
                 </div>
-                <div className='flex flex-wrap justify-center gap-3 pe-8 pb-3'>
+                <div className='flex flex-wrap  gap-3 pe-8 pb-3'>
                   <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
                   <p>{data.place}<br />P.O {data.postoffice} <br />
                              pin:{data.pin} <br />

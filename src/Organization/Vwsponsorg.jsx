@@ -37,9 +37,7 @@ const Vwsponsorg = () => {
     <th scope="col" class="px-6 py-3">
         ORPHANAGE
     </th>
-    <th scope="col" class="px-6 py-3">
-        ORGANIZATION
-    </th>
+    
     <th scope="col" class="px-6 py-3">
         PURPOSE
     </th>
@@ -60,14 +58,12 @@ const Vwsponsorg = () => {
     <td class="px-6 py-4">
        {item.orph?.name}
     </td>
-    <td class="px-6 py-4">
-        {item.organization?.name}
-    </td>
+    
     <td class="px-6 py-4">
         {item.spons?.purpose}
     </td>
     <td class="px-6 py-4">
-        Accepted
+        -----
     </td>
 </tr>
 ))} 

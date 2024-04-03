@@ -5,6 +5,7 @@ import axios from 'axios'
 const Vworderuser = () => {
 
     const [data,setdata]=useState([''])
+    const[refresh,setrefresh]=useState(false)
     let id=localStorage.getItem('id')
     useEffect(()=>{
         let fetchdata=async()=>{
@@ -14,7 +15,17 @@ const Vworderuser = () => {
   
         }
         fetchdata()
-     },[]) 
+     },[refresh]) 
+
+     let handleSubmit=async (status,id)=>{
+        setrefresh(!refresh)
+        // setData(data)
+        // console.log(data);
+        // navigate('/organization/viewdeliveryboyorg')
+        let response=await axios.put(`http://localhost:4000/user/acceptorder/${id}`,{...data,status:status})
+      console.log(response);
+        
+      }
 
     const [det,setDet]= useState(1)
      let details=()=>{
@@ -74,55 +85,60 @@ const Vworderuser = () => {
             
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-medium">
                 <td class="px-6 py-4 ">
-                    1.
+                    {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    RED Org
+                    {item.org?.name}
                 </td>
                 <td class="px-6 py-4">
-                     Story book
+                    {item.productdetail?.name}
                 </td>
                 <td class="px-6 py-4">
-                    Book
+                {item.productdetail?.category}
+                </td>
+                {item.products?.map((item1)=>(
+                item1.productId == item.productdetail?._id && 
+                <>
+                <td class="px-6 py-4">
+                   {item1.count}
+                </td>
+                
+                <td class="px-6 py-4">
+                    <img  className='h-14 w-14' src={`http://localhost:4000/uploads/${item.productdetail?.img}`} alt="" />
                 </td>
                 <td class="px-6 py-4">
-                    5
+                    {item1.date}
                 </td>
                 <td class="px-6 py-4">
-                    <img  className='h-14 w-14' src={sbook} alt="" />
+                    {item1.Ostatus}
                 </td>
-                <td class="px-6 py-4">
-                    18/02/2023
-                </td>
-                <td class="px-6 py-4">
-                    pending
-                </td>
+                
 <td>
-    {det==1 ?
+
+    {item1.Ostatus=='pending' ?
+    
      <>
      <div className='flex flex-col'>
-     <a href="#" class="font-bold text-sm text-green-600 hover:underline hover:bg-white p-1" onClick={details2}>Accept</a>
-     <a href="#" class="font-bold text-sm text-red-600 hover:underline hover:bg-white p-1" >Reject</a>
+     <a href="#" class="font-bold text-sm text-green-600 hover:underline hover:bg-white p-1"onClick={()=>{handleSubmit('Accepted',item.productdetail._id)}} >Accept</a>
+     <a href="#" class="font-bold text-sm text-red-600 hover:underline hover:bg-white p-1" onClick={()=>{handleSubmit('Rejected',item.productdetail._id)}} >Reject</a>
      </div>
    </>
     :
-    det==2 ?
+    item1.Ostatus=='Accepted' &&
     <>
-    <a href="#" class="font-medium  text-black hover:underline hover:font-bold" onClick={details3} >View details</a>
-    </>
-:
-det==3 &&
-<>
-                        <a href="#" class="font-medium  text-black hover:underline hover:font-bold" onClick={details2} >Hide details</a>
-                        <div className='list-none right-[30px] sm:right-[18px] p-4 bg-white text-black text-base  font-semibold rounded-lg sm:top-[60px] '>
-                            <p>Delivery boy :Avinash</p>
-                            <p>Phone no: +91 9876543213</p>
+    <div className='list-none right-[30px] sm:right-[18px] p-4 bg-white text-black text-base  font-semibold rounded-lg sm:top-[60px] '>
+                            <p>Delivery boy :{item.dboy?.name}
+</p>
+                            <p>Phone no: {item.dboy?.phno}</p>
                           </div> 
-                    </>
-    }
+    </>
     
+    
+                }
 
 </td>
+</>
+                 ))}
 
 
 
