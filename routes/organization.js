@@ -380,9 +380,11 @@ router.get('/viewdonation/:id',async(req,res)=>{
     let responseData=[];
     for(const newresponse of response){
         let orphanages=await User.findById(newresponse.orphanageId);
+        let delboys = await User.findById(newresponse.deliveryboyId);
         responseData.push({
              orphanage:orphanages,
-             donation:newresponse
+             donation:newresponse,
+             delboy:delboys
         });
     }
     res.json(responseData);
@@ -436,13 +438,6 @@ router.put('/changecartstatus/:id', async (req, res) => {
 });
 
 
-router.put('/acceptdonation/:id',async(req,res)=>{
-    let id=req.params.id
-    // console.log(id);
-    // console.log(req.body);
-    let response=await donation.findByIdAndUpdate(id,req.body)
-    console.log(response);
-})
 
 
 
@@ -500,39 +495,26 @@ console.log(x,'xxxxxxxxxxxxxxxxxxx');
     }
 });
 
+router.put('/acceptdonation/:id',async(req,res)=>{
+    let id=req.params.id
+    // console.log(id);
+    // console.log(req.body);
+    let response=await donation.findByIdAndUpdate(id,req.body)
+    console.log(response);
+})
 
 
-// router.put('/assignorderdelboy', async (req, res) => {
-//     try {
-//         const productId = req.body.productId;
-//         const deliveryBoyId = req.body.deliveryBoyId;
-//         const deliveryDate = req.body.deliveryDate;
+router.put('/assigndonationdboy/:id',async(req,res)=>{
+    let id = req.params.id
+    console.log(req.body);
+    let donations=await donation.findByIdAndUpdate(id,req.body)
+    res.json(donations)
 
-//         // Find the order by ID
-//         let order = await Orders.findById(req.body.orderId);
-//         if (!order) {
-//             return res.status(404).json({ error: "Order not found." });
-//         }
+    
+})
 
-//         // Find the product within the order
-//         const productIndex = order.products.findIndex(product => product.productId === productId);
-//         if (productIndex === -1) {
-//             return res.status(404).json({ error: "Product not found in the order." });
-//         }
 
-//         // Update the delivery boy ID and date for the product
-//         order.products[productIndex].deliveryBoyId = deliveryBoyId;
-//         order.products[productIndex].deliveryDate = deliveryDate;
 
-//         // Save the updated order
-//         await order.save();
-
-//         res.status(200).json({ message: "Delivery boy assigned successfully for the product." });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: 'An error occurred while processing the request.' });
-//     }
-// });
 
 
 export default router

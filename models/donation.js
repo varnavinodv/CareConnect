@@ -13,6 +13,7 @@ const donationSchema=Schema({
        deliveryboyId:{
               type:mongoose.Types.ObjectId,
               ref:User
+         
        },
        product:{
         type:String,
@@ -24,6 +25,7 @@ const donationSchema=Schema({
        },
        date:{
         type:String,
+        default:''
         
        },
        

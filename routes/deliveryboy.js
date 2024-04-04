@@ -2,6 +2,7 @@ import express from 'express'
 import Orders from '../models/order.js';
 import product from '../models/product.js';
 import User from '../models/user.js';
+import mongoose from 'mongoose';
 // import Orders from '../models/order.js'
 
 const router=express()
@@ -34,24 +35,25 @@ router.get('/vieworders/:id',async(req,res)=>{
     res.json(responseData);
 })
 
-// router.put('updatestatusorder/:id',async(req,res)=>{
-//     const id = new mongoose.Types.ObjectId(req.params.id);
-//     console.log(id);
-//     console.log(req.body);
-//     const order = await Orders.findOne({ 'product.productId': id });
-//         console.log(order);
-//         if (order) {
+router.put('/updatestatusorder/:id',async(req,res)=>{
+    const id = new mongoose.Types.ObjectId(req.params.id);
+    console.log(id,'[][][][][][][][');
+    console.log(req.body,'-------------------- ');
+    const order = await Orders.findOne({ 'products.productId': id });
+        console.log(order,'ffdfdfdfdfd');
+        if (order) {
 
-//             order.products.forEach(product => {
-//                 console.log("Product ID:", product.productId); // Debugging: Log product ID
-//                 console.log("Target ID:", id); // Debugging: Log target ID
-//                 if (product.productId.equals(id)) {
-//                     console.log(product,'-0-0-09-098');
-//                     product.Ostatus = req.body.status; // Assuming Ostatus is updated from req.body
-//                 }
-//             });
-//             await order.save();
-//         }
-// })
+            order.products.forEach(product => {
+                console.log("Product ID:", product.productId); // Debugging: Log product ID
+                console.log("Target ID:", id); // Debugging: Log target ID
+                if (product.productId.equals(id)) {
+                    console.log(product);
+                    product.Ostatus = req.body.Ostatus; // Assuming Ostatus is updated from req.body
+                }
+            });
+            await order.save();
+        }
+        res.json('success')
+})
 
 export default router
