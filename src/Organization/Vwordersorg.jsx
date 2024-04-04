@@ -69,6 +69,7 @@ const [order,setorder]=useState('')
         let response2 = await axios.put('http://localhost:4000/organization/assignorderdboy', payload);
         console.log(response2.data);
         console.log('jhgf');
+        window.location.reload()
     } catch (error) {
         console.error(error);
     }

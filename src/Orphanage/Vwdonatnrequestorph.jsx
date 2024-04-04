@@ -66,7 +66,7 @@ const Vwdonatnrequestorph = () => {
                     {item.count}
                 </td>
                 <td class="px-6 py-4">
-                    pending
+                    ----------
                 </td>
                 <td class="px-6 py-4">
                    --

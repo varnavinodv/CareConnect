@@ -65,15 +65,19 @@ const Vwdonatnorg = () => {
                 {item.donation?.count}
                 </td>
                 <td class="px-6 py-4">
-                  ----------
+                 {item.donation?.date}
                 </td>
                 <td class="px-6 py-4">
                 {item.donation?.status}
                 </td>
                 <td class="px-6 py-4">
+                    {item.donation?.status =='assigned' ?
+                            <p>{item.delboy?.name}</p>
+                      :      
                     
-                  <Link to ='/organization/assigndeliveryboyorg/donation'> <button className='bg-orange-500 text-black py-2 px-2 rounded-lg'>Assign delivery boy</button></Link>
-                </td>
+                  <Link to ={`/organization/assigndeliveryboyorg/${item.donation?._id}`}> <button className='bg-orange-500 text-black py-2 px-2 rounded-lg'>Assign delivery boy</button></Link>
+                   }
+        </td>
             </tr>
         ))} 
         </tbody>

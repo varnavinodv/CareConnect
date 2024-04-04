@@ -158,7 +158,7 @@ root.render(
         <Route path='viewdonationorg' element={<Vwdonatnorg/>}/>
         <Route path='viewproductdtlorg/:pid' element={<Vwproductdtlorg/>}/>
         <Route path='vieworphdtlorg/:id' element={<Vworphdtlorg/>}/>
-        <Route path='assigndeliveryboyorg/:id' element={<Assigndeliveryboy/>}/>
+        <Route path='assigndeliveryboyorg/:did' element={<Assigndeliveryboy/>}/>
         <Route path='viewcartproductdtlorg' element={<Vwcartproductdtlorg/>}/>
         <Route path='sponsorshiporg/:eid' element={<Sponsorshiporg/>}/>
         <Route path='addreportorg' element={<Addreportorg/>}/>

@@ -17,12 +17,12 @@ const Donatnreqorg = () => {
         fetchdata()
      },[refresh])
 
-     let handleSubmit=async (status,id,oid)=>{
+     let handleSubmit=async (status,id,sid)=>{
         setrefresh(!refresh)
         // setData(data)
         // console.log(data);
         // navigate('/organization/viewdeliveryboyorg')
-        let response=await axios.put(`http://localhost:4000/organization/acceptdonation/${id}`,{status:status,organizationId:oid})
+        let response=await axios.put(`http://localhost:4000/organization/acceptdonation/${id}`,{status:status,organizationId:sid})
       console.log(response);
       setdata('')
         

@@ -58,10 +58,10 @@ const Viewdonatnorph = () => {
        {item.count}
     </td>
     <td class="px-6 py-4">
-        TRS orggg
+        {item.status}
     </td>   
     <td class="px-6 py-4">
-        Accepted
+        --------
     </td>
    
 </tr>
