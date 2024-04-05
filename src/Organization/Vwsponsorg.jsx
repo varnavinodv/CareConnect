@@ -63,7 +63,7 @@ const Vwsponsorg = () => {
         {item.spons?.purpose}
     </td>
     <td class="px-6 py-4">
-        -----
+       {item.spons?.status}
     </td>
 </tr>
 ))} 

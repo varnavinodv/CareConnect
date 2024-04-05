@@ -52,17 +52,19 @@ const Viewdonatnorph = () => {
     </td>
     
     <td class="px-6 py-4">
-       {item.product}
+       {item.response?.product}
     </td>
     <td class="px-6 py-4">
-       {item.count}
+       {item.response?.count}
+       
     </td>
     <td class="px-6 py-4">
-        {item.status}
-    </td>   
-    <td class="px-6 py-4">
-        --------
+       {item.org?.name}
+      
     </td>
+    <td class="px-6 py-4">
+    {item.response?.status}
+    </td> 
    
 </tr>
    ))}  

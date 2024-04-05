@@ -66,13 +66,16 @@ const Sponshistoryorph = () => {
              {item.organization?.name}
            </td>
            {item?.sponsor.map((item1,index)=>(
+            <>
            <td class="px-6 py-4">
               {item1.purpose}
            </td>
-           ))}
+          
            <td class="px-6 py-4">
-             Accepted
+             {item1.status}
            </td>
+           </>
+            ))}
           
            
        </tr>

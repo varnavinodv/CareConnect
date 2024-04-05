@@ -44,9 +44,9 @@ const Vweventorg = () => {
                 <th scope="col" class="px-6 py-3">
                    TIME
                 </th>
-                <th scope="col" class="px-6 py-3">
+                {/* <th scope="col" class="px-6 py-3">
                    STATUS
-                </th>
+                </th> */}
                 <th scope="col" class="px-6 py-3">
                    ACTION
                 </th>
@@ -73,9 +73,9 @@ const Vweventorg = () => {
                 <td class="px-6 py-4">
                  {item.event?.time}
                 </td>
-                <td class="px-6 py-4">
+                {/* <td class="px-6 py-4">
                pending
-                </td>
+                </td> */}
                 <td class="px-6 py-4">
                   
                    <Link to={`/organization/sponsorshiporg/${item.event?._id}`}> <button className='bg-orange-500 p-1 rounded-md'>Sent sponsorship request</button></Link>

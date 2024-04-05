@@ -82,13 +82,13 @@ const Vwdonatnadm = () => {
                     {data.donation?.count}
                 </td>
                 <td class="px-6 py-4">
-                    orghghajgdgd
+                   {data.orgs?.name}
                 </td>
                 <td class="px-6 py-4">
                    {data.orphanage?.name}
                 </td>
                 <td class="px-6 py-4">
-                   pending
+                {data.donation?.status}
                 </td>
             </tr>
             ))} 

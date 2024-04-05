@@ -55,27 +55,31 @@ const Vwdonatnrequestorph = () => {
         </thead>
         <tbody>
         {data.map((item,index)=>(
+            // item.response?.map((item1)=>(
             <tr class="bg-[#f8d2a0] border-b font-semibold text-black border-orange-600 hover:bg-[#f7b866d4]">
                 <td class="px-6 py-4 ">
                    {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    {item.product}
+                    {item.response?.product}
                 </td>
                 <td class="px-6 py-4">
-                    {item.count}
+                    {item.response?.count}
                 </td>
                 <td class="px-6 py-4">
-                    ----------
+                    {item.response?.status}
                 </td>
+               
                 <td class="px-6 py-4">
-                   --
+                 {item.orgs?.name}
                 </td>
+               
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
                     
                     <img  className='w-[40px] h-[30px]' src={dlt} alt="" />
                 </td>
             </tr>
+        //    ))
             ))}   
         </tbody>
     </table>

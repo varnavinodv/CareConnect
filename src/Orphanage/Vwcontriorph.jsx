@@ -77,7 +77,7 @@ const Vwcontriorph = () => {
                 </td>
                 
                 <td class="px-6 py-4">
-                   pending
+                  {item.status}
                 </td>
                 <td class="px-6 py-4">
                 <Link to={`/orphanage/viewcontridetails/${item._id}`}> <a href="#" class=" font-semibold text-green-600 hover:underline">View Contributions</a></Link><br/>

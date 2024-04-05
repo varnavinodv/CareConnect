@@ -50,16 +50,15 @@ const Vworphdtlorg = () => {
                             {data.response?.district}</p>
                 </div>
             </div>
-            {data?.contrireq?.map((item)=>(
+            {/* {data?.contrireq?.map((item)=>( */}
 
-              <div className=' h-fit p-2 ms-16 bg-white'>
-              <h1 className='text-black font-bold'>{item?.purpose}-Rs.{item?.amount} needed</h1>
-              <h2 className='text-gray-800'>{item?.description}</h2>
-              <h3 className='text-gray-700 font-semibold'>{item?.amount-item?.Bamount} rupees raised</h3>
-              {/* <Link to='/user/contributionuser'><button className='bg-orange-500 py-1 px-1 rounded-lg text-white '>CONTRIBUTE</button></Link> */}
-
-            </div>
-              ))}
+              {/* <div className=' h-fit p-2 ms-16 bg-white'> */}
+              {/* <h1 className='text-black font-bold'>{item?.purpose}-Rs.{item?.amount} needed</h1> */}
+              {/* <h2 className='text-gray-800'>{item?.description}</h2> */}
+              {/* <h3 className='text-gray-700 font-semibold'>{item?.amount-item?.Bamount} rupees raised</h3> */}
+             
+            {/* </div> */}
+              {/* ))} */}
             </div>
             <div>
               <button className='bg-orange-500 py-2 px-3 rounded-lg' onClick={dropdown}><div className='flex flex-wrap items-center'>

@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 
 const Vwsponsorph = () => {
 
-    const [data,setData]=useState('')
+    const [data,setData]=useState([''])
+    const[refresh,setrefresh]=useState(false)
     let {id} =useParams()
     console.log(id);
     useEffect(()=>{
@@ -16,7 +17,21 @@ const Vwsponsorph = () => {
         fetchdata()
     
         
-      },[])
+      },[refresh])
+      const [data1,setdata1]=useState([''])
+      let handleSubmit=async (status,id)=>{
+        
+        // setData(data)
+        // console.log(data);
+        // navigate('/organization/viewdeliveryboyorg')
+        let response=await axios.put(`http://localhost:4000/orphanage/acceptsponsrequest/${id}`,{...data,status:status})
+      console.log(response);
+      setdata1('')
+      if(response){
+        setrefresh(!refresh)
+      }
+        
+      }
   return (
     <div className='w-[100%] '>
          <div>
@@ -69,11 +84,11 @@ const Vwsponsorph = () => {
                    {item.sponsorship?.purpose}
                 </td>
                 <td class="px-6 py-4">
-                   pending
+                {item.sponsorship?.status}
                 </td>
                 <td class="px-6 py-4 flex flex-wrap flex-col">
-                    <a href="#" class="font-medium text-red-600 hover:underline hover:bg-white p-1">ACCEPT</a>
-                    <a href="#" class="font-medium text-green-600 hover:underline hover:bg-white p-1">REJECT</a>
+                    <button onClick={()=>{handleSubmit('Accepted',item.sponsorship?._id)}}  class="font-medium text-red-600 hover:underline hover:bg-white p-1">ACCEPT</button>
+                    <button onClick={()=>{handleSubmit('Rejected',item.sponsorship?._id)}}  class="font-medium text-green-600 hover:underline hover:bg-white p-1">REJECT</button>
                 </td>
                 
             </tr>
