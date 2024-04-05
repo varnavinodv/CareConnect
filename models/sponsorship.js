@@ -21,6 +21,7 @@ const sponsosrshipSchema=  new Schema({
     },
     status:{
         type:String,
+        default:'pending'
 
     }
 })

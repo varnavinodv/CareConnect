@@ -21,6 +21,7 @@ const contributionRequestSchema=Schema({
     },
     status:{
         type:String,
+        default:'pending'
 
     },
     description:{

@@ -56,12 +56,24 @@ router.get('/vieworganization',async(req,res)=>{
     res.json(response)
 })
 
-router.get('/vieworgdetail/:id',async(req,res)=>{
+router.get('/vieworgdetail/:id',async(req,res)=> {
     let id=req.params.id
     console.log(id);
     let response=await User.findById(id)
+    let report=await Report.find({UserId:id})
+    let review=await Review.find({organizationId:id})
+    let responsedata= []
+    for (const newresponse of review){
+        let orph=await User.findById(newresponse.orphanageId)
+        responsedata.push({
+            orph:orph,
+            reviews:review,
+            reports:report,
+            org:response,
+        })
+    }
     console.log(response);
-    res.json(response)
+    res.json(responsedata   )
 })
 
 
@@ -69,8 +81,17 @@ router.get('/viewdonation/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
     let response=await donation.find({orphanageId:id})
+    let responsedata=[]
+    for (const newresponse of response){
+    let organization=await User.findById(newresponse.organizationId)
+    responsedata.push({
+        org:organization,
+        response:newresponse
+
+    })
+    }
     console.log(response);
-    res.json(response)
+    res.json(responsedata)
 })
 
 
@@ -78,6 +99,9 @@ router.get('/viewcontrireq/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
     let response=await ContributionRequest.find({orphanageId:id})
+    if(response.Bamount==0){
+        let response1=await ContributionRequest.findByIdAndUpdate(response._id, response.status='Completed',{new:true})
+    }
     console.log(response);
     res.json(response)
 })
@@ -167,25 +191,25 @@ res.json(responseData)
 
 })
 
-// router.get('/viewspons/:id',async(req,res)=>{
-//     let id=req.params.id
-//     console.log(id);
-//     let response=await Sponsosrship.find({eventId:id})
-//     console.log(response);
-//     let responseData=[];
-//       for (const newresponse of response){
+router.get('/viewspons/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let response=await Sponsosrship.find({eventId:id})
+    console.log(response);
+    let responseData=[];
+      for (const newresponse of response){
 
-//         let organizations = await User.findById(newresponse.organizationId);
-//         let events = await Event.findById(newresponse.eventId);
-//         responseData.push({
-//             event: events,
-//             organization: organizations,
-//             sponsorship: newresponse
-//         });
-//       }
-//       console.log(responseData);
-//       res.json(responseData);
-// })
+        let organizations = await User.findById(newresponse.organizationId);
+        let events = await Event.findById(newresponse.eventId);
+        responseData.push({
+            event: events,
+            organization: organizations,
+            sponsorship: newresponse
+        });
+      }
+      console.log(responseData);
+      res.json(responseData);
+})
 
 
 // router.get('/viewsponsorhistory/:id',async(req,res)=>{
@@ -206,8 +230,17 @@ router.get('/donationreq/:id',async(req,res)=>{
     console.log(id);
     // res.json(id)
     let response=await donation.find({orphanageId:id})
-    console.log(response);
-    res.json(response)
+    let responseData=[]
+    for (const newresponse of response){
+    let org=await User.findById(newresponse.organizationId)
+    responseData.push({
+        orgs:org,
+        response: newresponse
+    })
+
+}
+    // console.log(response);
+    res.json(responseData)
 })
 
 
@@ -219,5 +252,18 @@ router.get('/donationreq/:id',async(req,res)=>{
 //     console.log(response);
 //     res.json(response)  
 // })
+
+
+router.put('/acceptsponsrequest/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    console.log(req.body);
+    let response=await Sponsosrship.findByIdAndUpdate(id,req.body)
+    console.log(response);
+    res.json(response)
+})
+
+
+
 
 export default router

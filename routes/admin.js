@@ -200,9 +200,11 @@ router.get('/viewdonation',async(req,res)=>{
     let responseData=[];
     for (const newresponse of response){
         let orphanages=await User.findById(newresponse.orphanageId);
+        let org=await User.findById(newresponse.organizationId);
         responseData.push({
             donation:newresponse,
-           orphanage:orphanages
+           orphanage:orphanages,
+           orgs:org
 
         })
     }
