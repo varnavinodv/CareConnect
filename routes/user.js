@@ -7,6 +7,8 @@ import { upload } from '../multer.js'
 import Event from '../models/event.js'
 import Orders from '../models/order.js'
 import mongoose from 'mongoose'
+import Review from '../models/review.js'
+import Report from '../models/report.js'
 
 
 const router=express()
@@ -21,7 +23,8 @@ router.post('/register',async(req,res)=>{
 
 router.post('/login',async(req,res)=>{
     console.log(req.body);
-    let users=await User.findOne(req.body)
+    const {email,password}=req.body
+    let users=await User.findOne({email:email,password:password})
     console.log(users);
     res.json(users)
 })
@@ -68,7 +71,17 @@ router.post('/contribution',async(req,res)=>{
     console.log(response);
     let balanceAmount=response.Bamount-req.body.amount
     console.log(balanceAmount);
+
+    if(balanceAmount=== 0){
+    let responseUpdate=await ContributionRequest.findByIdAndUpdate(req.body.contributionRequestId,{Bamount:balanceAmount,status:'Completed'})
+
+    }else{
+
+   
+    
+
     let responseUpdate=await ContributionRequest.findByIdAndUpdate(req.body.contributionRequestId,{Bamount:balanceAmount})
+    }
     const savedContribution=await newContribution.save()
     res.json({message:"Contributed",savedContribution})
 })
@@ -117,8 +130,20 @@ router.get('/vieworgdetail/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
     let response=await User.findById(id)
-    console.log(response);
-    res.json(response)
+    let report=await Report.find({UserId:id})
+    let review=await Review.find({organizationId:id})
+    let responsedata= []
+    for (const newresponse of review){
+        let orph=await User.findById(newresponse.orphanageId)
+        responsedata.push({
+            orph:orph,
+            reviews:review,
+            reports:report,
+            org:response,
+        })
+    }
+    // console.log(response);
+    res.json(responsedata)
 })
 
 // router.get('/viewcontributions/:id',async(req,res)=>{
@@ -212,30 +237,90 @@ router.get('/vieworder/:id', async (req, res) => {
 });
 
 
+// router.put('/acceptorder/:id', async (req, res) => {
+//     try {
+//         const id = new mongoose.Types.ObjectId(req.params.id);
+//         console.log(id);
+//         console.log(req.body);
+//         // --------------
+//         let prod=await product.findById(id)
+
+
+        
+//         // Find the order that contains the product with the given productId
+//         const order = await Orders.findOne({ 'products.productId': id });
+//         console.log(order,'oooooooooooooooooooooooooo');
+
+//         // If the order containing the product is found
+//         if (order) {    
+//             // Update the Ostatus of the product with the given productId
+//             order.products.forEach(product => {
+//                 console.log("Product ID:", product.productId); // Debugging: Log product ID
+//                 console.log("Target ID:", id); // Debugging: Log target ID
+//                 if (product.productId.equals(id)) {
+//                     console.log(product,'-0-0-09-098');
+//                     product.Ostatus = req.body.status; 
+//                     //--------------------------------
+//                     if(product.Ostatus=='Accepted'){
+//                         prod.count=prod.count-product.count
+//                     }
+//                     // Assuming Ostatus is updated from req.bodys
+//                 }
+//             });
+
+//             // Save the updated order
+//             await order.save();
+
+//             console.log("Order updated successfully:", order);
+//             res.status(200).json({ message: "Order updated successfully" });
+//         } else {
+//             // If the order containing the product is not found
+//             console.log("Order not found for the given productId:", id);
+//             res.status(404).json({ message: "Order not found for the given productId" });
+//         }
+//     } catch (error) {
+//         console.error("Error updating order:", error);
+//         res.status(500).json({ message: "Internal Server Error" });
+//     }
+// });
+
+
 router.put('/acceptorder/:id', async (req, res) => {
     try {
         const id = new mongoose.Types.ObjectId(req.params.id);
         console.log(id);
         console.log(req.body);
-        
+
+        // Find the product by ID
+        let prod = await product.findById(id);
+
         // Find the order that contains the product with the given productId
         const order = await Orders.findOne({ 'products.productId': id });
-        console.log(order,'oooooooooooooooooooooooooo');
+        console.log(order, 'oooooooooooooooooooooooooo');
 
         // If the order containing the product is found
-        if (order) {    
+        if (order) {
             // Update the Ostatus of the product with the given productId
             order.products.forEach(product => {
                 console.log("Product ID:", product.productId); // Debugging: Log product ID
                 console.log("Target ID:", id); // Debugging: Log target ID
                 if (product.productId.equals(id)) {
-                    console.log(product,'-0-0-09-098');
-                    product.Ostatus = req.body.status; // Assuming Ostatus is updated from req.body
+                    console.log(product, '-0-0-09-098');
+                    product.Ostatus = req.body.status;
+                    
+                    // Assuming Ostatus is updated from req.body
+                    if (product.Ostatus === 'Accepted') {
+                        // Decrease the product count based on the count in the order
+                        prod.count -= product.count;
+                    }
                 }
             });
 
             // Save the updated order
             await order.save();
+
+            // Save the updated product count
+            await prod.save();
 
             console.log("Order updated successfully:", order);
             res.status(200).json({ message: "Order updated successfully" });

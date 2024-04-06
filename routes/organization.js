@@ -21,7 +21,7 @@ router.post('/addtocart', async (req, res) => {
         const { productId, status, count, organizationId, deliveryboyId, cartstatus, userId } = req.body;
         console.log(productId,'[[[[');
         // Find the existing cart for the organizationId
-        let existingCart = await Cart.findOne({ organizationId:new mongoose.Types.ObjectId(organizationId),});
+        let existingCart = await Cart.findOne({ organizationId:organizationId});
 
         // If no existing cart found, create a new cart object
         if (!existingCart) {
@@ -34,12 +34,26 @@ router.post('/addtocart', async (req, res) => {
         }
 
         // Check if the product already exists in the cart
-        const productInCart = existingCart.products.find(product=>product==productId);
+        const productInCart = existingCart.products.find(product=>product.productId==req.body.productId);
         console.log(productInCart,'=======================');
 
         if (productInCart) {
-            // If product already exists, update its count
-            productInCart.count += count;
+           let myProduct=await product.findById(productInCart.productId)
+           if(productInCart.count<myProduct.count){
+            if(productInCart.count+count<=myProduct.count){
+                // If product already exists, update its count
+                productInCart.count += count;
+            }
+            else
+            {
+                let limit=myProduct.count-productInCart.count
+                console.log(limit);
+                res.status(201).json(limit); // Respond with the saved cart item
+
+
+            }
+        }
+      
         } else {
             // If product doesn't exist, add it to the products array
             existingCart.products.push({
@@ -49,13 +63,12 @@ router.post('/addtocart', async (req, res) => {
                 userId
             });
         }
-
-        // Save the updated cart object to the database
         const savedCartItem = await existingCart.save();
 
-        res.status(201).json(savedCartItem); // Respond with the saved cart item
+
+        // Save the updated cart object to the database
     } catch (error) {
-        res.status(400).json({ message: error.message }); // Respond with an error if something goes wrong
+        res.json(error.message ); // Respond with an error if something goes wrong
     }
 });
 
@@ -244,7 +257,7 @@ router.get('/viewcart/:id',async(req,res)=>{
 router.get('/viewproductorg',async(req,res)=>{
 
     console.log(req.body);
-    let response= await product.find()
+    const response = await product.find({ count: { $gt: 0 } });
     console.log(response);
     res.json(response)
 })

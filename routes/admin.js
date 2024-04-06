@@ -118,6 +118,26 @@ router.get('/vieworganization',async(req,res)=>{
     res.json(response);
 })
 
+
+router.get('/filterstatus/:status',async(req,res)=>{
+   
+    let status1=req.params.status
+    console.log(status1);
+    if(status1=='all'){
+        let response=await User.find({userType:'organization'})
+        console.log(response);
+    res.json(response);
+    }
+    else{
+        let response=await User.find({userType:'organization',status:status1})
+        console.log(response);
+    res.json(response);
+    }
+    
+
+})
+
+
 router.get('/vieworphanage',async(req,res)=>{
     console.log(req.body);
     let response=await User.find({userType:'orphanage'})
@@ -271,10 +291,12 @@ router.get('/vieworders',async(req,res)=>{
         for (const x of newresponse.products){
         let products=await product.findById(x.productId)
         let user=await User.findById(products.userId)
+        const delboys = await User.findById(x.deliveryBoyId)
         responseData.push({
             product:products,
             user:user,
-            order:newresponse
+            order:newresponse,
+            delboy:delboys
         })
          } }
     res.json(responseData)

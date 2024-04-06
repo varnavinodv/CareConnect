@@ -100,7 +100,7 @@ router.get('/viewcontrireq/:id',async(req,res)=>{
     console.log(id);
     let response=await ContributionRequest.find({orphanageId:id})
     if(response.Bamount==0){
-        let response1=await ContributionRequest.findByIdAndUpdate(response._id, response.status='Completed',{new:true})
+        let response1=await ContributionRequest.findByIdAndUpdate(response._id)
     }
     console.log(response);
     res.json(response)
