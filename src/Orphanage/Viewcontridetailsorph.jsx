@@ -69,7 +69,7 @@ const Viewcontridetailsorph = () => {
             {item.contrirequest?.amount}
             </td>
             <td class="px-6 py-4">
-              {item.contrirequest?.Bamount}
+              {item.contribution?.amount}
             </td>
             
             <td class="px-6 py-4">

@@ -115,7 +115,7 @@ const Vworderuser = () => {
                 
 <td>
 
-    {item1.Ostatus=='pending' ?
+    {item1.Ostatus=='assigned' || item1.Ostatus=='pending' ?
     
      <>
      <div className='flex flex-col'>

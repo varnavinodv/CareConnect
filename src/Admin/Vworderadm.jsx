@@ -50,6 +50,9 @@ const Vworderadm = () => {
                     DATE
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    DELIVERY BOY
+                </th>
+                <th scope="col" class="px-6 py-3">
                     STATUS
                 </th>
             </tr>
@@ -75,15 +78,23 @@ const Vworderadm = () => {
                 <td class="px-6 py-4">
                     {item.product?.category}
                 </td>
+                {item.order?.products?.map((item1)=>(
+                item1.productId == item.product?._id && 
+                <>
                 <td class="px-6 py-4">
-                    {item.order?.products?.count}
+                {item1.count}
                 </td>
                 <td class="px-6 py-4">
-                    12/03/2020
+                {item1.date}
                 </td>
                 <td class="px-6 py-4">
-                   {item.order?.orderstatus}
+                {item.delboy?.name}
                 </td>
+                <td class="px-6 py-4">
+                {item1.Ostatus}
+                </td>
+                </>
+                 ))}
             </tr>
         ))}   
         </tbody>

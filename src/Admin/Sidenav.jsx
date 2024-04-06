@@ -18,7 +18,7 @@ import report from './report.png'
 const Sidenav = () => {
   return (
     
-        <div className='w-[250px] bg-[#FFEFBD] flex flex-col justify-between pb-11'>
+        <div className='sm:w-[250px] w-[40px]  bg-[#FFEFBD] flex flex-col sm:justify-between pb-5 '>
             <div>
             <Link to='/admin/viewuser' ><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]  ' src={user1} alt="" />

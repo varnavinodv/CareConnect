@@ -159,7 +159,7 @@ root.render(
         <Route path='viewproductdtlorg/:pid' element={<Vwproductdtlorg/>}/>
         <Route path='vieworphdtlorg/:id' element={<Vworphdtlorg/>}/>
         <Route path='assigndeliveryboyorg/:did' element={<Assigndeliveryboy/>}/>
-        <Route path='viewcartproductdtlorg' element={<Vwcartproductdtlorg/>}/>
+        <Route path='viewcartproductdtlorg/:pid' element={<Vwcartproductdtlorg/>}/>
         <Route path='sponsorshiporg/:eid' element={<Sponsorshiporg/>}/>
         <Route path='addreportorg' element={<Addreportorg/>}/>
         <Route path='adddeliveryboy' element={<Adddeliveryboy/>}/>

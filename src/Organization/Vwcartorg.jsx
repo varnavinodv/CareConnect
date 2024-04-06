@@ -4,12 +4,15 @@ import book from './book.png'
 import dress from './dresses.png'
 import toys from './toyss.jpg'
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
+
 
 const Vwcartorg = () => {
    let id=localStorage.getItem('id')
 
    const [data,setData]=useState([''])
    const[refresh,setrefresh]=useState(false)
+   const navigate=useNavigate()
 
    useEffect(()=>{
       let fetchdata=async ()=>{
@@ -30,7 +33,7 @@ const Vwcartorg = () => {
       // navigate('/organization/viewdeliveryboyorg')
       let response=await axios.put(`http://localhost:4000/organization/changecartstatus/${id}`,{cartstatus:status})
     console.log(response);
-   
+   navigate('/organization/vieworderorg')
       
     }
 
@@ -63,7 +66,7 @@ const Vwcartorg = () => {
 
 <div className='flex flex-wrap justify-evenly pt-7 pb-12'>
       {data.map((item, index) => (
-        <Link key={index} to='/organization/viewcartproductdtlorg'>
+        <Link key={index} to={`/organization/viewcartproductdtlorg/${item.product?._id}`}>
           <div className='h-fit w-[220px] bg-white'>
             <img className='h-[200px] w-[200px] pt-4 ps-4' src={`http://localhost:4000/uploads/${item.product?.img}`} alt="" />
             <p className='text-center font-semibold pt-1'>{item.product?.name}</p>
