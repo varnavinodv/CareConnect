@@ -3,6 +3,7 @@ import Orders from '../models/order.js';
 import product from '../models/product.js';
 import User from '../models/user.js';
 import mongoose from 'mongoose';
+import donation from '../models/donation.js';
 // import Orders from '../models/order.js'
 
 const router=express()
@@ -54,6 +55,27 @@ router.put('/updatestatusorder/:id',async(req,res)=>{
             await order.save();
         }
         res.json('success')
+})
+
+
+router.get('/viewdonation/:id',async(req,res)=>{
+    const id = req.params.id;
+    console.log(id);
+    const donatn= await donation.find({deliveryboyId:id})
+    // console.log(donatn,'sssssssssssssssssss');
+    let responseData = [];
+    for (let don of donatn) {
+        // console.log(don,'gggggggggggggggggggggg');
+        const orph=await User.findById(don.orphanageId)
+        // console.log(orph,'============================================');
+      
+        responseData.push({
+            donation:donatn,
+            orph:orph
+        })
+    
+    }
+    res.json(responseData);
 })
 
 export default router

@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { json } from 'express'
 import  User from '../models/user.js'
 import product  from '../models/product.js'
 import Contribution from '../models/contribution.js'
@@ -139,11 +139,11 @@ router.get('/vieworgdetail/:id',async(req,res)=>{
             orph:orph,
             reviews:review,
             reports:report,
-            org:response,
+           
         })
     }
     // console.log(response);
-    res.json(responsedata)
+    res.json({responsedata,response})
 })
 
 // router.get('/viewcontributions/:id',async(req,res)=>{
@@ -165,9 +165,12 @@ router.get('/vieworphdetail/:id',async(req,res)=>{
     let response=await User.findById(id)
     let events=await Event.find({orphanageId:id})
     let contrireq=await ContributionRequest.find({orphanageId:id})
+    let reports=await Report.find({UserId:id})
     console.log(response);
-    res.json({response,events,contrireq})
+    res.json({response,events,contrireq,reports})
 })
+
+
 
 
 router.get('/viewcontribution/:id',async(req,res)=>{

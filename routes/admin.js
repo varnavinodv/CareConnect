@@ -33,8 +33,17 @@ router.get('/viewuser',async(req,res)=>{
 router.get('/viewcontrireq',async(req,res)=>{
     console.log(req.body);
     let response=await ContributionRequest.find()
+   let  responseData=[]
+    for (const newresponse of response){
+    let orph=await User.findById(newresponse.orphanageId)
+    responseData.push({
+        orph:orph,
+        response:newresponse
+    })
+
+    }
     console.log(response);
-    res.json(response)
+    res.json(responseData)
 })
 
 router.get('/viewcontridetails/:id', async (req, res) => {
@@ -119,7 +128,7 @@ router.get('/vieworganization',async(req,res)=>{
 })
 
 
-router.get('/filterstatus/:status',async(req,res)=>{
+router.get('/filterstatusorg/:status',async(req,res)=>{
    
     let status1=req.params.status
     console.log(status1);
@@ -130,6 +139,26 @@ router.get('/filterstatus/:status',async(req,res)=>{
     }
     else{
         let response=await User.find({userType:'organization',status:status1})
+        console.log(response);
+    res.json(response);
+    }
+    
+
+})
+
+
+
+router.get('/filterstatusorph/:status',async(req,res)=>{
+   
+    let status1=req.params.status
+    console.log(status1);
+    if(status1=='all'){
+        let response=await User.find({userType:'orphanage'})
+        console.log(response);
+    res.json(response);
+    }
+    else{
+        let response=await User.find({userType:'orphanage',status:status1})
         console.log(response);
     res.json(response);
     }

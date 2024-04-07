@@ -309,7 +309,7 @@ router.get('/vieworphdetail/:id',async(req,res)=>{
 })
 
 router.get('/viewdonationrequests',async(req,res)=>{
-    let response=await donation.find()
+    let response=await donation.find({status:'pending'})
     console.log(response);
     
     let responseData=[];

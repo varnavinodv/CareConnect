@@ -60,6 +60,7 @@ router.get('/vieworgdetail/:id',async(req,res)=> {
     let id=req.params.id
     console.log(id);
     let response=await User.findById(id)
+    console.log(response,'pppppppppppppppppppppppppppppp');
     let report=await Report.find({UserId:id})
     let review=await Review.find({organizationId:id})
     let responsedata= []
@@ -69,24 +70,28 @@ router.get('/vieworgdetail/:id',async(req,res)=> {
             orph:orph,
             reviews:review,
             reports:report,
-            org:response,
+        
+            
         })
     }
+    
     console.log(response);
-    res.json(responsedata   )
+    res.json({responsedata,response } )
 })
 
 
 router.get('/viewdonation/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
-    let response=await donation.find({orphanageId:id})
+    let response=await donation.find({ orphanageId: id, status: { $ne: 'pending' } })
     let responsedata=[]
     for (const newresponse of response){
     let organization=await User.findById(newresponse.organizationId)
+    let delboy=await User.findById(newresponse.deliveryboyId)
     responsedata.push({
         org:organization,
-        response:newresponse
+        response:newresponse,
+        delboys:delboy
 
     })
     }
@@ -229,6 +234,7 @@ router.get('/donationreq/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
     // res.json(id)
+    //should filter it foronly wviewing pendig status...............................?
     let response=await donation.find({orphanageId:id})
     let responseData=[]
     for (const newresponse of response){
