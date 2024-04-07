@@ -9,6 +9,7 @@ const Vwreports = () => {
 
     const [data,setdata]=useState([''])
     let id=localStorage.getItem('id')
+    const [refresh,setrefresh]=useState('')
   
     useEffect(()=>{
         let fetchdata=async()=>{
@@ -18,7 +19,7 @@ const Vwreports = () => {
   
         }
         fetchdata()
-     },[]) 
+     },[refresh]) 
   return (
     <div className='w-[100%]'>
                               <div className='basicbg   pt-7 ps-10 pe-10'>

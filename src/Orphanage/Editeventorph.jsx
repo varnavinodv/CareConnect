@@ -47,19 +47,19 @@ const Editeventorph = () => {
 <form class="max-w-sm mx-auto" onSubmit={handleSubmit}>
 <div class="mb-5">
 <label for="name" class="block mb-2 text-sm font-medium text-[#3E1B00]">Name</label>
-<input onChange={handleChange} type="text" placeholder={userData.name}  name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handleChange} type="text" placeholder={userData.name}  name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 <div class="mb-5">
 <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Date</label>
-<input onChange={handleChange} type="date"  placeholder={userData.date}  name="date" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handleChange} type="date"  placeholder={userData.date}  name="date" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 <div class="mb-5">
 <label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Time</label>
-<input onChange={handleChange} type="time" name="time"  placeholder={userData.time}  class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handleChange} type="time" name="time"  placeholder={userData.time}  class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 <div class="mb-5">
 <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Venue</label>
-<input onChange={handleChange} type="text" name="venue"  placeholder={userData.venue}  class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handleChange} type="text" name="venue"  placeholder={userData.venue}  class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 
 

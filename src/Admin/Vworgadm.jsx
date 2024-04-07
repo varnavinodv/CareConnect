@@ -44,7 +44,7 @@ const Vworgadm = () => {
     const dropdownClose = async (status) => {
         setStatus(status);
         try {
-            const response = await axios.get(`http://localhost:4000/admin/filterstatus/${status}`);
+            const response = await axios.get(`http://localhost:4000/admin/filterstatusorg/${status}`);
             console.log(response.data);
             setData(response.data);
             setFilteredData(response.data);

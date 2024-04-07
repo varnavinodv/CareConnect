@@ -18,12 +18,12 @@ const Vworderuser = () => {
      },[refresh]) 
 
      let handleSubmit=async (status,id)=>{
-        setrefresh(!refresh)
-        // setData(data)
-        // console.log(data);
-        // navigate('/organization/viewdeliveryboyorg')
-        let response=await axios.put(`http://localhost:4000/user/acceptorder/${id}`,{...data,status:status})
-      console.log(response);
+         // setData(data)
+         // console.log(data);
+         // navigate('/organization/viewdeliveryboyorg')
+         let response=await axios.put(`http://localhost:4000/user/acceptorder/${id}`,{...data,status:status})
+         console.log(response);
+         setrefresh(!refresh)
         
       }
 

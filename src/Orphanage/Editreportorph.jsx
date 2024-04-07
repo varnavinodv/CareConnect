@@ -63,11 +63,11 @@ const Editreportorph = () => {
 <form onSubmit={handleSubmit}  class="max-w-sm mx-auto">
 <div class="mb-5">
 <label for="year" class="block mb-2 text-sm font-medium text-[#3E1B00]">Year</label>
-<input onChange={handleChange}  type="number" placeholder={userData.year} name="year" id="year" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handleChange}  type="number" placeholder={userData.year} name="year" id="year" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 <div class="mb-5">
 <label for="report" class="block mb-2 text-sm font-medium text-[#3E1B00]">Report</label>
-<input onChange={handlefile}  type="file" placeholder={userData.report} name="report" id="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+<input onChange={handlefile}  type="file" placeholder={userData.report} name="report" id="report" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 
 

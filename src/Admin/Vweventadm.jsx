@@ -30,7 +30,7 @@ const Vweventadm = () => {
                     SL NO
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    ORGANIZATION
+                    ORPHANAGE
                 </th>
                 <th scope="col" class="px-6 py-3">
                     EVENT

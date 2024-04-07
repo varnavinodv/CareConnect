@@ -34,7 +34,8 @@ const Addrevieworph = () => {
     // console.log(data);
     let response=await axios.post('http://localhost:4000/orphanage/postreview',{...data,orphanageId:id,organizationId:oid})
     console.log(response);
-    navigate('/orphanage/vieworgdtlorph')
+    navigate(`/orphanage/vieworgdtlorph/${oid}`)
+    // alert('review successfully added ')
     
   }
   return (

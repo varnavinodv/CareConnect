@@ -13,6 +13,8 @@ const Contriuser = () => {
   const [data,setData]=useState('')
   const[check,setcheck]=useState(false)
   // const [data1,setData1]=useState('')
+
+  
 console.log(check);
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
@@ -34,20 +36,20 @@ console.log(check);
   }
   return (
     <div className='w-[100%] '>
-    <div className='basicbg2   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
+    <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
         
         <div>
-        <div className='font-bold text-4xl text-amber-950 py-8'>ABCD ORPHANAGE</div>
+        <div className='font-bold text-4xl text-amber-950 py-8'>CONTRIBUTION</div>
         {/* <div className='flex flex-wrap justify-end w-full gap-8'> */}
         {/* <div className='text-xl font-semibold'>
                 <div className='flex flex-wrap justify-start gap-3 pb-3 '>
                   <img  className='w-[30px] h-[30px]' src={call} alt="" />
                   <p>+91 81130493822</p>
                 </div> */}
-                <div className='flex flex-wrap align-middle justify-start gap-3 pb-3 '>
+                {/* <div className='flex flex-wrap align-middle justify-start gap-3 pb-3 '>
                   <img className='w-[20px] h-[20px]' src={email} alt="" />
                   <p>abcd@gmail.com</p>
-                </div>
+                </div> */}
                 {/* <div className='flex flex-wrap justify-start gap-3  pb-3 '>
                   <img  className='w-[30px] h-[30px]'  src={locatn} alt="" />
                   <p>ghsjhj hsisjk,<br />P.O huyaf, <br />
@@ -55,13 +57,13 @@ console.log(check);
                              Kochi</p>
                 </div>
             </div> */}
-            <div className=' h-fit p-5 mb-6  bg-white'>
+            {/* <div className=' h-fit p-5 mb-6  bg-white'>
               <h1 className='text-black font-bold'>Education-Rs.10,000 needed</h1>
               <h2 className='text-gray-800'>For the education purpose of 6 children 10000 rupees is required</h2>
               <h3 className='text-gray-700 font-semibold'>8000 rupees raised</h3>
               
 
-            </div>
+            </div> */}
             {/* </div> */}
             <div className='w-[25rem] h-[28rem] bg-red-500/30 m-auto rounded-2xl pt-10 px-10  pb-6 mb-4'>
                   

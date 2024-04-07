@@ -31,24 +31,33 @@ const Vworphadm = () => {
 
 
 
-      let dropdown=()=>{
+      const dropdown=()=>{
         setDrop(!drop)
       }
-      let dropdownClose=()=>{
-        setStatus('Accepted')
-        setDrop(false)
+      const [filteredData, setFilteredData] = useState([]);
+      
+      const dropdownClose = async (status) => {
+        setStatus(status);
+        try {
+            const response = await axios.get(`http://localhost:4000/admin/filterstatusorph/${status}`);
+            console.log(response.data);
+            setdata(response.data);
+            setFilteredData(response.data);
+        } catch (error) {
+            console.error('Error filtering data:', error);
+        }
+        setDrop(false);
+    };
     
-      }
-      let dropdownClose1=()=>{
-        setStatus('Rejected')
-        setDrop(false)
-    
-      }
-      let dropdownClose2=()=>{
-        setStatus('')
-        setDrop(false)
-    
-      }
+    const handleSearch = (e) => {
+        const searchValue = e.target.value.toLowerCase();
+        const filtered = data.filter((item) =>
+            item.name.toLowerCase().includes(searchValue) ||
+            item.district.toLowerCase().includes(searchValue) ||
+            item.place.toLowerCase().includes(searchValue)
+        );
+        setFilteredData(filtered);
+    };
     
   return (
     <div className=' w-[100%]'>
@@ -67,20 +76,20 @@ const Vworphadm = () => {
 <div id="dropdown" class="z-10 absolute   bg-orange-500 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-orange-500">
     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
     <li>
-        <button type="button" onClick={dropdownClose} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">Accepted</button>
+        <button type="button" onClick={() => dropdownClose('Accepted')}  class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">Accepted</button>
     </li>
     <li>
-        <button type="button" onClick={dropdownClose1} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">Rejected</button>
+        <button type="button" onClick={() => dropdownClose('Rejected')} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">Rejected</button>
     </li>
     <li>
-        <button type="button" onClick={dropdownClose2} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">All</button>
+        <button type="button" onClick={() => dropdownClose('all')} class="inline-flex w-full px-4 py-2  hover:bg-orange-200 dark:hover:text-black">All</button>
     </li>
     </ul>
 </div>
 }
 </div>
         <div class="relative w-full">
-            <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-black bg-white rounded-e-lg  border-s-2 border border-orange-500 focus:ring-orange-500 focus:border-orange-500 dark:bg-white dark:border-s-orange-500  dark:border-orange-500 dark:placeholder-gray-400 dark:text-white dark:focus:border-orange-500" placeholder="Search Organizations" required />
+            <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-black bg-white rounded-e-lg  border-s-2 border border-orange-500 focus:ring-orange-500 focus:border-orange-500 dark:bg-white dark:border-s-orange-500  dark:border-orange-500 dark:placeholder-gray-400 dark:text-black dark:focus:border-orange-500" placeholder="Search Organizations,Places,Districts"  onChange={handleSearch} required />
             <button  type="submit" class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-orange-200 rounded-e-lg border border-orange-500 hover:bg-[#f7b866d4] focus:ring-4 focus:outline-none focus:ring-orange-500 dark:bg-orange-500 dark:hover:bg-[#f7b866d4] dark:focus:ring-orange-500">
                 <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>

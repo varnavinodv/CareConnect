@@ -30,7 +30,7 @@ const Vworphdtlorg = () => {
   }
   return (
     <div className=' w-[100%] '>
-        <div className='basicbg2 pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
+        <div className='basicbg pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div >
             <div className='font-bold text-4xl text-amber-950 py-8'>{data.response?.name}</div>
             <div className='flex flex-wrap  w-full gap-8'>

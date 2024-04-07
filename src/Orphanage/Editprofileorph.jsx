@@ -27,7 +27,7 @@ const Editprofileorph = () => {
     event.preventDefault()
     setData(data)
     console.log(data);
-    navigate('/orphanage/vieworgdtlorph')
+    // navigate('/orphanage/vieworgdtlorph')
     setrefresh(!refresh)
     let response=await axios.put(`http://localhost:4000/user/editprofile/${id}`,data)
     console.log(response);

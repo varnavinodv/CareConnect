@@ -32,7 +32,7 @@ const Viewoprhdtluser = () => {
   }
   return (
     <div className='w-[100%]'>
-         <div className='basicbg2   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
+         <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div >
             <div className='font-bold text-4xl text-amber-950 py-8'>{data.response?.name}</div>
             <div className='flex flex-wrap  w-full gap-8'>
@@ -52,6 +52,7 @@ const Viewoprhdtluser = () => {
                              {data.response?.district}</p>
                 </div>
             </div>
+            
             {data?.contrireq?.map((item)=>(
             <div className=' h-fit p-2 ms-11 bg-white'>
               <h1 className='text-black font-bold'>{item?.purpose}-Rs.{item?.amount} needed</h1>
@@ -72,11 +73,11 @@ const Viewoprhdtluser = () => {
                 {drop &&
                 <div className='w-[60%] flex ps-36 justify-start'>
 
-
+                   
                       <div className='list-none w-fit sm:left-[19rem] p-2 bg-white text-black text-lg  font-semibold rounded-lg  '>
-                        <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>2021</li>
-                        <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>2022</li>
-                        <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>2023</li>
+                      {data?.reports?.map((item1)=>(
+                        <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>{item1.year}</li>
+                      ))}
                         
                         </div> 
                    </div>
@@ -108,8 +109,8 @@ const Viewoprhdtluser = () => {
 
                     </div>
                     ))}
-                <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>
-                <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div>
+                {/* <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div> */}
+                {/* <div className='bg-[#FFEFBD] w-[13rem] h-[15rem] rounded-[30%]'></div> */}
                 
             </div>
           </div>

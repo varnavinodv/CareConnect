@@ -1,18 +1,34 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import axios from 'axios'
 
 const Vwdonatndboy = () => {
     const [det,setDet]= useState(false)
-    // const [data,setData]= useState(false)
+    const [data,setData]= useState([])
 let status=()=>{
     setDet(!det)
+    // let cid =localStorage.getItem('id')
 }
-let updateStatus=async (statusupdation)=>{
-    console.log(statusupdation)
-    let response=await axios.post('http://localhost:4000/deliveryboy/orderStatus',{status:statusupdation})
-  console.log(response);
+// let updateStatus=async (statusupdation)=>{
+//     console.log(statusupdation)
+//     let response=await axios.post('http://localhost:4000/deliveryboy/orderStatus',{status:statusupdation})
+//   console.log(response);
 
-}
+// }
+const [refresh,setrefresh]=useState(false)
+
+const id = localStorage.getItem('id');
+
+
+useEffect(()=>{
+    let fetchdata=async ()=>{
+      let response=await axios.get(`http://localhost:4000/deliveryboy/viewdonation/${id}`)
+      console.log(response);
+      setData(response.data)
+    }
+    fetchdata()
+
+    
+  },[])
 return (
 <div>
 <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
@@ -58,33 +74,37 @@ return (
    </tr>
 </thead>
 <tbody>
+{data.map((item, index) => (
+    item.donation?.map((item1)=>(
    <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] text-black font-semibold">
        <td  class="px-6 py-4 ">
-           1.
+           {index+1}
        </td>
        
        <td class="px-6 py-4">
-           Book
+          {item1.product}
        </td>
        <td class="px-6 py-4">
-           2
+           {item1.count}
        </td>
        <td class="px-6 py-4">
-           ABgG org
+           {item.orph?.name}
        </td>
        <td class="px-6 py-4">
-       puthiyottil,
-puthiyangadi,
-calicut-9
+       {item.orph?.place} <br />
+       p.o {item.orph?.postoffice} <br />
+       pin:{item.orph?.pin} <br />
+       {item.orph?.postoffice}
+
        </td>
        <td class="px-6 py-4">
-       8606574318
+       {item.orph?.phno}
        </td>
        <td class="px-6 py-4">
-       12/3/2023
+       {item1.date}
        </td>
        <td class="px-6 py-4">
-       Accepted
+       {item1.status}
        </td>
        <td class="px-6 py-4 flex flex-wrap flex-col">
 
@@ -92,14 +112,17 @@ calicut-9
            {det &&
                    
                    <div className='  p-1 bg-white text-black text-base  font-semibold rounded-lg  '>
-                       <button onClick={()=>updateStatus('outForDelivery')} className='hover:bg-slate-400 p-1 rounded-lg'>Out for delivery</button>
-                       <p onClick={()=>updateStatus('Delivered')}className='hover:bg-slate-400 p-1 rounded-lg'>Delivered</p>
+                       {/* <button onClick={()=>updateStatus('outForDelivery')} className='hover:bg-slate-400 p-1 rounded-lg'>Out for delivery</button>
+                       <p onClick={()=>updateStatus('Delivered')}className='hover:bg-slate-400 p-1 rounded-lg'>Delivered</p> */}
+                        <button className='hover:bg-slate-400 p-1 rounded-lg'>Out for delivery</button>
+                       <p className='hover:bg-slate-400 p-1 rounded-lg'>Delivered</p>
                      </div> 
                 }
        </td>
        
    </tr>
-   
+   ))
+))} 
 </tbody>
 </table>
 </div>

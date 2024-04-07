@@ -39,6 +39,12 @@ const Viewdonatnorph = () => {
         ORGANIZATION
     </th>
     <th scope="col" class="px-6 py-3">
+        DATE
+    </th>
+    <th scope="col" class="px-6 py-3">
+        DELIVERY BOY
+    </th>
+    <th scope="col" class="px-6 py-3">
       STATUS
     </th>
     
@@ -61,6 +67,13 @@ const Viewdonatnorph = () => {
     <td class="px-6 py-4">
        {item.org?.name}
       
+    </td>
+    <td class="px-6 py-4">
+    {item.response?.date}
+    </td>
+    <td class="px-6 py-4">
+    {item.delboys?.name} <br />
+  {item.delboys?.phno}
     </td>
     <td class="px-6 py-4">
     {item.response?.status}

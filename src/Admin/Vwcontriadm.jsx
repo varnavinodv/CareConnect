@@ -63,6 +63,9 @@ const Vwcontriadm = () => {
                     SL NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
+                  ORPHANAGE
+                </th>
+                <th scope="col" class="px-6 py-3">
                    PURPOSE
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -91,23 +94,26 @@ const Vwcontriadm = () => {
                    {index+1}
                 </td>
                 <td class="px-6 py-4">
-                  {item.purpose}
+                  {item.orph?.name}
                 </td>
                 <td class="px-6 py-4">
-                  {item.description}
+                  {item.response?.purpose}
                 </td>
                 <td class="px-6 py-4">
-                  {item.amount}
+                  {item.response?.description}
                 </td>
                 <td class="px-6 py-4">
-                  {item.Bamount}
+                  {item.response?.amount}
+                </td>
+                <td class="px-6 py-4">
+                  {item.response?.Bamount}
                 </td>
                 
                 <td class="px-6 py-4">
-                   pending
+                   {item.response?.status}
                 </td>
                 <td class="px-6 py-4">
-                <Link to={`/admin/viewcontridetailsadm/${item._id}`}> <a href="#" class=" font-semibold text-black hover:underline">View Contributions</a></Link><br/>
+                <Link to={`/admin/viewcontridetailsadm/${item.response?._id}`}> <a href="#" class=" font-semibold text-black hover:underline">View Contributions</a></Link><br/>
                 
                 </td>
             </tr>
