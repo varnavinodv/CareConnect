@@ -3,16 +3,17 @@ import express from 'express'
 import Cart from '../models/cart.js';
 import Sponsosrship from '../models/sponsorship.js';
 import Report from '../models/report.js';
-import Donation from '../models/donation.js';
+
 import product from '../models/product.js';
 import User from '../models/user.js';
-import donation from '../models/donation.js';
+
 import Event from '../models/event.js';
 import ContributionRequest from '../models/contributionRequest.js';
 import Review from '../models/review.js';
 import { upload } from '../multer.js'
 import Orders from '../models/order.js';
 import mongoose from 'mongoose';
+import donation from '../models/donation.js';
 
 const router=express()
 
@@ -274,11 +275,55 @@ router.get('/viewproductdltorganisation/:id',async(req,res)=>{
 })
 
 
-router.get('/assigndboy',async(req,res)=>{
-    let response=await User.find({userType:'deliveryboy'})
-    console.log(response);
-    res.json(response)
-})
+router.get('/assigndboy', async (req, res) => {
+    try {
+        let response = await User.find({ userType: 'deliveryboy' });
+        let responseData = [];
+        
+        for (const newresponse of response) {
+            let deliveryBoyData = {
+                dboy: newresponse,
+                orphanages: [], // Array to store orphanages associated with the delivery boy
+                donations: [] ,
+                orders:[],
+                users:[]  // Array to store donations associated with the delivery boy
+            };
+
+            let donations = await donation.find({ deliveryboyId: newresponse._id });
+            let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id})
+            console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
+
+            
+            for (const donationItem of donations) {
+                let orphanage = await User.findById(donationItem.orphanageId);
+                deliveryBoyData.orphanages.push(orphanage);
+                deliveryBoyData.donations.push(donationItem);
+            }
+            for (const ord of orders){
+                deliveryBoyData.orders.push(ord)
+                
+                // let user=await User.findById(ord?.products?.userId)
+                for(let x of ord.products){
+
+                    let user=await User.findById(x.userId)
+                    // if(deliveryBoyData.includes(user._id))
+                      deliveryBoyData.users.push(user)
+                }
+                // let user=await User.findById(ord?.products?.userId)
+                // deliveryBoyData.orphanages.push(user);
+                // deliveryBoyData.orders.push(orders);
+            }
+            
+            responseData.push(deliveryBoyData);
+        }
+        
+        res.json(responseData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while processing the request.' });
+    }
+});
+
 
 // router.get('/viewcart',async(req,res)=>{
 //     let response=await Cart.find()
@@ -288,29 +333,29 @@ router.get('/assigndboy',async(req,res)=>{
 
 router.get('/viewdeliveryboy',async(req,res)=>{
     let response=await User.find({userType:'deliveryboy'})
-    console.log(response)
+    // console.log(response)
     res.json(response)
 })
 
 router.get('/vieworphanage',async(req,res)=>{
     let response=await User.find({userType:'orphanage'})
-    console.log(response);
+    // console.log(response);
     res.json(response)
 })
 
 router.get('/vieworphdetail/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(id);
+    // console.log(id);
     let response=await User.findById(id)
     let events=await Event.find({orphanageId:id})
     let contrireq=await ContributionRequest.find({orphanageId:id})
-    console.log(response);
+    // console.log(response);
     res.json({response,events,contrireq})
 })
 
 router.get('/viewdonationrequests',async(req,res)=>{
     let response=await donation.find({status:'pending'})
-    console.log(response);
+    // console.log(response);
     
     let responseData=[];
       for (const newresponse of response){
@@ -320,15 +365,15 @@ router.get('/viewdonationrequests',async(req,res)=>{
             donation: newresponse
         });
       }
-      console.log(responseData);
+    //   console.log(responseData);
       res.json(responseData);
 })
 
 
 router.get('/viewevent',async(req,res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     let response=await Event.find()
-    console.log(response);
+    // console.log(response);
   
     let responseData=[];
       for (const newresponse of response){

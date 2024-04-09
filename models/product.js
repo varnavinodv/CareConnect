@@ -2,7 +2,7 @@ import mongoose,{Schema,model} from "mongoose";
 import User from './user.js'
 
         
-const productSchema=Schema({
+const productSchema=new Schema({
     userId:{
         type:mongoose.Types.ObjectId,
         ref:User

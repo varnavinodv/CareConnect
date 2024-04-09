@@ -3,7 +3,7 @@ import Cart from "./cart.js";
 import User from "./user.js";
 import product from "./product.js";
 
-const orderSchema=Schema({
+const orderSchema=new Schema({
     products: [{
         productId:{
             type:mongoose.Types.ObjectId,

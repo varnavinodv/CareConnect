@@ -1,6 +1,6 @@
 import express, { json } from 'express'
-import  User from '../models/user.js'
-import product  from '../models/product.js'
+import User from '../models/user.js'
+import product from '../models/product.js'
 import Contribution from '../models/contribution.js'
 import ContributionRequest from '../models/contributionRequest.js'
 import { upload } from '../multer.js'
@@ -11,139 +11,139 @@ import Review from '../models/review.js'
 import Report from '../models/report.js'
 
 
-const router=express()
+const router = express()
 
-router.post('/register',async(req,res)=>{
+router.post('/register', async (req, res) => {
     console.log(req.body);
     const newUser = new User(req.body)
     const savedUser = await newUser.save()
-    res.json({message:"Registered",savedUser})
-    
+    res.json({ message: "Registered", savedUser })
+
 })
 
-router.post('/login',async(req,res)=>{
+router.post('/login', async (req, res) => {
     console.log(req.body);
-    const {email,password}=req.body
-    let users=await User.findOne({email:email,password:password})
+    const { email, password } = req.body
+    let users = await User.findOne({ email: email, password: password })
     console.log(users);
     res.json(users)
 })
 
-router.post('/addProduct',upload.single('img'),async(req,res)=>{
+router.post('/addProduct', upload.single('img'), async (req, res) => {
     console.log(req.file);
-    let imagepath=req.file.filename
-    const newProduct = new product({...req.body,img:imagepath})
+    let imagepath = req.file.filename
+    const newProduct = new product({ ...req.body, img: imagepath })
     const savedProduct = await newProduct.save()
-    res.json({message:"Product added",savedProduct}) 
+    res.json({ message: "Product added", savedProduct })
 })
 
-router.get('/viewupdateproduct/:id',async(req,res)=>{
-      let id=req.params.id
-      console.log(id);
-      let response=await product.findById(id)
-      console.log(response);
-      res.json(response)
+router.get('/viewupdateproduct/:id', async (req, res) => {
+    let id = req.params.id
+    console.log(id);
+    let response = await product.findById(id)
+    console.log(response);
+    res.json(response)
 })
 
-router.put('/updateproduct/:id',upload.fields([{name:'img'}]),async(req,res)=>{
-    try{
-        if(req.files['img']){
-            const image =req.files['img'][0].filename;
+router.put('/updateproduct/:id', upload.fields([{ name: 'img' }]), async (req, res) => {
+    try {
+        if (req.files['img']) {
+            const image = req.files['img'][0].filename;
             console.log(image);
-            req.body={...req.body,img:image}
+            req.body = { ...req.body, img: image }
         }
-        let id=req.params.id
+        let id = req.params.id
         console.log(req.body)
-        let response=await product.findByIdAndUpdate(id,req.body)
-        console.log(response,'fsefesdfsffdsgsgfsg');  
+        let response = await product.findByIdAndUpdate(id, req.body)
+        console.log(response, 'fsefesdfsffdsgsgfsg');
     }
-    catch(e){
+    catch (e) {
         res.json(e.message)
     }
 })
 
 
 
-router.post('/contribution',async(req,res)=>{
-    console.log(req.body); 
+router.post('/contribution', async (req, res) => {
+    console.log(req.body);
     const newContribution = new Contribution(req.body)
-    let response=await ContributionRequest.findById(req.body.contributionRequestId)
+    let response = await ContributionRequest.findById(req.body.contributionRequestId)
     console.log(response);
-    let balanceAmount=response.Bamount-req.body.amount
+    let balanceAmount = response.Bamount - req.body.amount
     console.log(balanceAmount);
 
-    if(balanceAmount=== 0){
-    let responseUpdate=await ContributionRequest.findByIdAndUpdate(req.body.contributionRequestId,{Bamount:balanceAmount,status:'Completed'})
+    if (balanceAmount === 0) {
+        let responseUpdate = await ContributionRequest.findByIdAndUpdate(req.body.contributionRequestId, { Bamount: balanceAmount, status: 'Completed' })
 
-    }else{
+    } else {
 
-   
-    
 
-    let responseUpdate=await ContributionRequest.findByIdAndUpdate(req.body.contributionRequestId,{Bamount:balanceAmount})
+
+
+        let responseUpdate = await ContributionRequest.findByIdAndUpdate(req.body.contributionRequestId, { Bamount: balanceAmount })
     }
-    const savedContribution=await newContribution.save()
-    res.json({message:"Contributed",savedContribution})
+    const savedContribution = await newContribution.save()
+    res.json({ message: "Contributed", savedContribution })
 })
 
 
 
-router.get('/viewprofile/:id',async(req,res)=>{
-    let id=req.params.id
+router.get('/viewprofile/:id', async (req, res) => {
+    let id = req.params.id
     console.log(id);
-    let response=await User.findById(id)
+    let response = await User.findById(id)
     console.log(response);
     res.json(response)
 
 })
 
-router.put('/editprofile/:id',async(req,res)=>{
-    let id=req.params.id
+router.put('/editprofile/:id', async (req, res) => {
+    let id = req.params.id
     console.log(req.body);
-    let response=await User.findByIdAndUpdate(id,req.body)
+    let response = await User.findByIdAndUpdate(id, req.body)
 })
 
 
-router.get('/viewproduct',async(req,res)=>{
-    
+router.get('/viewproduct', async (req, res) => {
+
     console.log(req.body);
-    let response=await product.find()
+    let response = await product.find()
     console.log(response);
     res.json(response)
 })
 
-router.get('/viewcontrireq',async(req,res)=>{
+router.get('/viewcontrireq', async (req, res) => {
     console.log(req.body);
-    let response=await ContributionRequest.find()
+    let response = await ContributionRequest.find()
     console.log(response);
     res.json(response)
 })
 
-router.get('/vieworg',async(req,res)=>{
+router.get('/vieworg', async (req, res) => {
     console.log(req.body);
-    let response=await User.find({userType:'organization'})
+    let response = await User.find({ userType: 'organization' })
     console.log(response);
     res.json(response)
 })
 
-router.get('/vieworgdetail/:id',async(req,res)=>{
-    let id=req.params.id
+router.get('/vieworgdetail/:id', async (req, res) => {
+    let id = req.params.id
     console.log(id);
-    let response=await User.findById(id)
-    let report=await Report.find({UserId:id})
-    let review=await Review.find({organizationId:id})
-    let responsedata= []
-    for (const newresponse of review){
-        let orph=await User.findById(newresponse.orphanageId)
+    let response = await User.findById(id)
+    let report = await Report.find({ UserId: id })
+    let review = await Review.find({ organizationId: id })
+    let responsedata = []
+    for (const newresponse of review) {
+        let orph = await User.findById(newresponse.orphanageId)
         responsedata.push({
-            orph:orph,
-            reviews:review,
-            reports:report,
-           
+            orph: orph,
+            reviews: review,
+            reports: report,
+
         })
     }
     // console.log(response);
-    res.json({responsedata,response})
+    res.json({ responsedata, response })
 })
 
 // router.get('/viewcontributions/:id',async(req,res)=>{
@@ -153,41 +153,41 @@ router.get('/vieworgdetail/:id',async(req,res)=>{
 //     console.log(response);
 //     res.json(response)
 // })
-router.get('/vieworph',async(req,res)=>{
+router.get('/vieworph', async (req, res) => {
     console.log(req.body);
-    let response=await User.find({userType:'orphanage'})
+    let response = await User.find({ userType: 'orphanage' })
     console.log(response);
     res.json(response)
 })
-router.get('/vieworphdetail/:id',async(req,res)=>{
-    let id=req.params.id
+router.get('/vieworphdetail/:id', async (req, res) => {
+    let id = req.params.id
     console.log(id);
-    let response=await User.findById(id)
-    let events=await Event.find({orphanageId:id})
-    let contrireq=await ContributionRequest.find({orphanageId:id})
-    let reports=await Report.find({UserId:id})
+    let response = await User.findById(id)
+    let events = await Event.find({ orphanageId: id })
+    let contrireq = await ContributionRequest.find({ orphanageId: id })
+    let reports = await Report.find({ UserId: id })
     console.log(response);
-    res.json({response,events,contrireq,reports})
+    res.json({ response, events, contrireq, reports })
 })
 
 
 
 
-router.get('/viewcontribution/:id',async(req,res)=>{
-    let id=req.params.id
+router.get('/viewcontribution/:id', async (req, res) => {
+    let id = req.params.id
     console.log(id);
-    let response=await Contribution.find({userId:id})
+    let response = await Contribution.find({ userId: id })
     console.log(response);
-    let responseData=[];
-    for (const newresponse of response){
-    //   let orphanage = await User.findById(newresponse.orphanageId);
-      let contrireq=await ContributionRequest.findById(newresponse.contributionRequestId);
-      let  orphanage=await User.findById(contrireq?.orphanageId)
-      responseData.push({
-          orphanage: orphanage,
-          contrireq:contrireq,
-          contribution: newresponse
-      });
+    let responseData = [];
+    for (const newresponse of response) {
+        //   let orphanage = await User.findById(newresponse.orphanageId);
+        let contrireq = await ContributionRequest.findById(newresponse.contributionRequestId);
+        let orphanage = await User.findById(contrireq?.orphanageId)
+        responseData.push({
+            orphanage: orphanage,
+            contrireq: contrireq,
+            contribution: newresponse
+        });
     }
     console.log(responseData);
     res.json(responseData);
@@ -198,41 +198,41 @@ router.get('/vieworder/:id', async (req, res) => {
     try {
         const id = req.params.id;
         console.log(id);
-        
+
         // Find orders associated with the user ID
         const orders = await Orders.find({ 'products.userId': id });
         let responseData = [];
 
         for (let ord of orders) {
-            console.log(ord, '----------------------');
+            // console.log(ord, '----------------------');
             // Filter products based on userId
             const products = ord.products.filter(p => p.userId == id);
-            const orgs=await User.findById(ord.organizationId)
-            for(let x of products){
-                
-                const productdetails=await product.findById(x.productId)
+            const orgs = await User.findById(ord.organizationId)
+            for (let x of products) {
+
+                const productdetails = await product.findById(x.productId)
                 const delboys = await User.findById(x.deliveryBoyId)
-                    
-                
-                
-            
 
-            // Now products contains the filtered products for the user
-            console.log(products, '===================');
 
-            responseData.push({
-                products: products,
-                order:ord,
-                org:orgs,
-                productdetail:productdetails,
-                dboy:delboys
-            });
-        }
+
+
+
+                // Now products contains the filtered products for the user
+                // console.log(products, '===================');
+
+                responseData.push({
+                    products: products,
+                    order: ord,
+                    org: orgs,
+                    productdetail: productdetails,
+                    dboy: delboys
+                });
+            }
         }
 
         // Send the order details containing filtered products
         res.json(responseData);
-        
+
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
@@ -249,7 +249,7 @@ router.get('/vieworder/:id', async (req, res) => {
 //         let prod=await product.findById(id)
 
 
-        
+
 //         // Find the order that contains the product with the given productId
 //         const order = await Orders.findOne({ 'products.productId': id });
 //         console.log(order,'oooooooooooooooooooooooooo');
@@ -288,55 +288,96 @@ router.get('/vieworder/:id', async (req, res) => {
 // });
 
 
-router.put('/acceptorder/:id', async (req, res) => {
+router.put('/acceptorder/:id/:productId', async (req, res) => {
     try {
         const id = new mongoose.Types.ObjectId(req.params.id);
-        console.log(id);
-        console.log(req.body);
 
-        // Find the product by ID
-        let prod = await product.findById(id);
+        const prod = await product.findById(req.params.productId);
 
-        // Find the order that contains the product with the given productId
-        const order = await Orders.findOne({ 'products.productId': id });
-        console.log(order, 'oooooooooooooooooooooooooo');
+    
 
-        // If the order containing the product is found
-        if (order) {
-            // Update the Ostatus of the product with the given productId
-            order.products.forEach(product => {
-                console.log("Product ID:", product.productId); // Debugging: Log product ID
-                console.log("Target ID:", id); // Debugging: Log target ID
-                if (product.productId.equals(id)) {
-                    console.log(product, '-0-0-09-098');
-                    product.Ostatus = req.body.status;
-                    
-                    // Assuming Ostatus is updated from req.body
-                    if (product.Ostatus === 'Accepted') {
-                        // Decrease the product count based on the count in the order
-                        prod.count -= product.count;
-                    }
+        console.log(prod,'pp');
+
+        const orders = await Orders.findOne({ 'products._id': id });
+        orders.products.map((p) => {
+
+            if (String(id) === String(p._id)) {
+                p.Ostatus = req.body.status
+
+                if(req.body.status === 'Accepted'){
+                    prod.count -= p.count
+                    prod.save()
                 }
-            });
 
-            // Save the updated order
-            await order.save();
+                if(req.body.status === 'Rejected'){
+                    prod.count += p.count
+                    prod.save()
+                }
+            }
+        })
+        await orders.save()
 
-            // Save the updated product count
-            await prod.save();
-
-            console.log("Order updated successfully:", order);
-            res.status(200).json({ message: "Order updated successfully" });
-        } else {
-            // If the order containing the product is not found
-            console.log("Order not found for the given productId:", id);
-            res.status(404).json({ message: "Order not found for the given productId" });
-        }
+        res.status(200).json({ message: "Orders updated successfully" });
     } catch (error) {
-        console.error("Error updating order:", error);
+        console.error("Error updating orders:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
+
+
+
+
+
+//======================================================
+// router.put('/acceptorder/:id', async (req, res) => {
+//     try {
+//         const id = new mongoose.Types.ObjectId(req.params.id);
+//         console.log(id);
+//         console.log(req.body);
+
+//         // Find the product by ID
+//         let prod = await product.findById(id);
+
+//         // Find the order that contains the product with the given productId
+//         const order = await Orders.findOne({ 'products.productId': id });
+//         console.log(order, 'oooooooooooooooooooooooooo');
+
+//         // If the order containing the product is found
+//         if (order) {
+//             // Update the Ostatus of the product with the given productId
+//             order.products.forEach(product => {
+//                 console.log("Product ID:", product.productId); // Debugging: Log product ID
+//                 console.log("Target ID:", id); // Debugging: Log target ID
+//                 if (product.productId.equals(id)) {
+//                     console.log(product, '-0-0-09-098');
+//                     product.Ostatus = req.body.status;
+
+//                     // Assuming Ostatus is updated from req.body
+//                     if (product.Ostatus === 'Accepted') {
+//                         // Decrease the product count based on the count in the order
+//                         prod.count -= product.count;
+//                     }
+//                 }
+//             });
+
+//             // Save the updated order
+//             await order.save();
+
+//             // Save the updated product count
+//             await prod.save();
+
+//             console.log("Order updated successfully:", order);
+//             res.status(200).json({ message: "Order updated successfully" });
+//         } else {
+//             // If the order containing the product is not found
+//             console.log("Order not found for the given productId:", id);
+//             res.status(404).json({ message: "Order not found for the given productId" });
+//         }
+//     } catch (error) {
+//         console.error("Error updating order:", error);
+//         res.status(500).json({ message: "Internal Server Error" });
+//     }
+// });
 
 
 export default router

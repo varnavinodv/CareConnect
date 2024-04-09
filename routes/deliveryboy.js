@@ -3,6 +3,7 @@ import Orders from '../models/order.js';
 import product from '../models/product.js';
 import User from '../models/user.js';
 import mongoose from 'mongoose';
+
 import donation from '../models/donation.js';
 // import Orders from '../models/order.js'
 
@@ -77,5 +78,38 @@ router.get('/viewdonation/:id',async(req,res)=>{
     }
     res.json(responseData);
 })
+
+
+// router.put('/updatestatusdonation/:id', async (req, res) => {
+//     try {
+//         const id = req.params.id;
+//         console.log(id, '[][][][][][][][');
+//         console.log(req.body, '-------------------- ');
+
+//         const donation = await donation.findById(id); // Corrected the model name to Donation
+
+//         if (!donation) {
+//             return res.status(404).json({ error: "Donation not found" });
+//         }
+
+//         donation.status = req.body.status;
+//         await donation.save();
+
+//         res.json('success');
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "Internal Server Error" });
+//     }
+// });
+
+
+router.put('/updatestatusdonation/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    console.log(req.body);
+    let donation1=await donation.findByIdAndUpdate(id,req.body)
+    console.log(donation1);
+})
+
 
 export default router
