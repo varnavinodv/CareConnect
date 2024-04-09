@@ -59,7 +59,10 @@ const [data1,setData1]=useState([]);
                     PHONE NO.
                 </th>
                 <th scope="col" class="px-6 py-3">
-                   ADDRESS
+                  DEILVERY BOY ADDRESS
+                </th>
+                <th scope="col" class="px-6 py-3">
+                   ASSIGNED DEILVERY DETAILS
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Action
@@ -73,17 +76,43 @@ const [data1,setData1]=useState([]);
                 {index+1}
                 </td>
                 <td class="px-6 py-4">
-                   {item.name}
+                   {item.dboy?.name}
                 </td>
                 <td class="px-6 py-4">
-                    {item.phno}
+                    {item.dboy?.phno}
                 </td>
                 <td class="px-6 py-4">
-                    {item.houseName} <br />
-                  P.O {item.postoffice} <br />
-                   Pin:{item.pin} <br />
-                    {item.district}
+                    {item.dboy?.houseName} <br />
+                  P.O {item.dboy?.postoffice} <br />
+                   Pin:{item.dboy?.pin} <br />
+                    {item.dboy?.district}
                 
+                </td>
+                <td class="px-6 py-4">
+                {item.donations?.map((item1) =>{
+
+                    const res = item.orphanages.find((item3)=> item3._id === item1.orphanageId && item1.status === 'assigned' )
+console.log(res,'reed');
+                    return(
+                        <div className="pb-1">
+                           Date: {item1?.date} <br />
+                           Place: {res?.name} {res?.place},{res?.district}
+                        </div>
+                    )
+                    // (
+                    //     item1.orphanageId == item.product?._id && 
+                    //     <>
+                    // <td class="px-6 py-4">
+                    //   Assigned delivery on (12/09/2024) <br />
+                    //   at (Address)
+                    
+                    // </td>
+                    // </>
+                    //   )
+                } )}
+                {
+                    
+                }
                 </td>
                 
                 <td class="px-6 py-4">
@@ -97,7 +126,7 @@ const [data1,setData1]=useState([]);
                             
                             </div>
                            
-                                <Link to='/organization/viewdonationorg'><button onClick={()=>handleSubmit(item._id)} className='bg-orange-500 p-1 rounded-lg '>SUBMIT</button></Link>
+                                <Link to='/organization/viewdonationorg'><button onClick={()=>handleSubmit(item.dboy?._id)} className='bg-orange-500 p-1 rounded-lg '>SUBMIT</button></Link>
                              
 
                             

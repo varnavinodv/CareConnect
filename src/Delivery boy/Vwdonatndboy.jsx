@@ -8,13 +8,19 @@ let status=()=>{
     setDet(!det)
     // let cid =localStorage.getItem('id')
 }
-// let updateStatus=async (statusupdation)=>{
-//     console.log(statusupdation)
-//     let response=await axios.post('http://localhost:4000/deliveryboy/orderStatus',{status:statusupdation})
-//   console.log(response);
+const [refresh, setRefresh] = useState(false);
 
-// }
-const [refresh,setrefresh]=useState(false)
+let handleSubmit=async (status,did)=>{
+    setRefresh(!refresh)
+    // setData(data)
+    // console.log(data);
+    // navigate('/organization/viewdeliveryboyorg')
+    let response=await axios.put(`http://localhost:4000/deliveryboy/updatestatusdonation/${did}`,{...data,status:status})
+    console.log(response);
+    setData('')
+    
+  }
+
 
 const id = localStorage.getItem('id');
 
@@ -28,7 +34,7 @@ useEffect(()=>{
     fetchdata()
 
     
-  },[])
+  },[refresh])
 return (
 <div>
 <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
@@ -114,8 +120,8 @@ return (
                    <div className='  p-1 bg-white text-black text-base  font-semibold rounded-lg  '>
                        {/* <button onClick={()=>updateStatus('outForDelivery')} className='hover:bg-slate-400 p-1 rounded-lg'>Out for delivery</button>
                        <p onClick={()=>updateStatus('Delivered')}className='hover:bg-slate-400 p-1 rounded-lg'>Delivered</p> */}
-                        <button className='hover:bg-slate-400 p-1 rounded-lg'>Out for delivery</button>
-                       <p className='hover:bg-slate-400 p-1 rounded-lg'>Delivered</p>
+                        <button className='hover:bg-slate-400 p-1 rounded-lg'  onClick={() => handleSubmit('Out for delivery', item1._id)} >Out for delivery</button><br />
+                       <button className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Delivered', item1._id)}>Delivered</button>
                      </div> 
                 }
        </td>
