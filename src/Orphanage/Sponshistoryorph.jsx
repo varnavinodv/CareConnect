@@ -45,9 +45,7 @@ const Sponshistoryorph = () => {
            <th scope="col" class="px-6 py-3">
                PURPOSE
            </th>
-           <th scope="col" class="px-6 py-3">
-               STATUS
-           </th>
+           
           
            
            
@@ -65,17 +63,13 @@ const Sponshistoryorph = () => {
            <td class="px-6 py-4">
              {item.organization?.name}
            </td>
-           {item?.sponsor.map((item1,index)=>(
-            <>
+           
            <td class="px-6 py-4">
-              {item1.purpose}
+              {item.purpose?.purpose}
            </td>
           
-           <td class="px-6 py-4">
-             {item1.status}
-           </td>
-           </>
-            ))}
+           
+         
           
            
        </tr>

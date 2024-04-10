@@ -14,6 +14,7 @@ const Sponsorshiporg = () => {
   const navigate=useNavigate()
   const [data,setData]=useState('')
   const [data2,setdata2]=useState([''])
+  const [data3,setdata3]=useState([''])
   // const [data1,setData1]=useState('')
 
   let handleChange=(event)=>{
@@ -24,7 +25,7 @@ const Sponsorshiporg = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    let response=await axios.post('http://localhost:4000/organization/sponsorship',{...data,organizationId:id,eventId:eid})
+    let response=await axios.post('http://localhost:4000/organization/sponsorship',{...data,organizationId:id})
     console.log(response);
     navigate('/organization/vwsponsorg')
     
@@ -36,6 +37,9 @@ const Sponsorshiporg = () => {
          let response1=await axios.get(`http://localhost:4000/organization/vieworpheventdetailspons/${eid}`)
          console.log(response1.data);
          setdata2(response1.data);
+         let response2=await axios.get(`http://localhost:4000/organization/viewpurposes/${eid}`)
+         console.log(response2.data);
+         setdata3(response2.data);
 
       }
       fetchdata()
@@ -90,7 +94,15 @@ const Sponsorshiporg = () => {
   <div class="mb-5">
   <h1 className='font-bold text-xl text-center mb-6'>SPONSORSHIP DETAILS</h1>
     <label for="purpose" class="block mb-2 text-sm font-medium text-[#3E1B00]">Purpose</label>
-    <input onChange={handleChange}  type="text" name="purpose" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    {/* <input onChange={handleChange}  type="text" name="purpose" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required /> */}
+    
+    <select onChange={handleChange} name="purposeId" className="shadow-sm bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD] block p-2" required>
+  <option value="">Select a category</option>
+  {data3.map((item)=>(
+  <option value={item._id}>{item.purpose}</option>
+  ))}
+  
+</select>
   </div>
   {/* <div class="mb-5">
     <label for="cvv" class="block mb-2 text-sm font-medium text-[#3E1B00]">CVV</label>
@@ -109,7 +121,7 @@ const Sponsorshiporg = () => {
   
   
   
- <div className='text-center'><button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center  ">SENT REQUEST</button></div> 
+ <div className='text-center'><button type="button" onClick={handleSubmit} class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center  ">SENT REQUEST</button></div> 
 </form>
 </div>
 

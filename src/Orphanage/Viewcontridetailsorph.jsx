@@ -62,9 +62,14 @@ const Viewcontridetailsorph = () => {
             <td class="px-6 py-4">
             {item.contrirequest?.purpose}
             </td>
-            <td class="px-6 py-4">
-               {item.user?.name}
-            </td>
+            <td className="px-6 py-4">
+    {item.contribution?.hideidentity=='true' ?
+        <p>{item.user?.name}</p>
+    :
+        <p>--</p>
+   }
+</td>
+
             <td class="px-6 py-4">
             {item.contrirequest?.amount}
             </td>

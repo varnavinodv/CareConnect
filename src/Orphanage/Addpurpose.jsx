@@ -1,15 +1,13 @@
-import React ,{useState} from 'react'
+import React, { useState } from 'react'
 import toy from '../Admin/toy.png'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const Addeventorph = () => {
-  let id=localStorage.getItem('id')
-  const navigate=useNavigate()
-  const [data,setData]=useState('')
-  // const [data1,setData1]=useState('')
+const Addpurpose = () => {
 
+    let {id}= useParams()
+
+    const [data,setData]=useState('')  
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
   }
@@ -18,9 +16,10 @@ const Addeventorph = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    let response=await axios.post('http://localhost:4000/orphanage/addevent',{...data,orphanageId:id})
+    let response=await axios.post('http://localhost:4000/orphanage/addpurpose',{...data,eventId:id})
     console.log(response);
-    navigate(`/orphanage/addpurpose/${response.data._id}`)
+    
+    // navigate('/orphanage/vieweventorph')
     
   }
   return (
@@ -28,33 +27,33 @@ const Addeventorph = () => {
         <div>
         <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-around'>
           <div>
-        <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ADD EVENT</div>
+        <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ADD PURPOSE</div>
                                      
  {/* formm */}
-           <div className='w-[25rem] h-[30rem] bg-red-500/30 m-auto rounded-2xl pt-10 px-10 '>
+           <div className='w-[25rem] h-[15rem] bg-red-500/30 m-auto rounded-2xl pt-10 px-10 '>
                   
 
 <form onSubmit={handleSubmit}  class="max-w-sm mx-auto">
   <div class="mb-5">
-    <label for="ename" class="block mb-2 text-sm font-medium text-[#3E1B00]">Name</label>
-    <input onChange={handleChange}  type="text" name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <label for="ename" class="block mb-2 text-sm font-medium text-[#3E1B00]">Purpose</label>
+    <input onChange={handleChange}  type="text" name="purpose" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
-  <div class="mb-5">
+  {/* <div class="mb-5">
     <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Date</label>
     <input onChange={handleChange} type="date" name="date" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
-  </div>
-  <div class="mb-5">
+  </div> */}
+  {/* <div class="mb-5">
     <label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Time</label>
     <input onChange={handleChange}  type="time" name="time" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
-  </div>
-  <div class="mb-5">
+  </div> */}
+  {/* <div class="mb-5">
     <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Venue</label>
     <input onChange={handleChange}  type="text" name="venue" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
-  </div>
+  </div> */}
   
   
   
-  <button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">ADD</button>
+  <button type="submit" class="text-white mx-auto bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">SUBMIT</button>
 </form>
 </div>
 
@@ -75,4 +74,4 @@ const Addeventorph = () => {
   )
 }
 
-export default Addeventorph
+export default Addpurpose

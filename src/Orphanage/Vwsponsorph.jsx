@@ -81,7 +81,7 @@ const Vwsponsorph = () => {
                   {item.organization?.name}
                 </td>
                 <td class="px-6 py-4">
-                   {item.sponsorship?.purpose}
+                   {item.purpose?.purpose}
                 </td>
                 <td class="px-6 py-4">
                 {item.sponsorship?.status}

@@ -48,7 +48,10 @@ const Vweventorph = () => {
                     TIME
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Action
+                   PURPOSES
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    ACTION
                 </th>
                 <th scope="col" class="px-6 py-3">
                     REQUESTS
@@ -73,7 +76,9 @@ const Vweventorph = () => {
                 <td class="px-6 py-4">
                    {item.time}
                 </td>
-                
+                <td class="px-6 py-4">
+                <Link to={`/orphanage/viewpurpose/${item._id}`}>  <p className='text-black'><u>View more</u></p></Link>
+                </td>
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
                    <Link to={`/orphanage/editeventorph/${item._id}`}> <img className='w-[45px] h-[30px] hover:bg-blue-500' src={edit} alt="" /></Link>
                     <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />

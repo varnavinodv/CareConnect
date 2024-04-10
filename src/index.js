@@ -89,6 +89,8 @@ import Addreports from './Orphanage/Addreports';
 import Editreportorph from './Orphanage/Editreportorph';
 import Vwsponshistoryadm from './Admin/Vwsponshistoryadm';
 import Viewsponsadm from './Admin/Viewsponsadm';
+import Addpurpose from './Orphanage/Addpurpose';
+import Viewpurposeupdate from './Orphanage/Viewpurposeupdate';
 
 
 
@@ -191,6 +193,8 @@ root.render(
       <Route path='viewreports' element={<Vwreports/>}/>
       <Route path='addreportorph' element={<Addreports/>}/>
       <Route path='editreportorph/:id' element={<Editreportorph/>}/>
+      <Route path='addpurpose/:id' element={<Addpurpose/>}/>
+      <Route path='viewpurpose/:id' element={<Viewpurposeupdate/>}/>
       </Route>
 
 
