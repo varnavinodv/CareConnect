@@ -10,6 +10,7 @@ import Contribution from "../models/contribution.js";
 import Sponsosrship from "../models/sponsorship.js";
 import Report from "../models/report.js";
 import { upload } from "../multer.js";
+import Purpose from "../models/purpose.js";
 
 const router=express()
 
@@ -17,7 +18,7 @@ router.post('/addevent',async(req,res)=>{
     console.log(req.body);
     const newEvent = new Event(req.body)
     const savedEvent = await newEvent.save()
-    res.json({message:"Event added",savedEvent})
+    res.json(savedEvent)
     
 })
 
@@ -169,49 +170,77 @@ router.get('/orgdetailonpostreview/:id',async(req,res)=>{
 })
 
 
-router.get('/viewsponshistory/:id',async(req,res)=>{
-    let id=req.params.id
+router.get('/viewsponshistory/:id', async (req, res) => {
+    let id = req.params.id;
     console.log(id);
-let events=await Event.find({orphanageId:id})
-console.log(events);
-let responseData=[]
-for (let x of events){
-    let sponsors=await Sponsosrship.find({eventId:x._id})
-    console.log(sponsors,'sd');
-    console.log(sponsors.organizationId,'-----------------------------------------');
-    for( let sp of sponsors){
+    let events = await Event.find({ orphanageId: id });
+    console.log(events);
+    let responseData = [];
+    let processedEvents = new Set(); // Set to track processed event IDs
 
-        let organizations=await User.findById(sp.organizationId)
-        let myevents=await Event.findById(sp.eventId)
-        console.log(organizations,'sds');
-        responseData.push({
-            sponsor:sponsors,
-            organization:organizations,
-            event:myevents
-        })
+    for (let x of events) {
+        // Check if the event is already processed
+        if (processedEvents.has(x._id)) {
+            continue; // Skip processing if the event is already processed
+        }
+
+        let eventProcessed = false;
+
+        let purposes = await Purpose.find({ eventId: x._id });
+        for (let y of purposes) {
+            let sponsor = await Sponsosrship.find({ purposeId: y._id });
+            for (let z of sponsor) {
+                let organizations = await User.findById(z.organizationId);
+                responseData.push({
+                    purpose: y,
+                    sponsor: z,
+                    organization: organizations,
+                    event: x
+                });
+                eventProcessed = true;
+            }
+        }
+
+        // If at least one purpose was found for the event, mark the event as processed
+        if (eventProcessed) {
+            processedEvents.add(x._id);
+        }
     }
-}
-console.log(responseData);
-res.json(responseData)
+    console.log(responseData);
+    res.json(responseData);
+});
 
-})
 
 router.get('/viewspons/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
-    let response=await Sponsosrship.find({eventId:id})
-    console.log(response);
+    let event =await Event.findById(id)
+    let response=await Purpose.find({eventId:id})
     let responseData=[];
-      for (const newresponse of response){
+    for (const newresponse of response){
+    let sponsor=await Sponsosrship.findOne({purposeId:newresponse._id})
+    console.log(sponsor,'ppppppppppppppppppppppppppppp');
+   
+    let org=await User.findById(sponsor.organizationId)
+    responseData.push({
+                sponsor: sponsor,
+                organization: org,
+                purpose: newresponse,
+                event:event
+            });
+    }
+    // console.log(response);
+    // let responseData=[];
+    //   for (const newresponse of response){
 
-        let organizations = await User.findById(newresponse.organizationId);
-        let events = await Event.findById(newresponse.eventId);
-        responseData.push({
-            event: events,
-            organization: organizations,
-            sponsorship: newresponse
-        });
-      }
+    //     let organizations = await User.findById(newresponse.organizationId);
+    //     let events = await Event.findById(newresponse.eventId);
+    //     responseData.push({
+    //         event: events,
+    //         organization: organizations,
+    //         sponsorship: newresponse
+    //     });
+    //   }
       console.log(responseData);
       res.json(responseData);
 })
@@ -269,7 +298,18 @@ router.put('/acceptsponsrequest/:id',async(req,res)=>{
     res.json(response)
 })
 
+router.post('/addpurpose',async(req,res)=>{
+    console.log(req.body);
+    const newpurpose = new Purpose(req.body)
+    const savedpurpose=await newpurpose.save()
+    res.json({message:" purpose added",savedpurpose})
+})
 
-
+router.get('/viewpurposes/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(req.body);
+    let purpose= await Purpose.find({eventId:id})
+    res.json(purpose)
+})
 
 export default router

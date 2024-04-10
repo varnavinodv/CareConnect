@@ -14,6 +14,7 @@ import { upload } from '../multer.js'
 import Orders from '../models/order.js';
 import mongoose from 'mongoose';
 import donation from '../models/donation.js';
+import Purpose from '../models/purpose.js';
 
 const router=express()
 
@@ -224,7 +225,17 @@ router.get('/viewreports/:id',async(req,res)=>{
 router.post('/sponsorship',async(req,res)=>{
     const newSponsorship = new Sponsosrship(req.body)
     const savedSponsorship = await newSponsorship.save()
+    console.log(req.body,'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+    let purpose= await Purpose.findByIdAndUpdate(req.body.purposeId,{status:'sponsored'})
     res.json({message:"provided sponsorship",savedSponsorship})
+})
+
+router.get('/viewpurposes/:id',async(req,res)=>{
+
+    let id=req.params.id
+    let response=await Purpose.find({eventId:id,status:'pending'})
+    console.log(response);
+    res.json(response)
 })
 
 
@@ -274,44 +285,44 @@ router.get('/viewproductdltorganisation/:id',async(req,res)=>{
      res.json({response,users});
 })
 
-
 router.get('/assigndboy', async (req, res) => {
     try {
         let response = await User.find({ userType: 'deliveryboy' });
         let responseData = [];
         
-        for (const newresponse of response) {
+        for (const deliveryboy of response) {
             let deliveryBoyData = {
-                dboy: newresponse,
-                orphanages: [], // Array to store orphanages associated with the delivery boy
-                donations: [] ,
-                orders:[],
-                users:[]  // Array to store donations associated with the delivery boy
+                dboy: deliveryboy,
+                assignedDetails: []  // Array to store assigned details
             };
 
-            let donations = await donation.find({ deliveryboyId: newresponse._id });
-            let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id})
-            console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
+            let donations = await donation.find({ deliveryboyId: deliveryboy._id ,status:'assigned'});
+            let orders = await Orders.find({ 'products.deliveryBoyId': deliveryboy._id });
 
-            
             for (const donationItem of donations) {
                 let orphanage = await User.findById(donationItem.orphanageId);
-                deliveryBoyData.orphanages.push(orphanage);
-                deliveryBoyData.donations.push(donationItem);
+                let assignedDetail = {
+                    type: 'donation',
+                    date: donationItem.date,
+                    address: orphanage.address,
+                    details: donationItem,
+                    orphanageDetails: orphanage // Include orphanage details
+                };
+                deliveryBoyData.assignedDetails.push(assignedDetail);
             }
-            for (const ord of orders){
-                deliveryBoyData.orders.push(ord)
-                
-                // let user=await User.findById(ord?.products?.userId)
-                for(let x of ord.products){
 
-                    let user=await User.findById(x.userId)
-                    // if(deliveryBoyData.includes(user._id))
-                      deliveryBoyData.users.push(user)
+            for (const order of orders) {
+                for (const product of order.products) {
+                    let user = await User.findById(product.userId);
+                    let assignedDetail = {
+                        type: 'order',
+                        date: order.date,
+                        address: user.address,
+                        details: order,
+                        userDetails: user // Include user details
+                    };
+                    deliveryBoyData.assignedDetails.push(assignedDetail);
                 }
-                // let user=await User.findById(ord?.products?.userId)
-                // deliveryBoyData.orphanages.push(user);
-                // deliveryBoyData.orders.push(orders);
             }
             
             responseData.push(deliveryBoyData);
@@ -323,6 +334,56 @@ router.get('/assigndboy', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while processing the request.' });
     }
 });
+
+
+// router.get('/assigndboy', async (req, res) => {
+//     try {
+//         let response = await User.find({ userType: 'deliveryboy' });
+//         let responseData = [];
+        
+//         for (const newresponse of response) {
+//             let deliveryBoyData = {
+//                 dboy: newresponse,
+//                 orphanages: [], // Array to store orphanages associated with the delivery boy
+//                 donations: [] ,
+//                 orders:[],
+//                 users:[]  // Array to store donations associated with the delivery boy
+//             };
+
+//             let donations = await donation.find({ deliveryboyId: newresponse._id });
+//             let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id})
+//             console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
+
+            
+//             for (const donationItem of donations) {
+//                 let orphanage = await User.findById(donationItem.orphanageId);
+//                 deliveryBoyData.orphanages.push(orphanage);
+//                 deliveryBoyData.donations.push(donationItem);
+//             }
+//             for (const ord of orders){
+//                 deliveryBoyData.orders.push(ord)
+                
+//                 // let user=await User.findById(ord?.products?.userId)
+//                 for(let x of ord.products){
+
+//                     let user=await User.findById(x.userId)
+//                     // if(deliveryBoyData.includes(user._id))
+//                       deliveryBoyData.users.push(user)
+//                 }
+//                 // let user=await User.findById(ord?.products?.userId)
+//                 // deliveryBoyData.orphanages.push(user);
+//                 // deliveryBoyData.orders.push(orders);
+//             }
+            
+//             responseData.push(deliveryBoyData);
+//         }
+        
+//         res.json(responseData);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: 'An error occurred while processing the request.' });
+//     }
+// });
 
 
 // router.get('/viewcart',async(req,res)=>{
@@ -414,13 +475,15 @@ router.get('/viewsponshistory/:id',async(req,res)=>{
     // console.log(response);
     let responseData=[];
     for (const newresponse of response){
-      let events = await Event.findById(newresponse.eventId);
+        let organizations=await User.findById(newresponse.organizationId);
+        let purposes=await Purpose.findById(newresponse.purposeId);
+        let events=await   Event.findById(purposes?.eventId);
       let orphanages=await User.findById(events?.orphanageId);
-      let organizations=await User.findById(newresponse.organizationId);
       responseData.push({
         event: events,
         organization:organizations,
         orph:orphanages,
+        purpose:purposes,
         spons: newresponse
     });
   }
@@ -570,6 +633,8 @@ router.put('/assigndonationdboy/:id',async(req,res)=>{
 
     
 })
+
+
 
 
 

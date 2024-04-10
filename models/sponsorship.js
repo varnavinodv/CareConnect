@@ -1,12 +1,10 @@
 import mongoose,{Schema,model} from "mongoose";
 import Event from "./event.js";
 import User from "./user.js";
+import Purpose from "./purpose.js";
 
 const sponsosrshipSchema=  new Schema({
-    eventId:{
-         type:mongoose.Types.ObjectId,
-         ref:Event
-    },
+   
     organizationId:{
         type:mongoose.Types.ObjectId,
         ref:User
@@ -15,9 +13,9 @@ const sponsosrshipSchema=  new Schema({
         type:mongoose.Types.ObjectId,
         ref:User
     },
-    purpose:{
-        type:String,
-        required:true
+    purposeId:{
+        type:mongoose.Types.ObjectId,
+        ref:Purpose
     },
     status:{
         type:String,
