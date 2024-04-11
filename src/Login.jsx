@@ -21,7 +21,12 @@ const Login = () => {
     if(response.data){
       localStorage.setItem('id',response.data._id)
       if(response.data.userType=='user'){
+        if(response.data.status!='disabled'){
         Navigate('/user')
+        }
+        else{
+          alert('Cannot login right now')
+        }
       }
       else if(response.data.userType=='organization'){
         if(response.data.status=='Accepted'){

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import {toast,ToastContainer} from 'react-toastify'
 
 const Orphreg = () => {
 const navigate=useNavigate()
@@ -12,19 +13,26 @@ const navigate=useNavigate()
   }
 
   let handleSubmit=async (event)=>{
+    try{
     event.preventDefault()
   // setData(data)
   // console.log(data);
-  navigate('/')
   // setData()
   let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'orphanage'})
   console.log(response);
+  navigate('/')
+    }
+    catch(e){
+   
+      toast.error('Email already exist ')
+    }
    
     
   }
   
   return (
     <div className='w-[100%]'>
+      <ToastContainer/>
        <div className='registerbg  pb-5 pt-7'>
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ORPHANAGE REGISTRATION</div>
          <div>
@@ -55,6 +63,10 @@ const navigate=useNavigate()
         <input onChange={handleChange}  type="text" name="licenseNo" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
+        <label for="licno" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">No. of childern </label>
+        <input onChange={handleChange}  type="number" name="studentCount" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+        </div>
+        <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="pwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Password</label>
         <input onChange={handleChange}  type="password" name="password" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
         </div>
@@ -79,6 +91,10 @@ const navigate=useNavigate()
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="license" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">License</label>
         <input onChange={handleChange}  type="file" name="license" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+        </div>
+        <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
+        <label for="licno" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">No. of staffs </label>
+        <input onChange={handleChange}  type="number" name="staffCount" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="cpwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm Password</label>

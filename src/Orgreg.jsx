@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import {toast,ToastContainer} from 'react-toastify'
 
 const Orgreg = () => {
    const navigate=useNavigate()
@@ -12,17 +13,25 @@ const Orgreg = () => {
   }
 
   let handleSubmit=async(event)=>{
-    event.preventDefault()
-  // setData(data)
-  // console.log(data);
-  navigate('/')
-  // setData()
-  let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'organization'})
-  console.log(response);
+    try{
+      event.preventDefault()
+      // setData(data)
+      // console.log(data);
+      navigate('/')
+      // setData()
+      let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'organization'})
+      console.log(response);
+    }
+    catch(e){
+   
+      toast.error('Email already exist ')
+    }
+    
     
   }
   return (
     <div className='w-[100%] '>
+      <ToastContainer/>
     <div className='registerbg h-[100%] pb-3   pt-7'>
      <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ORGANIZATION REGISTRATION</div>
       <div>

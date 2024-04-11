@@ -21,7 +21,7 @@ const Addproductuser = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    navigate('/user/viewproductuser')
+    // navigate('/user/viewproductuser')
     let formData = new FormData();
         formData.append('name', data.name);
         formData.append('category', data.category);

@@ -1,6 +1,7 @@
 import React,{ useState } from 'react'
 import { Link,useNavigate  } from 'react-router-dom'
 import axios from 'axios'
+import {toast,ToastContainer} from 'react-toastify'
 
 const Adddeliveryboy = () => {
   let id=localStorage.getItem('id')
@@ -13,16 +14,24 @@ const Adddeliveryboy = () => {
   }
 
   let handleSubmit=async (event)=>{
-    event.preventDefault()
-    // setData(data)
-    // console.log(data);
-    navigate('/organization/viewdeliveryboyorg')
-    let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'deliveryboy',organizationId:id})
-  console.log(response);
+    try{
+
+      event.preventDefault()
+      // setData(data)
+      // console.log(data);
+      let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'deliveryboy',organizationId:id})
+      console.log(response);
+      navigate('/organization/viewdeliveryboyorg')
+    }
+    catch(e){
+   
+      toast.error('Email already exist ')
+    }
     
   }
   return (
     <div className='w-[100%]'>
+      <ToastContainer/>
        <div className='registerbg h-[100%]  pt-7'>
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ADD NEW DELIVERY BOY</div>
          <div>

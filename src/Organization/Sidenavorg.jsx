@@ -15,6 +15,7 @@ import delivery from './Delivery.png'
 import requests from './Requests.png'
 import cart from './Cart.png'
 import spons from '../Admin/spon.png'
+import orderhis from './history.png'
 import { Link } from 'react-router-dom'
 
 
@@ -63,6 +64,10 @@ const Sidenavorg = () => {
            <Link to='/organization/vieworderorg'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={order} alt="" />
                 <p className='text-lg hidden sm:block font-normal'>Orders</p>
+            </div></Link>
+            <Link to='/organization/orderhistory'> <div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
+                <img className='w-[30px] h-[25px]' src={orderhis} alt="" />
+                <p className='text-lg hidden sm:block font-normal'>Order history</p>
             </div></Link>
             <Link to='/organization/viewrevieworg'><div className='flex flex-wrap justify-start ps-5 py-2 items-center gap-4 hover:bg-[#ffa837c4]'>
                 <img className='w-[30px] h-[25px]' src={review} alt="" />

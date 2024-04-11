@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import {toast,ToastContainer} from 'react-toastify'
 
 
 const Userreg = () => {
@@ -13,13 +14,20 @@ const Userreg = () => {
 }
 
 let handleSubmit=async(event)=>{
-  event.preventDefault()
-  // setData(data)
-  // console.log(data);
-  navigate('/')
+  try{
 
-  let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'user'})
-  console.log(response);
+    event.preventDefault()
+    // setData(data)
+    // console.log(data);
+    
+    let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'user'})
+    console.log(response);
+    navigate('/')
+  }
+  catch(e){
+   
+    toast.error('Email already exist ')
+  }
   
 }
 
@@ -28,6 +36,7 @@ let handleSubmit=async(event)=>{
 
   return (
     <div className='w-[100%]'>
+       <ToastContainer/>
         <div className='registerbg  pb-6 pt-7'>
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>USER REGISTRATION</div>
          <div>

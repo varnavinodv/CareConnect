@@ -39,9 +39,7 @@ const Vwsponshistoryadm = () => {
                 <th scope="col" class="px-6 py-3">
                     PURPOSE
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    STATUS
-                </th>
+                
             </tr>
         </thead>
         <tbody>
@@ -60,11 +58,9 @@ const Vwsponshistoryadm = () => {
                     {item.organization?.name}
                 </td>
                 <td class="px-6 py-4">
-                {item.sponsorship?.purpose}
+                {item.purpose?.purpose}
                 </td>
-                <td class="px-6 py-4">
-                    Accepted
-                </td>
+               
             </tr>
         ))}  
         </tbody>

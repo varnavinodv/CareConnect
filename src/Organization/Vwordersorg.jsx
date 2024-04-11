@@ -8,6 +8,7 @@ const Vwordersorg = () => {
   let lid = localStorage.getItem('id');
   const [data, setData] = useState([]);
   const [deliveryData, setdeliverydata] = useState([]);
+  const [data2,setData2]=useState([]);
   const {id}=useParams()
     console.log(id);
     const [det,setDet]= useState(false)
@@ -17,11 +18,15 @@ const Vwordersorg = () => {
   useEffect(() => {
     let fetchdata = async () => {
       let response = await axios.get(`http://localhost:4000/organization/vieworder/${lid}`);
+     
+      let response1=await axios.get('http://localhost:4000/organization/assigndboy')
+      let response2=await axios.get('http://localhost:4000/organization/assignorderdboy')
       console.log(response);
       setData(response.data);
-      let response1=await axios.get('http://localhost:4000/organization/assigndboy')
            console.log(response1.data);
            setdeliverydata(response1.data)
+           console.log(response2);
+           setData2(response2.data)
   
     };
     fetchdata();
@@ -110,17 +115,19 @@ const [order,setorder]=useState('')
                   COUNT
                 </th>
                 <th scope='col' class='px-6 py-3'>
-                  DATE
+                ASSIGNED DEILVERY DETAILS
                 </th>
+                <th scope='col' class='px-6 py-3'>
+                ASSIGNED ORDER DETAILS
+                </th>
+                
                 <th scope='col' class='px-6 py-3'>
                   STATUS
                 </th>
                 <th scope='col' class='px-6 py-3'>
                   ACTION
                 </th>
-                <th scope='col' class='px-6 py-3'>
-                  DELIVERY BOY
-                </th>
+                
               </tr>
             </thead>
             <tbody>

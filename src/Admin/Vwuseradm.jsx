@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 const Vwuseradm = () => {
 
     const [data,setdata]=useState([''])
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(()=>{
         let fetchdata=async()=>{
@@ -13,7 +14,21 @@ const Vwuseradm = () => {
   
         }
         fetchdata()
-     },[])
+     },[refresh])
+
+     const handleSubmit = async (status, id) => {
+        setRefresh(!refresh);
+        try {
+            const response = await axios.put(`http://localhost:4000/admin/acceptusers/${id}`, {
+                ...data,
+                status: status
+            });
+            console.log(response);
+            setdata('');
+        } catch (error) {
+            console.error('Error updating data:', error);
+        }
+    };
   return (
     <div className=' w-[100%]'>
         <div className='basicbg  pt-7 ps-10 pe-10'>
@@ -42,6 +57,12 @@ const Vwuseradm = () => {
                 <th scope="col" class="px-6 py-3">
                     ADDRESS
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    STATUS
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    ACTION
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -67,6 +88,13 @@ const Vwuseradm = () => {
                     p.o {item.postoffice} <br />
                     pin:{item.pin} <br />
                     {item.district}
+                </td>
+                <td class="px-6 py-4">
+                   {item.status}
+                </td>
+                <td class="px-6 py-4">
+                <button href='#' onClick={() => handleSubmit('disabled', item._id)} className='font-bold text-red-600  hover:underline'>DISABLE</button> <br />
+                <button href='#' onClick={() => handleSubmit('enabled', item._id)} className='font-bold text-green-600  hover:underline'>ENABLE</button>
                 </td>
             </tr>
         ))} 

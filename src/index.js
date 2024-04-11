@@ -91,6 +91,7 @@ import Vwsponshistoryadm from './Admin/Vwsponshistoryadm';
 import Viewsponsadm from './Admin/Viewsponsadm';
 import Addpurpose from './Orphanage/Addpurpose';
 import Viewpurposeupdate from './Orphanage/Viewpurposeupdate';
+import Orderhistory from './Organization/Orderhistory';
 
 
 
@@ -167,6 +168,7 @@ root.render(
         <Route path='adddeliveryboy' element={<Adddeliveryboy/>}/>
         <Route path='editreportorg/:id' element={<Editreportorg/>}/>
         <Route path='vwsponsorg' element={<Vwsponsorg/>}/>
+        <Route path='orderhistory' element={<Orderhistory/>}/>
       </Route>
 
 

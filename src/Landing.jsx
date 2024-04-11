@@ -22,11 +22,17 @@ const Landing = () => {
   return (
     <div>
       <div className='cover text-center' >
-          <div className=' pt-20 text-6xl murecho leading-[1.3] '>
-              UNITING HEARTS, <br />
-              CHANGING LIVES <br />
-              TOGETHER
-            </div>
+      <div className='pt-20 text-6xl murecho leading-[1.3]' style={{
+    background: '-webkit-linear-gradient(45deg, #FFA500, #800000)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+}}>
+    UNITING HEARTS, <br />
+    CHANGING LIVES <br />
+    TOGETHER
+</div>
+
+
             <div className='pt-4 font-semibold'>
               WELCOME TO CARE CONNECT
             </div>

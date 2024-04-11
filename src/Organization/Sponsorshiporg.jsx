@@ -7,6 +7,7 @@ import time from '../User/time.png'
 import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import {toast,ToastContainer} from 'react-toastify'
 
 const Sponsorshiporg = () => {
   let id=localStorage.getItem('id')
@@ -20,8 +21,9 @@ const Sponsorshiporg = () => {
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
   }
-
+  
   let handleSubmit=async (event)=>{
+    try{
     event.preventDefault()
     // setData(data)
     // console.log(data);
@@ -30,6 +32,10 @@ const Sponsorshiporg = () => {
     navigate('/organization/vwsponsorg')
     
   }
+  catch(e){
+    toast.error('Purpose not available')
+  }
+}
 
 
   useEffect(()=>{
@@ -47,6 +53,7 @@ const Sponsorshiporg = () => {
 
   return (
     <div className='w-[100%]'>
+      <ToastContainer/>
         <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
           <div className='ps-36'>
                         <div className='font-bold text-4xl text-amber-950 py-8'>{data2.orph?.name}</div>
@@ -96,8 +103,8 @@ const Sponsorshiporg = () => {
     <label for="purpose" class="block mb-2 text-sm font-medium text-[#3E1B00]">Purpose</label>
     {/* <input onChange={handleChange}  type="text" name="purpose" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required /> */}
     
-    <select onChange={handleChange} name="purposeId" className="shadow-sm bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD] block p-2" required>
-  <option value="">Select a category</option>
+    <select onChange={handleChange} name="purposeId" className="shadow-sm bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD] block p-2" required >
+  <option >Select a category</option>
   {data3.map((item)=>(
   <option value={item._id}>{item.purpose}</option>
   ))}
