@@ -13,11 +13,12 @@ import Report from '../models/report.js'
 
 const router = express()
 
-router.post('/register', async (req, res) => {
+router.post('/register',upload.single('license'), async (req, res) => {
     try{
 
-        console.log(req.body);
-        const newUser = new User(req.body)
+        console.log(req.file);
+        let licensepath=req.file.filename
+        const newUser = new User({...req.body,license:licensepath})
         const savedUser = await newUser.save()
         res.json({ message: "Registered", savedUser })
     }   
@@ -104,10 +105,22 @@ router.get('/viewprofile/:id', async (req, res) => {
 
 })
 
-router.put('/editprofile/:id', async (req, res) => {
+router.put('/editprofile/:id',upload.fields([{name:'license'}]), async (req, res) => {
+    try {
+        if (req.files['license']){
+            const license1=req.files['license'][0].filename; 
+            console.log(license1);
+            req.body = { ...req.body, license: license1 }
+        }
     let id = req.params.id
     console.log(req.body);
     let response = await User.findByIdAndUpdate(id, req.body)
+    console.log(response, 'fsefesdfsffdsgsgfsg');
+    }
+    catch (e) {
+        res.json(e.message)
+    }
+
 })
 
 
