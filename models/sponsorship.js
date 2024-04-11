@@ -15,7 +15,8 @@ const sponsosrshipSchema=  new Schema({
     },
     purposeId:{
         type:mongoose.Types.ObjectId,
-        ref:Purpose
+        ref:Purpose,
+        required:true
     },
     status:{
         type:String,

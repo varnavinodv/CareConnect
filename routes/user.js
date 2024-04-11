@@ -14,10 +14,17 @@ import Report from '../models/report.js'
 const router = express()
 
 router.post('/register', async (req, res) => {
-    console.log(req.body);
-    const newUser = new User(req.body)
-    const savedUser = await newUser.save()
-    res.json({ message: "Registered", savedUser })
+    try{
+
+        console.log(req.body);
+        const newUser = new User(req.body)
+        const savedUser = await newUser.save()
+        res.json({ message: "Registered", savedUser })
+    }   
+    catch (e) {
+       
+        res.status(500).json(e);
+    }
 
 })
 

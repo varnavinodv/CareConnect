@@ -10,6 +10,7 @@ import Review from '../models/review.js';
 import donation from '../models/donation.js';
 import Sponsosrship from '../models/sponsorship.js';
 import Orders from '../models/order.js';
+import Purpose from '../models/purpose.js';
 
 const router=express()
 
@@ -268,16 +269,18 @@ router.get('/viewsponshistory',async(req,res)=>{
     let responseData=[];
     for (const newresponse of response){
         let organizations=await User.findById(newresponse.organizationId);
-        let events=await Event.findById(newresponse.eventId);
+        let purpose=await Purpose.findById(newresponse.purposeId)
+        let events=await Event.findById(purpose.eventId);
         
-        console.log(events,'events');
-        let orphanages=await User.findById(events?.orphanageId)
-        console.log(orphanages,'orphanage ------------------');
+        // console.log(events,'events');
+        let orphanages=await User.findById(events.orphanageId)
+        // console.log(orphanages,'orphanage ------------------');
         responseData.push({
             sponsorship:newresponse,
            organization:organizations,
            event:events,
-           orphanage:orphanages
+           orphanage:orphanages,
+           purpose:purpose
 
         })
     }
@@ -293,6 +296,7 @@ router.get('/viewspons/:id',async(req,res)=>{
  
     let responseData=[];
     for (const newresponse of response){
+        let purpose=await purpose.findById(newresponse.viewspons)
         let organizations=await User.findById(newresponse.organizationId);
         let events=await Event.findById(newresponse.eventId);
         let orphanages=await User.findById(events?.orphanageId)

@@ -19,7 +19,8 @@ const userSchema = Schema({
     },
     email:{
         type:String,
-        required:true
+        required:true,
+        unique:true
 
     },
     phno:{
@@ -81,6 +82,12 @@ const userSchema = Schema({
     status:{
         type:String,
         default:'pending'
+    },
+    studentCount:{
+        type:Number
+    },
+    staffCount:{
+        type:Number
     }
 })
 

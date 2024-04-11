@@ -223,11 +223,17 @@ router.get('/viewreports/:id',async(req,res)=>{
 })
 
 router.post('/sponsorship',async(req,res)=>{
-    const newSponsorship = new Sponsosrship(req.body)
-    const savedSponsorship = await newSponsorship.save()
-    console.log(req.body,'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-    let purpose= await Purpose.findByIdAndUpdate(req.body.purposeId,{status:'sponsored'})
-    res.json({message:"provided sponsorship",savedSponsorship})
+    try{
+
+        const newSponsorship = new Sponsosrship(req.body)
+        const savedSponsorship = await newSponsorship.save()
+        console.log(req.body,'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+        let purpose= await Purpose.findByIdAndUpdate(req.body.purposeId,{status:'sponsored'})
+        res.json({message:"provided sponsorship",savedSponsorship})
+    }
+    catch (e) {
+        res.status(500).json(e.message)
+    }
 })
 
 router.get('/viewpurposes/:id',async(req,res)=>{
@@ -285,45 +291,95 @@ router.get('/viewproductdltorganisation/:id',async(req,res)=>{
      res.json({response,users});
 })
 
+// router.get('/assigndboy', async (req, res) => {
+//     try {
+//         let response = await User.find({ userType: 'deliveryboy' });
+//         let responseData = [];
+        
+//         for (const deliveryboy of response) {
+//             let deliveryBoyData = {
+//                 dboy: deliveryboy,
+//                 assignedDetails: []  // Array to store assigned details
+//             };
+
+//             let donations = await donation.find({ deliveryboyId: deliveryboy._id ,status:'assigned'});
+//             let orders = await Orders.find({ 'products.deliveryBoyId': deliveryboy._id });
+
+//             for (const donationItem of donations) {
+//                 let orphanage = await User.findById(donationItem.orphanageId);
+//                 let assignedDetail = {
+//                     type: 'donation',
+//                     date: donationItem.date,
+//                     address: orphanage.address,
+//                     details: donationItem,
+//                     orphanageDetails: orphanage // Include orphanage details
+//                 };
+//                 deliveryBoyData.assignedDetails.push(assignedDetail);
+//             }
+
+//             for (const order of orders) {
+//                 for (const product of order.products) {
+//                     let user = await User.findById(product.userId);
+//                     let assignedDetail = {
+//                         type: 'order',
+//                         date: order.date,
+//                         address: user.address,
+//                         details: order,
+//                         userDetails: user // Include user details
+//                     };
+//                     deliveryBoyData.assignedDetails.push(assignedDetail);
+//                 }
+//             }
+            
+//             responseData.push(deliveryBoyData);
+//         }
+        
+//         res.json(responseData);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: 'An error occurred while processing the request.' });
+//     }
+// });
+
+
 router.get('/assigndboy', async (req, res) => {
     try {
         let response = await User.find({ userType: 'deliveryboy' });
         let responseData = [];
         
-        for (const deliveryboy of response) {
+        for (const newresponse of response) {
             let deliveryBoyData = {
-                dboy: deliveryboy,
-                assignedDetails: []  // Array to store assigned details
+                dboy: newresponse,
+                orphanages: [], // Array to store orphanages associated with the delivery boy
+                donations: [] ,
+                // orders:[],
+                // users:[]  // Array to store donations associated with the delivery boy
             };
 
-            let donations = await donation.find({ deliveryboyId: deliveryboy._id ,status:'assigned'});
-            let orders = await Orders.find({ 'products.deliveryBoyId': deliveryboy._id });
+            let donations = await donation.find({ deliveryboyId: newresponse._id });
+            // let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id})
+            // console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
 
+            
             for (const donationItem of donations) {
                 let orphanage = await User.findById(donationItem.orphanageId);
-                let assignedDetail = {
-                    type: 'donation',
-                    date: donationItem.date,
-                    address: orphanage.address,
-                    details: donationItem,
-                    orphanageDetails: orphanage // Include orphanage details
-                };
-                deliveryBoyData.assignedDetails.push(assignedDetail);
+                deliveryBoyData.orphanages.push(orphanage);
+                deliveryBoyData.donations.push(donationItem);
             }
+            // for (const ord of orders){
+            //     deliveryBoyData.orders.push(ord)
+                
+            //     // let user=await User.findById(ord?.products?.userId)
+            //     for(let x of ord.products){
 
-            for (const order of orders) {
-                for (const product of order.products) {
-                    let user = await User.findById(product.userId);
-                    let assignedDetail = {
-                        type: 'order',
-                        date: order.date,
-                        address: user.address,
-                        details: order,
-                        userDetails: user // Include user details
-                    };
-                    deliveryBoyData.assignedDetails.push(assignedDetail);
-                }
-            }
+            //         let user=await User.findById(x.userId)
+            //         // if(deliveryBoyData.includes(user._id))
+            //           deliveryBoyData.users.push(user)
+            //     }
+            //     // let user=await User.findById(ord?.products?.userId)
+            //     // deliveryBoyData.orphanages.push(user);
+            //     // deliveryBoyData.orders.push(orders);
+            // }
             
             responseData.push(deliveryBoyData);
         }
@@ -336,54 +392,40 @@ router.get('/assigndboy', async (req, res) => {
 });
 
 
-// router.get('/assigndboy', async (req, res) => {
-//     try {
-//         let response = await User.find({ userType: 'deliveryboy' });
-//         let responseData = [];
-        
-//         for (const newresponse of response) {
-//             let deliveryBoyData = {
-//                 dboy: newresponse,
-//                 orphanages: [], // Array to store orphanages associated with the delivery boy
-//                 donations: [] ,
-//                 orders:[],
-//                 users:[]  // Array to store donations associated with the delivery boy
-//             };
 
-//             let donations = await donation.find({ deliveryboyId: newresponse._id });
-//             let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id})
-//             console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
 
+router.get('/assignorderdboy',async(req,res)=>{
+    let response = await User.find({ userType: 'deliveryboy' });
+    let responseData2 = [];
+     for (const newresponse of response) {
+        let deliveryBoyData = {
+            dboy: newresponse,
+            orders:[],
+            users:[]  // Array to store donations associated with the delivery boy
+        };
+        let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id})
+        console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
+        for (const ord of orders){
+            deliveryBoyData.orders.push(ord)
             
-//             for (const donationItem of donations) {
-//                 let orphanage = await User.findById(donationItem.orphanageId);
-//                 deliveryBoyData.orphanages.push(orphanage);
-//                 deliveryBoyData.donations.push(donationItem);
-//             }
-//             for (const ord of orders){
-//                 deliveryBoyData.orders.push(ord)
-                
-//                 // let user=await User.findById(ord?.products?.userId)
-//                 for(let x of ord.products){
+            // let user=await User.findById(ord?.products?.userId)
+            for(let x of ord.products){
 
-//                     let user=await User.findById(x.userId)
-//                     // if(deliveryBoyData.includes(user._id))
-//                       deliveryBoyData.users.push(user)
-//                 }
-//                 // let user=await User.findById(ord?.products?.userId)
-//                 // deliveryBoyData.orphanages.push(user);
-//                 // deliveryBoyData.orders.push(orders);
-//             }
-            
-//             responseData.push(deliveryBoyData);
-//         }
-        
-//         res.json(responseData);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: 'An error occurred while processing the request.' });
-//     }
-// });
+                let user=await User.findById(x.userId)
+                // if(deliveryBoyData.includes(user._id))
+                  deliveryBoyData.users.push(user)
+            }
+            // let user=await User.findById(ord?.products?.userId)
+            // deliveryBoyData.orphanages.push(user);
+            // deliveryBoyData.orders.push(orders);
+        }
+        responseData2.push(deliveryBoyData);
+
+     }
+     res.json(responseData2);
+    
+
+})
 
 
 // router.get('/viewcart',async(req,res)=>{
@@ -565,7 +607,8 @@ router.put('/changecartstatus/:id', async (req, res) => {
 router.get('/vieworder/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
-    let response=await Orders.find({organizationId:id}) 
+    let response = await Orders.find({ organizationId: id, 'products.Ostatus': 'pending' });
+
     
     console.log(response);  
     let responseData=[]
@@ -584,6 +627,99 @@ router.get('/vieworder/:id',async(req,res)=>{
     res.json(responseData)
 
 })
+
+router.get('/vieworderhistory/:id',async(req,res)=>{
+    let id=req.params.id
+    console.log(id);
+    let response = await Orders.find({ organizationId: id, 'products.Ostatus': { $ne: 'pending' } });
+
+    
+    console.log(response);  
+    let responseData=[]
+    for (const newresponse of response){
+        for (const x of newresponse.products){
+        let products=await product.findById(x.productId)
+        let user=await User.findById(products.userId)
+        let dboy=await User.findById(x.deliveryBoyId)
+        responseData.push({
+            product:products,
+            user:user,
+            order:newresponse,
+            delboy:dboy
+        })
+         } }
+    res.json(responseData)
+
+})
+
+
+router.get('/filterproducts/:category',async(req,res)=>{
+   
+    let category=req.params.category
+    console.log(category);
+    if(category=='books'){
+        let response=await product.find({category:'books'})
+        console.log(response);
+    res.json(response);
+    }
+    else if (category=='shoes') {
+        let response=await product.find({category:'shoes'})
+        console.log(response);
+    res.json(response);
+    }
+    else if (category=='bags') {
+        let response=await product.find({category:'bags'})
+        console.log(response);
+    res.json(response);
+    }
+    else if (category=='Others') {
+        let response=await product.find({category:'Others'})
+        console.log(response);
+    res.json(response);
+    }
+    else if (category=='toys') {
+        let response=await product.find({category:'toys'})
+        console.log(response);
+    res.json(response);
+    }
+    else if (category=='dress') {
+        let response=await product.find({category:'dress'})
+        console.log(response);
+    res.json(response);
+    }
+    else
+    {
+        let response=await product.find()
+        console.log(response);
+    res.json(response);
+    }
+
+
+})
+
+
+// router.get('/vieworderhistory/:id',async(req,res)=>{
+//     console.log(id);
+//    let response = await Orders.find({ organizationId: id, status: { $ne: 'pending' } });
+
+    
+//     console.log(response);  
+//     let responseData=[]
+//     for (const newresponse of response){
+//         for (const x of newresponse.products){
+//         let products=await product.findById(x.productId)
+//         let user=await User.findById(products.userId)
+//         let dboy=await User.findById(x.deliveryBoyId)
+//         responseData.push({
+//             product:products,
+//             user:user,
+//             order:newresponse,
+//             delboy:dboy
+//         })
+//          } }
+//     res.json(responseData)
+
+// })
 
 router.put('/assignorderdboy', async (req, res) => {
     try {
