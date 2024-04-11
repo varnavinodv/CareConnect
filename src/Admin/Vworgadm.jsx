@@ -47,7 +47,9 @@ const Vworgadm = () => {
             const response = await axios.get(`http://localhost:4000/admin/filterstatusorg/${status}`);
             console.log(response.data);
             setData(response.data);
-            setFilteredData(response.data);
+            setFilteredData(response.data);{
+                
+            }
         } catch (error) {
             console.error('Error filtering data:', error);
         }

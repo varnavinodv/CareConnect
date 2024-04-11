@@ -11,6 +11,11 @@ const Orgreg = () => {
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
   }
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
+  }
 
   let handleSubmit=async(event)=>{
     try{
@@ -18,9 +23,27 @@ const Orgreg = () => {
       // setData(data)
       // console.log(data);
       navigate('/')
-      // setData()
-      let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'organization'})
-      console.log(response);
+      let formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('phno', data.phno);
+        formData.append('postoffice', data.postoffice);
+        formData.append('district', data.district);
+        formData.append('licenseNo',data.licenseNo)
+        formData.append('password',data.password)
+        formData.append('email',data.email)
+        formData.append('place',data.place)
+        formData.append('pin',data.pin)
+        formData.append('fyear',data.fyear)
+        formData.append('license',data.license)
+        formData.append('cpassword',data.cpassword)
+        formData.append('userType','organization')
+    let response=await axios.post('http://localhost:4000/user/register',formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'  // Set the content type for FormData
+      }})
+  console.log(response);
+      // let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'organization'})
+      // console.log(response);
     }
     catch(e){
    
@@ -85,7 +108,7 @@ const Orgreg = () => {
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="license" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">License</label>
-        <input onChange={handleChange}  type="file" name="license" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+        <input onChange={handlefile}  type="file" name="license" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="cpwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm Password</label>

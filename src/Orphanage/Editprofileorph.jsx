@@ -23,14 +23,36 @@ const Editprofileorph = () => {
     setData({...data,[event.target.name]:event.target.value})
   }
 
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
+  }
+
   let handleSubmit=async (event)=>{
     event.preventDefault()
-    setData(data)
-    console.log(data);
+    // setData(data)
+    // console.log(data);
     // navigate('/orphanage/vieworgdtlorph')
     setrefresh(!refresh)
-    let response=await axios.put(`http://localhost:4000/user/editprofile/${id}`,data)
+    setrefresh(!refresh)
+    const formData=new FormData();
+    for (const key in data){
+      if(data[key]){
+        formData.append(key,data[key]);
+      }
+    }
+    console.log(data);
+    console.log(formData);
+    let response=await axios.put(`http://localhost:4000/user/editprofile/${id}`,formData,{
+      headers:{
+        'Content-Type': 'multipart/form-data'
+      }
+    })
     console.log(response);
+    setData('')
+    // let response=await axios.put(`http://localhost:4000/user/editprofile/${id}`,data)
+    // console.log(response);
     
   }
   return (
@@ -88,7 +110,7 @@ const Editprofileorph = () => {
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="license" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">License</label>
-        <input onChange={handleChange}  type="file" name="license" placeholder={userData.license} class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+        <input onChange={handlefile}  type="file" name="license" placeholder={userData.license} class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="cpwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm Password</label>
