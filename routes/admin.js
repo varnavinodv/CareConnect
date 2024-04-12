@@ -226,22 +226,22 @@ router.get('/viewreview',async(req,res)=>{
 })
 
 
-router.get('/viewsponsorship',async(req,res)=>{
-    console.log(req.body);
-    let response=await Sponsosrship.find()
-    console.log(response);
-    let responseData=[];
-    for (const newresponse of response){
-        let user=await User.findById(newresponse.organizationId);
-        responseData.push({
-            sponsosrship:newresponse,
-            users:user
+// router.get('/viewsponsorship',async(req,res)=>{
+//     console.log(req.body);
+//     let response=await Sponsosrship.find()
+//     console.log(response);
+//     let responseData=[];
+//     for (const newresponse of response){
+//         let user=await User.findById(newresponse.organizationId);
+//         responseData.push({
+//             sponsosrship:newresponse,
+//             users:user
 
-        })
-    }
-    console.log(responseData);
-    res.json(responseData);
-})
+//         })
+//     }
+//     console.log(responseData);
+//     res.json(responseData);
+// })
 
 router.get('/viewdonation',async(req,res)=>{
     console.log(req.body);
@@ -292,25 +292,28 @@ router.get('/viewsponshistory',async(req,res)=>{
 router.get('/viewspons/:id',async(req,res)=>{
     let id=req.params.id
 
-    let response=await Sponsosrship.find({eventId:id})
- 
+    let response=await Purpose.find({eventId:id})
+    let event =await Event.findById(id)
+    let orph=await User.findById(event.orphanageId)
+    console.log(response); 
     let responseData=[];
     for (const newresponse of response){
-        let purpose=await purpose.findById(newresponse.viewspons)
-        let organizations=await User.findById(newresponse.organizationId);
-        let events=await Event.findById(newresponse.eventId);
-        let orphanages=await User.findById(events?.orphanageId)
+    let sponsor=await Sponsosrship.findOne({purposeId:newresponse._id})
+    console.log(sponsor,'ppppppppppppppppppppppppppppp');
+   
+    let org=await User.findById(sponsor?.organizationId)
+    responseData.push({
+                sponsor: sponsor,
+                organization: org,
+                purpose: newresponse,
+                event:event,
+                orphanage:orph
+            });
+    }
+      console.log(responseData);
+      res.json(responseData);   
+ 
     
-        responseData.push({
-            spons:newresponse,
-           organization:organizations,
-           orphanage:orphanages,
-           event:events,
-
-        })
-    } 
-
-    res.json(responseData);
 })
 
 

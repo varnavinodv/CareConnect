@@ -21,7 +21,14 @@ const router=express()
 router.get('/vieworders/:id',async(req,res)=>{
     const id = req.params.id;
     console.log(id);
-    const orders = await Orders.find({ 'products.deliveryBoyId': id });
+    const orders = await Orders.find({ 'products.deliveryBoyId': id ,
+    $nor: [
+        { status: 'assigned' },
+        { status: 'pending' }
+    ]
+
+
+});
     let responseData = [];
     for (let ord of orders) {
         for(let x of ord.products){ 
@@ -62,7 +69,14 @@ router.put('/updatestatusorder/:id',async(req,res)=>{
 router.get('/viewdonation/:id',async(req,res)=>{
     const id = req.params.id;
     console.log(id);
-    const donatn= await donation.find({deliveryboyId:id})
+    const donatn = await donation.find({
+        deliveryboyId: id,
+        $nor: [
+            { status: 'assigned' },
+            { status: 'pending' }
+        ]
+    });
+    
     // console.log(donatn,'sssssssssssssssssss');
     let responseData = [];
     for (let don of donatn) {
