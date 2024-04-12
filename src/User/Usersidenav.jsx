@@ -1,5 +1,5 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, { useEffect } from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import contri from '../Admin/contri.png'
 import donatn from '../Admin/donatn.png'
 import event from '../Admin/event.png'
@@ -11,9 +11,18 @@ import review from '../Admin/review.png'
 import spon from '../Admin/spon.png'
 import user1 from '../Admin/user1.png'
 import org from '../Admin/org.png'
-import logout from '../Admin/logout.png'
+import logout1 from '../Admin/logout.png'
+import axios from 'axios'
 
 const Usersidenav = () => {
+    const navigate=useNavigate()
+
+    let logout=()=>{
+        localStorage.removeItem('id')
+        localStorage.removeItem('email')
+        navigate('/')
+    }
+   
   return (
    
         <div className='w-[250px]  bg-[#FFEFBD] flex flex-col justify-between pb-11'>
@@ -65,10 +74,10 @@ const Usersidenav = () => {
             </div>
             <div>
               <div className='ps-8 pt-20'>
-                <Link to='/'><button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
+                <button onClick={logout} className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
                     <div className='text-white'>LOGOUT </div>
-                    <div><img src={logout} alt="" /></div>
-                </button></Link>
+                    <div><img src={logout1} alt="" /></div>
+                </button>
               </div>   
             </div>
 

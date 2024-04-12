@@ -9,11 +9,21 @@ import review from '../Admin/review.png'
 import spon from '../Admin/spon.png'
 import user1 from '../Admin/user1.png'
 import org from '../Admin/org.png'
+
 import logout from '../Admin/logout.png'
 
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 
 const Sidenavorph = () => {
+
+
+    const navigate=useNavigate()
+
+    let logout=()=>{
+        localStorage.removeItem('id')
+        localStorage.removeItem('email')
+        navigate('/')
+    }
   return (
     <div>
         <div className='w-[250px] h-[100%] bg-[#FFEFBD] flex flex-col justify-between pb-11'>
@@ -63,11 +73,11 @@ const Sidenavorph = () => {
                 <p className='text-lg font-normal'>Reports</p>
             </div></Link>
             </div>
-            <div className='ps-8 pt-20'>
-            <Link to ='/'><button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
+            <div className='ps-8 pt-20' onClick={logout}>
+           <button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
                     <div className='text-white'>LOGOUT </div>
                     <div><img src={logout} alt="" /></div>
-                </button></Link>
+                </button>
                 
             </div>
 

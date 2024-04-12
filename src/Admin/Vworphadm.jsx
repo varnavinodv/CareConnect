@@ -157,12 +157,29 @@ const Vworphadm = () => {
                                     </td>
                                     <td className='px-6 py-4'>{item.status}</td>
                                     <td className='px-6 py-4 flex flex-wrap flex-col'>
-                                        <button onClick={() => handleSubmit('Accepted', item._id)} href='#' className='font-bold text-green-600 hover:underline'>
-                                            Accept
-                                        </button>
-                                        <button onClick={() => handleSubmit('Rejected', item._id)} href='#' className='font-bold text-red-600 hover:underline'>
-                                            Reject
-                                        </button>
+                                    <td className="px-6 py-4 flex flex-wrap flex-col">
+    {item.status === 'pending' && (
+        <>
+            <button onClick={() => handleSubmit('Accepted', item._id)} href='#' className='font-bold text-green-600 hover:underline'>
+                Accept
+            </button>
+            <button onClick={() => handleSubmit('Rejected', item._id)} href='#' className='font-bold text-red-600 hover:underline'>
+                Reject
+            </button>
+        </>
+    )}
+    {item.status === 'Rejected' && (
+        <button onClick={() => handleSubmit('Accepted', item._id)} href='#' className='font-bold text-green-600 hover:underline'>
+            Accept
+        </button>
+    )}
+    {item.status === 'Accepted' && (
+        <button onClick={() => handleSubmit('Rejected', item._id)} href='#' className='font-bold text-red-600 hover:underline'>
+            Reject
+        </button>
+    )}
+</td>
+
                                     </td>
                                 </tr>
                             ))}

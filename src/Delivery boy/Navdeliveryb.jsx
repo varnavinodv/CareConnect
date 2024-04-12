@@ -1,11 +1,36 @@
-import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, Outlet,useNavigate } from 'react-router-dom'
 import Footer from '../Footer'
 import profile from '../Admin/prof icon.png'
 import menu from '../Admin/menubar.png'
+import axios from 'axios'
 // import Usersidenav from './Usersidenav'
 
 const Navdeliveryb = () => {
+  const navigate=useNavigate()
+  let logout=()=>{
+    localStorage.removeItem('id')
+    localStorage.removeItem('email')
+    navigate('/')
+}
+
+useEffect(()=>{
+  let auth=async ()=>{
+
+    let id=localStorage.getItem('id')
+    let email=localStorage.getItem('email')
+    let response=await axios.post('http://localhost:4000/user/api/auth/authenticate',{_id:id,email:email})
+    console.log(response);
+    if(response==null){
+      navigate('/login')
+    }
+    else if(response?.data?.userType !=='deliveryboy'){
+      navigate('/login')
+    }
+
+  }
+  auth()
+},[])
   return (
     <div>
     <div className='w-[100%] m-auto flex-wrap  bg-orange-500  flex  justify-between  '>
@@ -21,7 +46,7 @@ const Navdeliveryb = () => {
                <Link to='/deliveryboy'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Home</div></Link>
                <Link to='/deliveryboy/vieworderdeliveryb'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Orders</div></Link>
                <Link to='/deliveryboy/viewdonatndeliveryb'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Donations</div></Link>
-               <Link to='/'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Logout</div></Link>
+               <div onClick={logout} className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Logout</div>
                
 
             </div>

@@ -20,7 +20,7 @@ let handleSubmit=async(event)=>{
     // setData(data)
     // console.log(data);
     
-    let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'user'})
+    let response=await axios.post('http://localhost:4000/user/registeruser',{...data,userType:'user'})
     console.log(response);
     navigate('/')
   }

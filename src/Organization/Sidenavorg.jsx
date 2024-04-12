@@ -16,10 +16,18 @@ import requests from './Requests.png'
 import cart from './Cart.png'
 import spons from '../Admin/spon.png'
 import orderhis from './history.png'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 
 
 const Sidenavorg = () => {
+    const navigate=useNavigate()
+
+    let logout=()=>{
+        localStorage.removeItem('id')
+        localStorage.removeItem('email')
+        navigate('/')
+    }
+
   return (
    
         <div className='sm:w-[250px] w-[40px]  bg-[#FFEFBD] flex flex-col sm:justify-between pb-5 '>
@@ -79,10 +87,10 @@ const Sidenavorg = () => {
             </div></Link>
             </div>  
             <div className='ps-8 '>
-               <Link to='/'> <button className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
+               <button onClick={logout} className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
                     <div className='text-white'>LOGOUT </div>
                     <div><img src={logout} alt="" /></div>
-                </button></Link>
+                </button>
                 
             </div>
 
