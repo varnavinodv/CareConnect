@@ -146,7 +146,7 @@ const Vworphadm = () => {
                                     <td className='px-6 py-4 font-semibold'>{index + 1}</td>
                                     <td className='px-6 py-4'>{item.name}</td>
                                     <td className='px-6 py-4'>{item.licenseNo}</td>
-                                    <td className='px-6 py-4'>{item.license}</td>
+                                    <a className='hover:text-blue-600 hover:underline'  href={`http://localhost:4000/uploads/${item.license}`} download >{item.license}</a>
                                     <td className='px-6 py-4'>{item.email}</td>
                                     <td className='px-6 py-4'>{item.phno}</td>
                                     <td className='px-6 py-4'>

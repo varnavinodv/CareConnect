@@ -108,7 +108,8 @@ const Vwreportsadm = () => {
                     {item.report?.year}
                 </td>
                 <td class="px-6 py-4">
-                    {item.report?.report}
+                <a className='hover:text-blue-600 hover:underline'  href={`http://localhost:4000/uploads/${item.report?.report}`} download >{item.report?.report}</a>
+                    {/* {item.report?.report} */}
                 </td>
             </tr>
            ))}  

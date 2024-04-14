@@ -42,9 +42,9 @@ const Viewsponsadm = () => {
                 <th scope="col" class="px-6 py-3">
                     PURPOSE
                 </th>
-                <th scope="col" class="px-6 py-3">
+                {/* <th scope="col" class="px-6 py-3">
                     STATUS
-                </th>
+                </th> */}
             </tr>
         </thead>
         <tbody>
@@ -65,9 +65,9 @@ const Viewsponsadm = () => {
                 <td class="px-6 py-4">
                 {item.purpose?.purpose}
                 </td>
-                <td class="px-6 py-4">
+                {/* <td class="px-6 py-4">
                     Accepted
-                </td>
+                </td> */}
             </tr>
         ))}   
         </tbody>
