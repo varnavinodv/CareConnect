@@ -83,7 +83,7 @@ const userSchema = Schema({
         type:String,
         default:'pending'
     },
-    studentCount:{
+    childrenCount:{
         type:Number
     },
     staffCount:{

@@ -18,6 +18,23 @@ import Purpose from '../models/purpose.js';
 
 const router=express()
 
+router.post('/adddeliveryboy',upload.single('idproof'), async (req, res) => {
+    try{
+
+        console.log(req.file);
+        let idproofpath=req.file.filename
+        const newUser = new User({...req.body,idproof:idproofpath})
+        const savedUser = await newUser.save()
+        res.json({ message: "delivery boy added", savedUser })
+    }   
+    catch (e) {
+       
+        res.status(500).json(e);
+    }
+
+})
+
+
 router.post('/addtocart', async (req, res) => {
     try {
         const { productId, status, count, organizationId, deliveryboyId, cartstatus, userId } = req.body;
@@ -776,11 +793,27 @@ router.delete('/deletereport/:id',async(req,res)=>{
     let response=await Report.findByIdAndDelete(id)
 })
 
-//how to get product in products array of cart
-router.delete('/deletecartproduct/:id',async(req,res)=>{
-    let id=req.params.id
-    let response=await Cart.findByIdAndDelete(id)
-})
+
+router.delete('/deletecartproduct/:id', async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const cart = await Cart.findOneAndUpdate(
+            { 'products.productId': productId },
+            { $pull: { products: { productId: productId } } },
+            { new: true }
+        );
+
+        if (!cart) {
+            return res.status(404).json({ message: "Cart not found or product not in cart" });
+        }
+
+        res.status(200).json({ message: "Product removed from cart successfully" });
+    } catch (error) {
+        console.error("Error deleting product from cart:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
 
 
 

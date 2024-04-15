@@ -140,6 +140,33 @@ router.put('/editprofile/:id',upload.fields([{name:'license'}]), async (req, res
 
 })
 
+router.put('/editprofileuser/:id',async(req,res)=>{
+    let id = req.params.id
+    console.log(req.body);
+    let response = await User.findByIdAndUpdate(id, req.body)
+    console.log(response, 'fsefesdfsffdsgsgfsg');
+
+
+})
+
+router.put('/editprofiledboy/:id',upload.fields([{name:'idproof'}]), async (req, res) => {
+    try {
+        if (req.files['idproof']){
+            const idproof1=req.files['idproof'][0].filename; 
+            console.log(idproof1);
+            req.body = { ...req.body, idproof: idproof1 }
+        }
+    let id = req.params.id
+    console.log(req.body);
+    let response = await User.findByIdAndUpdate(id, req.body)
+    console.log(response, 'fsefesdfsffdsgsgfsg');
+    }
+    catch (e) {
+        res.json(e.message)
+    }
+
+})
+
 
 router.get('/viewproduct', async (req, res) => {
 
