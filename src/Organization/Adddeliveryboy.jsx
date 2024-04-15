@@ -13,22 +13,52 @@ const Adddeliveryboy = () => {
     setData({...data,[event.target.name]:event.target.value})
   }
 
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
+  }
+
   let handleSubmit=async (event)=>{
     try{
 
       event.preventDefault()
-      // setData(data)
-      // console.log(data);
-      let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'deliveryboy',organizationId:id})
-      console.log(response);
+      
       navigate('/organization/viewdeliveryboyorg')
+      let formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('phno', data.phno);
+        formData.append('houseName', data.houseName);
+        formData.append('pin', data.pin);
+        formData.append('idno',data.idno)
+        formData.append('postoffice',data.postoffice)
+        formData.append('password',data.password)
+        formData.append('age',data.age)
+        formData.append('email',data.email)
+        formData.append('district',data.district)
+        formData.append('idproof',data.idproof)
+        formData.append('cpassword',data.cpassword)
+        formData.append('userType','deliveryboy')
+        formData.append('organizationId',id)
+    let response=await axios.post('http://localhost:4000/organization/adddeliveryboy',formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'  // Set the content type for FormData
+      }})
+  console.log(response);
+    
     }
+   
+      // let response=await axios.post('http://localhost:4000/user/register',{...data,userType:'deliveryboy',organizationId:id})
+      // console.log(response);
+      // navigate('/organization/viewdeliveryboyorg')
+    
     catch(e){
    
       toast.error('Email already exist ')
     }
-    
   }
+    
+  
   return (
     <div className='w-[100%]'>
       <ToastContainer/>
@@ -93,7 +123,7 @@ const Adddeliveryboy = () => {
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] sm:pr-0 sm:pl-0 pr-[22px] pl-[22px] justify-between py-3">
            <label for="idproof" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">ID Proof </label>
-           <input onChange={handleChange}   type="file" name="idproof" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handlefile}   type="file" name="idproof" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] sm:pr-0 sm:pl-0 pr-[22px] pl-[22px] justify-between py-3">
            <label for="cpwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm Password</label>

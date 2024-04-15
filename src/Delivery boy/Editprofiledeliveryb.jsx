@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import {toast,ToastContainer} from 'react-toastify'
 
 const Editprofiledeliveryb = () => {
   
@@ -22,21 +23,44 @@ const Editprofiledeliveryb = () => {
     setData({...data,[event.target.name]:event.target.value})
   }
 
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
+  }
+
   let handleSubmit=async (event)=>{
     event.preventDefault()
     // setData(data)
     // console.log(data);
     setrefresh(!refresh)
-    let response=await axios.put(`http://localhost:4000/user/editprofile/${id}`,data)
+    const formData=new FormData();
+    for (const key in data){
+      if(data[key]){
+        formData.append(key,data[key]);
+      }
+    }
+    console.log(data);
+    console.log(formData);
+    let response=await axios.put(`http://localhost:4000/user/editprofiledboy/${id}`,formData,{
+      headers:{
+        'Content-Type': 'multipart/form-data'
+      }
+    })
     console.log(response);
-    // if(data.cpassword!=data.password){
-    //   toast.error('password doesnt match')
-    // }
+    setData('')
+
+    
+    if(data.cpassword!=data.password){
+      toast.error('password doesnt match')
+
+    }
     
     
   }
   return (
     <div>
+       <ToastContainer/>
        <div className='registerbg w-[100%] pb-5 pt-7'>
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>Edit your profile</div>
          <div>
@@ -82,7 +106,7 @@ const Editprofiledeliveryb = () => {
            </div>
            <div class="mb-2 sm:pl-0 pl-[22px] sm:pr-0 pr-[22px] flex flex-wrap w-[24rem] justify-between py-3">
            <label for="idproof" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">ID Proof </label>
-           <input onChange={handleChange} placeholder={userData.idproof}  type="file" name="idproof" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
+           <input onChange={handlefile} placeholder={userData.idproof}  type="file" name="idproof" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" />
            </div>
            <div class="mb-2 sm:pl-0 pl-[22px] sm:pr-0 pr-[2px]  flex flex-wrap w-[24rem] justify-between py-3">
            <label for="cpassword" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm Password</label>

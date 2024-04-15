@@ -49,6 +49,10 @@ const Vworphdtlorg = () => {
                              pin:{data.response?.pin} <br />
                             {data.response?.district}</p>
                 </div>
+                <div className='flex flex-wrap justify-start gap-3  pb-3 '>
+                  <p>Children count: {data.response?.childrenCount}</p>
+                  <p>Staff count: {data.response?.staffCount}</p>
+                </div>
             </div>
             {/* {data?.contrireq?.map((item)=>( */}
 

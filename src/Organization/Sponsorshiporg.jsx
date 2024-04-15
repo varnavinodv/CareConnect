@@ -72,6 +72,10 @@ const Sponsorshiporg = () => {
                                          pin:{data2.orph?.pin} <br />
                                          {data2.orph?.district}</p>
                             </div>
+                            <div className='flex flex-wrap justify-start gap-3  pb-3 '>
+                             <p>Children count : {data2.orph?.childrenCount}</p>
+                             <p>Staff count : {data2.orph?.staffCount}</p>
+                            </div>
                         </div>
             
                         <div className=' pt-6 text-amber-950 text-balance font-bold text-3xl'>EVENTS DETAILS</div>

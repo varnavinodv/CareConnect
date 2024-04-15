@@ -41,7 +41,7 @@ useEffect(()=>{
             <div className='text-white flex flex-wrap justify-evenly gap-12 pe-5 items-center '>
                <div className='flex flex-wrap items-center'>
                   <div className='w-[50px] h-[50px] mt-4'><img src={profile} alt="" /></div>
-                  <Link to='/deliveryboy/editprofiledeliberyb'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Deliveryb</div></Link>
+                  <Link to='/deliveryboy/editprofiledeliberyb'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Profile</div></Link>
                </div>
                <Link to='/deliveryboy'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Home</div></Link>
                <Link to='/deliveryboy/vieworderdeliveryb'><div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Orders</div></Link>

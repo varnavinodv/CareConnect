@@ -27,7 +27,7 @@ useEffect(()=>{
   let handleSubmit=async (event)=>{
     event.preventDefault()
     setrefresh(!refresh)
-    let response=await axios.put(`http://localhost:4000/user/editprofile/${id}`,data)
+    let response=await axios.put(`http://localhost:4000/user/editprofileuser/${id}`,data)
     console.log(response);
     setData('')
     

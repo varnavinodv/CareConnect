@@ -5,6 +5,7 @@ import { Outlet,Link,useNavigate } from 'react-router-dom'
 import Sidenav from './Sidenav'
 import Footer from '../Footer'
 import axios from 'axios'
+import logout1 from './logout.png'
 const Navadm = () => {
   const navigate=useNavigate()
   const [drop,setDrop]= useState(false)
@@ -32,6 +33,15 @@ const Navadm = () => {
     }
     auth()
   },[])
+
+
+  
+  let logout=()=>{
+    localStorage.removeItem('id')
+    localStorage.removeItem('email')
+    navigate('/')
+}
+
   return (
     
     <div>
@@ -48,6 +58,13 @@ const Navadm = () => {
                     <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Admin</div>
                  </div>
                  <Link to ='/admin'><div className='font-semibold text-lg hover:bg-orange-300 hover:p-2 hover:text-black'>Home</div></Link>
+                 {/* <div className='ps-8 pt-20'> */}
+           <button onClick={logout} className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
+                    <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>LOGOUT </div>
+                    {/* <div><img src={logout1} alt="" /></div> */}
+                </button>
+                
+            {/* </div> */}
                  
 
               </div>
