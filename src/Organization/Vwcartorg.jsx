@@ -37,6 +37,13 @@ const Vwcartorg = () => {
       
     }
 
+
+    let handledelete=(id)=>{
+      let response=axios.delete(`http://localhost:4000/organization/deletecartproduct/${id}`)
+      console.log(response)
+      setrefresh(!refresh)
+  }
+
   return (
     <div className='w-[100%]'>
         <div className='basicbg   pt-7 ps-10 pe-10 pb-10'>
@@ -66,9 +73,10 @@ const Vwcartorg = () => {
 
 <div className='flex flex-wrap justify-evenly pt-7 pb-12'>
       {data.map((item, index) => (
-        <Link key={index} to={`/organization/viewcartproductdtlorg/${item.product?._id}`}>
-          <div className='h-fit w-[220px] bg-white'>
+        <div className='h-fit w-[220px] bg-white'>
+            <Link key={index} to={`/organization/viewcartproductdtlorg/${item.product?._id}`}>
             <img className='h-[200px] w-[200px] pt-4 ps-4' src={`http://localhost:4000/uploads/${item.product?.img}`} alt="" />
+            </Link>
             <p className='text-center font-semibold pt-1'>{item.product?.name}</p>
             <p className='text-center font-semibold text-gray-800 text-sm'>{item.users?.name}</p>
             {/* Display count for each product */}
@@ -78,8 +86,9 @@ const Vwcartorg = () => {
                 <p key={idx} className='text-center font-semibold text-gray-800 text-sm'>Count: {product.count}</p>
               )
             ))}
+           
+            <button onClick={()=>handledelete(item.product?._id)} className='bg-orange-500 p-1 text-white mx-20'>Delete</button>
           </div>
-        </Link>
       ))}
     </div>
             {/* <Link to='/organization/vieworderorg/'> */}

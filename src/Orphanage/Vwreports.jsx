@@ -19,7 +19,14 @@ const Vwreports = () => {
   
         }
         fetchdata()
-     },[refresh]) 
+     },[refresh])
+     
+     
+     let handledelete=(id)=>{
+        let response=axios.delete(`http://localhost:4000/organization/deletereport/${id}`)
+        console.log(response)
+        setrefresh(!refresh)
+    }
   return (
     <div className='w-[100%]'>
                               <div className='basicbg   pt-7 ps-10 pe-10'>
@@ -64,7 +71,7 @@ const Vwreports = () => {
                 </td>
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
                     <Link to={`/orphanage/editreportorph/${item._id}`}><img className='w-[45px] h-[30px] hover:bg-blue-400' src={edit} alt="" /></Link>
-                    <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
+                    <img onClick={()=>handledelete(item._id)} className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
             </tr>
         ))}   

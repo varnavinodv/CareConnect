@@ -28,7 +28,8 @@ const Addreportorg = () => {
     let formData = new FormData();
     formData.append('year', data.year);
     formData.append('report', data.report);
-    formData.append('UserId', id)
+    formData.append('UserId', id);
+    formData.append('usertype','organization')
     let response=await axios.post('http://localhost:4000/organization/addreport',formData, {
       headers: {
         'Content-Type': 'multipart/form-data'

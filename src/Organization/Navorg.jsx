@@ -15,6 +15,12 @@ const Navorg = () => {
 
   }
 
+  let logout=()=>{
+    localStorage.removeItem('id')
+    localStorage.removeItem('email')
+    navigate('/')
+}
+
   const navigate=useNavigate()
   useEffect(()=>{
     let auth=async ()=>{
@@ -52,6 +58,13 @@ const Navorg = () => {
                  
 
               </div>
+              <div className='ps-8 '>
+               <button onClick={logout} className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
+                    <div className='text-white'>LOGOUT </div>
+                    <div><img src={logout} alt="" /></div>
+                </button>
+                
+            </div>
           
               
 

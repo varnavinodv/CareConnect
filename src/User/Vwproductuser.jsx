@@ -9,6 +9,13 @@ import axios from 'axios'
 const Vwproductuser = () => {
     let id=localStorage.getItem('id')
     const [data,setdata]=useState([''])
+    const [refresh,setrefresh]=useState('')
+
+    let handledelete=(id)=>{
+        let response=axios.delete(`http://localhost:4000/user/deleteproduct/${id}`)
+        console.log(response)
+        setrefresh(!refresh)
+    }
 
     useEffect(()=>{
         let fetchdata=async ()=>{
@@ -17,7 +24,7 @@ const Vwproductuser = () => {
           setdata(response.data)
         }
         fetchdata()
-      },[])
+      },[refresh])
   return (
     <div className='w-[100%] '>
                                 <div className='basicbg  pt-7 ps-10 pe-10'>
@@ -72,7 +79,7 @@ const Vwproductuser = () => {
                 </td>
                 <td class="px-6 py-6 flex flex-wrap justify-around ">
                    <Link to={`/user/updateproduct/${item._id}`}> <img className='w-[45px] h-[30px] hover:bg-blue-400' src={edit} alt="" /></Link>
-                    <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
+                    <img onClick={()=>handledelete(item._id)}  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
             </tr>
           ))}  
