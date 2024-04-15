@@ -148,24 +148,31 @@ router.get('/filterstatusorg/:status',async(req,res)=>{
 })
 
 
-
-router.get('/filterstatusorph/:status',async(req,res)=>{
-   
-    let status1=req.params.status
-    console.log(status1);
-    if(status1=='all'){
-        let response=await User.find({userType:'orphanage'})
-        console.log(response);
+// Backend route
+router.get('/filterreport/:type', async (req, res) => {
+    try {
+        let type1 = req.params.type;
+        console.log(type1,'ppppppppppppppppppppppppppppppppppppppp');
+        if (type1 === 'organization') {
+           let response = await Report.find({ usertype: 'organization' });
+            console.log(response,'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
     res.json(response);
-    }
-    else{
-        let response=await User.find({userType:'orphanage',status:status1})
-        console.log(response);
+        } else if (type1 === 'orphanage') {
+          let  response = await Report.find({ usertype: 'orphanage' });
+            console.log(response);
     res.json(response);
+        } else {
+           let response = await Report.find();
+            console.log(response);
+    res.json(response);
+        }
+        
+    } catch (error) {
+        console.error('Error filtering data:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
-    
+});
 
-})
 
 
 router.get('/vieworphanage',async(req,res)=>{
@@ -213,6 +220,7 @@ router.get('/viewreview',async(req,res)=>{
     console.log(response);
     let responseData=[];
     for (const newresponse of response){
+        console.log(newresponse.orphanageId,'lllllllllllllllllllllll');
         let orphanages=await User.findById(newresponse.orphanageId);
         let organizations=await User.findById(newresponse.organizationId);
         responseData.push({
@@ -325,14 +333,17 @@ router.get('/vieworders',async(req,res)=>{
     let responseData=[]
     for (const newresponse of response){
         for (const x of newresponse.products){
-        let products=await product.findById(x.productId)
-        let user=await User.findById(products.userId)
-        const delboys = await User.findById(x.deliveryBoyId)
+            let products=await product.findById(x.productId)
+            let user=await User.findById(products.userId)
+            const delboys = await User.findById(x.deliveryBoyId)
+            let org=await User.findById(newresponse.organizationId)
+      
         responseData.push({
             product:products,
             user:user,
             order:newresponse,
-            delboy:delboys
+            delboy:delboys,
+            org:org
         })
          } }
     res.json(responseData)

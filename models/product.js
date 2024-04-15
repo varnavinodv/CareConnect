@@ -22,7 +22,11 @@ const productSchema=new Schema({
     count:{
         type:Number,
         required:true
-    }
+    },
+    status:{
+        type:String,
+        default:'pending'
+    },
 
 })
 

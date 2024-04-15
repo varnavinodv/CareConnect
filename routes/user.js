@@ -415,6 +415,40 @@ router.put('/acceptorder/:id/:productId', async (req, res) => {
 //         res.status(500).json({ message: "Internal Server Error" });
 //     }
 // });
+// ---------------------------------------------------------------------------------delete-----
 
+// router.delete('/deleteproduct/:id', async (req, res) => {
+//     try {
+//       const id = req.params.id;
+  
+//       // Check if the product exists in any order
+//       const existingInOrders = await Orders.find({ 'products.productId': id });
+//       console.log(existingInOrders,'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+  
+//       // If the product exists in any order, update its status to 'disabled'
+//       if (existingInOrders.length > 0) {
+//         for (const order of existingInOrders) {
+//             console.log(order,'ppppppppppppppppppppppppppppppppp');
+//           const productInOrder = order.products.find(product => product.productId == id);
+//           if (productInOrder) {
+//             // Update the status of the product in the order
+//             await Orders.findOneAndUpdate(
+//               { _id: order._id, 'products.productId': id },
+//               { $set: { 'products.$.status': 'disabled' } }
+//             );
+//           }
+//         }
+//       } else {
+//         // If the product doesn't exist in any order, delete it
+//         await product.findByIdAndDelete(id);
+//       }
+  
+//       res.status(200).json({ message: 'Product deleted successfully.' });
+//     } catch (error) {
+//       console.error('Error deleting product:', error);
+//       res.status(500).json({ error: 'An error occurred while deleting the product.' });
+//     }
+//   });
+  
 
 export default router

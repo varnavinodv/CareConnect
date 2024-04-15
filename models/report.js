@@ -13,6 +13,10 @@ const reportSchema=Schema({
     report:{
         type:String,
         required:true
+    },
+    usertype:{
+        type:String,
+        
     }
     
 })

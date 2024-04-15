@@ -615,6 +615,7 @@ router.get('/vieworder/:id',async(req,res)=>{
     for (const newresponse of response){
         for (const x of newresponse.products){
         let products=await product.findById(x.productId)
+        console.log(products,'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
         let user=await User.findById(products.userId)
         let dboy=await User.findById(x.deliveryBoyId)
         responseData.push({
@@ -769,6 +770,21 @@ router.put('/assigndonationdboy/:id',async(req,res)=>{
 
     
 })
+
+router.delete('/deletereport/:id',async(req,res)=>{
+    let id=req.params.id
+    let response=await Report.findByIdAndDelete(id)
+})
+
+//how to get product in products array of cart
+router.delete('/deletecartproduct/:id',async(req,res)=>{
+    let id=req.params.id
+    let response=await Cart.findByIdAndDelete(id)
+})
+
+
+
+
 
 
 
