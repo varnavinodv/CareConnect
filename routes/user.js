@@ -175,10 +175,10 @@ router.put('/editprofiledboy/:id',upload.fields([{name:'idproof'}]), async (req,
 })
 
 
-router.get('/viewproduct', async (req, res) => {
-
+router.get('/viewproduct/:id', async (req, res) => {
+    let id = req.params.id
     console.log(req.body);
-    let response = await product.find()
+    let response = await product.find({ userId: id });
     console.log(response);
     res.json(response)
 })

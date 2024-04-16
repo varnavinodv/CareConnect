@@ -342,6 +342,16 @@ router.delete('/deleteevent/:id', async (req, res) => {
     }
 });
 
+router.delete('/deletepurpose/:id',async(req,res)=>{
+    let id=req.params.id
+    let response=await Purpose.findByIdAndDelete(id)
+})
+
+router.delete('/deletedonationreq/:id',async(req,res)=>{
+    let id=req.params.id
+    let response=await donation.findByIdAndDelete(id)
+
+})
 
 
 

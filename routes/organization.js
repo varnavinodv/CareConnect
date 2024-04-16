@@ -453,8 +453,9 @@ router.get('/assignorderdboy',async(req,res)=>{
 //     res.json(response)
 // })
 
-router.get('/viewdeliveryboy',async(req,res)=>{
-    let response=await User.find({userType:'deliveryboy',status:'pending'})
+router.get('/viewdeliveryboy/:id',async(req,res)=>{
+    let id=req.params.id
+    let response=await User.find({organizationId:id,userType:'deliveryboy',status:'pending'})
     // console.log(response)
     res.json(response)
 })
