@@ -44,6 +44,8 @@ const Vwcartorg = () => {
       setrefresh(!refresh)
   }
 
+    // const filteredData = data.product?.filter(product => product.count > 0)
+
   return (
     <div className='w-[100%]'>
         <div className='basicbg   pt-7 ps-10 pe-10 pb-10'>

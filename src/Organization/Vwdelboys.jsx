@@ -9,6 +9,8 @@ import axios from 'axios'
 
 const Vwdelboys = () => {
     const [data,setdata]=useState([''])
+    const [refresh,setrefresh]=useState('')
+
 
     useEffect(()=>{
         let fetchdata=async()=>{
@@ -19,6 +21,12 @@ const Vwdelboys = () => {
         }
         fetchdata()
      },[])
+
+     let handledelete=(id)=>{
+        let response=axios.delete(`http://localhost:4000/organization/deletedeliveryboy/${id}`)
+        console.log(response)
+        setrefresh(!refresh)
+    }
   return (
     <div className='w-[100%]'>
         <div className=' '>
@@ -95,8 +103,8 @@ const Vwdelboys = () => {
                 </td>
 
                 <td class="px-6 py-6 flex flex-wrap justify-evenly items-center ">
-                    <img className='w-[30px] h-[20px] hover:bg-blue-400' src={hide} alt="" />
-                    <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
+                    {/* <img className='w-[30px] h-[20px] hover:bg-blue-400' src={hide} alt="" /> */}
+                    <img onClick={()=>handledelete(item._id)} className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
             </tr>
           ))}   

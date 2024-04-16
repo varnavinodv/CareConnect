@@ -7,6 +7,13 @@ const Vwcontriorph = () => {
 
   const [data,setdata]=useState([''])
   let id=localStorage.getItem('id')
+  const [refresh,setrefresh]=useState('')
+
+  let handledelete=(id)=>{
+    let response=axios.delete(`http://localhost:4000/orphanage/deletecontrireq/${id}`)
+    console.log(response)
+    setrefresh(!refresh)
+}
 
   useEffect(()=>{
       let fetchdata=async()=>{
@@ -81,7 +88,9 @@ const Vwcontriorph = () => {
                 </td>
                 <td class="px-6 py-4">
                 <Link to={`/orphanage/viewcontridetails/${item._id}`}> <a href="#" class=" font-semibold text-green-600 hover:underline">View Contributions</a></Link><br/>
-                <a href="#" class="font-semibold text-red-600 hover:underline">Delete request</a>
+                { item.Bamount == item.amount &&
+                <a href="#" onClick={()=>handledelete(item._id)} class="font-semibold text-red-600 hover:underline">Delete request</a>
+                 }
                 </td>
             </tr>
            ))}    

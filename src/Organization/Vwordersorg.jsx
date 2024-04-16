@@ -18,7 +18,6 @@ const Vwordersorg = () => {
   useEffect(() => {
     let fetchdata = async () => {
       let response = await axios.get(`http://localhost:4000/organization/vieworder/${lid}`);
-     
       let response1=await axios.get('http://localhost:4000/organization/assigndboy')
       let response2=await axios.get('http://localhost:4000/organization/assignorderdboy')
       console.log(response);
@@ -211,16 +210,16 @@ const [order,setorder]=useState('')
                 {index+1}
                 </td>
                 <td class="px-6 py-4">
-                   {item.name}
+                   {item.dboy?.name}
                 </td>
                 <td class="px-6 py-4">
-                    {item.phno}
+                    {item.dboy?.phno}
                 </td>
                 <td class="px-6 py-4">
-                    {item.houseName} <br />
-                  P.O {item.postoffice} <br />
-                   Pin:{item.pin} <br />
-                    {item.district}
+                    {item.dboy?.houseName} <br />
+                  P.O {item.dboy?.postoffice} <br />
+                   Pin:{item.dboy?.pin} <br />
+                    {item.dboy?.district}
                 
                 </td>
                 
@@ -236,7 +235,7 @@ const [order,setorder]=useState('')
                             </div>
                            
 
-                                 <button className='bg-orange-500 p-1 rounded-lg 'onClick={()=>handleSubmit(item._id)}>SUBMIT</button>
+                                 <button className='bg-orange-500 p-1 rounded-lg 'onClick={()=>handleSubmit(item.dboy?._id)}>SUBMIT</button>
                                 
                                 {/* <Link to='/organization/viewdonationorg'> <button className='bg-orange-500 p-1 rounded-lg '>SUBMIT</button></Link> */}
 

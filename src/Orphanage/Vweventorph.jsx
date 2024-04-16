@@ -8,6 +8,7 @@ import axios from 'axios'
 const Vweventorph = () => {
     const [data,setdata]=useState([''])
     let id=localStorage.getItem('id')
+    const [refresh,setrefresh]=useState('')
 
     useEffect(()=>{
         let fetchdata=async()=>{
@@ -18,6 +19,12 @@ const Vweventorph = () => {
         }
         fetchdata()
      },[])
+
+     let handledelete=(id)=>{
+        let response=axios.delete(`http://localhost:4000/orphanage/deleteevent/${id}`)
+        console.log(response)
+        setrefresh(!refresh)
+    }
   return (
     <div className='w-[100%]'>
                              <div className='basicbg   pt-7 ps-10 pe-10'>
@@ -81,7 +88,7 @@ const Vweventorph = () => {
                 </td>
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
                    <Link to={`/orphanage/editeventorph/${item._id}`}> <img className='w-[45px] h-[30px] hover:bg-blue-500' src={edit} alt="" /></Link>
-                    <img  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
+                    <img onClick={()=>handledelete(item._id)}  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
                 <td class="px-6 py-4">
                    <Link to={`/orphanage/viewsponsorshiporph/${item._id}`}><button className='bg-orange-500 rounded-lg p-1'>View requests</button></Link>

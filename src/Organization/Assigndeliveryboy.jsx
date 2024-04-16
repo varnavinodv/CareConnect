@@ -126,12 +126,12 @@ console.log(res,'reed');
                 <td className="px-6 py-4">
   {data2.map((item, index) => {
     const order = item.orders[0]; // Assuming each item has only one order
-    const deliveryBoy = data1.find(userData => userData.dboy?._id === order.products[0]?.deliveryBoyId)?.dboy;
+    const deliveryBoy = data1.find(userData => userData.dboy?._id === order?.products[0]?.deliveryBoyId)?.dboy;
     const user = item.users[0];
     
     return (
       <div key={index}>
-        <p>Date: {order.products[0]?.date}</p>
+        <p>Date: {order?.products[0]?.date}</p>
         <p>User Name: {user?.name}</p>
         <p>User Address: {user?.houseName}, P.O {user?.postoffice}, Pin: {user?.pin}, {user?.district}</p>
         {/* <p>Delivery Boy Name: {deliveryBoy?.name}</p> */}
