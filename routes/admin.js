@@ -153,20 +153,36 @@ router.get('/filterreport/:type', async (req, res) => {
     try {
         let type1 = req.params.type;
         console.log(type1,'ppppppppppppppppppppppppppppppppppppppp');
-        if (type1 === 'organization') {
-           let response = await Report.find({ usertype: 'organization' });
-            console.log(response,'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-    res.json(response);
-        } else if (type1 === 'orphanage') {
-          let  response = await Report.find({ usertype: 'orphanage' });
-            console.log(response);
-    res.json(response);
-        } else {
-           let response = await Report.find();
-            console.log(response);
-    res.json(response);
+        console.log(req.body);
+        if(type1=='all'){
+            let response=await Report.find()
+    console.log(response);
+    let responseData=[];
+    for (const newresponse of response){
+        let users=await User.findById(newresponse.UserId);
+        responseData.push({
+            report:newresponse,
+            user:users
+        })
+    }
+    console.log(responseData);
+    res.json(responseData);
+
         }
-        
+        else{
+        let response=await Report.find({usertype:type1})
+        console.log(response);
+        let responseData=[];
+        for (const newresponse of response){
+            let users=await User.findById(newresponse.UserId);
+            responseData.push({
+                report:newresponse,
+                user:users
+            })
+        }
+        console.log(responseData);
+        res.json(responseData);
+    }
     } catch (error) {
         console.error('Error filtering data:', error);
         res.status(500).json({ error: 'Internal server error' });

@@ -312,4 +312,38 @@ router.get('/viewpurposes/:id',async(req,res)=>{
     res.json(purpose)
 })
 
+
+router.delete('/deletecontrireq/:id',async(req,res)=>{
+    let id=req.params.id
+    let response=await ContributionRequest.findByIdAndDelete(id)
+})
+
+
+router.delete('/deleteevent/:id', async (req, res) => {
+    try {
+        const eventId = req.params.id;
+        
+        // Step 1: Find purposes associated with the event and delete them
+        const purposesToDelete = await Purpose.find({ eventId });
+        for (const purpose of purposesToDelete) {
+            // Delete associated sponsorships first
+            await Sponsosrship.deleteMany({ purposeId: purpose._id });
+            // Then delete the purpose
+            await Purpose.findByIdAndDelete(purpose._id);
+        }
+
+        // Step 2: Delete the event
+        await Event.findByIdAndDelete(eventId);
+
+        res.status(200).json({ message: 'Event, associated purposes, and sponsorships deleted successfully.' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+
+
+
 export default router

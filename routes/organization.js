@@ -361,7 +361,7 @@ router.get('/viewproductdltorganisation/:id',async(req,res)=>{
 
 router.get('/assigndboy', async (req, res) => {
     try {
-        let response = await User.find({ userType: 'deliveryboy' });
+        let response = await User.find({ userType: 'deliveryboy',status:'pending' });
         let responseData = [];
         
         for (const newresponse of response) {
@@ -400,7 +400,7 @@ router.get('/assigndboy', async (req, res) => {
             
             responseData.push(deliveryBoyData);
         }
-        
+        console.log(responseData,'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
         res.json(responseData);
     } catch (error) {
         console.error(error);
@@ -410,9 +410,10 @@ router.get('/assigndboy', async (req, res) => {
 
 
 
-
+//yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
 router.get('/assignorderdboy',async(req,res)=>{
     let response = await User.find({ userType: 'deliveryboy' });
+    console.log(response,'-----------');
     let responseData2 = [];
      for (const newresponse of response) {
         let deliveryBoyData = {
@@ -439,6 +440,7 @@ router.get('/assignorderdboy',async(req,res)=>{
         responseData2.push(deliveryBoyData);
 
      }
+     console.log(responseData2,'yyyyyyyyyyyyyyyyyyyyyyyyyyy');
      res.json(responseData2);
     
 
@@ -452,7 +454,7 @@ router.get('/assignorderdboy',async(req,res)=>{
 // })
 
 router.get('/viewdeliveryboy',async(req,res)=>{
-    let response=await User.find({userType:'deliveryboy'})
+    let response=await User.find({userType:'deliveryboy',status:'pending'})
     // console.log(response)
     res.json(response)
 })
@@ -813,6 +815,30 @@ router.delete('/deletecartproduct/:id', async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
+
+
+router.delete('/deletedeliveryboy/:id', async (req, res) => {
+    try {
+        let id = req.params.id;
+        // Check if there are any orders associated with this delivery boy
+        const inorder = await Orders.findOne({'products.deliveryBoyId': id});
+        
+        if (!inorder) {
+            // If there are no orders, directly delete the delivery boy
+            let response = await User.findByIdAndDelete(id);
+            res.status(200).json({ message: "Delivery boy deleted successfully" });
+        } else {
+            // If there are orders associated, update the status of delivery boy to 'disabled'
+            let response = await User.findByIdAndUpdate(id, { status: 'disabled' });
+            res.status(200).json({ message: "Delivery boy status updated to disabled" });
+        }
+    } catch (error) {
+        console.error("Error deleting delivery boy:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
 
 
 

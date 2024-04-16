@@ -17,11 +17,18 @@ const router = express()
 
 
 router.post('/api/auth/authenticate',async (req,res)=>{
-    console.log(req.body);
-    let response=await  User.findOne(req.body)
-    console.log(response);
-    res.json(response)
+    try{
+
+        console.log(req.body);
+        let response=await  User.findOne(req.body)
+        console.log(response);
+        res.json(response)
+    }
+    catch(e){
+        console.log(e);
+    }
 })
+
 
 router.post('/register',upload.single('license'), async (req, res) => {
     try{
