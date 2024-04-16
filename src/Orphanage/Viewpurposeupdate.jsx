@@ -6,6 +6,8 @@ import axios from 'axios'
 
 const Viewpurposeupdate = () => {
     let {id}= useParams()
+    const [refresh,setrefresh]=useState('')
+
 
     const [data,setData]=useState([''])  
   let handleChange=(event)=>{
@@ -21,7 +23,7 @@ const Viewpurposeupdate = () => {
  
     }
     fetchdata()
- },[])
+ },[refresh])
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
@@ -33,6 +35,11 @@ const Viewpurposeupdate = () => {
     // navigate('/orphanage/vieweventorph')
     
   }
+  let handledelete=(id)=>{
+    let response=axios.delete(`http://localhost:4000/orphanage/deletepurpose/${id}`)
+    console.log(response)
+    setrefresh(!refresh)
+}
   return (
     <div className='w-[100%]'>
     <div>
@@ -75,7 +82,7 @@ const Viewpurposeupdate = () => {
         <td>{item.purpose}</td>
         {item.status === 'pending' && (
     <td>
-        <img className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
+        <img  onClick={()=>handledelete(item._id)} className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
     </td>
 )}
 

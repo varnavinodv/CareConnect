@@ -130,6 +130,8 @@ useEffect(()=>{
         <label for="license" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">License</label>
         <input onChange={handlefile}  type="file" name="license" placeholder={userData.license} class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" 
          />
+                 <a className='hover:text-blue-600 hover:underline text-sm'  href={`http://localhost:4000/uploads/${userData.license}`} download >{userData.license}</a>
+
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="cpwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm Password</label>

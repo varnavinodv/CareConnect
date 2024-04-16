@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Outlet,useNavigate } from 'react-router-dom'
+import { Link, Outlet,useNavigate } from 'react-router-dom'
 import Footer from '../Footer'
 import profile from '../Admin/prof icon.png'
 import menu from '../Admin/menubar.png'
@@ -46,7 +46,7 @@ const Navorph = () => {
                     <div className='w-[50px] h-[50px] mt-4'><img src={profile} alt="" /></div>
                     <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Orphanage</div>
                  </div>
-                 <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Home</div>
+                 <Link to ='/orphanage'>   <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Home</div></Link>
                  
 
               </div>

@@ -9,7 +9,8 @@ const Vwdonatnrequestorph = () => {
     const [data,setdata]=useState([''])
 
     let id=localStorage.getItem('id')
-  
+    const [refresh,setrefresh]=useState('')
+
     useEffect(()=>{
         let fetchdata=async()=>{
            let response=await axios.get(`http://localhost:4000/orphanage/donationreq/${id}`)
@@ -18,7 +19,13 @@ const Vwdonatnrequestorph = () => {
   
         }
         fetchdata()
-     },[])
+     },[refresh])
+
+     let handledelete=(id)=>{
+        let response=axios.delete(`http://localhost:4000/orphanage/deletedonationreq/${id}`)
+        console.log(response)
+        setrefresh(!refresh)
+    }
   return (
     <div className='w-[100%] '>
                              <div className='basicbg  pt-7 ps-10 pe-10'>
@@ -75,8 +82,10 @@ const Vwdonatnrequestorph = () => {
                 </td>
                
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
+                {item.response?.status === 'pending' && (
                     
-                    <img  className='w-[40px] h-[30px]' src={dlt} alt="" />
+                    <img onClick={()=>handledelete(item.response?._id)} className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
+                )}
                 </td>
             </tr>
         //    ))

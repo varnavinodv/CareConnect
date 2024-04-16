@@ -10,6 +10,7 @@ const Vwreports = () => {
     const [data,setdata]=useState([''])
     let id=localStorage.getItem('id')
     const [refresh,setrefresh]=useState('')
+        
   
     useEffect(()=>{
         let fetchdata=async()=>{

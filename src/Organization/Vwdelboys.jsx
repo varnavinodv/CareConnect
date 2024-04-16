@@ -10,11 +10,12 @@ import axios from 'axios'
 const Vwdelboys = () => {
     const [data,setdata]=useState([''])
     const [refresh,setrefresh]=useState('')
+    let id=localStorage.getItem('id')
 
 
     useEffect(()=>{
         let fetchdata=async()=>{
-           let response=await axios.get('http://localhost:4000/organization/viewdeliveryboy')
+           let response=await axios.get(`http://localhost:4000/organization/viewdeliveryboy/${id}`)
            console.log(response.data);
            setdata(response.data)
   
@@ -93,7 +94,10 @@ const Vwdelboys = () => {
                    {item.idno}
                 </td>
                 <td class="px-6 py-4">
-                    <img  className='h-14 w-14' src={item.idproof} alt="" />
+                <a className='hover:text-blue-600 hover:underline' href={`http://localhost:4000/uploads/${item.idproof}`} download>
+                                            ID proof
+                                        </a>
+                    {/* <img  className='h-14 w-14' src={item.idproof} alt="" /> */}
                 </td>
                 <td class="px-6 py-4">
                     {item.houseName} <br />

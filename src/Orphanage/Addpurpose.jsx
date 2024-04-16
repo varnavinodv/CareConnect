@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import toy from '../Admin/toy.png'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import {toast,ToastContainer} from 'react-toastify'
 
 const Addpurpose = () => {
 
@@ -18,12 +19,14 @@ const Addpurpose = () => {
     // console.log(data);
     let response=await axios.post('http://localhost:4000/orphanage/addpurpose',{...data,eventId:id})
     console.log(response);
+    toast.error('purpose added')
     
     // navigate('/orphanage/vieweventorph')
     
   }
   return (
     <div className='w-[100%]'>
+       <ToastContainer/>
         <div>
         <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-around'>
           <div>

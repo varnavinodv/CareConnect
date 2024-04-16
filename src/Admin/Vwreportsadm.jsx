@@ -7,19 +7,20 @@ const Vwreportsadm = () => {
     const [status, setStatus] = useState('');
     const [refresh, setRefresh] = useState(false);
     const [filteredData, setFilteredData] = useState([]);
+    const [searchInput, setSearchInput] = useState('');
 
     useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const response = await axios.get('http://localhost:4000/admin/viewreports');
-            setData(response.data);
-            setFilteredData(response.data);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
-    fetchData();
-}, [refresh]);
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:4000/admin/viewreports');
+                setData(response.data);
+                setFilteredData(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, [refresh]);
 
     const dropdown = () => {
         setDrop(!drop);
@@ -29,13 +30,26 @@ const Vwreportsadm = () => {
         setStatus(type);
         try {
             const response = await axios.get(`http://localhost:4000/admin/filterreport/${type}`);
-            console.log(response.data);
             setData(response.data);
             setFilteredData(response.data);
         } catch (error) {
             console.error('Error filtering data:', error);
         }
         setDrop(false);
+    };
+
+    // Function to handle search
+    const handleSearch = (e) => {
+        const keyword = e.target.value.toLowerCase();
+        const filtered = data.filter(item => {
+            return (
+                item.user?.name.toLowerCase().includes(keyword) ||
+                item.report?.year.toString().includes(keyword) ||
+                item.report?.report.toLowerCase().includes(keyword)
+            );
+        });
+        setSearchInput(keyword);
+        setFilteredData(filtered);
     };
 
     return (
@@ -46,6 +60,7 @@ const Vwreportsadm = () => {
                 {/* Search bar */}
                 <form className='max-w-lg mx-auto pb-10'>
                     <div className='flex items-center'>
+                        {/* Dropdown */}
                         <div>
                             <button onClick={dropdown} id='dropdown-button' data-dropdown-toggle='dropdown' className='h-[42px] inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-orange-500 border border-gray-300 rounded-s-lg hover:bg-[#f7b866d4] focus:ring-4 focus:outline-none focus:ring-orange-500 dark:bg-orange-500 dark:hover:bg-[#f7b866d4] dark:focus:ring-orange-500 dark:text-white dark:border-orange-500' type='button'>
                                 {status === 'Accepted' ? <span>Accepted</span> : status === 'Rejected' ? <span>Rejected</span> : <span>All categories</span>}{' '}
@@ -75,8 +90,17 @@ const Vwreportsadm = () => {
                                 </div>
                             )}
                         </div>
+                        {/* Search Input */}
                         <div className='relative w-full'>
-                            <input type='search' id='search-dropdown' className='block p-2.5 w-full z-20 text-sm text-black bg-white rounded-e-lg border-s-2 border border-orange-500 focus:ring-orange-500 focus:border-orange-500 dark:bg-white dark:border-s-orange-500 dark:border-orange-500 dark:placeholder-gray-400 dark:text-black dark:focus:border-orange-500' placeholder='Search Organizations' required />
+                            <input 
+                                type='search' 
+                                id='search-dropdown' 
+                                className='block p-2.5 w-full z-20 text-sm text-black bg-white rounded-e-lg border-s-2 border border-orange-500 focus:ring-orange-500 focus:border-orange-500 dark:bg-white dark:border-s-orange-500 dark:border-orange-500 dark:placeholder-gray-400 dark:text-black dark:focus:border-orange-500' 
+                                placeholder='Search Organization,Orphanage,Year' 
+                                value={searchInput} 
+                                onChange={handleSearch}
+                                required 
+                            />
                             <button type='submit' className='absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-orange-200 rounded-e-lg border border-orange-500 hover:bg-[#f7b866d4] focus:ring-4 focus:outline-none focus:ring-orange-500 dark:bg-orange-500 dark:hover:bg-[#f7b866d4] dark:focus:ring-orange-500'>
                                 <svg className='w-4 h-4' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'>
                                     <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z' />

@@ -19,7 +19,7 @@ const Vwproductuser = () => {
 
     useEffect(()=>{
         let fetchdata=async ()=>{
-          let response=await axios.get('http://localhost:4000/user/viewproduct',{...data,userId:id})
+          let response=await axios.get(`http://localhost:4000/user/viewproduct/${id}`)
           console.log(response.data);
           setdata(response.data)
         }
