@@ -51,6 +51,8 @@ const Viewoprhdtluser = () => {
                              pin:{data.response?.pin}<br />
                              {data.response?.district}</p>
                 </div>
+                <p>Children count: {data.response?.childrenCount}</p>
+                <p>Staff count: {data.response?.staffCount}</p>
             </div>
             
             {data?.contrireq?.map((item)=>(

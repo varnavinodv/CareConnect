@@ -12,6 +12,7 @@ const Vwordersdboy = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`http://localhost:4000/deliveryboy/vieworders/${id}`);
+                console.log(response.data);
                 setData(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -90,12 +91,12 @@ const Vwordersdboy = () => {
                                     <td className="px-6 py-4">
                                         {item.product?.name}
                                     </td>
-                                    {item.order?.map((orderItem) => (
+                                    {/* {item.order?.map((orderItem) => (
                                         orderItem.products?.map((productItem) => (
                                             productItem.productId === item.product?._id && (
                                                 <>
                                                     <td className="px-6 py-4">
-                                                        {productItem.count}
+                                                        {productItem.count}            
                                                     </td>
                                                     <td className="px-6 py-4">
                                                         <img className='w-14 h-14' src={`http://localhost:4000/uploads/${item.product?.img}`} alt="" />
@@ -118,7 +119,26 @@ const Vwordersdboy = () => {
                                                 </>
                                             )
                                         ))
-                                    ))}
+                                    ))} */}
+                                    {item.order?.products?.map((item1) => (
+                    item1.productId == item.product?._id && 
+                    <td class='px-6 py-4'>{item1.count}</td>
+                ))}
+                                    <td> <img className='h-14 w-14' src={`http://localhost:4000/uploads/${item.product?.img}`} alt='' /></td>
+                                    <td class='px-6 py-4'>
+                    {item.user?.houseName} <br />
+                    P.O {item.user?.postoffice} <br />
+                    pin:{item.user?.pin} <br />
+                    {item.district}
+                  </td>
+                  <td>{item.user?.phno}</td>
+                  {item.order?.products?.map((item1) => (
+                    item1.productId == item.product?._id && 
+                    <>
+                  <td class='px-6 py-4'>{item1.date}</td>
+                  <td class='px-6 py-4'>{item1.Ostatus}</td>
+                    </>
+                ))}
                                     <td className="px-6 py-4 flex flex-wrap flex-col">
                                         <button className='text-white bg-orange-500 py-3 px-1 rounded-lg' onClick={() => toggleExpanded(index)}>Update status</button>
                                         {expandedItems[index] && (

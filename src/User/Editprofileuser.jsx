@@ -1,6 +1,7 @@
 
 import axios from 'axios'
 import React, {useEffect, useState} from 'react'
+import {toast,ToastContainer} from 'react-toastify'
 
 
 const Editprofileuser = () => {
@@ -34,8 +35,15 @@ useEffect(()=>{
     
     
   }
+  
+  if(data.cpassword!=data.password){
+    toast.error('password doesnt match')
+
+  }
   return (
     <div className='w-[100%]'>
+              <ToastContainer/>
+
         <div className='registerbg  pb-6 pt-7'>
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>Edit your profile</div>
          <div>

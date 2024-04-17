@@ -53,9 +53,9 @@ const [order,setorder]=useState('')
     }
   };
   console.log(selectedOrders);
-
+const [dates,setDate]=useState()
   let handleChange=(event)=>{
-    setData({...data,[event.target.name]:event.target.value})
+    setDate({...dates,[event.target.name]:event.target.value})
   }
 
 
@@ -65,7 +65,7 @@ const [order,setorder]=useState('')
         const payload = {
             selectedOrders: selectedOrders,
             deliveryboy: did,
-            date:data.date,
+            date:dates.date,
             orgId:order
         };
 

@@ -63,7 +63,7 @@ const Vwproductuser = () => {
         {data.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 font-semibold hover:bg-[#f7b866d4] ">
                 <td class="px-6 py-4">
-                    {index}
+                    {index+1}
                 </td>
                 <td class="px-6 py-4">
                    {item.name}

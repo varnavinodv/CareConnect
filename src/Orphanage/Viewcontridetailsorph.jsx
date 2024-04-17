@@ -64,9 +64,9 @@ const Viewcontridetailsorph = () => {
             </td>
             <td className="px-6 py-4">
     {item.contribution?.hideidentity=='true' ?
-        <p>{item.user?.name}</p>
+    <p>--</p>
     :
-        <p>--</p>
+    <p>{item.user?.name}</p>
    }
 </td>
 

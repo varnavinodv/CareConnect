@@ -21,18 +21,18 @@ const Addproductuser = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    // navigate('/user/viewproductuser')
     let formData = new FormData();
-        formData.append('name', data.name);
-        formData.append('category', data.category);
-        formData.append('count', data.count);
-        formData.append('img', data.img);
-        formData.append('userId',id)
+    formData.append('name', data.name);
+    formData.append('category', data.category);
+    formData.append('count', data.count);
+    formData.append('img', data.img);
+    formData.append('userId',id)
     let response=await axios.post('http://localhost:4000/user/addProduct',formData, {
       headers: {
         'Content-Type': 'multipart/form-data'  // Set the content type for FormData
       }})
-  console.log(response);
+      console.log(response);
+      navigate('/user/viewproductuser')
     
   }
   return (
