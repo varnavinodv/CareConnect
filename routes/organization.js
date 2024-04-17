@@ -20,7 +20,10 @@ const router=express()
 
 router.post('/adddeliveryboy',upload.single('idproof'), async (req, res) => {
     try{
-
+        const existMail = await User.findOne({ email: req.body.email });
+        if (existMail) {
+            return res.status(400).json({ message: 'Mail exists' });
+        }
         console.log(req.file);
         let idproofpath=req.file.filename
         const newUser = new User({...req.body,idproof:idproofpath})

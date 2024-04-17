@@ -30,9 +30,14 @@ router.post('/api/auth/authenticate',async (req,res)=>{
 })
 
 
+
 router.post('/register',upload.single('license'), async (req, res) => {
     try{
 
+        const existMail = await User.findOne({ email: req.body.email });
+        if (existMail) {
+            return res.status(400).json({ message: 'Mail exists' });
+        }
         console.log(req.file);
         let licensepath=req.file.filename
         const newUser = new User({...req.body,license:licensepath})
@@ -41,17 +46,30 @@ router.post('/register',upload.single('license'), async (req, res) => {
     }   
     catch (e) {
        
-        res.status(500).json(e);
+        console.log(e);
+        res.status(500).json({ message: e.message });
     }
 
 })
 
 router.post('/registeruser', async (req, res) => {
-    console.log(req.body);
-    const newUser = new User(req.body)
-    const savedUser = await newUser.save()
-    res.json({message:"Registered",savedUser})
-})
+    try {
+        console.log(req.body);
+        const existMail = await User.findOne({ email: req.body.email });
+        if (existMail) {
+            return res.status(400).json({ message: 'Mail exists' });
+        }
+
+        const newUser = new User(req.body);
+        const savedUser = await newUser.save();
+        res.json({ message: "Registered", savedUser });
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({ message: e.message });
+    }
+});
+
+
 
 router.post('/login', async (req, res) => {
     
