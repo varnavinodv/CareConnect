@@ -21,7 +21,7 @@ const Vwdelboys = () => {
   
         }
         fetchdata()
-     },[])
+     },[refresh])
 
      let handledelete=(id)=>{
         let response=axios.delete(`http://localhost:4000/organization/deletedeliveryboy/${id}`)

@@ -149,7 +149,7 @@ const Vworgadm = () => {
                                     <td className='px-6 py-4'>{item.licenseNo}</td>
 
                                     <td className='px-6 py-4'>
-                                        <a className='hover:text-blue-600 hover:underline'  href={`http://localhost:4000/uploads/${item.license}`} download >{item.license}</a>
+                                        <a className='hover:text-blue-600 hover:underline'  href={`http://localhost:4000/uploads/${item.license}`} download >License</a>
                                         </td>
                                     {/* <td className='px-6 py-4'>{item.license}</td> */}
                                     <td className='px-6 py-4'>{item.email}</td>

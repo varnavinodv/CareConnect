@@ -199,6 +199,12 @@ const [order,setorder]=useState('')
                    ADDRESS
                 </th>
                 <th scope="col" class="px-6 py-3">
+                   ASSIGNED DEILVERY DETAILS
+                </th>
+                <th scope="col" class="px-6 py-3">
+                   ASSIGNED ORDER DETAILS
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Action
                 </th>
             </tr>
@@ -222,6 +228,54 @@ const [order,setorder]=useState('')
                     {item.dboy?.district}
                 
                 </td>
+                <td class="px-6 py-4">
+                {item.donations?.map((item1) =>{
+
+                    const res = item.orphanages.find((item3)=> item3._id === item1.orphanageId && item1.status === 'assigned' )
+console.log(res,'reed');
+                    return(
+                       
+                        <>
+
+                            {item1?.date} <br />
+                            {res?.name} <br />
+                        </>
+                        
+                            // </td>
+                        
+                    )
+                    // (
+                    //     item1.orphanageId == item.product?._id && 
+                    //     <>
+                    // <td class="px-6 py-4">
+                    //   Assigned delivery on (12/09/2024) <br />
+                    //   at (Address)
+                    
+                    // </td>
+                    // </>
+                    //   )
+                } )}
+                </td>
+                <td className="px-6 py-4">
+                {data2.map((item, index) => {
+    const order = item.orders[0]; // Assuming each item has only one order
+    const deliveryBoy = data.find(userData => userData.dboy?._id === order?.products[0]?.deliveryBoyId)?.dboy;
+    const user = item.users[0];
+    
+    return (
+      <div key={index}>
+        <p>{order?.products[0]?.date}</p>
+        {/* <p>User Name: {user?.name}</p> */}
+        <p>  {user?.postoffice}, {user?.district}</p>
+        {/* <p>Delivery Boy Name: {deliveryBoy?.name}</p> */}
+        {/* <p>Delivery Boy Address: {deliveryBoy?.houseName}, P.O {deliveryBoy?.postoffice}, Pin: {deliveryBoy?.pin}, {deliveryBoy?.district}</p> */}
+        {/* Add any other details you want to display */}
+        <br />
+      </div>
+    );
+  })}
+  </td>
+                
                 
                 <td class="px-6 py-4">
                     <button className='bg-orange-500  text-black p-2 rounded-lg' onClick={date}>ASSIGN</button>
