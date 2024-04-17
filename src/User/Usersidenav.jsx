@@ -15,13 +15,13 @@ import logout1 from '../Admin/logout.png'
 import axios from 'axios'
 
 const Usersidenav = () => {
-    const navigate=useNavigate()
+    // const navigate=useNavigate()
 
-    let logout=()=>{
-        localStorage.removeItem('id')
-        localStorage.removeItem('email')
-        navigate('/')
-    }
+    // let logout=()=>{
+    //     localStorage.removeItem('id')
+    //     localStorage.removeItem('email')
+    //     navigate('/')
+    // }
    
   return (
    
@@ -73,12 +73,12 @@ const Usersidenav = () => {
             </div> */}
             </div>
             <div>
-              <div className='ps-8 pt-20'>
+              {/* <div className='ps-8 pt-20'>
                 <button onClick={logout} className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
                     <div className='text-white'>LOGOUT </div>
                     <div><img src={logout1} alt="" /></div>
                 </button>
-              </div>   
+              </div>    */}
             </div>
 
 
