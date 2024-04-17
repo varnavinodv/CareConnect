@@ -274,15 +274,20 @@ router.get('/viewcart/:id',async(req,res)=>{
         
         for (const x of newresponse.products){
             let products=await product.findById(x.productId)
-            console.log(products);
-            let users=await User.findById(products.userId)
+            // let products = await product.findById(x.productId, { count: { $gt: 0 } });
 
-            responseData.push({
-                organization: organizations,
-                users:users,
-                cart: newresponse,
-                product:products
-            });
+            console.log(products);
+         
+
+                let users=await User.findById(products.userId)
+                
+                responseData.push({
+                    organization: organizations,
+                    users:users,
+                    cart: newresponse,
+                    product:products
+                });
+            
         }
         }
       console.log(responseData);
@@ -376,10 +381,12 @@ router.get('/assigndboy', async (req, res) => {
             let donations = await donation.find({ deliveryboyId: newresponse._id });
             // let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id})
             // console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
-
+// console.log(donations,'dddddddddddddddddddddddddddddddddddd');
             
             for (const donationItem of donations) {
+                
                 let orphanage = await User.findById(donationItem.orphanageId);
+                console.log(orphanage,'pppppppppppppppppppppppppppppp');
                 deliveryBoyData.orphanages.push(orphanage);
                 deliveryBoyData.donations.push(donationItem);
             }

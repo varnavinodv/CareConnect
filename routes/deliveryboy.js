@@ -5,16 +5,10 @@ import User from '../models/user.js';
 import mongoose from 'mongoose';
 
 import donation from '../models/donation.js';
-// import Orders from '../models/order.js'
+
 
 const router=express()
 
-// router.post('/orderStatus',async(req,res)=>{
-//     console.log(req.body);
-//     const newOrder=new Orders(req.body)
-//     const savedOrder= await  newOrder.save()
-//     res.json({message:"orders",savedOrder})
-// })
 
 
 
@@ -23,7 +17,7 @@ router.get('/vieworders/:id',async(req,res)=>{
     console.log(id);
     const orders = await Orders.find({ 'products.deliveryBoyId': id ,
     $nor: [
-        { status: 'assigned' },
+        // { status: 'assigned' },
         { status: 'pending' }
     ]
 
@@ -35,7 +29,7 @@ router.get('/vieworders/:id',async(req,res)=>{
         const products=await product.findById(x.productId)
         const users=await User.findById(x.userId)
         responseData.push({
-            order:orders,
+            order:ord,
             product:products,
             user:users
         })
@@ -72,7 +66,7 @@ router.get('/viewdonation/:id',async(req,res)=>{
     const donatn = await donation.find({
         deliveryboyId: id,
         $nor: [
-            { status: 'assigned' },
+            // { status: 'assigned' },
             { status: 'pending' }
         ]
     });

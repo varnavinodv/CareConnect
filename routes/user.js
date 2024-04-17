@@ -235,7 +235,7 @@ router.get('/vieworphdetail/:id', async (req, res) => {
     console.log(id);
     let response = await User.findById(id)
     let events = await Event.find({ orphanageId: id })
-    let contrireq = await ContributionRequest.find({ orphanageId: id })
+    let contrireq = await ContributionRequest.find({ orphanageId: id ,status:'pending'})
     let reports = await Report.find({ UserId: id })
     console.log(response);
     res.json({ response, events, contrireq, reports })
