@@ -178,7 +178,7 @@ router.put('/editprofiledboy/:id',upload.fields([{name:'idproof'}]), async (req,
 router.get('/viewproduct/:id', async (req, res) => {
     let id = req.params.id
     console.log(req.body);
-    let response = await product.find({ userId: id });
+    let response = await product.find({ userId: id,count: { $gt: 0 } });
     console.log(response);
     res.json(response)
 })
@@ -483,6 +483,27 @@ router.put('/acceptorder/:id/:productId', async (req, res) => {
 //       res.status(500).json({ error: 'An error occurred while deleting the product.' });
 //     }
 //   });
+
+router.delete('/deleteproduct/:id', async (req, res) => {
+    try {
+        let id = req.params.id;
+        // Check if there are any orders associated with this delivery boy
+        const inorder = await Orders.findOne({'products.productId': id});
+        
+        if (!inorder) {
+            // If there are no orders, directly delete the delivery boy
+            let response = await product.findByIdAndDelete(id);
+            res.status(200).json({ message: "product deleted successfully" });
+        } else {
+            // If there are orders associated, update the status of delivery boy to 'disabled'
+            let response = await product.findByIdAndUpdate(id, { status: 'disabled' });
+            res.status(200).json({ message: "product status updated to disabled" });
+        }
+    } catch (error) {
+        console.error("Error deleting product:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
   
 
 export default router

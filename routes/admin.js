@@ -83,7 +83,7 @@ router.get('/viewcontridetails/:id', async (req, res) => {
 
 router.get('/viewdeliveryboy',async(req,res)=>{
     console.log(req.body);
-    let response=await User.find({userType:'deliveryboy'})
+    let response=await User.find({userType:'deliveryboy',status:'pending'})
     let responseData = [];
 
         for (const newresponse of response) {
@@ -148,7 +148,7 @@ router.get('/filterstatusorg/:status',async(req,res)=>{
 })
 
 
-// Backend route
+
 router.get('/filterreport/:type', async (req, res) => {
     try {
         let type1 = req.params.type;
@@ -200,7 +200,7 @@ router.get('/vieworphanage',async(req,res)=>{
 
 router.get('/viewproduct',async(req,res)=>{
     console.log(req.body);
-    let response=await product.find()
+    let response=await product.find({status:'pending',count: { $gt: 0 }})
     console.log(response);
     let responseData=[];
     for (const newresponse of response){
@@ -250,22 +250,7 @@ router.get('/viewreview',async(req,res)=>{
 })
 
 
-// router.get('/viewsponsorship',async(req,res)=>{
-//     console.log(req.body);
-//     let response=await Sponsosrship.find()
-//     console.log(response);
-//     let responseData=[];
-//     for (const newresponse of response){
-//         let user=await User.findById(newresponse.organizationId);
-//         responseData.push({
-//             sponsosrship:newresponse,
-//             users:user
 
-//         })
-//     }
-//     console.log(responseData);
-//     res.json(responseData);
-// })
 
 router.get('/viewdonation',async(req,res)=>{
     console.log(req.body);
@@ -296,9 +281,7 @@ router.get('/viewsponshistory',async(req,res)=>{
         let purpose=await Purpose.findById(newresponse.purposeId)
         let events=await Event.findById(purpose.eventId);
         
-        // console.log(events,'events');
         let orphanages=await User.findById(events.orphanageId)
-        // console.log(orphanages,'orphanage ------------------');
         responseData.push({
             sponsorship:newresponse,
            organization:organizations,
@@ -345,7 +328,6 @@ router.get('/viewspons/:id',async(req,res)=>{
 router.get('/vieworders',async(req,res)=>{
     let response=await Orders.find()   
     console.log(response);
-    // res.json(response)
     let responseData=[]
     for (const newresponse of response){
         for (const x of newresponse.products){
