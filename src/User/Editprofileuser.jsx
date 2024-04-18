@@ -27,19 +27,24 @@ useEffect(()=>{
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
+    if(data.cpassword!=data.password){
+      toast.error('password doesnt match')
+  
+    }
+    else{
+
+    
+      toast.success('Profile updated')
     setrefresh(!refresh)
     let response=await axios.put(`http://localhost:4000/user/editprofileuser/${id}`,data)
     console.log(response);
     setData('')
     
-    
+    }
     
   }
   
-  if(data.cpassword!=data.password){
-    toast.error('password doesnt match')
-
-  }
+  
   return (
     <div className='w-[100%]'>
               <ToastContainer/>
@@ -56,7 +61,7 @@ useEffect(()=>{
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3  pt-8">
            <label for="name" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Name</label>
            {/* <h2>{userData.name}</h2> */}
-           <input onChange={handleChange} placeholder={userData.name}  type="text" name="name" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed" placeholder={userData.name}  type="text" name="name" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="email" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Email</label>
@@ -64,37 +69,37 @@ useEffect(()=>{
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="hname" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">House Name</label>
-           <input onChange={handleChange} placeholder={userData.houseName} type="text" name="houseName" class="shadow-sm bg-[#FFE080] placeholder:text-black border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed" placeholder={userData.houseName} type="text" name="houseName" class="shadow-sm bg-[#FFE080] placeholder:text-black border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="pin" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Pin </label>
-           <input onChange={handleChange} placeholder={userData.pin} type="text" name="pin" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} pattern="[0-9]{6}" title="Please enter a valid 6-digit PIN code" placeholder={userData.pin} type="text" name="pin" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="pwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Password</label>
-           <input onChange={handleChange} placeholder={userData.password}  type="password" name="password" class="shadow-sm  placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} placeholder={userData.password} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$" title='Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be 8 to 30 characters long.'  type="password" name="password" class="shadow-sm  placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
         </div> 
         <div>  
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3 pt-8 ">
            <label for="age" class=" mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950 ">Age</label>
-           <input onChange={handleChange} placeholder={userData.age} type="number" name="age" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600  w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} pattern="[0-9]{2}" title="Please enter a valid age " placeholder={userData.age} type="number" name="age" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600  w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="phno" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Phone no.</label>
-           <input onChange={handleChange} placeholder={userData.phno} type="number" name="phno" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} pattern="[0-9]{10}" title="Please enter a valid phone number" placeholder={userData.phno} type="number" name="phno" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="postoffice" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Post office</label>
-           <input onChange={handleChange} placeholder={userData.postoffice} type="text" name="postoffice" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed" placeholder={userData.postoffice} type="text" name="postoffice" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="district" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">District </label>
-           <input onChange={handleChange} placeholder={userData.district} type="text" name="district" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed" placeholder={userData.district} type="text" name="district" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="cpwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm password</label>
-           <input onChange={handleChange} placeholder={userData.cpassword} type="password" name="cpassword" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$" title='Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be 8 to 30 characters long.' placeholder={userData.cpassword} type="password" name="cpassword" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
         </div>  
   
