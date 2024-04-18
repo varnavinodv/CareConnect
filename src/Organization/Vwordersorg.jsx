@@ -79,6 +79,7 @@ const [dates,setDate]=useState()
     }
 };
 // axios.put('hjgjhgh',{selectedOrders,de})
+const currentDate = new Date().toISOString().split('T')[0];
   return (
     
     <>
@@ -284,7 +285,7 @@ console.log(res,'reed');
                         <div className=' right-[30px] text-center sm:right-[18px] p-4 w-fit bg-white text-black text-base  font-semibold rounded-lg sm:top-[60px] '>
                             <div className='flex flex-wrap justify-center gap-2 '>
                                <label  htmlFor="date" className='text-amber-950'>Date</label>
-                               <input onChange={handleChange}  type="date" name="date" className='border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1  dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600' ></input>
+                               <input onChange={handleChange}  type="date" name="date" min={currentDate} className='border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1  dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600' ></input>
                             
                             </div>
                            

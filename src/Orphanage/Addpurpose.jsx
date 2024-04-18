@@ -19,7 +19,7 @@ const Addpurpose = () => {
     // console.log(data);
     let response=await axios.post('http://localhost:4000/orphanage/addpurpose',{...data,eventId:id})
     console.log(response);
-    toast.error('purpose added')
+    toast.success('purpose added')
     
     // navigate('/orphanage/vieweventorph')
     

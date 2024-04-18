@@ -10,8 +10,9 @@ const Viewpurposeupdate = () => {
 
 
     const [data,setData]=useState([''])  
+    const [data1,setData1]=useState([''])  
   let handleChange=(event)=>{
-    setData({...data,[event.target.name]:event.target.value})
+    setData1({...data1,[event.target.name]:event.target.value})
   }
 
   useEffect(()=>{
@@ -29,7 +30,7 @@ const Viewpurposeupdate = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
-    let response=await axios.post('http://localhost:4000/orphanage/addpurpose',{...data,eventId:id})
+    let response=await axios.post('http://localhost:4000/orphanage/addpurpose',{...data1,eventId:id})
     console.log(response);
     
     // navigate('/orphanage/vieweventorph')
@@ -37,8 +38,8 @@ const Viewpurposeupdate = () => {
   }
   let handledelete=(id)=>{
     let response=axios.delete(`http://localhost:4000/orphanage/deletepurpose/${id}`)
-    console.log(response)
     setrefresh(!refresh)
+    console.log(response)
 }
   return (
     <div className='w-[100%]'>

@@ -30,51 +30,63 @@ const Vworgdtluser = () => {
     setDrop(!drop);
   };
 
-  const renderUniqueReports = () => {
+  const renderReports = () => {
+    if (!data || !data.responsedata) return null;
+
     const uniqueYears = new Set();
-    if (data && data.responsedata) {
-      data.responsedata.forEach(item1 => {
-        if (item1.reports) {
-          item1.reports.forEach(item2 => {
-            uniqueYears.add(item2.year);
-          });
-        }
-      });
-    }
 
-    return [...uniqueYears].map((year, index) => (
-      <li key={index} className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>
-        {year}
-      </li>
-    ));
-  };
-
-  const renderUniqueReviews = () => {
-    const uniqueReviews = [];
-    if (data && data.responsedata) {
-      data.responsedata.forEach(item1 => {
-        if (item1.reviews) {
-          item1.reviews.forEach(item2 => {
-            const existingReview = uniqueReviews.find(review => review._id === item2._id);
-            if (!existingReview) {
-              uniqueReviews.push(item2);
+    return (
+      <div className='list-none w-fit sm:left-[19rem] p-2 bg-white text-black text-lg font-semibold rounded-lg'>
+        {data.responsedata?.map((item) => (
+          item?.reports.map((item2) => {
+            if (!uniqueYears.has(item2.year)) {
+              uniqueYears.add(item2.year);
+              return (
+                <p>
+                  <a
+                    key={item2.year}
+                    className='hover:text-blue-600 hover:underline'
+                    href={`http://localhost:4000/uploads/${item2.report}`}
+                    download
+                  >
+                    {item2.year}
+                  </a>
+                </p>
+              );
             }
-          });
-        }
-      });
-    }
-
-    return uniqueReviews.map(review => (
-      <div key={review._id} className='bg-white p-3 rounded-lg align-text-bottom mt-4'>
-        <div className='flex flex-wrap'>
-          <img className='h-[25px] w-[25px]' src={reviewSymbol} alt='' />
-          <h3 className='text-slate-500 ps-1'>Review</h3>
-        </div>
-        <h1 className='font-semibold text-base text-gray-700'>{data.response?.name}</h1>
-        <p className='text-black text-sm'>{review.review}</p>
+            return null;
+          })
+        ))}
       </div>
-    ));
+    );
   };
+
+  // const renderUniqueReviews = () => {
+  //   const uniqueReviews = [];
+  //   if (data && data.responsedata) {
+  //     data.responsedata.forEach(item1 => {
+  //       if (item1.reviews) {
+  //         item1.reviews.forEach(item2 => {
+  //           const existingReview = uniqueReviews.find(review => review._id === item2._id);
+  //           if (!existingReview) {
+  //             uniqueReviews.push(item2);
+  //           }
+  //         });
+  //       }
+  //     });
+  //   }
+
+  //   return uniqueReviews.map(review => (
+  //     <div key={review._id} className='bg-white p-3 rounded-lg align-text-bottom mt-4'>
+  //       <div className='flex flex-wrap'>
+  //         <img className='h-[25px] w-[25px]' src={reviewSymbol} alt='' />
+  //         <h3 className='text-slate-500 ps-1'>Review</h3>
+  //       </div>
+  //       <h1 className='font-semibold text-base text-gray-700'>{data.response?.name}</h1>
+  //       <p className='text-black text-sm'>{review.review}</p>
+  //     </div>
+  //   ));
+  // };
 
   return (
     <div className='w-[100%]'>
@@ -116,13 +128,22 @@ const Vworgdtluser = () => {
               {drop && (
                 <div className='w-[60%] flex justify-end'>
                   <div className='list-none w-fit sm:left-[19rem] p-2 bg-white text-black text-lg font-semibold rounded-lg'>
-                    {renderUniqueReports()}
+                    {renderReports()}
                   </div>
                 </div>
               )}
             </div>
-            <div>{renderUniqueReviews()}</div>
-          </div>
+            {data?.responsedata?.map((item, index) => (
+      <div key={index} className='bg-white p-3 rounded-lg align-text-bottom mt-4'>
+        <div className='flex flex-wrap'>
+          <img className='h-[25px] w-[25px]' src={reviewSymbol} alt='' />
+          <h3 className='text-slate-500 ps-1'>Review</h3>
+        </div>
+        <h1 className='font-semibold text-base text-gray-700'>{item.orph.name}</h1>
+        <p className='text-black text-sm'>{item.reviews.review}</p>
+      </div>
+    ))}
+    </div>
         )}
         <div>
           <img className='h-[]   items-end ' src={running} alt='' />

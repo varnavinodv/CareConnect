@@ -58,6 +58,9 @@ const Vweventorph = () => {
                    PURPOSES
                 </th>
                 <th scope="col" class="px-6 py-3">
+                   DESCRIPTION
+                </th>
+                <th scope="col" class="px-6 py-3">
                     ACTION
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -85,6 +88,9 @@ const Vweventorph = () => {
                 </td>
                 <td class="px-6 py-4">
                 <Link to={`/orphanage/viewpurpose/${item._id}`}>  <p className='text-black'><u>View more</u></p></Link>
+                </td>
+                <td class="px-6 py-4">
+                   {item.desription}
                 </td>
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
                    <Link to={`/orphanage/editeventorph/${item._id}`}> <img className='w-[45px] h-[30px] hover:bg-blue-500' src={edit} alt="" /></Link>

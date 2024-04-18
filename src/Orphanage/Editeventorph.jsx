@@ -41,7 +41,7 @@ const Editeventorph = () => {
     <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>EDIT EVENT</div>
                                  
 {/* formm */}
-       <div className='w-[25rem] h-[30rem] bg-red-500/30 m-auto rounded-2xl pt-10 px-10 '>
+       <div className='w-[25rem] h-[35rem] bg-red-500/30 m-auto rounded-2xl pt-10 px-10 '>
               
 
 <form class="max-w-sm mx-auto" onSubmit={handleSubmit}>
@@ -60,6 +60,10 @@ const Editeventorph = () => {
 <div class="mb-5">
 <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Venue</label>
 <input onChange={handleChange} type="text" name="venue"  placeholder={userData.venue}  class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
+</div>
+<div class="mb-5">
+<label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Description</label>
+<input onChange={handleChange} type="text" name="desription"  placeholder={userData.desription}  class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 
 

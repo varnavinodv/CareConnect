@@ -25,7 +25,7 @@ const Vwproductdtlorg = () => {
     let handleSubmit=async (event)=>{
       event.preventDefault()
       
-      // navigate('/organization/viewproductorg')
+      navigate('/organization/viewproductorg')
       try{
 
         let response=await axios.post('http://localhost:4000/organization/addtocart',{organizationId:id,productId:pid,userId:data2.users._id,count:count})

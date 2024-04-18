@@ -96,6 +96,10 @@ const Sponsorshiporg = () => {
                                     
                                     <p>Time:{data2.events?.time}</p>
                                   </div>
+                                  <div className=' ps-3 gap-2 py-1'>
+                                    
+                                    <p>Description:{data2.events?.desription}</p>
+                                  </div>
                                 </div>
             </div>
            <div className='w-[25rem] h-[15rem] bg-red-500/30 m-auto rounded-2xl pt-3 px-6 '>

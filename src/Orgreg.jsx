@@ -70,7 +70,7 @@ const Orgreg = () => {
      <div>  
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3  pt-8">
         <label  for="name" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Name</label>
-        <input onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed" type="text" name="name" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+        <input onChange={handleChange} pattern="[A-Za-z ]+" title="Only alphabets are allowed" type="text" name="name" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="phno" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Phone no.</label>

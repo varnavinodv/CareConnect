@@ -49,7 +49,10 @@ const Viewsponsadm = () => {
         </thead>
         <tbody>
         {data.map((item,index)=>(
+            <>
+            {item.organization!=null &&
             <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] font-semibold">
+               
                 <td class="px-6 py-4">
                     {index+1}
                 </td>
@@ -69,6 +72,9 @@ const Viewsponsadm = () => {
                     Accepted
                 </td> */}
             </tr>
+            }  
+            </>
+
         ))}   
         </tbody>
     </table>

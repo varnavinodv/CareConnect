@@ -23,6 +23,8 @@ const Addeventorph = () => {
     navigate(`/orphanage/addpurpose/${response.data._id}`)
     
   }
+  const currentDate = new Date().toISOString().split('T')[0];
+
   return (
     <div className='w-[100%]'>
         <div>
@@ -31,7 +33,7 @@ const Addeventorph = () => {
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ADD EVENT</div>
                                      
  {/* formm */}
-           <div className='w-[25rem] h-[30rem] bg-red-500/30 m-auto rounded-2xl pt-10 px-10 '>
+           <div className='w-[25rem] h-[35rem] bg-red-500/30 m-auto rounded-2xl pt-10 px-10 '>
                   
 
 <form onSubmit={handleSubmit}  class="max-w-sm mx-auto">
@@ -41,15 +43,19 @@ const Addeventorph = () => {
   </div>
   <div class="mb-5">
     <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Date</label>
-    <input onChange={handleChange} type="date" name="date" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input onChange={handleChange} min={currentDate} type="date" name="date" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   <div class="mb-5">
     <label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Time</label>
-    <input onChange={handleChange}  type="time" name="time" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input onChange={handleChange} type="time" name="time" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   <div class="mb-5">
     <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Venue</label>
     <input onChange={handleChange}  type="text" name="venue" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+  </div>
+  <div class="mb-5">
+    <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Description</label>
+    <input onChange={handleChange}  type="text" name="desription" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   
   

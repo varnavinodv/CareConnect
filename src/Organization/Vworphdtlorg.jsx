@@ -75,9 +75,12 @@ const Vworphdtlorg = () => {
 
 
                       <div className='list-none w-fit sm:left-[19rem] p-2 bg-white text-black text-lg  font-semibold rounded-lg  '>
-                        <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>2021</li>
-                        <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>2022</li>
-                        <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>2023</li>
+                      {data.report?.map((item) => ( 
+                     <p> <a className='hover:text-blue-600 hover:underline'  href={`http://localhost:4000/uploads/${item?.report}`} download >{item?.year}</a></p>
+                      ))}
+                        {/* <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>2021</li> */}
+                        {/* <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>2022</li> */}
+                        {/* <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>2+023</li> */}
                         
                         </div> 
                    </div>

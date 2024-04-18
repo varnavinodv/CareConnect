@@ -40,7 +40,7 @@ const Addrequest = () => {
   </div>
   <div class="mb-5">
     <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>
-    <input onChange={handleChange} type="text" name="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input onChange={handleChange} type="number" name="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   
   {/* <div class="mb-5">
