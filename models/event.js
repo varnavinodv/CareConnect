@@ -21,6 +21,9 @@ import User from './user.js'
     venue:{
         type:String,
         required:true
+    },
+    desription:{
+        type:String,
     }
  })
  const Event=model('Event',eventSchema)

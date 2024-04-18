@@ -69,7 +69,7 @@ router.get('/vieworgdetail/:id',async(req,res)=> {
         let orph=await User.findById(newresponse.orphanageId)
         responsedata.push({
             orph:orph,
-            reviews:review,
+            reviews:newresponse,
             reports:report,
         
             
@@ -221,7 +221,7 @@ router.get('/viewspons/:id',async(req,res)=>{
     let sponsor=await Sponsosrship.findOne({purposeId:newresponse._id})
     console.log(sponsor,'ppppppppppppppppppppppppppppp');
    
-    let org=await User.findById(sponsor.organizationId)
+    let org=await User.findById(sponsor?.organizationId)
     responseData.push({
                 sponsor: sponsor,
                 organization: org,
@@ -264,7 +264,7 @@ router.get('/donationreq/:id',async(req,res)=>{
     console.log(id);
     // res.json(id)
     //should filter it foronly wviewing pendig status...............................?
-    let response=await donation.find({orphanageId:id})
+    let response=await donation.find({orphanageId:id,status:'pending'})
     let responseData=[]
     for (const newresponse of response){
     let org=await User.findById(newresponse.organizationId)

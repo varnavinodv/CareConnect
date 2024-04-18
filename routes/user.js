@@ -226,7 +226,7 @@ router.get('/vieworgdetail/:id', async (req, res) => {
         let orph = await User.findById(newresponse.orphanageId)
         responsedata.push({
             orph: orph,
-            reviews: review,
+            reviews: newresponse,
             reports: report,
 
         })
