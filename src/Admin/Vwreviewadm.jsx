@@ -66,7 +66,7 @@ const Vwreviewadm = () => {
                     </form>
                 </div>
 
-                <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
+                <div className='relative overflow-x-auto shadow-md sm:rounded-lg pt-4'>
                     <table className='w-full text-sm text-left rtl:text-right text-black dark:text-black'>
                         <thead className='text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black'>
                             <tr>

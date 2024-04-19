@@ -7,11 +7,14 @@ import {toast,ToastContainer} from 'react-toastify'
 const Userreg = () => {
   const navigate=useNavigate()
   const [data,setData]=useState('')
+  const [formData,setFormData]=useState('')
   // const [data1,setData1]=useState('')
 
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
-}
+   
+    
+  }
 
 let handleSubmit=async(event)=>{
   try{
@@ -22,20 +25,23 @@ let handleSubmit=async(event)=>{
 
     }
     else{
+      if(data.age<18){
+        toast.error('age should be greater than 18')
+      }
 
-      
+      else{
       let response=await axios.post('http://localhost:4000/user/registeruser',{...data,userType:'user'})
       console.log(response);
       alert('successfully registered')
       
       navigate('/')
-      
+      }
       
     }
   }
   catch(e){
    
-    toast.error('Email already exist ')
+    toast.error( e.response.data.message || e.message)
   }
   
 }

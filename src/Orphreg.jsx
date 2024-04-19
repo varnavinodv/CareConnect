@@ -54,7 +54,8 @@ const navigate=useNavigate()
     }
     catch(e){
    
-      toast.error('Email already exist ')
+      toast.error( e.response.data.message || e.message)
+
     }
    
     

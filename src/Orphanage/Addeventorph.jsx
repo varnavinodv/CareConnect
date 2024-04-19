@@ -12,6 +12,7 @@ const Addeventorph = () => {
 
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
+    
   }
 
   let handleSubmit=async (event)=>{

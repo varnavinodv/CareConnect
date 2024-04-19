@@ -20,6 +20,7 @@ const Addpurpose = () => {
     let response=await axios.post('http://localhost:4000/orphanage/addpurpose',{...data,eventId:id})
     console.log(response);
     toast.success('purpose added')
+    setData('')
     
     // navigate('/orphanage/vieweventorph')
     
@@ -39,7 +40,7 @@ const Addpurpose = () => {
 <form onSubmit={handleSubmit}  class="max-w-sm mx-auto">
   <div class="mb-5">
     <label for="ename" class="block mb-2 text-sm font-medium text-[#3E1B00]">Purpose</label>
-    <input onChange={handleChange}  type="text" name="purpose" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input onChange={handleChange} value={data.purpose?data.purpose : ''} type="text" name="purpose" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   {/* <div class="mb-5">
     <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Date</label>

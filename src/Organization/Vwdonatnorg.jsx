@@ -71,7 +71,7 @@ const Vwdonatnorg = () => {
                 {item.donation?.status}
                 </td>
                 <td class="px-6 py-4">
-                    {item.donation?.status =='assigned' ?
+                    {item.donation?.status =='assigned' || item.donation?.status =='Out for delivery' || item.donation?.status =='Delivered'?
                             <p>{item.delboy?.name}</p>
                       :      
                     
