@@ -38,6 +38,14 @@ router.post('/register',upload.single('license'), async (req, res) => {
         if (existMail) {
             return res.status(400).json({ message: 'Mail exists' });
         }
+        const existphonenumber = await User.findOne({ phno: req.body.phno });
+        if (existphonenumber) {
+            return res.status(400).json({ message: 'phone number exists' });
+        }
+        const existlicense = await User.findOne({ licenseNo: req.body.licenseNo });
+        if (existlicense) {
+            return res.status(400).json({ message: 'License number exists' });
+        }
         console.log(req.file);
         let licensepath=req.file.filename
         const newUser = new User({...req.body,license:licensepath})
@@ -58,6 +66,10 @@ router.post('/registeruser', async (req, res) => {
         const existMail = await User.findOne({ email: req.body.email });
         if (existMail) {
             return res.status(400).json({ message: 'Mail exists' });
+        }
+        const existphonenumber = await User.findOne({ phno: req.body.phno });
+        if (existphonenumber) {
+            return res.status(400).json({ message: 'phone number exists' });
         }
 
         const newUser = new User(req.body);

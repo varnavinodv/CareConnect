@@ -148,6 +148,25 @@ router.get('/filterstatusorg/:status',async(req,res)=>{
 })
 
 
+router.get('/filterstatusorph/:status',async(req,res)=>{
+   
+    let status1=req.params.status
+    console.log(status1);
+    if(status1=='all'){
+        let response=await User.find({userType:'orphanage'})
+        console.log(response);
+    res.json(response);
+    }
+    else{
+        let response=await User.find({userType:'orphanage',status:status1})
+        console.log(response);
+    res.json(response);
+    }
+    
+
+})
+
+
 
 router.get('/filterreport/:type', async (req, res) => {
     try {
