@@ -69,14 +69,14 @@ const Viewdonatnorph = () => {
       
     </td>
     <td class="px-6 py-4">
-    {item.response?.date}
+    {item.donation?.date}
     </td>
     <td class="px-6 py-4">
     {item.delboys?.name} <br />
   {item.delboys?.phno}
     </td>
     <td class="px-6 py-4">
-    {item.response?.status}
+    {item.donation?.status}
     </td> 
    
 </tr>

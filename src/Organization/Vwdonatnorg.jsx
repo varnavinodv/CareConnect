@@ -59,7 +59,7 @@ const Vwdonatnorg = () => {
                    {item.orphanage?.name}
                 </td>
                 <td class="px-6 py-4">
-                    {item.donation?.product}
+                    {item.req?.product}
                 </td>
                 <td class="px-6 py-4">
                 {item.donation?.count}

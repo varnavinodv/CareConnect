@@ -78,9 +78,9 @@
   // Only render if product count is greater than 0
   item.cart?.products?.some(product => product.count > 0) && (
     <div className='h-fit w-[220px] bg-white' key={index}>
-      <Link to={`/organization/viewcartproductdtlorg/${item.product?._id}`}>
+      {/* <Link to={`/organization/viewcartproductdtlorg/${item.product?._id}`}> */}
         <img className='h-[200px] w-[200px] pt-4 ps-4' src={`http://localhost:4000/uploads/${item.product?.img}`} alt="" />
-      </Link>
+      {/* </Link> */}
       <p className='text-center font-semibold pt-1'>{item.product?.name}</p>
       <p className='text-center font-semibold text-gray-800 text-sm'>{item.users?.name}</p>
       {/* Display count for each product */}

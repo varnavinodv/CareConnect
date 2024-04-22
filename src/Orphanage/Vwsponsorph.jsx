@@ -58,12 +58,12 @@ const Vwsponsorph = () => {
                 <th scope="col" class="px-6 py-3">
                     PURPOSE
                 </th>
-                <th scope="col" class="px-6 py-3">
+                {/* <th scope="col" class="px-6 py-3">
                     STATUS
                 </th>
                 <th scope="col" class="px-6 py-3">
                    ACTION
-                </th>
+                </th> */}
                 
                 
             </tr>
@@ -85,13 +85,13 @@ const Vwsponsorph = () => {
                 <td class="px-6 py-4">
                    {item.purpose?.purpose}
                 </td>
-                <td class="px-6 py-4">
+                {/* <td class="px-6 py-4">
                 {item.sponsorship?.status}
-                </td>
-                <td class="px-6 py-4 flex flex-wrap flex-col">
+                </td> */}
+                {/* <td class="px-6 py-4 flex flex-wrap flex-col">
                     <button onClick={()=>{handleSubmit('Accepted',item.sponsorship?._id)}}  class="font-medium text-red-600 hover:underline hover:bg-white p-1">ACCEPT</button>
                     <button onClick={()=>{handleSubmit('Rejected',item.sponsorship?._id)}}  class="font-medium text-green-600 hover:underline hover:bg-white p-1">REJECT</button>
-                </td>
+                </td> */}
                 
             </tr>
           }

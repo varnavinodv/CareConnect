@@ -1,11 +1,14 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Donatnreqorg = () => {
+    let navigate=useNavigate()
     let oid = localStorage.getItem('id')
     const [data,setdata]=useState([''])
+    const [data1,setdata1]=useState([''])
     const[refresh,setrefresh]=useState(false)
+    const[drop,setDrop]=useState(false)
 
     useEffect(()=>{
         let fetchdata=async()=>{
@@ -17,15 +20,28 @@ const Donatnreqorg = () => {
         fetchdata()
      },[refresh])
 
-     let handleSubmit=async (status,id,sid)=>{
-        setrefresh(!refresh)
-        // setData(data)
-        // console.log(data);
-        // navigate('/organization/viewdeliveryboyorg')
-        let response=await axios.put(`http://localhost:4000/organization/acceptdonation/${id}`,{status:status,organizationId:sid})
-      console.log(response);
-      setdata('')
+     let handleChange=(event)=>{
+        setdata1({...data1,[event.target.name]:event.target.value})
+      }
+
+     let handleSubmit=async (did)=>{
+         // setData(data)
+         // console.log(data);
+         // navigate('/organization/viewdeliveryboyorg')
+         //     let response=await axios.put(`http://localhost:4000/organization/acceptdonation/${id}`,{count:count,organizationId:sid})
+         //   console.log(response);
+         //   setdata('')
+         let response=await axios.post('http://localhost:4000/organization/donateproduct',{...data1,organizationId:oid,reqId:did})
+         console.log(response);
+         setDrop(!drop)
+         setrefresh(!refresh)
+         navigate('/organization/viewdonationorg')
+            
         
+      }
+
+      let dropdown=()=>{
+        setDrop(!drop)
       }
   return (
     <div className=' w-[100%] '>
@@ -54,8 +70,11 @@ const Donatnreqorg = () => {
                     COUNT
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    STATUS
+                    BALANCE COUNT
                 </th>
+                {/* <th scope="col" class="px-6 py-3">
+                    STATUS
+                </th> */}
                
                 <th scope="col" class="px-6 py-3">
                     ACTION
@@ -82,15 +101,27 @@ const Donatnreqorg = () => {
                   {item.donation?.count}
                 </td>
                 <td class="px-6 py-4">
-                  {item.donation?.status}
+                  {item.donation?.Bcount}
                 </td>
+                {/* <td class="px-6 py-4">
+                  {item.donation?.status}
+                </td> */}
                 <td class="px-6 py-4 flex flex-wrap flex-col">
                     
-                <Link to='/organization/viewdonationorg'>
-                    <button onClick={()=>{handleSubmit('Accepted',item.donation?._id,oid)}} href="#" className="font-bold text-green-600 text-left hover:underline">Accept</button></Link>
-                    <button onClick={()=>{handleSubmit('Rejected',item.donation?._id)}} href="#" className="font-bold text-red-600 text-left  hover:underline">Reject</button>
-                        
+                {/* <Link to='/organization/viewdonationorg'> */}
+                    {/* <button onClick={()=>{handleSubmit('Accepted',item.donation?._id,oid)}} href="#" className="font-bold text-green-600 text-left hover:underline">Accept</button></Link> */}
+                    {/* <button onClick={()=>{handleSubmit('Rejected',item.donation?._id)}} href="#" className="font-bold text-red-600 text-left  hover:underline">Reject</button> */}
+                      {}
+                       <p onClick={dropdown}   className='text-green-500 font-bold hover:underline'>DONATE</p>
+                      {drop &&
+                      <>
+                      <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>
+                      <input onChange={handleChange} type="number" name="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+                      <button onClick={()=>{handleSubmit(item.donation?._id)}} href="#" className="font-bold text-red-600 text-left  hover:underline">Submit</button>
+                      </>
+                      } 
                     </td>
+                    
                 
                 {/* <td class="px-6 py-4 flex flex-wrap flex-col">
                 <Link to='/organization/viewdonationorg'><div class="font-bold text-sm text-green-600 hover:underline hover:bg-white p-1 hover:rounded-lg">Accept</div></Link>

@@ -50,10 +50,13 @@ const Vwdonatnrequestorph = () => {
                     COUNT
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    BALANCE COUNT
+                </th>
+                <th scope="col" class="px-6 py-3">
                     STATUS
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    ORGANIZATION
+                   DONATIONS
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Action
@@ -68,21 +71,24 @@ const Vwdonatnrequestorph = () => {
                    {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    {item.response?.product}
+                    {item?.product}
                 </td>
                 <td class="px-6 py-4">
-                    {item.response?.count}
+                    {item?.count}
                 </td>
                 <td class="px-6 py-4">
-                    {item.response?.status}
+                    {item?.Bcount}
+                </td>
+                <td class="px-6 py-4">
+                    {item?.status}
                 </td>
                
                 <td class="px-6 py-4">
-                 {item.orgs?.name}
+                 <a href="">View donations</a>
                 </td>
                
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
-                {item.response?.status === 'pending' && (
+                {item?.count ==item?.Bcount && (
                     
                     <img onClick={()=>handledelete(item.response?._id)} className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 )}

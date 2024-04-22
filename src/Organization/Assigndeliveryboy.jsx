@@ -99,7 +99,7 @@ const [data2,setData2]=useState([]);
                 <td class="px-6 py-4">
                 {item.donations?.map((item1) =>{
 
-                    const res = item.orphanages.find((item3)=> item3._id === item1.orphanageId && item1.status === 'assigned' )
+                    const res = item.orphanages.find((item3)=> item3?._id === item1.orphanageId && item1.status === 'assigned' )
 console.log(res,'reed');
                     return(
                        

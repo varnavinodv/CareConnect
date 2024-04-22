@@ -78,7 +78,7 @@ const Viewoprhdtluser = () => {
                    
                       <div className='list-none w-fit sm:left-[19rem] p-2 bg-white text-black text-lg  font-semibold rounded-lg  '>
                       {data?.reports?.map((item1)=>(
-                        <a className='hover:text-blue-600 hover:underline'  href={`http://localhost:4000/uploads/${item1?.report}`} download >{item1?.year}</a>
+                      <p>  <a className='hover:text-blue-600 hover:underline'  href={`http://localhost:4000/uploads/${item1?.report}`} download >{item1?.year}</a></p>
                       ))}
                         
                         </div> 
