@@ -4,13 +4,15 @@ import Review from "../models/review.js";
 // import donationRequest from "../models/donationRequest.js";
 import ContributionRequest from "../models/contributionRequest.js";
 import product from "../models/product.js";
-import donation from "../models/donation.js";
+
 import User from "../models/user.js";
 import Contribution from "../models/contribution.js";
-import Sponsosrship from "../models/sponsorship.js";
+import Sponsorship from "../models/sponsorship.js";
 import Report from "../models/report.js";
 import { upload } from "../multer.js";
 import Purpose from "../models/purpose.js";
+import donationreq from "../models/donationreq.js";
+import donation from "../models/donation.js";
 
 const router=express()
 
@@ -31,7 +33,7 @@ router.post('/postreview',async(req,res)=>{
 
 router.post('/addrequest',async(req,res)=>{
     console.log(req.body);
-    const newRequest = new donation(req.body)
+    const newRequest = new donationreq({...req.body,Bcount:req.body.count})
     const savedRequest=await newRequest.save()
     res.json({message:"request posted",savedRequest})
 })
@@ -84,17 +86,22 @@ router.get('/vieworgdetail/:id',async(req,res)=> {
 router.get('/viewdonation/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
-    let response=await donation.find({ orphanageId: id, status: { $ne: 'pending' } })
+    let response=await donationreq.find({ orphanageId: id, status: { $ne: 'pending' } })
     let responsedata=[]
     for (const newresponse of response){
-    let organization=await User.findById(newresponse.organizationId)
-    let delboy=await User.findById(newresponse.deliveryboyId)
+    let donations=await donation.find({reqId:newresponse._id})
+    for (const newdonation of donations) {
+     
+    let organization=await User.findById(newdonation.organizationId)
+    let delboy=await User.findById(newdonation.deliveryboyId)
     responsedata.push({
         org:organization,
         response:newresponse,
-        delboys:delboy
+        delboys:delboy,
+        donation:newdonation
 
     })
+}
     }
     console.log(response);
     res.json(responsedata)
@@ -188,7 +195,7 @@ router.get('/viewsponshistory/:id', async (req, res) => {
 
         let purposes = await Purpose.find({ eventId: x._id });
         for (let y of purposes) {
-            let sponsor = await Sponsosrship.find({ purposeId: y._id });
+            let sponsor = await Sponsorship.find({ purposeId: y._id });
             for (let z of sponsor) {
                 let organizations = await User.findById(z.organizationId);
                 responseData.push({
@@ -218,7 +225,7 @@ router.get('/viewspons/:id',async(req,res)=>{
     let response=await Purpose.find({eventId:id})
     let responseData=[];
     for (const newresponse of response){
-    let sponsor=await Sponsosrship.findOne({purposeId:newresponse._id})
+    let sponsor=await Sponsorship.findOne({purposeId:newresponse._id})
     console.log(sponsor,'ppppppppppppppppppppppppppppp');
    
     let org=await User.findById(sponsor?.organizationId)
@@ -246,17 +253,8 @@ router.get('/viewspons/:id',async(req,res)=>{
 })
 
 
-// router.get('/viewsponsorhistory/:id',async(req,res)=>{
-//     let id=req.params.id;
-//     console.log.apply(id);
-//     let response=await Sponsosrship.find({})...how to find orph id ??
-// })
 
 
-// router.get('/viewsponshistory/:id',async(req,res)=>{
-//     let id=req.params.id;
-//     console.log('id')
-// })
 
 
 router.get('/donationreq/:id',async(req,res)=>{
@@ -264,18 +262,19 @@ router.get('/donationreq/:id',async(req,res)=>{
     console.log(id);
     // res.json(id)
     //should filter it foronly wviewing pendig status...............................?
-    let response=await donation.find({orphanageId:id,status:'pending'})
-    let responseData=[]
-    for (const newresponse of response){
-    let org=await User.findById(newresponse.organizationId)
-    responseData.push({
-        orgs:org,
-        response: newresponse
-    })
+    let response=await donationreq.find({orphanageId:id,status:'pending'})
+    res.json(response)
+    // let responseData=[]
+    // for (const newresponse of response){
+    // let org=await User.findById(newresponse.organizationId)
+    // responseData.push({
+    //     orgs:org,
+    //     response: newresponse
+    // })
 
-}
+
     // console.log(response);
-    res.json(responseData)
+    
 })
 
 
@@ -293,7 +292,7 @@ router.put('/acceptsponsrequest/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id);
     console.log(req.body);
-    let response=await Sponsosrship.findByIdAndUpdate(id,req.body)
+    let response=await Sponsorship.findByIdAndUpdate(id,req.body)
     console.log(response);
     res.json(response)
 })
@@ -327,7 +326,7 @@ router.delete('/deleteevent/:id', async (req, res) => {
         const purposesToDelete = await Purpose.find({ eventId });
         for (const purpose of purposesToDelete) {
             // Delete associated sponsorships first
-            await Sponsosrship.deleteMany({ purposeId: purpose._id });
+            await Sponsorship.deleteMany({ purposeId: purpose._id });
             // Then delete the purpose
             await Purpose.findByIdAndDelete(purpose._id);
         }

@@ -1,7 +1,7 @@
 import express from 'express'
 // import  DeliveryBoy  from '../models/deliveryBoy.js';
 import Cart from '../models/cart.js';
-import Sponsosrship from '../models/sponsorship.js';
+import Sponsorship from '../models/sponsorship.js';
 import Report from '../models/report.js';
 
 import product from '../models/product.js';
@@ -15,6 +15,8 @@ import Orders from '../models/order.js';
 import mongoose from 'mongoose';
 import donation from '../models/donation.js';
 import Purpose from '../models/purpose.js';
+import donationreq from "../models/donationreq.js";
+
 
 const router=express()
 
@@ -245,7 +247,7 @@ router.get('/viewreports/:id',async(req,res)=>{
 router.post('/sponsorship',async(req,res)=>{
     try{
 
-        const newSponsorship = new Sponsosrship(req.body)
+        const newSponsorship = new Sponsorship(req.body)
         const savedSponsorship = await newSponsorship.save()
         console.log(req.body,'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
         let purpose= await Purpose.findByIdAndUpdate(req.body.purposeId,{status:'sponsored'})
@@ -488,7 +490,7 @@ router.get('/vieworphdetail/:id',async(req,res)=>{
 })
 
 router.get('/viewdonationrequests',async(req,res)=>{
-    let response=await donation.find({status:'pending'})
+    let response=await donationreq.find({status:'pending',Bcount:0})
     // console.log(response);
     
     let responseData=[];
@@ -498,7 +500,7 @@ router.get('/viewdonationrequests',async(req,res)=>{
             orphanage: orphanages,
             donation: newresponse
         });
-      }
+      } 
     //   console.log(responseData);
       res.json(responseData);
 })
@@ -544,7 +546,7 @@ router.get('/viewreviews/:id',async(req,res)=>{
 router.get('/viewsponshistory/:id',async(req,res)=>{
     let id=req.params.id
     console.log(id,'dsds');
-    let response=await Sponsosrship.find({organizationId:id})
+    let response=await Sponsorship.find({organizationId:id})
     // console.log(response);
     let responseData=[];
     for (const newresponse of response){
@@ -573,12 +575,15 @@ router.get('/viewdonation/:id',async(req,res)=>{
    
     let responseData=[];
     for(const newresponse of response){
-        let orphanages=await User.findById(newresponse.orphanageId);
+        let req=await donationreq.findById(newresponse.reqId);
+        let orphanages=await User.findById(req.orphanageId);
         let delboys = await User.findById(newresponse.deliveryboyId);
+        
         responseData.push({
              orphanage:orphanages,
              donation:newresponse,
-             delboy:delboys
+             delboy:delboys,
+             req:req
         });
     }
     res.json(responseData);
@@ -788,8 +793,31 @@ router.put('/acceptdonation/:id',async(req,res)=>{
     let id=req.params.id
     // console.log(id);
     // console.log(req.body);
-    let response=await donation.findByIdAndUpdate(id,req.body)
+    let response=await donationreq.findByIdAndUpdate(id,req.body)
     console.log(response);
+})
+
+
+router.post('/donateproduct',async(req,res)=>{
+    console.log(req.body);
+    const newdonation = new donation(req.body)
+    let response = await donationreq.findById(req.body.reqId)
+    console.log(response);
+    let balanceCount = response.Bcount - req.body.count
+    console.log(balanceCount);
+
+    if (balanceCount === 0) {
+        let responseUpdate = await donationreq.findByIdAndUpdate(req.body.reqId, { Bcount: balanceCount, status: 'Completed' })
+
+    } else {
+
+
+
+
+        let responseUpdate = await donationreq.findByIdAndUpdate(req.body.reqId, { Bcount: balanceCount })
+    }
+    const savedDonation = await newdonation.save()
+    res.json({ message: "Contributed", savedDonation })
 })
 
 

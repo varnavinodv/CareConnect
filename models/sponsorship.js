@@ -3,7 +3,7 @@ import Event from "./event.js";
 import User from "./user.js";
 import Purpose from "./purpose.js";
 
-const sponsosrshipSchema=  new Schema({
+const sponsorshipSchema=  new Schema({
    
     organizationId:{
         type:mongoose.Types.ObjectId,
@@ -25,5 +25,5 @@ const sponsosrshipSchema=  new Schema({
     }
 })
 
-const Sponsosrship=model('Sponsorship',sponsosrshipSchema)
-export default Sponsosrship
+const Sponsorship=model('Sponsorship',sponsorshipSchema)
+export default Sponsorship

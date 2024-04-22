@@ -1,11 +1,13 @@
 import mongoose,{Schema,model} from "mongoose";
 import User from './user.js'
+import donationreq from "./donationreq.js";
 
 const donationSchema=Schema({
-       orphanageId:{
-        type:mongoose.Types.ObjectId,
-        ref:User
-       },
+       
+       reqId:{
+              type:mongoose.Types.ObjectId,
+              ref:donationreq
+             },
        organizationId:{
               type:mongoose.Types.ObjectId,
               ref:User
@@ -15,10 +17,7 @@ const donationSchema=Schema({
               ref:User
          
        },
-       product:{
-        type:String,
-        required:true
-       },
+       
        count:{
         type:Number,
         required:true

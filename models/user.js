@@ -53,7 +53,7 @@ const userSchema = Schema({
     },
     cpassword:{
         type:String,
-        required:true
+        // required:true
     },
     houseName:{
         type:String,
