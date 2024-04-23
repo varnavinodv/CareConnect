@@ -61,7 +61,7 @@ const Viewdonatnorph = () => {
        {item.response?.product}
     </td>
     <td class="px-6 py-4">
-       {item.response?.count}
+       {item.donation?.count}
        
     </td>
     <td class="px-6 py-4">

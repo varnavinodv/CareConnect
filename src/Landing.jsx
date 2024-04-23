@@ -22,7 +22,7 @@ const Landing = () => {
   return (
     <div>
       <div className='cover text-center' >
-      <div className='pt-20 text-6xl murecho leading-[1.3]' style={{
+      <div className='pt-40 text-6xl murecho leading-[1.3]' style={{
     background: '-webkit-linear-gradient(45deg, #FFA500, #800000)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
@@ -39,15 +39,14 @@ const Landing = () => {
             <Link to ='/login'><div className='py-6'>
               <button className='bg-orange-500 px-7 py-3 text-lg'>LOGIN</button>
             </div></Link> 
-            <div className='py-5 text-lg font-bold'>
+            {/* <div className='py-5 text-lg font-bold'>
              Follow us on
             </div>  
             <div className='flex flex-wrap justify-center gap-4  pb-6'>
-                <div><img src={i1} alt="" /></div>
-                <div><img src={i2} alt="" /></div>
-                <div><img src={i3} alt="" /></div>
-                <div><img src={i4} alt="" /></div>
-            </div>                  
+                <div><Link to={'https://twitter.com/i/flow/login'}><img src={i1} alt="" /></Link></div>
+                <div><Link to={'https://www.instagram.com/accounts/login/?hl=en'}><img src={i3} alt="" /></Link></div>
+                <div><Link to={'https://www.facebook.com/'}><img src={i4} alt="" /></Link></div>
+            </div>                   */}
           
                 
        </div>

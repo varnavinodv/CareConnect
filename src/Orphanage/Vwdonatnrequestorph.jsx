@@ -84,7 +84,11 @@ const Vwdonatnrequestorph = () => {
                 </td>
                
                 <td class="px-6 py-4">
-                 <a href="">View donations</a>
+                <Link to={`/orphanage/viewdonationdetails/${item?._id}`}>
+                <a href='#' className='font-semibold text-black hover:underline'>
+                                                View donations
+                                            </a>
+                 </Link>
                 </td>
                
                 <td class="px-6 py-4 flex flex-wrap justify-normal">

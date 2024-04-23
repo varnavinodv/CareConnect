@@ -89,19 +89,19 @@ const Donatnreqorg = () => {
                  {index+1}
                 </td>
                 <td class="px-6 py-4">
-                    {item.orphanage?.name}
+                    {item.orphs?.name}
                 </td>
                 {/* <td class="px-6 py-4">
                     Hand bags
                 </td> */}
                 <td class="px-6 py-4">
-                {item.donation?.product}
+                {item.reqs?.product}
                 </td>
                 <td class="px-6 py-4">
-                  {item.donation?.count}
+                  {item.reqs?.count}
                 </td>
                 <td class="px-6 py-4">
-                  {item.donation?.Bcount}
+                  {item.reqs?.Bcount}
                 </td>
                 {/* <td class="px-6 py-4">
                   {item.donation?.status}
@@ -117,7 +117,7 @@ const Donatnreqorg = () => {
                       <>
                       <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>
                       <input onChange={handleChange} type="number" name="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
-                      <button onClick={()=>{handleSubmit(item.donation?._id)}} href="#" className="font-bold text-red-600 text-left  hover:underline">Submit</button>
+                      <button onClick={()=>{handleSubmit(item.reqs?._id)}} href="#" className="font-bold text-red-600 text-left  hover:underline">Submit</button>
                       </>
                       } 
                     </td>

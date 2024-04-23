@@ -64,9 +64,9 @@ const Login = () => {
     <div className=''>
       <div className='loginbg sm:h-[40rem] pt-14'>
         <div className='box w-[60%] h-[85%] m-auto flex flex-wrap justify-center  gap-44 shadow-2xl shadow-black/45'>
-          <div className='mt-11  '>
+          <div className='mt-16  '>
             <h1 className='text-4xl text-amber-950 mb-3'>WELCOME!</h1>
-            <p className='text-lg' text-amber-950>The art of living is the art of giving.</p>
+            {/* <p className='text-lg' text-amber-950>The art of living is the art of giving.</p> */}
           </div>
           <div className=' bg-[#FFD740]/35  w-[350px] h-[400px] shadow-xl self-center shadow-black/30 mb-3'>
           <form onSubmit={handleSubmit}>

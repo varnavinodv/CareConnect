@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
 
 const Vwdonatnadm = () => {
     const [data, setData] = useState([]);
@@ -25,8 +26,8 @@ const Vwdonatnadm = () => {
         setFilteredData(
             data.filter(
                 (item) =>
-                    item.orphanage?.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    item.orgs?.name.toLowerCase().includes(searchQuery.toLowerCase())
+                    item.orphanage?.name.toLowerCase().includes(searchQuery.toLowerCase()) 
+                    // item.orgs?.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
         );
     }, [data, searchQuery]);
@@ -46,7 +47,7 @@ const Vwdonatnadm = () => {
     return (
         <div className='w-[100%]'>
             <div className='basicbg w-[100%]  pt-7 ps-10 pe-10'>
-                <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>DONATIONS</div>
+                <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>DONATION REQUESTS</div>
                 <div>
                     <form className='max-w-md mx-auto'>
                         <label htmlFor='default-search' className='text-sm font-medium text-black sr-only'>
@@ -72,7 +73,7 @@ const Vwdonatnadm = () => {
                                 type='search'
                                 id='default-search'
                                 className='block w-full p-4 ps-10 text-sm text-black border border-orange-500 rounded-lg bg-[#FFEFBD] focus:ring-orange-500 focus:border-orange-500 dark:placeholder-gray-400 dark:text-black'
-                                placeholder='Search Organization, Orphanage '
+                                placeholder='Search Orphanage '
                                 value={searchQuery}
                                 onChange={handleSearch}
                                 required
@@ -89,6 +90,9 @@ const Vwdonatnadm = () => {
                                     SL NO.
                                 </th>
                                 <th scope='col' className='px-6 py-3'>
+                                    ORGPHANAGE
+                                </th>
+                                <th scope='col' className='px-6 py-3'>
                                     PRODUCT NAME
                                 </th>
 
@@ -96,13 +100,13 @@ const Vwdonatnadm = () => {
                                     COUNT
                                 </th>
                                 <th scope='col' className='px-6 py-3'>
-                                    ORGANIZATION
-                                </th>
-                                <th scope='col' className='px-6 py-3'>
-                                    ORGPHANAGE
+                                    BALANCE COUNT
                                 </th>
                                 <th scope='col' className='px-6 py-3'>
                                     STATUS
+                                </th>
+                                <th scope='col' className='px-6 py-3'>
+                                    ACTION
                                 </th>
                             </tr>
                         </thead>
@@ -112,12 +116,21 @@ const Vwdonatnadm = () => {
                                     <th scope='row' className='px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black'>
                                         {index + 1}
                                     </th>
+                                    <td className='px-6 py-4'>{item.orphanage?.name}</td>
                                     <td className='px-6 py-4'>{item.donation?.product}</td>
 
                                     <td className='px-6 py-4'>{item.donation?.count}</td>
-                                    <td className='px-6 py-4'>{item.orgs?.name}</td>
-                                    <td className='px-6 py-4'>{item.orphanage?.name}</td>
+                                    <td className='px-6 py-4'>{item.donation?.Bcount}</td>
+                                    
                                     <td className='px-6 py-4'>{item.donation?.status}</td>
+                                    <td className='px-6 py-4'>
+                                        <Link to={`/admin/viewdonationdetail/${item.donation?._id}`}>
+                                            <a href='#' className='font-semibold text-black hover:underline'>
+                                                View donations
+                                            </a>
+                                        </Link>
+                                        <br />
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

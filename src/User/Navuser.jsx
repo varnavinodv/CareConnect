@@ -14,24 +14,24 @@ const Navuser = () => {
 
   }
 
-  const navigate=useNavigate()
-  useEffect(()=>{
-      let auth=async ()=>{
+  // const navigate=useNavigate()
+  // useEffect(()=>{
+  //     let auth=async ()=>{
   
-        let id=localStorage.getItem('id')
-        let email=localStorage.getItem('email')
-        let response=await axios.post('http://localhost:4000/user/api/auth/authenticate',{_id:id,email:email})
-        console.log(response);
-        if(response==null){
-          navigate('/login')
-        }
-        else if(response?.data?.userType !=='user'){
-          navigate('/login')
-        }
+  //       let id=localStorage.getItem('id')
+  //       let email=localStorage.getItem('email')
+  //       let response=await axios.post('http://localhost:4000/user/api/auth/authenticate',{_id:id,email:email})
+  //       console.log(response);
+  //       if(response==null){
+  //         navigate('/login')
+  //       }
+  //       else if(response?.data?.userType !=='user'){
+  //         navigate('/login')
+  //       }
   
-      }
-      auth()
-    },[])
+  //     }
+  //     auth()
+  //   },[])
 
   
   return (

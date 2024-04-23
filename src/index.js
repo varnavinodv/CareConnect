@@ -92,6 +92,8 @@ import Viewsponsadm from './Admin/Viewsponsadm';
 import Addpurpose from './Orphanage/Addpurpose';
 import Viewpurposeupdate from './Orphanage/Viewpurposeupdate';
 import Orderhistory from './Organization/Orderhistory';
+import Vwdonationdetails from './Admin/Vwdonationdetails';
+import Vwdonationdetail from './Orphanage/Vwdonationdetail';
 
 
 
@@ -127,6 +129,7 @@ root.render(
         <Route path='viewreport' element={<Vwreportsadm/>}/>
         <Route path='vieworder' element={<Vworderadm/>}/>   
         <Route path='viewreview' element={<Vwreviewadm/>}/>
+        <Route path='viewdonationdetail/:id' element={<Vwdonationdetails/>}/>
 
       </Route>
       <Route path='/user' element={<Navuser/>}>
@@ -197,6 +200,7 @@ root.render(
       <Route path='editreportorph/:id' element={<Editreportorph/>}/>
       <Route path='addpurpose/:id' element={<Addpurpose/>}/>
       <Route path='viewpurpose/:id' element={<Viewpurposeupdate/>}/>
+      <Route path='viewdonationdetails/:id' element={<Vwdonationdetail/>}/>
       </Route>
 
 
