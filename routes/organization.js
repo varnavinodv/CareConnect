@@ -490,19 +490,26 @@ router.get('/vieworphdetail/:id',async(req,res)=>{
 })
 
 router.get('/viewdonationrequests',async(req,res)=>{
-    let response=await donationreq.find({status:'pending',Bcount:0})
-    // console.log(response);
-    
+    let response=await donationreq.find({status:'pending'})
     let responseData=[];
-      for (const newresponse of response){
-        let orphanages = await User.findById(newresponse.orphanageId);
+    for (const newresponse of response){
+        
+        let orph=await User.findById(newresponse.orphanageId)
         responseData.push({
-            orphanage: orphanages,
-            donation: newresponse
-        });
-      } 
-    //   console.log(responseData);
-      res.json(responseData);
+            reqs:newresponse,
+            orphs:orph
+            
+       
+            
+
+            
+        })
+        
+    }
+    
+
+    console.log(responseData);
+    res.json(responseData);
 })
 
 
@@ -803,6 +810,7 @@ router.post('/donateproduct',async(req,res)=>{
     const newdonation = new donation(req.body)
     let response = await donationreq.findById(req.body.reqId)
     console.log(response);
+    // console.log(response.Bcount,'oooooooooooooooooooooooooooooooooooooooo');
     let balanceCount = response.Bcount - req.body.count
     console.log(balanceCount);
 

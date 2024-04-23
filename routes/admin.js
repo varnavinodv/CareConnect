@@ -7,10 +7,12 @@ import Event from '../models/event.js';
 import product  from '../models/product.js'
 import Report from '../models/report.js';
 import Review from '../models/review.js';
-import donation from '../models/donation.js';
+
 import Sponsosrship from '../models/sponsorship.js';
 import Orders from '../models/order.js';
 import Purpose from '../models/purpose.js';
+import donationreq from '../models/donationreq.js';
+import donation from '../models/donation.js';
 
 const router=express()
 
@@ -273,21 +275,54 @@ router.get('/viewreview',async(req,res)=>{
 
 router.get('/viewdonation',async(req,res)=>{
     console.log(req.body);
-    let response=await donation.find()
+    let response=await donationreq.find()
     console.log(response);
     let responseData=[];
     for (const newresponse of response){
         let orphanages=await User.findById(newresponse.orphanageId);
-        let org=await User.findById(newresponse.organizationId);
+        // let org=await User.findById(newresponse.organizationId);
         responseData.push({
             donation:newresponse,
            orphanage:orphanages,
-           orgs:org
+        //    orgs:org
 
         })
     }
     console.log(responseData);
     res.json(responseData);
+})
+
+
+
+
+
+router.get('/viewdonationdetails/:id',async(req,res)=>{
+    let id = req.params.id;
+    let reqs=await donationreq.findById(id)
+    let orph=await User.findById(reqs.orphanageId)
+    let response=await donation.find({reqId:id})
+    let responseData=[];
+    
+    for (const newresponse of response){
+        let dboy=await User.findById(newresponse.deliveryboyId)
+        let org=await User.findById(newresponse.organizationId)
+        responseData.push({
+            donation:newresponse,
+            dboy:dboy,
+            org:org,
+            request:reqs,
+        orph:orph
+            
+
+            
+        })
+        
+    }
+    
+
+    console.log(responseData);
+    res.json(responseData);
+
 })
 
 router.get('/viewsponshistory',async(req,res)=>{
@@ -366,5 +401,9 @@ router.get('/vieworders',async(req,res)=>{
     res.json(responseData)
 
 })
+
+
+
+
 
 export default router
