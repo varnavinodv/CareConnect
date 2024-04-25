@@ -125,7 +125,7 @@ const Vwdonatnadm = () => {
                                     <td className='px-6 py-4'>{item.donation?.status}</td>
                                     <td className='px-6 py-4'>
                                         <Link to={`/admin/viewdonationdetail/${item.donation?._id}`}>
-                                            <a href='#' className='font-semibold text-black hover:underline'>
+                                            <a href='#' className='font-bold text-green-800 hover:underline'>
                                                 View donations
                                             </a>
                                         </Link>

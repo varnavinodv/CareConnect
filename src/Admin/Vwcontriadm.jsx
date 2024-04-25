@@ -110,7 +110,7 @@ const Vwcontriadm = () => {
                                     <td className='px-6 py-4'>{item.response?.status}</td>
                                     <td className='px-6 py-4'>
                                         <Link to={`/admin/viewcontridetailsadm/${item.response?._id}`}>
-                                            <a href='#' className='font-semibold text-black hover:underline'>
+                                            <a href='#' className=' text-green-700 font-bold hover:underline hover:bg'>
                                                 View Contributions
                                             </a>
                                         </Link>

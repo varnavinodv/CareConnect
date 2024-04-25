@@ -94,6 +94,7 @@ import Viewpurposeupdate from './Orphanage/Viewpurposeupdate';
 import Orderhistory from './Organization/Orderhistory';
 import Vwdonationdetails from './Admin/Vwdonationdetails';
 import Vwdonationdetail from './Orphanage/Vwdonationdetail';
+import Forgtpass from './Forgtpass';
 
 
 
@@ -109,6 +110,7 @@ root.render(
          <Route path='/reguser' element={<Userreg/>}/>
          <Route path='/regorg' element={<Orgreg/>}/>
          <Route path='/regorph' element={<Orphreg/>}/>
+         <Route path='/forgotpassword' element={<Forgtpass/>}/>
          
       </Route>
 

@@ -14,16 +14,21 @@
     const[refresh,setrefresh]=useState(false)
     const navigate=useNavigate()
 
-    useEffect(()=>{
-        let fetchdata=async ()=>{
-          let response=await axios.get(`http://localhost:4000/organization/viewcart/${id}`)
+    useEffect(() => {
+      let fetchData = async () => {
+        try {
+          let response = await axios.get(`http://localhost:4000/organization/viewcart/${id}`);
           console.log(response);
-          setData(response.data)
+          let filteredData = response.data.filter(entry => entry.product.count !== 0); // Filter out entries where count is not 0
+          setData(filteredData);
+          console.log(filteredData);
+        } catch (error) {
+          console.error("Error fetching data:", error);
         }
-        fetchdata()
-
-        
-      },[refresh])
+      };
+    
+      fetchData();
+    }, [refresh]);
 
       let handleSubmit=async (status,id)=>{
         setrefresh(!refresh)
@@ -33,7 +38,7 @@
         // navigate('/organization/viewdeliveryboyorg')
         let response=await axios.put(`http://localhost:4000/organization/changecartstatus/${id}`,{cartstatus:status})
       console.log(response);
-    navigate('/organization/vieworderorg')
+    // navigate('/organization/vieworderorg')
         
       }
 

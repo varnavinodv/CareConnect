@@ -18,7 +18,7 @@ const Vwordersorg = () => {
   useEffect(() => {
     let fetchdata = async () => {
       let response = await axios.get(`http://localhost:4000/organization/vieworder/${lid}`);
-      let response1=await axios.get('http://localhost:4000/organization/assigndboy')
+      let response1=await axios.get(`http://localhost:4000/organization/assigndboy/${lid}`)
       let response2=await axios.get('http://localhost:4000/organization/assignorderdboy')
       console.log(response);
       setData(response.data);
@@ -232,7 +232,7 @@ const currentDate = new Date().toISOString().split('T')[0];
                 <td class="px-6 py-4">
                 {item.donations?.map((item1) =>{
 
-                    const res = item.orphanages.find((item3)=> item3._id === item1.orphanageId && item1.status === 'assigned' )
+                    const res = item.orphanages.find((item3)=> item3?._id === item1.orphanageId && item1.status === 'assigned' )
 console.log(res,'reed');
                     return(
                        
