@@ -26,7 +26,7 @@ router.post('/adddeliveryboy',upload.single('idproof'), async (req, res) => {
         if (existMail) {
             return res.status(400).json({ message: 'Mail exists' });
         }
-        console.log(req.file);
+        //console.log(req.file);
         let idproofpath=req.file.filename
         const newUser = new User({...req.body,idproof:idproofpath})
         const savedUser = await newUser.save()
@@ -43,10 +43,10 @@ router.post('/adddeliveryboy',upload.single('idproof'), async (req, res) => {
 router.post('/addtocart', async (req, res) => {
     try {
         const { productId, status, count, organizationId, deliveryboyId, cartstatus, userId } = req.body;
-        console.log(productId,'[[[[');
+        //console.log(productId,'[[[[');
         // Find the existing cart for the organizationId
         let existingCart = await Cart.findOne({ organizationId:organizationId});
-
+        
         // If no existing cart found, create a new cart object
         if (!existingCart) {
             existingCart = new Cart({
@@ -56,23 +56,24 @@ router.post('/addtocart', async (req, res) => {
                 cartstatus
             });
         }
-
+        
         // Check if the product already exists in the cart
         const productInCart = existingCart.products.find(product=>product.productId==req.body.productId);
-        console.log(productInCart,'=======================');
+      
+        //console.log(productInCart,'=======================');
 
         if (productInCart) {
            let myProduct=await product.findById(productInCart.productId)
            if(productInCart.count<myProduct.count){
-            if(productInCart.count+count<=myProduct.count){
+            if(productInCart.count+parseInt(count)<=myProduct.count){
                 // If product already exists, update its count
-                productInCart.count += count;
+                productInCart.count += parseInt(count);
             }
             else
             {
                 let limit=myProduct.count-productInCart.count
-                console.log(limit);
-                res.status(201).json(limit); // Respond with the saved cart item
+                //console.log(limit);
+               return res.status(400).json(limit); // Respond with the saved cart item
 
 
             }
@@ -89,10 +90,10 @@ router.post('/addtocart', async (req, res) => {
         }
         const savedCartItem = await existingCart.save();
 
-
+      return res.json(savedCartItem)
         // Save the updated cart object to the database
     } catch (error) {
-        res.json(error.message ); // Respond with an error if something goes wrong
+       return res.json(error.message ); // Respond with an error if something goes wrong
     }
 });
 
@@ -117,7 +118,7 @@ router.post('/addtocart', async (req, res) => {
 //                 cartstatus // Assuming cartstatus should be added at cart level, if not, adjust accordingly
 //             });
 //         }
-// console.log(existingCart.products,'--------------------');
+// //console.log(existingCart.products,'--------------------');
 //         const productInCart = existingCart.products.find({productId:productId});
 //             existingCart.products.push({
 //                 productId,
@@ -156,7 +157,7 @@ router.post('/addtocart', async (req, res) => {
 //                 cartstatus
 //             });
 //         }
-//         console.log(product.productId,'==============================');
+//         //console.log(product.productId,'==============================');
 
 //         // Check if the product already exists in the cart
 //         const existingProductIndex = existingCart.products.findIndex(product => product.productId === productId);
@@ -185,7 +186,7 @@ router.post('/addtocart', async (req, res) => {
 
 // ------------add report
 router.post('/addreport',upload.single('report'),async(req,res)=>{
-    console.log(req.file);
+    //console.log(req.file);
     let reportpath=req.file.filename
     const newReport = new Report({...req.body,report:reportpath})
     const savedReport = await newReport.save()
@@ -196,9 +197,9 @@ router.post('/addreport',upload.single('report'),async(req,res)=>{
 // ----------viewreport update
 router.get('/viewreportupdate/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(id);
+    //console.log(id);
     let response=await Report.findById(id)
-    console.log(response);
+    //console.log(response);
     res.json(response)
 
 })
@@ -209,14 +210,14 @@ router.put('/updatereport/:id',upload.fields([{name:'report'}]),async(req,res)=>
     try{
         if(req.files['report']){
             const report =req.files['report'][0].filename;
-            console.log(report);
+            //console.log(report);
             req.body={...req.body,report:report}
         }
     
     let id=req.params.id
-    console.log(req.body );
+    //console.log(req.body );
     let response=await Report.findByIdAndUpdate(id,req.body)
-    console.log(response);
+    //console.log(response);
 }
 catch(e){
     res.json(e.message)
@@ -227,19 +228,19 @@ catch(e){
 // ----------update report
 // router.put('/updatereport/:id',async(req,res)=>{
 //     let id=req.params.id
-//     console.log(id);
-//     console.log(req.body );
+//     //console.log(id);
+//     //console.log(req.body );
 //     let response=await Report.findByIdAndUpdate(id,req.body)
-//     console.log(response);
+//     //console.log(response);
 
 // })
 
 // ----------viewreports
 router.get('/viewreports/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(id);
+    //console.log(id);
     let response=await Report.find({UserId:id})
-    console.log(response);
+    //console.log(response);
     res.json(response)
 
 })
@@ -249,7 +250,7 @@ router.post('/sponsorship',async(req,res)=>{
 
         const newSponsorship = new Sponsorship(req.body)
         const savedSponsorship = await newSponsorship.save()
-        console.log(req.body,'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+        //console.log(req.body,'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
         let purpose= await Purpose.findByIdAndUpdate(req.body.purposeId,{status:'sponsored'})
         res.json({message:"provided sponsorship",savedSponsorship})
     }
@@ -262,17 +263,17 @@ router.get('/viewpurposes/:id',async(req,res)=>{
 
     let id=req.params.id
     let response=await Purpose.find({eventId:id,status:'pending'})
-    console.log(response);
+    //console.log(response);
     res.json(response)
 })
 
 
 router.get('/viewcart/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(req.body);
+    //console.log(req.body);
     let response=await Cart.find({organizationId:id})
     
-    console.log(response);
+    //console.log(response);
     let responseData=[];
       for (const newresponse of response){
         let organizations = await User.findById(newresponse.organizationId);
@@ -281,7 +282,7 @@ router.get('/viewcart/:id',async(req,res)=>{
             let products=await product.findById(x.productId)
             // let products = await product.findById(x.productId, { count: { $gt: 0 } });
 
-            console.log(products);
+            //console.log(products);
          
 
                 let users=await User.findById(products.userId)
@@ -295,23 +296,23 @@ router.get('/viewcart/:id',async(req,res)=>{
             
         }
         }
-      console.log(responseData);
+      //console.log(responseData);
       res.json(responseData);
 })
 
 router.get('/viewproductorg',async(req,res)=>{
 
-    console.log(req.body);
+    //console.log(req.body);
     const response = await product.find({ count: { $gt: 0 } });
-    console.log(response);
+    //console.log(response);
     res.json(response)
 })
 
 router.get('/viewproductdltorganisation/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(id);
+    //console.log(id);
     let response=await product.findById(id)
-    console.log(response);
+    //console.log(response);
      
        let users=await User.findById(response.userId)
    
@@ -369,9 +370,11 @@ router.get('/viewproductdltorganisation/:id',async(req,res)=>{
 // });
 
 
-router.get('/assigndboy', async (req, res) => {
+router.get('/assigndboy/:id', async (req, res) => {
     try {
-        let response = await User.find({ userType: 'deliveryboy',status:'pending' });
+        let id=req.params.id
+        //console.log(id);
+        let response = await User.find({ userType: 'deliveryboy',status:'pending',organizationId:id });
         let responseData = [];
         
         for (const newresponse of response) {
@@ -385,13 +388,13 @@ router.get('/assigndboy', async (req, res) => {
 
             let donations = await donation.find({ deliveryboyId: newresponse._id });
             // let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id})
-            // console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
-// console.log(donations,'dddddddddddddddddddddddddddddddddddd');
+            // //console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
+// //console.log(donations,'dddddddddddddddddddddddddddddddddddd');
             
             for (const donationItem of donations) {
                 
                 let orphanage = await User.findById(donationItem.orphanageId);
-                console.log(orphanage,'pppppppppppppppppppppppppppppp');
+                //console.log(orphanage,'pppppppppppppppppppppppppppppp');
                 deliveryBoyData.orphanages.push(orphanage);
                 deliveryBoyData.donations.push(donationItem);
             }
@@ -412,7 +415,7 @@ router.get('/assigndboy', async (req, res) => {
             
             responseData.push(deliveryBoyData);
         }
-        console.log(responseData,'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+        //console.log(responseData,'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
         res.json(responseData);
     } catch (error) {
         console.error(error);
@@ -425,7 +428,7 @@ router.get('/assigndboy', async (req, res) => {
 //yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
 router.get('/assignorderdboy',async(req,res)=>{
     let response = await User.find({ userType: 'deliveryboy' });
-    console.log(response,'-----------');
+    //console.log(response,'-----------');
     let responseData2 = [];
      for (const newresponse of response) {
         let deliveryBoyData = {
@@ -434,7 +437,7 @@ router.get('/assignorderdboy',async(req,res)=>{
             users:[]  // Array to store donations associated with the delivery boy
         };
         let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id})
-        console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
+        //console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
         for (const ord of orders){
             deliveryBoyData.orders.push(ord)
             
@@ -452,7 +455,7 @@ router.get('/assignorderdboy',async(req,res)=>{
         responseData2.push(deliveryBoyData);
 
      }
-     console.log(responseData2,'yyyyyyyyyyyyyyyyyyyyyyyyyyy');
+     //console.log(responseData2,'yyyyyyyyyyyyyyyyyyyyyyyyyyy');
      res.json(responseData2);
     
 
@@ -461,31 +464,31 @@ router.get('/assignorderdboy',async(req,res)=>{
 
 // router.get('/viewcart',async(req,res)=>{
 //     let response=await Cart.find()
-//     console.log(response);
+//     //console.log(response);
 //     res.json(response)
 // })
 
 router.get('/viewdeliveryboy/:id',async(req,res)=>{
     let id=req.params.id
     let response=await User.find({organizationId:id,userType:'deliveryboy',status:'pending'})
-    // console.log(response)
+    // //console.log(response)
     res.json(response)
 })
 
 router.get('/vieworphanage',async(req,res)=>{
     let response=await User.find({userType:'orphanage'})
-    // console.log(response);
+    // //console.log(response);
     res.json(response)
 })
 
 router.get('/vieworphdetail/:id',async(req,res)=>{
     let id=req.params.id
-    // console.log(id);
+    // //console.log(id);
     let response=await User.findById(id)
     let events=await Event.find({orphanageId:id})
     let contrireq=await ContributionRequest.find({orphanageId:id})
     let report=await Report.find({UserId:id})
-    // console.log(response);
+    // //console.log(response);
     res.json({response,events,contrireq,report})
 })
 
@@ -508,15 +511,15 @@ router.get('/viewdonationrequests',async(req,res)=>{
     }
     
 
-    console.log(responseData);
+    //console.log(responseData);
     res.json(responseData);
 })
 
 
 router.get('/viewevent',async(req,res)=>{
-    // console.log(req.body);
+    // //console.log(req.body);
     let response=await Event.find()
-    // console.log(response);
+    // //console.log(response);
   
     let responseData=[];
       for (const newresponse of response){
@@ -526,7 +529,7 @@ router.get('/viewevent',async(req,res)=>{
             event: newresponse
         });
       }
-      console.log(responseData);
+      //console.log(responseData);
       res.json(responseData);
 })
 
@@ -534,9 +537,9 @@ router.get('/viewevent',async(req,res)=>{
 
 router.get('/viewreviews/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(id);
+    //console.log(id);
     let response=await Review.find({organizationId:id})
-    console.log(response);
+    //console.log(response);
     
     let responseData=[];
     for (const newresponse of response){
@@ -546,15 +549,15 @@ router.get('/viewreviews/:id',async(req,res)=>{
           review: newresponse
       });
     }
-    console.log(responseData);
+    //console.log(responseData);
     res.json(responseData);
 })
 
 router.get('/viewsponshistory/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(id,'dsds');
+    //console.log(id,'dsds');
     let response=await Sponsorship.find({organizationId:id})
-    // console.log(response);
+    // //console.log(response);
     let responseData=[];
     for (const newresponse of response){
         let organizations=await User.findById(newresponse.organizationId);
@@ -576,9 +579,9 @@ router.get('/viewsponshistory/:id',async(req,res)=>{
 
 router.get('/viewdonation/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(id);
+    //console.log(id);
     let response=await donation.find({organizationId:id})
-    console.log(response);
+    //console.log(response);
    
     let responseData=[];
     for(const newresponse of response){
@@ -598,7 +601,7 @@ router.get('/viewdonation/:id',async(req,res)=>{
 
 router.get('/vieworpheventdetailspons/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(id);
+    //console.log(id);
     let events=await  Event.findById(id)
     let orph=await User.findById(events?.orphanageId)
     res.json({events,orph})
@@ -606,35 +609,48 @@ router.get('/vieworpheventdetailspons/:id',async(req,res)=>{
 
 // router.get('/vieworder/:id',async(req,res)=>{
 //     let id=req.params.id
-//     console.log(id);
+//     //console.log(id);
 //     let response=await Orders.find()
 // })
 
 router.put('/changecartstatus/:id', async (req, res) => {
     try {
+        //console.log('---------------------------------------------------');
         let id = req.params.id;
-        console.log(id);
+        // //console.log(id);
 
-        console.log(req.body);
+        // //console.log(req.body);
 
         // Find the cart based on organizationId
         let cart = await Cart.findOne({ organizationId: id });
-        console.log(cart);
+
+
+        // console.log(cart,'=-=-=-===');
+        let newPrd = []
+        for (let x of cart.products){
+            let productDetails=await product.findById(x.productId)
+            console.log(productDetails);
+            if(productDetails.count !== 0){
+                newPrd.push(x)
+            }
+        }
+
+
 
         // Create a new order based on the cart data
         let newOrder = new Orders({
-            products: cart.products, // Assuming products structure is similar between Cart and Order
+            products: newPrd, // Assuming products structure is similar between Cart and Order
             organizationId: cart.organizationId,
             // Add other properties from cart if needed
         });
         
         // Save the new order to the database
         let savedOrder = await newOrder.save();
-        console.log(savedOrder);
+        // //console.log(savedOrder);
 
         // Remove the cart now that the order is created
         let deletedCart = await Cart.findByIdAndDelete(cart._id);
-        console.log(deletedCart);
+        //console.log(deletedCart);
 
         res.status(200).json({ message: 'Order created successfully.' });
     } catch (error) {
@@ -647,18 +663,21 @@ router.put('/changecartstatus/:id', async (req, res) => {
 
 
 
+
+
+
 router.get('/vieworder/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(id);
+    //console.log(id);
     let response = await Orders.find({ organizationId: id, 'products.Ostatus': 'pending' });
 
     
-    console.log(response);  
+    //console.log(response);  
     let responseData=[]
     for (const newresponse of response){
         for (const x of newresponse.products){
         let products=await product.findById(x.productId)
-        console.log(products,'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+        //console.log(products,'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
         let user=await User.findById(products.userId)
         let dboy=await User.findById(x.deliveryBoyId)
         responseData.push({
@@ -674,11 +693,11 @@ router.get('/vieworder/:id',async(req,res)=>{
 
 router.get('/vieworderhistory/:id',async(req,res)=>{
     let id=req.params.id
-    console.log(id);
+    //console.log(id);
     let response = await Orders.find({ organizationId: id, 'products.Ostatus': { $ne: 'pending' } });
 
     
-    console.log(response);  
+    //console.log(response);  
     let responseData=[]
     for (const newresponse of response){
         for (const x of newresponse.products){
@@ -700,41 +719,41 @@ router.get('/vieworderhistory/:id',async(req,res)=>{
 router.get('/filterproducts/:category',async(req,res)=>{
    
     let category=req.params.category
-    console.log(category);
+    //console.log(category);
     if(category=='books'){
         let response=await product.find({category:'books'})
-        console.log(response);
+        //console.log(response);
     res.json(response);
     }
     else if (category=='shoes') {
         let response=await product.find({category:'shoes'})
-        console.log(response);
+        //console.log(response);
     res.json(response);
     }
     else if (category=='bags') {
         let response=await product.find({category:'bags'})
-        console.log(response);
+        //console.log(response);
     res.json(response);
     }
     else if (category=='Others') {
         let response=await product.find({category:'Others'})
-        console.log(response);
+        //console.log(response);
     res.json(response);
     }
     else if (category=='toys') {
         let response=await product.find({category:'toys'})
-        console.log(response);
+        //console.log(response);
     res.json(response);
     }
     else if (category=='dress') {
         let response=await product.find({category:'dress'})
-        console.log(response);
+        //console.log(response);
     res.json(response);
     }
     else
     {
         let response=await product.find()
-        console.log(response);
+        //console.log(response);
     res.json(response);
     }
 
@@ -743,11 +762,11 @@ router.get('/filterproducts/:category',async(req,res)=>{
 
 
 // router.get('/vieworderhistory/:id',async(req,res)=>{
-//     console.log(id);
+//     //console.log(id);
 //    let response = await Orders.find({ organizationId: id, status: { $ne: 'pending' } });
 
     
-//     console.log(response);  
+//     //console.log(response);  
 //     let responseData=[]
 //     for (const newresponse of response){
 //         for (const x of newresponse.products){
@@ -767,18 +786,18 @@ router.get('/filterproducts/:category',async(req,res)=>{
 
 router.put('/assignorderdboy', async (req, res) => {
     try {
-        console.log(req.body);
+        //console.log(req.body);
         const { selectedOrders, deliveryboy, date ,orgId } = req.body;
 
         // Find the order by ID
         let order = await Orders.findById(orgId);
-        console.log(order)
+        //console.log(order)
 
         // Find the product within the order
         for (let x of selectedOrders){
-console.log(x,'xxxxxxxxxxxxxxxxxxx');
+//console.log(x,'xxxxxxxxxxxxxxxxxxx');
             const product = order.products.find(p=>p.productId==x);
-            console.log(product,'========================');
+            //console.log(product,'========================');
        
 
         // Update the delivery boy ID and date for the product
@@ -798,21 +817,21 @@ console.log(x,'xxxxxxxxxxxxxxxxxxx');
 
 router.put('/acceptdonation/:id',async(req,res)=>{
     let id=req.params.id
-    // console.log(id);
-    // console.log(req.body);
+    // //console.log(id);
+    // //console.log(req.body);
     let response=await donationreq.findByIdAndUpdate(id,req.body)
-    console.log(response);
+    //console.log(response);
 })
 
 
 router.post('/donateproduct',async(req,res)=>{
-    console.log(req.body);
+    //console.log(req.body);
     const newdonation = new donation(req.body)
     let response = await donationreq.findById(req.body.reqId)
-    console.log(response);
-    // console.log(response.Bcount,'oooooooooooooooooooooooooooooooooooooooo');
+    //console.log(response);
+    // //console.log(response.Bcount,'oooooooooooooooooooooooooooooooooooooooo');
     let balanceCount = response.Bcount - req.body.count
-    console.log(balanceCount);
+    //console.log(balanceCount);
 
     if (balanceCount === 0) {
         let responseUpdate = await donationreq.findByIdAndUpdate(req.body.reqId, { Bcount: balanceCount, status: 'Completed' })
@@ -831,7 +850,7 @@ router.post('/donateproduct',async(req,res)=>{
 
 router.put('/assigndonationdboy/:id',async(req,res)=>{
     let id = req.params.id
-    console.log(req.body);
+    //console.log(req.body);
     let donations=await donation.findByIdAndUpdate(id,req.body)
     res.json(donations)
 

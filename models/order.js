@@ -14,7 +14,7 @@ const orderSchema=new Schema({
         },
         count:{
             type:Number,
-            required:true
+            // required:true
         },
         deliveryBoyId:{
             type:mongoose.Types.ObjectId,

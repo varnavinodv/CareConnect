@@ -403,6 +403,11 @@ router.get('/vieworders',async(req,res)=>{
 })
 
 
+// router.put('/forgotpass/:num'),async(req,res)=>{
+//     let num=req.params.num
+//     const user=await User.find({phno:num})
+// }
+
 
 
 
