@@ -244,7 +244,7 @@ router.get('/vieworgdetail/:id', async (req, res) => {
         })
     }
     // console.log(response);
-    res.json({ responsedata, response })
+    res.json({ responsedata, response,report })
 })
 
 // router.get('/viewcontributions/:id',async(req,res)=>{
