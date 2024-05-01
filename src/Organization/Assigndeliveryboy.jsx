@@ -7,10 +7,12 @@ const Assigndeliveryboy = () => {
 const [data, setData] = useState([]);
 const [data1,setData1]=useState([]);
 const [data2,setData2]=useState([]);
+let lid = localStorage.getItem('id')
+
     let {did}=useParams()
     useEffect(()=>{
         let fetchdata=async()=>{
-           let response=await axios.get('http://localhost:4000/organization/assigndboy')
+           let response=await axios.get(`http://localhost:4000/organization/assigndboy/${lid}`)
            let response2=await axios.get('http://localhost:4000/organization/assignorderdboy')
            console.log(response.data);
            setData1(response.data)
@@ -132,9 +134,9 @@ console.log(res,'reed');
     
     return (
       <div key={index}>
-        <p>Date: {order?.products[0]?.date}</p>
-        <p>User Name: {user?.name}</p>
-        <p>User Address: {user?.houseName}, P.O {user?.postoffice}, Pin: {user?.pin}, {user?.district}</p>
+        <p>{order?.products[0]?.date}</p>
+        {/* <p>User Name: {user?.name}</p> */}
+        <p> {user?.postoffice}, {user?.district}</p>
         {/* <p>Delivery Boy Name: {deliveryBoy?.name}</p> */}
         {/* <p>Delivery Boy Address: {deliveryBoy?.houseName}, P.O {deliveryBoy?.postoffice}, Pin: {deliveryBoy?.pin}, {deliveryBoy?.district}</p> */}
         {/* Add any other details you want to display */}

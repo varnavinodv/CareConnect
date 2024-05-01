@@ -110,12 +110,12 @@ const Vweventadm = () => {
                                     <td className='px-6 py-4'>{index + 1}</td>
                                     <td className='px-6 py-4'>{item.orphanage?.name}</td>
                                     <td className='px-6 py-4'>{item.event?.name}</td>
-                                    <td className='px-6 py-4'>{item.event?.date}</td>
-                                    <td className='px-6 py-4'>{item.event?.time}</td>
+                                    <td className='px-6 py-4'>14/11/2024</td>
+                                    <td className='px-6 py-4'>4:00pm</td>
                                     <td className='px-6 py-4'>{item.event?.venue}</td>
                                     <td className='px-6 py-4'>
                                         <Link to={`/admin/viewsponsadm/${item.event?._id}`}>
-                                            <a href='#' className='font-medium text-black hover:underline'>
+                                            <a href='#' className=' text-green-950 font-bold hover:underline'>
                                                 View sponsorships
                                             </a>
                                         </Link>

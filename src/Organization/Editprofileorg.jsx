@@ -30,6 +30,7 @@ useEffect(()=>{
     console.log(event.target.files);
     setData({...data,[event.target.name]:event.target.files[0]})
     console.log(data);
+    
   }
 
   let handleSubmit=async (event)=>{
@@ -127,11 +128,10 @@ useEffect(()=>{
          />
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
-        <label for="license" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">License</label>
+        <label for="license" class="block mb-2  text-lg font-semibold text-amber-950 dark:text-amber-950">License</label>        <a className='text-blue-900 underline text-sm'  href={`http://localhost:4000/uploads/${userData.license}`} download >(Current license)</a>
+
         <input onChange={handlefile}  type="file" name="license" placeholder={userData.license} class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" 
          />
-                 <a className='hover:text-blue-600 hover:underline text-sm'  href={`http://localhost:4000/uploads/${userData.license}`} download >{userData.license}</a>
-
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="cpwd" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Confirm Password</label>

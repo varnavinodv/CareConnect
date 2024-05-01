@@ -112,7 +112,7 @@ const Donatnreqorg = () => {
                     {/* <button onClick={()=>{handleSubmit('Accepted',item.donation?._id,oid)}} href="#" className="font-bold text-green-600 text-left hover:underline">Accept</button></Link> */}
                     {/* <button onClick={()=>{handleSubmit('Rejected',item.donation?._id)}} href="#" className="font-bold text-red-600 text-left  hover:underline">Reject</button> */}
                       {}
-                       <p onClick={dropdown}   className='text-green-500 font-bold hover:underline'>DONATE</p>
+                       <p onClick={dropdown}   className='text-green-950 font-bold hover:underline'>DONATE</p>
                       {drop &&
                       <>
                       <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>

@@ -80,18 +80,20 @@ const Vwdonatndboy = () => {
                                             {(outerIndex * item.donation.length) + innerIndex + 1}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {item1.product}
+                                            {/* {item1.product} */}
+                                            Dress
                                         </td>
                                         <td className="px-6 py-4">
                                             {item1.count}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {item.orph?.name}
+                                            {/* {item.orph?.name} */}
+                                            Free birds orphanage
                                         </td>
                                         <td className="px-6 py-4">
                                             {item.orph?.place} <br />
                                             p.o {item.orph?.postoffice} <br />
-                                            pin:{item.orph?.pin} <br />
+                                            pin:{item.orph?.pin}<br />
                                             {item.orph?.postoffice}
                                         </td>
                                         <td className="px-6 py-4">

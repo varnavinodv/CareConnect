@@ -137,13 +137,13 @@ const Vwuseradm = () => {
                                             DISABLE
                                         </button>{' '}
                                         <br />
-                                        <button
+                                        {/* <button
                                             href="#"
                                             onClick={() => handleSubmit('enabled', item._id)}
                                             className="font-bold text-green-600 hover:underline"
                                         >
                                             ENABLE
-                                        </button>
+                                        </button> */}
                                     </td>
                                 </tr>
                             ))}

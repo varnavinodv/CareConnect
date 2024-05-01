@@ -19,7 +19,7 @@ const App = () => {
               <div className='text-white custom_font_family ps-5 text-[40px]' >
                 Care Connect
               </div>
-              <div className='text-white flex flex-wrap justify-evenly gap-12 pe-5 items-center '>
+              <div className='text-white flex font-bold flex-wrap justify-evenly gap-12 pe-5 items-center '>
                  <Link to ='/'><div><button>Home</button></div></Link>
                  <a href='#abt'>About</a>
                 

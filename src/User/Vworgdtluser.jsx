@@ -37,26 +37,26 @@ const Vworgdtluser = () => {
 
     return (
       <div className='list-none w-fit sm:left-[19rem] p-2 bg-white text-black text-lg font-semibold rounded-lg'>
-        {data.responsedata?.map((item) => (
-          item?.reports.map((item2) => {
-            if (!uniqueYears.has(item2.year)) {
-              uniqueYears.add(item2.year);
+        {data.report?.map((item) => 
+            {if (!uniqueYears.has(item.year)) {
+              uniqueYears.add(item.year);
               return (
                 <p>
                   <a
-                    key={item2.year}
+                    key={item.year}
                     className='hover:text-blue-600 hover:underline'
-                    href={`http://localhost:4000/uploads/${item2.report}`}
+                    href={`http://localhost:4000/uploads/${item.report}`}
+                    target='_blank'
                     download
                   >
-                    {item2.year}
+                    {item.year}
                   </a>
                 </p>
               );
             }
             return null;
-          })
-        ))}
+            }
+      )}
       </div>
     );
   };
@@ -95,15 +95,15 @@ const Vworgdtluser = () => {
           <div>
             <div className='font-bold text-4xl text-amber-950 py-8'>{data.response?.name}</div>
             <div>
-              <div className='flex flex-wrap gap-3 pb-3'>
+              <div className='flex flex-wrap font-semibold gap-3 pb-3'>
                 <img className='w-[30px] h-[30px]' src={call} alt='' />
                 <p>{data.response?.phno}</p>
               </div>
-              <div className='flex flex-wrap gap-3 pb-3'>
+              <div className='flex flex-wrap font-semibold gap-3 pb-3'>
                 <img className='w-[30px] h-[30px]' src={email} alt='' />
                 <p>{data.response?.email}</p>
               </div>
-              <div className='flex flex-wrap gap-3 pe-8 pb-3'>
+              <div className='flex flex-wrap  gap-3 pe-8 pb-3'>
                 <img className='w-[30px] h-[30px]' src={locatn} alt='' />
                 <p>
                   {data.response?.place}

@@ -33,6 +33,15 @@ const Editeventorph = () => {
     console.log(response);
     
   }
+
+  const convertTo12HourFormat = (time) => {
+    const timeParts = time.split(':');
+    const hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1]);
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    const hours12 = hours % 12 || 12;
+    return `${hours12}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
+};
   return (
     <div className='w-[100%]'>
     <div>
@@ -47,23 +56,23 @@ const Editeventorph = () => {
 <form class="max-w-sm mx-auto" onSubmit={handleSubmit}>
 <div class="mb-5">
 <label for="name" class="block mb-2 text-sm font-medium text-[#3E1B00]">Name</label>
-<input onChange={handleChange} type="text" placeholder={userData.name}  name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
+<input onChange={handleChange} type="text" placeholder={userData.name}  name="name" class="shadow-sm placeholder:text-black bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 <div class="mb-5">
-<label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Date</label>
-<input onChange={handleChange} type="date"  placeholder={userData.date}  name="date" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
+<div className='flex '><label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Date</label><p className=' text-sm'>  ({userData.date})</p></div>
+<input onChange={handleChange} type="date"  placeholder={userData.date}  name="date" class="shadow-sm placeholder:text-black  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 <div class="mb-5">
-<label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Time</label>
-<input onChange={handleChange} type="time" name="time"  placeholder={userData.time}  class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
+<div className='flex '><label for="img" class="block mb-2 text-sm font-medium text-[#3E1B00]">Time</label><p className=' text-sm'>  ( {userData.time && convertTo12HourFormat(userData.time)} ) </p></div>
+<input onChange={handleChange} type="time" name="time"  placeholder={userData.time}  class="shadow-sm placeholder:text-black bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 <div class="mb-5">
 <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Venue</label>
-<input onChange={handleChange} type="text" name="venue"  placeholder={userData.venue}  class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
+<input onChange={handleChange} type="text" name="venue"  placeholder={userData.venue}  class="shadow-sm placeholder:text-black  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 <div class="mb-5">
 <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Description</label>
-<input onChange={handleChange} type="text" name="desription"  placeholder={userData.desription}  class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
+<input onChange={handleChange} type="text" name="desription"  placeholder={userData.desription}  class="shadow-sm placeholder:text-black  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
 </div>
 
 

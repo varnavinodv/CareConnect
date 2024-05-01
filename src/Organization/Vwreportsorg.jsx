@@ -63,8 +63,9 @@ const Vwreportsorg = () => {
                 <td class="px-6 py-4">
                     {item.year}
                 </td>
-                <td class="px-6 py-4">
-                   {item.report}
+                <td class="px-6 py-4 text-blue-950 font-semibold underline">
+                    Report
+                   {/* {item.report} */}
                 </td>
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
                     <Link to={`/organization/editreportorg/${item._id}`}><img className='w-[45px] h-[30px] hover:bg-blue-400' src={edit} alt="" /></Link>

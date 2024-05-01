@@ -54,7 +54,7 @@ const Vweventorg = () => {
         </thead>
         <tbody>
         {data.map((item,index)=>(
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4]">
+            <tr  class='bg-[#f8d2a0] border-b border-orange-600 text-black font-semibold hover:bg-[#f7b866d4]'>
                 <th  class="px-6 py-4 ">
                    {index+1}
                 </th>
@@ -68,17 +68,20 @@ const Vweventorg = () => {
                 {item.event?.venue}
                 </td>
                 <td class="px-6 py-4">
-                {item.event?.date}
+                {/* {item.event?.date} */}
+                14/11/2022
+                
                 </td>
                 <td class="px-6 py-4">
-                 {item.event?.time}
+                 {/* {item.event?.time} */}
+                 4:00pm
                 </td>
                 {/* <td class="px-6 py-4">
                pending
                 </td> */}
                 <td class="px-6 py-4">
                   
-                   <Link to={`/organization/sponsorshiporg/${item.event?._id}`}> <button className='bg-orange-500 p-1 rounded-md'>Sent sponsorship request</button></Link>
+                   <Link to={`/organization/sponsorshiporg/${item.event?._id}`}> <button className='text-green-950 font-bold p-1 rounded-md hover:underline'>SPONSOR</button></Link>
                 </td>
             </tr>
             ))}  

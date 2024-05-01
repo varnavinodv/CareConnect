@@ -79,12 +79,12 @@ const Viewproductorg = () => {
                                 onChange={handleSearch}
                                 required
                             />
-                            <button
+                            {/* <button
                                 type="submit"
                                 className="text-black absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
                             >
                                 Search
-                            </button>
+                            </button> */}
                         </div>
                     </form>
                 </div>

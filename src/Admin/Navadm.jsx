@@ -60,7 +60,7 @@ const Navadm = () => {
                  <Link to ='/admin'><div className='font-semibold text-lg hover:bg-orange-300 hover:p-2 hover:text-black'>Home</div></Link>
                  {/* <div className='ps-8 pt-20'> */}
            <button onClick={logout} className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg'>
-                    <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>LOGOUT </div>
+                    <div className='font-semibold text-lg hover:bg-orange-300 hover:text-black'>Logout </div>
                     {/* <div><img src={logout1} alt="" /></div> */}
                 </button>
                 

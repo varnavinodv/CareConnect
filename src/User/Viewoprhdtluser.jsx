@@ -30,6 +30,15 @@ const Viewoprhdtluser = () => {
 
 
   }
+
+  const convertTo12HourFormat = (time) => {
+    const timeParts = time.split(':');
+    const hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1]);
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    const hours12 = hours % 12 || 12;
+    return `${hours12}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
+};
   return (
     <div className='w-[100%]'>
          <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
@@ -100,11 +109,11 @@ const Viewoprhdtluser = () => {
                       </div>
                       <div className='flex flex-wrap justify-start ps-3 gap-2 py-1'>
                         <img className='w-[30px] h-[30px]  ' src={date} alt="" />
-                        <p>{item?.date}</p>
+                        <p> {item?.date && new Date(item?.date).toLocaleDateString('en-GB')} </p>
                       </div>
                       <div className='flex flex-wrap justify-start ps-3 gap-2 py-1'>
                         <img  className='w-[30px] h-[30px]'  src={time} alt="" />
-                        <p>{item?.time}</p>
+                        <p>{item?.time && convertTo12HourFormat(item?.time)}</p>
                       </div>
                      
 
