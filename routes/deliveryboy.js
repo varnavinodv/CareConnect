@@ -5,6 +5,7 @@ import User from '../models/user.js';
 import mongoose from 'mongoose';
 
 import donation from '../models/donation.js';
+import donationreq from '../models/donationreq.js';
 
 
 const router=express()
@@ -60,32 +61,77 @@ router.put('/updatestatusorder/:id',async(req,res)=>{
 })
 
 
+// router.get('/viewdonation/:id',async(req,res)=>{
+//     const id = req.params.id;
+//     console.log(id);
+//     const donatn = await donation.find({
+//         deliveryboyId: id,
+//         $nor: [
+//             // { status: 'assigned' },
+//             { status: 'pending' }
+//         ]
+//     });
+    
+//     // console.log(donatn,'sssssssssssssssssss');
+//     let responseData = [];
+//     for (let don of donatn) {
+//         // console.log(don,'gggggggggggggggggggggg');
+//         const orph=await User.findById(don.orphanageId)
+//         // console.log(orph,'============================================');
+      
+//         responseData.push({
+//             donation:donatn,
+//             orph:orph
+//         })
+    
+//     }
+//     res.json(responseData);
+// })
+
+
 router.get('/viewdonation/:id',async(req,res)=>{
     const id = req.params.id;
     console.log(id);
     const donatn = await donation.find({
-        deliveryboyId: id,
-        $nor: [
-            // { status: 'assigned' },
-            { status: 'pending' }
-        ]
-    });
-    
-    // console.log(donatn,'sssssssssssssssssss');
-    let responseData = [];
-    for (let don of donatn) {
-        // console.log(don,'gggggggggggggggggggggg');
-        const orph=await User.findById(don.orphanageId)
-        // console.log(orph,'============================================');
-      
-        responseData.push({
-            donation:donatn,
-            orph:orph
-        })
-    
-    }
-    res.json(responseData);
+                deliveryboyId: id,
+                $nor: [
+        //             // { status: 'assigned' },
+                    { status: 'pending' }
+                ]
+            });
+            let responseData = [];
+            for (let don of donatn) {
+                const req=await donationreq.findById(don.reqId)
+                const orph=await User.findById(req.orphanageId)
+                 responseData.push({
+                                donation:donatn,
+                                orph:orph,
+                                req:req
+                            })
+                        }
+                        res.json(responseData);               
+
+
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // router.put('/updatestatusdonation/:id', async (req, res) => {

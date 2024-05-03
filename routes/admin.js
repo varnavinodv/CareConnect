@@ -13,9 +13,48 @@ import Orders from '../models/order.js';
 import Purpose from '../models/purpose.js';
 import donationreq from '../models/donationreq.js';
 import donation from '../models/donation.js';
-
+import nodemailer from 'nodemailer'
 const router=express()
 
+
+
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'careconnectt01@gmail.com',
+    pass: 'enqy ufbi gmrt wava',
+  },
+});
+
+router.post('/sendOTP', async (req, res) => {
+  const { email } = req.body;
+  const otp = Math.floor(100000 + Math.random() * 900000); // Generate a 6-digit OTP
+  const mailOptions = {
+    from: 'careconnectt01@gmail.com',
+    to: email,
+    subject: 'Your OTP for Verification',
+    text: `Your OTP is: ${otp}`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).send({ message: 'OTP sent successfully',otp });
+  } catch (error) {
+    console.error('Error sending OTP:', error);
+    res.status(500).send({ error: 'Failed to send OTP' });
+  }
+});
+
+
+router.put('/changepass/:email',async(req,res)=>{
+    let email=req.params.email
+    let response=await User.findOne({email:email})
+    console.log(response);
+    let response1=await User.findByIdAndUpdate(response._id, req.body,{new:true})
+    console.log(req.body); 
+    console.log(response1);
+})
 
 
 router.put('/acceptusers/:id',async(req,res)=>{
@@ -409,6 +448,18 @@ router.get('/vieworders',async(req,res)=>{
 // }
 
 
+
+
+// const app = express();
+// app.use(bodyParser.json());
+// app.use(cors())
+// const transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'careconnectt01@gmail.com',
+//     pass: 'wdnu jlyj lrtu acyj',
+//   },
+// });
 
 
 export default router
