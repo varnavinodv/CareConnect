@@ -135,7 +135,9 @@ const Vwordersdboy = () => {
                   {item.order?.products?.map((item1) => (
                     item1.productId == item.product?._id && 
                     <>
-                  <td class='px-6 py-4'>{item1.date}</td>
+                  <td class='px-6 py-4'>                                            { new Date(item1?.date).toLocaleDateString('en-GB')}
+
+</td>
                   <td class='px-6 py-4'>{item1.Ostatus}</td>
                     </>
                 ))}

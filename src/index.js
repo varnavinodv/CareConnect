@@ -95,6 +95,7 @@ import Orderhistory from './Organization/Orderhistory';
 import Vwdonationdetails from './Admin/Vwdonationdetails';
 import Vwdonationdetail from './Orphanage/Vwdonationdetail';
 import Forgtpass from './Forgtpass';
+import Changepass from './Changepass';
 
 
 
@@ -111,6 +112,7 @@ root.render(
          <Route path='/regorg' element={<Orgreg/>}/>
          <Route path='/regorph' element={<Orphreg/>}/>
          <Route path='/forgotpassword' element={<Forgtpass/>}/>
+         <Route path='/changepass/:email' element={<Changepass/>}/>
          
       </Route>
 

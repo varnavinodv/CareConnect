@@ -89,7 +89,8 @@ const Vweventorph = () => {
                    orphanage
                 </td> */}
                 <td class="px-6 py-4">
-                   {item.date}
+                { new Date(item?.date).toLocaleDateString('en-GB')}
+                   {/* {item.date} */}
                 </td>
                 <td class="px-6 py-4">
                 {item.time && convertTo12HourFormat(item.time)}                </td>

@@ -123,7 +123,8 @@ const Vworderadm = () => {
                                             item1.productId === item.product?._id && (
                                                 <React.Fragment key={item1._id}>
                                                     <td className='px-6 py-4'>{item1.count}</td>
-                                                    <td className='px-6 py-4'>{item1.date}</td>
+                                                    <td className='px-6 py-4'>            { new Date(item1?.date).toLocaleDateString('en-GB')}
+</td>
                                                     <td className='px-6 py-4'>{item.delboy?.name}</td>
                                                     <td className='px-6 py-4'>{item1.Ostatus}</td>
                                                 </React.Fragment>

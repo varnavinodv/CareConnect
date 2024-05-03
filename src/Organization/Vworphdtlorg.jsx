@@ -101,7 +101,7 @@ const Vworphdtlorg = () => {
                       </div>
                       <div className='flex flex-wrap justify-start ps-3 gap-2 py-1'>
                         <img className='w-[30px] h-[30px]  ' src={date} alt="" />
-                        <p>{item?.date}</p>
+                        <p>{ new Date(item?.date).toLocaleDateString('en-GB')}</p>
                       </div>
                       <div className='flex flex-wrap justify-start ps-3 gap-2 py-1'>
                         <img  className='w-[30px] h-[30px]'  src={time} alt="" />

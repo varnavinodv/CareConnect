@@ -64,6 +64,7 @@ const Editprofiledeliveryb = () => {
     <div>
        <ToastContainer/>
        <div className='registerbg w-[100%] pb-5 pt-7'>
+       {/* <div className='text-xl text-[#431515] font-bold text-center pb-2'>Thanal charity organization</div> */}
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>Edit your profile</div>
          <div>
             
@@ -126,7 +127,14 @@ const Editprofiledeliveryb = () => {
   
   </div>
   <div className='text-center pt-11'><button type="submit" class="text-white  bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-500 dark:hover:bg-orange-400 dark:focus:ring-orange-500">UPDATE</button></div>
+
+
+
+
+
 </form>
+<div className='flex flex-wrap'></div>
+<div className='text-xl text-[#431515] font-semibold  pb-1'>Thanal charity organization</div>
 
 
 

@@ -150,7 +150,7 @@ const currentDate = new Date().toISOString().split('T')[0];
                     item1.productId == item.product?._id && 
                     <>
                     <td class='px-6 py-4'>{item1.count}</td>
-                  <td class='px-6 py-4'>{item1.date}</td>
+                  <td class='px-6 py-4'> { new Date(item1.date).toLocaleDateString()}</td>
                   <td class='px-6 py-4'>{item1.Ostatus}</td>
                   <td>
                     <input

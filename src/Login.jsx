@@ -75,7 +75,7 @@ const Login = () => {
             <input onChange={handleChange}   className='bg-yellow-100 py-2 px-3 pe-20 ms-9 mb-7' type="text" name="email" placeholder='Enter your email'/></div>
             <div><label for="pwd" className='ms-9 text-lg mb-2'>Password</label></div>
             <div className='ms-9 mb-7'><input onChange={handleChange} className='bg-yellow-100 py-2 px-3 pe-20' type="password" name="password" placeholder='Enter your password'/></div>
-           <Link to={'/forgotpassword'}> <div className='ms-9 text-sm mb-7'>Forgot password?</div></Link>
+           <Link to='/forgotpassword'> <div className='ms-9 text-sm mb-7'>Forgot password?</div></Link>
             <button className='bg-orange-500 px-5 py-1 text-lg mx-28 font-semibold rounded-lg'>LOGIN</button>
             </form>
           </div>

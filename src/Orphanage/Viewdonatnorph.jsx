@@ -69,7 +69,9 @@ const Viewdonatnorph = () => {
       
     </td>
     <td class="px-6 py-4">
-    {item.donation?.date}
+    { new Date(item.donation?.date).toLocaleDateString('en-GB')}
+    {/* { new Date(item.donation?.date).toLocaleDateString()} */}
+    
     </td>
     <td class="px-6 py-4">
     {item.delboys?.name} <br />

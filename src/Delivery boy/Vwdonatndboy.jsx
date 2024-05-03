@@ -80,27 +80,30 @@ const Vwdonatndboy = () => {
                                             {(outerIndex * item.donation.length) + innerIndex + 1}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {/* {item1.product} */}
-                                            Dress
+                                            {item.req?.product}
+                                            
                                         </td>
                                         <td className="px-6 py-4">
                                             {item1.count}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {/* {item.orph?.name} */}
-                                            Free birds orphanage
+                                            {item.orph?.name}
+                                            
                                         </td>
                                         <td className="px-6 py-4">
                                             {item.orph?.place} <br />
                                             p.o {item.orph?.postoffice} <br />
                                             pin:{item.orph?.pin}<br />
-                                            {item.orph?.postoffice}
+                                            {item.orph?.district}
                                         </td>
                                         <td className="px-6 py-4">
                                             {item.orph?.phno}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {item1.date}
+                                        { new Date(item1?.date).toLocaleDateString('en-GB')}
+
+                                        {/* { new Date(item1?.date).toLocaleDateString()} */}
+
                                         </td>
                                         <td className="px-6 py-4">
                                             {item1.status}

@@ -90,11 +90,12 @@ const Sponsorshiporg = () => {
                                   </div>
                                   <div className=' ps-3 gap-2 py-1'>
                                     
-                                    <p>Date:{data2.events?.date}</p>
+                                    <p>Date:         14/11/2022
+</p>
                                   </div>
                                   <div className=' ps-3 gap-2 py-1'>
                                     
-                                    <p>Time:{data2.events?.time}</p>
+                                    <p>Time:  4:00pm</p>
                                   </div>
                                   <div className=' ps-3 gap-2 py-1'>
                                     

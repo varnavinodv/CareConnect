@@ -107,7 +107,11 @@ const Vworderuser = () => {
                                                 <img className='h-14 w-14' src={`http://localhost:4000/uploads/${item.productdetail?.img}`} alt="" />
                                             </td>
                                             <td class="px-6 py-4">
-                                                {item1.date}
+                                            {/* { new Date(item1.date).toLocaleDateString()} */}
+                                            { new Date(item1?.date).toLocaleDateString('en-GB')}
+
+
+            
                                             </td>
                                             <td class="px-6 py-4">
                                                 {item1.Ostatus}

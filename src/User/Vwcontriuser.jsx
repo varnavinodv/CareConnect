@@ -66,7 +66,8 @@ const Vwcontriuser = () => {
                    {item.contribution?.amount}
                 </td>
                 <td class="px-6 py-4">
-                { new Date(item.contribution?.date).toLocaleDateString()}
+                { new Date(item.contribution?.date).toLocaleDateString('en-GB')}
+                {/* { new Date(item.contribution?.date).toLocaleDateString()} */}
                 </td>
                 <td class="px-6 py-4">
                     successfull

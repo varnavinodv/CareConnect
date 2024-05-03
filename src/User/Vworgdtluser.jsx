@@ -103,7 +103,7 @@ const Vworgdtluser = () => {
                 <img className='w-[30px] h-[30px]' src={email} alt='' />
                 <p>{data.response?.email}</p>
               </div>
-              <div className='flex flex-wrap  gap-3 pe-8 pb-3'>
+              <div className='flex flex-wrap font-semibold  gap-3 pe-8 pb-3'>
                 <img className='w-[30px] h-[30px]' src={locatn} alt='' />
                 <p>
                   {data.response?.place}
