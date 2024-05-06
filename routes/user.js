@@ -295,6 +295,20 @@ router.get('/viewcontribution/:id', async (req, res) => {
 
 })
 
+
+
+
+router.get('/viewamountcontri/:id',async(req,res)=>{
+    let id = req.params.id
+    console.log(id);
+    let response = await ContributionRequest.findById(id)
+    console.log(response);
+    res.json(response)
+
+    
+
+})
+
 router.get('/vieworder/:id', async (req, res) => {
     try {
         const id = req.params.id;

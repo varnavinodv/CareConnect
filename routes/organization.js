@@ -304,8 +304,16 @@ router.get('/viewproductorg',async(req,res)=>{
 
     //console.log(req.body);
     const response = await product.find({ count: { $gt: 0 } });
+    let responseData=[]
+    for (const newresponse of response){
+        let users=await User.findById(newresponse.userId)
+        responseData.push({
+            product:newresponse,
+            user:users
+        })
+    }
     //console.log(response);
-    res.json(response)
+    res.json(responseData)
 })
 
 router.get('/viewproductdltorganisation/:id',async(req,res)=>{
@@ -586,7 +594,7 @@ router.get('/viewdonation/:id',async(req,res)=>{
     let responseData=[];
     for(const newresponse of response){
         let req=await donationreq.findById(newresponse.reqId);
-        let orphanages=await User.findById(req.orphanageId);
+        let orphanages=await User.findById(req?.orphanageId);
         let delboys = await User.findById(newresponse.deliveryboyId);
         
         responseData.push({
@@ -834,7 +842,7 @@ router.post('/donateproduct',async(req,res)=>{
     //console.log(balanceCount);
 
     if (balanceCount === 0) {
-        let responseUpdate = await donationreq.findByIdAndUpdate(req.body.reqId, { Bcount: balanceCount, status: 'Completed' })
+        let responseUpdate = await donationreq.findByIdAndUpdate(req.body.reqId, { Bcount: balanceCount, status: 'Completed' },{ new: true })
 
     } else {
 

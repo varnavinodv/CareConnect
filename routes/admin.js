@@ -48,31 +48,50 @@ router.post('/sendOTP', async (req, res) => {
 
 
 router.put('/changepass/:email',async(req,res)=>{
+    try{
+
+    
     let email=req.params.email
     let response=await User.findOne({email:email})
     console.log(response);
     let response1=await User.findByIdAndUpdate(response._id, req.body,{new:true})
     console.log(req.body); 
     console.log(response1);
+}
+catch(e){
+    res.json(e.message)
+}
 })
 
 
 router.put('/acceptusers/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     console.log(id);
     console.log(req.body);
     let response=await User.findByIdAndUpdate(id,req.body)
     console.log(response);
+}
+catch(e){
+    res.json(e.message)
+}
+    
 })
 
 router.get('/viewuser',async(req,res)=>{
+    try{
     console.log(req.body);
     let response=await User.find({userType:'user'})
     console.log(response);
     res.json(response)
+}
+catch(e){
+    res.json(e.message)
+}
 
 })
 router.get('/viewcontrireq',async(req,res)=>{
+    try{
     console.log(req.body);
     let response=await ContributionRequest.find()
    let  responseData=[]
@@ -86,6 +105,11 @@ router.get('/viewcontrireq',async(req,res)=>{
     }
     console.log(response);
     res.json(responseData)
+
+}
+catch(e){
+    res.json(e.message)
+}
 })
 
 router.get('/viewcontridetails/:id', async (req, res) => {
@@ -123,6 +147,7 @@ router.get('/viewcontridetails/:id', async (req, res) => {
 
 
 router.get('/viewdeliveryboy',async(req,res)=>{
+    try{
     console.log(req.body);
     let response=await User.find({userType:'deliveryboy',status:'pending'})
     let responseData = [];
@@ -142,10 +167,16 @@ router.get('/viewdeliveryboy',async(req,res)=>{
         }
     console.log(responseData);
     res.json(responseData);
+    
+}
+catch(e){
+    res.json(e.message)
+}
 
 })
 
 router.get('/viewevent',async(req,res)=>{
+    try{
     console.log(req.body);
     let response=await Event.find()
     console.log(response);
@@ -160,13 +191,22 @@ router.get('/viewevent',async(req,res)=>{
       }
       console.log(responseData);
       res.json(responseData);
+    }
+    catch(e){
+        res.json(e.message)
+    }
 })
 
 router.get('/vieworganization',async(req,res)=>{
+    try{
     console.log(req.body);
     let response=await User.find({userType:'organization'})
     console.log(response);
     res.json(response);
+}
+catch(e){
+    res.json(e.message)
+}
 })
 
 
