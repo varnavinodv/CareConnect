@@ -1,9 +1,10 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import call from './callbrwn.png'
 import email from './emailbrwn.png'
 import locatn from './locatnbrwn.png'
 import { Link,useNavigate,useParams} from 'react-router-dom'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
 
 const Contriuser = () => {
   let id=localStorage.getItem('id')
@@ -11,6 +12,7 @@ const Contriuser = () => {
   console.log(cid);
   const navigate=useNavigate()
   const [data,setData]=useState('')
+  const [data1,setData1]=useState('')
   const[check,setcheck]=useState(false)
   // const [data1,setData1]=useState('')
 
@@ -23,19 +25,35 @@ console.log(check);
   // let checkedValue=(e)=>{
   //   console.log(e.target.value);
   // }
+  useEffect(()=>{
+    let fetchdata=async()=>{
+       let response=await axios.get(`http://localhost:4000/user/viewamountcontri/${cid}`)
+       console.log(response.data);
+       setData1(response.data)
+
+    }
+    fetchdata()
+ },[]) 
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
+    if(data.amount > data1.Bamount){
+      toast.error(`only ${data1.Bamount} can be donated`)
+    }
+    else{
+    
     // setData(data)
     // console.log(data);
     
     let response=await axios.post('http://localhost:4000/user/contribution',{...data,userId:id,contributionRequestId:cid,hideidentity:check})
     console.log(response);
     navigate('/user/viewcontributionuser')
+    }
     
   }
   return (
     <div className='w-[100%] '>
+      <ToastContainer/>
     <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
         
         <div>

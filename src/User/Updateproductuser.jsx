@@ -65,7 +65,7 @@ const Updateproductuser = () => {
 <form onSubmit={handleSubmit} class="max-w-sm mx-auto">
   <div class="mb-5">
     <label for="pname" class="block mb-2 text-sm font-medium text-[#3E1B00]">Name</label>
-    <input onChange={handleChange} placeholder={userData.name} type="text" name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
+    <input onChange={handleChange} placeholder={userData.name} type="text" name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2   placeholder:text-black   "   />
   </div>
   <div class="mb-5">
     <label for="category" class="block mb-2 text-sm font-medium text-[#3E1B00]">Category</label>
@@ -88,7 +88,7 @@ const Updateproductuser = () => {
   </div>
   <div class="mb-5">
     <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>
-    <input onChange={handleChange}  placeholder={userData.count} type="number" name="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
+    <input onChange={handleChange}  placeholder={userData.count} type="number" name="count" class="shadow-sm placeholder:text-black bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "   />
   </div>
   
   

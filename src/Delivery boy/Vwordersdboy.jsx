@@ -28,11 +28,15 @@ const Vwordersdboy = () => {
         }));
     };
 
-    const handleSubmit = async (status, productId) => {
+    const handleSubmit = async (status, productId,index) => {
         try {
             const response = await axios.put(`http://localhost:4000/deliveryboy/updatestatusorder/${productId}`, { Ostatus: status });
             if (response) {
                 setRefresh(!refresh);
+                setExpandedItems(prevExpandedItems => ({
+                    ...prevExpandedItems,
+                    [index]: false // Collapse the section upon clicking any status option
+                }));
             }
         } catch (error) {
             console.error('Error updating status:', error);
@@ -139,19 +143,32 @@ const Vwordersdboy = () => {
 
 </td>
                   <td class='px-6 py-4'>{item1.Ostatus}</td>
-                    </>
-                ))}
+                 
                                     <td className="px-6 py-4 flex flex-wrap flex-col">
+                                        {item1.Ostatus !='Delivered' &&
                                         <button className='text-white bg-orange-500 py-3 px-1 rounded-lg' onClick={() => toggleExpanded(index)}>Update status</button>
+                  }
                                         {expandedItems[index] && (
                                             <div className='p-1 bg-white text-black text-base font-semibold rounded-lg'>
-                                                <p className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Out for pickup', item.product?._id)}>Out for pick up</p>
-                                                <p className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Picked', item.product?._id)}>Picked</p>
-                                                <p className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Quality check failed', item.product?._id)}>Quality check failed</p>
-                                                <p className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Delivered', item.product?._id)}>Delivered</p>
-                                            </div>
+                                                { item1.Ostatus=='Accepted' ?
+                                              
+                                                <p className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Out for pickup', item.product?._id,index)}>Out for pick up</p>
+                                                : item1.Ostatus=='Out for pickup' ?
+                                                <>
+                                                <p className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Picked', item.product?._id,index)}>Picked</p>
+                                                <p className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Quality check failed', item.product?._id,index)}>Quality check failed</p>
+                                                </>
+                                                : item1.Ostatus=='Picked' ?
+                                                <p className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Delivered', item.product?._id,index)}>Delivered</p>
+                                                :
+                                                <div></div>
+                                                
+                                        }
+                                                </div>
                                         )}
                                     </td>
+                                    </>
+                ))}
                                 </tr>
                             ))}
                         </tbody>

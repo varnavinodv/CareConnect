@@ -32,7 +32,7 @@ const Vwuseradm = () => {
             await axios.put(`http://localhost:4000/admin/acceptusers/${id}`, {
                 status: status
             });
-            // Refresh data after update
+            
             const response = await axios.get('http://localhost:4000/admin/viewuser');
             setData(response.data);
             setFilteredData(response.data);
@@ -137,13 +137,7 @@ const Vwuseradm = () => {
                                             DISABLE
                                         </button>{' '}
                                         <br />
-                                        {/* <button
-                                            href="#"
-                                            onClick={() => handleSubmit('enabled', item._id)}
-                                            className="font-bold text-green-600 hover:underline"
-                                        >
-                                            ENABLE
-                                        </button> */}
+                                        
                                     </td>
                                 </tr>
                             ))}

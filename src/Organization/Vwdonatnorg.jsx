@@ -67,7 +67,11 @@ const Vwdonatnorg = () => {
                 <td class="px-6 py-4">
                 {/* { new Date(item.donation?.date).toLocaleDateString()} */}
                  {/* {item.donation?.date} */}
-                 { new Date(item.donation?.date).toLocaleDateString('en-GB')}
+                 { item.donation?.date &&
+
+                  new Date(item.donation?.date).toLocaleDateString('en-GB')
+}
+
                 </td>
                 <td class="px-6 py-4">
                 {item.donation?.status}

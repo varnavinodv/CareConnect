@@ -118,7 +118,7 @@ const Vworgdtluser = () => {
               </div>
         
             </div>
-            <div>
+            <div className='w-[23rem]'>
               <button className='bg-orange-500 py-2 px-3 rounded-lg' onClick={dropdown}>
                 <div className='flex flex-wrap items-center'>
                   <p className='text-white text-lg pr-3'>View reports</p>

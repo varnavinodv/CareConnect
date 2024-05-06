@@ -30,7 +30,7 @@ const Viewproductorg = () => {
     };
 
     const filterCategory = (category) => {
-        const filtered = data.filter((item) => item.category.toLowerCase() === category.toLowerCase());
+        const filtered = data.filter((item) => item.product?.category.toLowerCase() === category.toLowerCase());
         setFilteredData(filtered);
     };
 
@@ -38,7 +38,8 @@ const Viewproductorg = () => {
         const query = e.target.value.toLowerCase();
         setSearchQuery(query);
         const filtered = data.filter((item) => 
-            item.category.toLowerCase().includes(query) || item.name.toLowerCase().includes(query)
+            item.product?.category.toLowerCase().includes(query) || item.product?.name.toLowerCase().includes(query) ||
+        item.user?.name.toLowerCase().includes(query) || item.user?.district.toLowerCase().includes(query)
         );
         setFilteredData(filtered);
     };
@@ -118,14 +119,14 @@ const Viewproductorg = () => {
                 <div className="bg-yellow-300/40 m-auto h-fit flex flex-wrap justify-between gap-24 p-10 pb-1">
                     {filteredData.map((item, index) => (
                         <div key={index}>
-                            <Link to={`/organization/viewproductdtlorg/${item._id}`}>
+                            <Link to={`/organization/viewproductdtlorg/${item.product?._id}`}>
                                 <img
                                     className="h-[200px] w-[200px] pt-4 ps-4"
-                                    src={`http://localhost:4000/uploads/${item.img}`}
+                                    src={`http://localhost:4000/uploads/${item.product?.img}`}
                                     alt=""
                                 />
                             </Link>
-                            <p className="text-center font-semibold pt -1">{item.name}</p>
+                            <p className="text-center font-semibold pt -1">{item.product?.name}</p>
                         </div>
                     ))}
                 </div>

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const Vwdonatndboy = () => {
     const [det, setDet] = useState({});
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(['']);
     const [refresh, setRefresh] = useState(false);
 
     const id = localStorage.getItem('id');
@@ -15,14 +15,15 @@ const Vwdonatndboy = () => {
         }));
     };
 
-    const handleSubmit = async (status, did) => {
+    const handleSubmit = async (status, did, index) => {
         setRefresh(!refresh);
+        window.location.reload()
         let response = await axios.put(`http://localhost:4000/deliveryboy/updatestatusdonation/${did}`, {
             ...data,
             status: status
         });
         console.log(response);
-        setData('');
+    ; // Close the dropdown after updating status
     };
 
     useEffect(() => {
@@ -73,8 +74,8 @@ const Vwdonatndboy = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((item, outerIndex) => (
-                                item.donation?.map((item1, innerIndex) => (
+                            {data?.map((item, outerIndex) => (
+                                item?.donation?.map((item1, innerIndex) => (
                                     <tr key={`${outerIndex}-${innerIndex}`} className="bg-[#f8d2a0] border-b border-orange-600 hover:bg-[#f7b866d4] text-black font-semibold">
                                         <td className="px-6 py-4">
                                             {(outerIndex * item.donation.length) + innerIndex + 1}
@@ -109,11 +110,19 @@ const Vwdonatndboy = () => {
                                             {item1.status}
                                         </td>
                                         <td className="px-6 py-4 flex flex-wrap flex-col">
+                                            {item1.status !=='Delivered' &&
                                             <button className='text-white bg-orange-500 py-3 px-1 rounded-lg' onClick={() => toggleDropdown(`${outerIndex}-${innerIndex}`)}>Update status</button>
+                                }
                                             {det[`${outerIndex}-${innerIndex}`] &&
                                                 <div className='p-1 bg-white text-black text-base font-semibold rounded-lg'>
-                                                    <button className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Out for delivery', item1._id)}>Out for delivery</button><br />
-                                                    <button className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Delivered', item1._id)}>Delivered</button>
+                                                    {item1.status=='Accepted' ?
+                                                    <button className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Out for delivery', item1._id,`0`)}>Out for delivery</button>
+                                                    
+                                                     : item1.status=='Out for delivery' ?
+                                                    <button className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Delivered', item1._id,`0`)}>Delivered</button>
+                                                    :
+                                                    <div className='hidden'></div>
+                                                }
                                                 </div>
                                             }
                                         </td>

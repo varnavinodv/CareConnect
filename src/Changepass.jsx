@@ -21,7 +21,7 @@ const Changepass = () => {
       }
       else{
         toast.success('Password updated')
-        let response= axios.put(`http://localhost:4000/admin//changepass/${email}`,data)
+        let response= axios.put(`http://localhost:4000/admin/changepass/${email}`,data)
         console.log(response);
         setData('')
         navigate('/login')

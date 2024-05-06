@@ -1,144 +1,90 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Donatnreqorg = () => {
-    let navigate=useNavigate()
-    let oid = localStorage.getItem('id')
-    const [data,setdata]=useState([''])
-    const [data1,setdata1]=useState([''])
-    const[refresh,setrefresh]=useState(false)
-    const[drop,setDrop]=useState(false)
+    let navigate = useNavigate();
+    let oid = localStorage.getItem('id');
+    const [data, setData] = useState([]);
+    const [data1, setData1] = useState({});
+    const [refresh, setRefresh] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(-1);
 
-    useEffect(()=>{
-        let fetchdata=async()=>{
-           let response=await axios.get('http://localhost:4000/organization/viewdonationrequests')
-           console.log(response.data);
-           setdata(response.data)
-  
+    useEffect(() => {
+        let fetchdata = async () => {
+            let response = await axios.get('http://localhost:4000/organization/viewdonationrequests');
+            console.log(response.data);
+            setData(response.data);
         }
-        fetchdata()
-     },[refresh])
+        fetchdata();
+    }, [refresh]);
 
-     let handleChange=(event)=>{
-        setdata1({...data1,[event.target.name]:event.target.value})
-      }
+    let handleChange = (event) => {
+        setData1({ ...data1, [event.target.name]: event.target.value });
+    }
 
-     let handleSubmit=async (did)=>{
-         // setData(data)
-         // console.log(data);
-         // navigate('/organization/viewdeliveryboyorg')
-         //     let response=await axios.put(`http://localhost:4000/organization/acceptdonation/${id}`,{count:count,organizationId:sid})
-         //   console.log(response);
-         //   setdata('')
-         let response=await axios.post('http://localhost:4000/organization/donateproduct',{...data1,organizationId:oid,reqId:did})
-         console.log(response);
-         setDrop(!drop)
-         setrefresh(!refresh)
-         navigate('/organization/viewdonationorg')
-            
-        
-      }
+    let handleSubmit = async (did, bcount) => {
+        if (data1.count > bcount) {
+            toast.error(`only ${bcount} can be donated`);
+        } else {
+            let response = await axios.post('http://localhost:4000/organization/donateproduct', { ...data1, organizationId: oid, reqId: did });
+            console.log(response);
+            setActiveIndex(-1); // Reset active index after submission
+            setRefresh(!refresh);
+            navigate('/organization/viewdonationorg');
+        }
+    }
 
-      let dropdown=()=>{
-        setDrop(!drop)
-      }
-  return (
-    <div className=' w-[100%] '>
-        <div className='basicbg pt-7 ps-10 pe-10'>
-            <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>DONATION REQUESTS</div>
-         
-{/* tableee */}
+    let toggleDropdown = (index) => {
+        setActiveIndex(index === activeIndex ? -1 : index);
+    }
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left rtl:text-right text-black dark:text-black">
-        <thead class="text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    SL NO.
-                </th>
-                <th scope="col" class="px-6 py-3">
-                   ORPHANAGE
-                </th>
-                <th scope="col" class="px-6 py-3">
-                PRODUCT
-                </th>
-                {/* <th scope="col" class="px-6 py-3">
-                    CATEGORY
-                </th> */}
-                <th scope="col" class="px-6 py-3">
-                    COUNT
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    BALANCE COUNT
-                </th>
-                {/* <th scope="col" class="px-6 py-3">
-                    STATUS
-                </th> */}
-               
-                <th scope="col" class="px-6 py-3">
-                    ACTION
-                </th>
-                
-            </tr>
-        </thead>
-        <tbody>
-        {data.map((item,index)=>(
-            <tr class="bg-[#f8d2a0] border-b border-orange-600 text-black font-semibold hover:bg-[#f7b866d4]">
-                <td  class="px-6 py-4 ">
-                 {index+1}
-                </td>
-                <td class="px-6 py-4">
-                    {item.orphs?.name}
-                </td>
-                {/* <td class="px-6 py-4">
-                    Hand bags
-                </td> */}
-                <td class="px-6 py-4">
-                {item.reqs?.product}
-                </td>
-                <td class="px-6 py-4">
-                  {item.reqs?.count}
-                </td>
-                <td class="px-6 py-4">
-                  {item.reqs?.Bcount}
-                </td>
-                {/* <td class="px-6 py-4">
-                  {item.donation?.status}
-                </td> */}
-                <td class="px-6 py-4 flex flex-wrap flex-col">
-                    
-                {/* <Link to='/organization/viewdonationorg'> */}
-                    {/* <button onClick={()=>{handleSubmit('Accepted',item.donation?._id,oid)}} href="#" className="font-bold text-green-600 text-left hover:underline">Accept</button></Link> */}
-                    {/* <button onClick={()=>{handleSubmit('Rejected',item.donation?._id)}} href="#" className="font-bold text-red-600 text-left  hover:underline">Reject</button> */}
-                      {}
-                       <p onClick={dropdown}   className='text-green-950 font-bold hover:underline'>DONATE</p>
-                      {drop &&
-                      <>
-                      <label for="count" class="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>
-                      <input onChange={handleChange} type="number" name="count" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
-                      <button onClick={()=>{handleSubmit(item.reqs?._id)}} href="#" className="font-bold text-red-600 text-left  hover:underline">Submit</button>
-                      </>
-                      } 
-                    </td>
-                    
-                
-                {/* <td class="px-6 py-4 flex flex-wrap flex-col">
-                <Link to='/organization/viewdonationorg'><div class="font-bold text-sm text-green-600 hover:underline hover:bg-white p-1 hover:rounded-lg">Accept</div></Link>
-                    <div class="font-bold text-sm text-red-600 hover:underline hover:bg-white p-1 hover:rounded-lg" >Reject</div>
-                </td> */}
-                
-            </tr>
-           ))}  
-        </tbody>
-    </table>
-</div>
+    return (
+        <div className=' w-[100%] '>
+            <ToastContainer />
+            <div className='basicbg pt-7 ps-10 pe-10'>
+                <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>DONATION REQUESTS</div>
 
-
-
-</div>
-    </div>
-  )
+                {/* tableee */}
+                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table className="w-full text-sm text-left rtl:text-right text-black dark:text-black">
+                        <thead className="text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black">
+                            <tr>
+                                <th scope="col" className="px-6 py-3">SL NO.</th>
+                                <th scope="col" className="px-6 py-3">ORPHANAGE</th>
+                                <th scope="col" className="px-6 py-3">PRODUCT</th>
+                                <th scope="col" className="px-6 py-3">COUNT</th>
+                                <th scope="col" className="px-6 py-3">BALANCE COUNT</th>
+                                <th scope="col" className="px-6 py-3">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.map((item, index) => (
+                                <tr className="bg-[#f8d2a0] border-b border-orange-600 text-black font-semibold hover:bg-[#f7b866d4]" key={index}>
+                                    <td className="px-6 py-4">{index + 1}</td>
+                                    <td className="px-6 py-4">{item.orphs?.name}</td>
+                                    <td className="px-6 py-4">{item.reqs?.product}</td>
+                                    <td className="px-6 py-4">{item.reqs?.count}</td>
+                                    <td className="px-6 py-4">{item.reqs?.Bcount}</td>
+                                    <td className="px-6 py-4 flex flex-wrap flex-col">
+                                        <p onClick={() => toggleDropdown(index)} className="text-green-950 font-bold hover:underline">DONATE</p>
+                                        {activeIndex === index && (
+                                            <>
+                                                <label htmlFor="count" className="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>
+                                                <input onChange={handleChange} type="number" name="count" className="shadow-sm bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD] block p-2" required />
+                                                <button onClick={() => handleSubmit(item.reqs?._id, item.reqs?.Bcount)} className="font-bold text-red-600 text-left hover:underline">Submit</button>
+                                            </>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
 }
 
-export default Donatnreqorg
+export default Donatnreqorg;

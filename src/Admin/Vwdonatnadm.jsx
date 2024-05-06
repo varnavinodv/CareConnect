@@ -27,7 +27,7 @@ const Vwdonatnadm = () => {
             data.filter(
                 (item) =>
                     item.orphanage?.name.toLowerCase().includes(searchQuery.toLowerCase()) 
-                    // item.orgs?.name.toLowerCase().includes(searchQuery.toLowerCase())
+                  
             )
         );
     }, [data, searchQuery]);
