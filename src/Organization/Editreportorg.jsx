@@ -5,13 +5,11 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Editreportorg = () => {
-  // let id=localStorage.getItem('id')
-  // console.log(id);
+ 
   let {id}=useParams()
   console.log(id);
 
-  // let rid='660009ee35beb7aca0d00f34'
-  // console.log('reportttttttttttttttt',rid)
+ 
   const [userData,setUserData]=useState('')
   useEffect(()=>{
     let fetchdata=async ()=>{
@@ -23,7 +21,6 @@ const Editreportorg = () => {
   },[])
   const navigate=useNavigate()
   const [data,setData]=useState('')
-  // const [data1,setData1]=useState('')
 
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
@@ -37,8 +34,7 @@ const Editreportorg = () => {
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
-    // setData(data)
-    // console.log(data);
+    
     navigate('/organization/viewreportsorg')
     const formData=new FormData();
     for (const key in data){

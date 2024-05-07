@@ -4,7 +4,6 @@ import Footer from '../Footer'
 import profile from '../Admin/prof icon.png'
 import menu from '../Admin/menubar.png'
 import axios from 'axios'
-// import Usersidenav from './Usersidenav'
 
 const Navdeliveryb = () => {
   const navigate=useNavigate()

@@ -27,6 +27,12 @@ useEffect(()=>{
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
+    try{
+
+    if(data.age<18){
+      toast.error('Age should be greater than 18')
+    }
+     else {
     if(data.cpassword!=data.password){
       toast.error('password doesnt match')
   
@@ -34,14 +40,23 @@ useEffect(()=>{
     else{
 
     
+      setrefresh(!refresh)
+      let response=await axios.put(`http://localhost:4000/user/editprofileuser/${id}`,data)
+      console.log(response,'---------------');
+      if(response){
       toast.success('Profile updated')
-    setrefresh(!refresh)
-    let response=await axios.put(`http://localhost:4000/user/editprofileuser/${id}`,data)
-    console.log(response);
+      }
     setData('')
     
     }
-    
+  
+}
+}
+catch(e){
+   
+  toast.error( e.response.data.message || e.message)
+}
+
   }
   
   
@@ -65,7 +80,7 @@ useEffect(()=>{
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="email" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Email</label>
-           <input clonChange={handleChange} placeholder={userData.email}  type="email" name="email" className="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} placeholder={userData.email}  type="email" name="email" className="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="hname" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">House Name</label>

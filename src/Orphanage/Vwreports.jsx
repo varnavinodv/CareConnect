@@ -68,7 +68,9 @@ const Vwreports = () => {
                     {item.year}
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class=" text-sm text-black hover:underline hover:text-blue-600 p-1 text-blue-950 underline" >Report</a>
+                <a className='hover:text-blue-600 underline text-blue-950 hover:underline' target='_blank' href={`http://localhost:4000/uploads/${item.report}`} download>
+                                            Report
+                                        </a>
                 {/* <img  className='h-[3rem] w-[3rem] pt-4 ps-4' src={`http://localhost:4000/uploads/${item.report}`} alt="" /> */}
                 </td>
                 <td class="px-6 py-4 flex flex-wrap justify-normal">

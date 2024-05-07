@@ -7,7 +7,6 @@ const Addreportorg = () => {
   let id=localStorage.getItem('id')
   const navigate=useNavigate()
   const [data,setData]=useState('')
-  // const [data1,setData1]=useState('')
 
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
@@ -22,8 +21,7 @@ const Addreportorg = () => {
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
-    // setData(data)
-    // console.log(data);
+    
     navigate('/organization/viewreportsorg')
     let formData = new FormData();
     formData.append('year', data.year);

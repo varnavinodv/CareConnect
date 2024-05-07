@@ -21,6 +21,7 @@ const Editprofiledeliveryb = () => {
 
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
+    
   }
 
   let handlefile=(event)=>{
@@ -31,12 +32,16 @@ const Editprofiledeliveryb = () => {
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
+    if (data.age < 18) {
+      toast.error('Age should be greater than 18')
+    } else{
+    try{
     if(data.cpassword!=data.password){
       toast.error('password doesnt match')
 
     }
     else{
-      toast.success('Profile updated')
+      
     setrefresh(!refresh)
     const formData=new FormData();
     for (const key in data){
@@ -52,8 +57,16 @@ const Editprofiledeliveryb = () => {
       }
     })
     console.log(response);
+    toast.success('Profile updated')
+
     setData('')
   }
+}
+catch(e){
+   
+  toast.error( e.response.data.message || e.message)
+}
+    }
 
     
     
@@ -64,7 +77,6 @@ const Editprofiledeliveryb = () => {
     <div>
        <ToastContainer/>
        <div className='registerbg w-[100%] pb-5 pt-7'>
-       {/* <div className='text-xl text-[#431515] font-bold text-center pb-2'>Thanal charity organization</div> */}
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>Edit your profile</div>
          <div>
             
@@ -101,7 +113,7 @@ const Editprofiledeliveryb = () => {
         <div>  
         <div class="mb-2 sm:pl-0 pl-[22px] sm:pr-0 pr-[22px] flex flex-wrap w-[24rem] justify-between py-3  pt-8">
            <label for="age" class=" mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950 ">Age</label>
-           <input onChange={handleChange} placeholder={userData.age} pattern="[0-9]{2}" title="Please enter a valid age " type="text" name="age" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600  w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+           <input onChange={handleChange} placeholder={userData.age} pattern="[0-9]{2}"  title="Please enter a valid age " type="text" name="age" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600  w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
            </div>
            <div class="mb-2 sm:pl-0 pl-[22px] sm:pr-0 pr-[22px] flex flex-wrap w-[24rem] justify-between py-3 pt-8 ">
            <label for="email" class=" mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950 ">Email</label>
@@ -134,7 +146,7 @@ const Editprofiledeliveryb = () => {
 
 </form>
 <div className='flex flex-wrap'></div>
-<div className='text-xl text-[#431515] font-semibold  pb-1'>Thanal charity organization</div>
+{/* <div className='text-xl text-[#431515] font-semibold  pb-1'>Thanal charity organization</div> */}
 
 
 

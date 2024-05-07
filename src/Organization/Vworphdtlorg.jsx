@@ -28,6 +28,17 @@ const Vworphdtlorg = () => {
 
 
   }
+
+
+  const convertTo12HourFormat = (time) => {
+    const timeParts = time.split(':');
+    const hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1]);
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    const hours12 = hours % 12 || 12;
+    return `${hours12}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
+};
+
   return (
     <div className=' w-[100%] '>
         <div className='basicbg pt-7 ps-10 pe-10 flex flex-wrap justify-evenly'>
@@ -76,7 +87,7 @@ const Vworphdtlorg = () => {
 
                       <div className='list-none w-fit sm:left-[19rem] p-2 bg-white text-black text-lg  font-semibold rounded-lg  '>
                       {data.report?.map((item) => ( 
-                     <p> <a className='hover:text-blue-600 hover:underline'  href={`http://localhost:4000/uploads/${item?.report}`} download >{item?.year}</a></p>
+                     <p> <a className='hover:text-blue-600 hover:underline' target='_blank' href={`http://localhost:4000/uploads/${item?.report}`} download >{item?.year}</a></p>
                       ))}
                         {/* <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>2021</li> */}
                         {/* <li className='hover:bg-slate-400 p-[2px] px-[10px] rounded-md'>2022</li> */}
@@ -105,7 +116,7 @@ const Vworphdtlorg = () => {
                       </div>
                       <div className='flex flex-wrap justify-start ps-3 gap-2 py-1'>
                         <img  className='w-[30px] h-[30px]'  src={time} alt="" />
-                        <p>{item?.time}</p>
+                        <p>{item?.time && convertTo12HourFormat(item?.time)} </p>
                       </div>
                       <Link to={`/organization/sponsorshiporg/${item?._id}`}><div className='hover:underline text-orange-500 font-bold'>SPONSOR</div></Link>
                     </div>

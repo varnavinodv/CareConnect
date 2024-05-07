@@ -51,6 +51,15 @@ const Sponsorshiporg = () => {
       fetchdata()
    },[])
 
+   const convertTo12HourFormat = (time) => {
+    const timeParts = time.split(':');
+    const hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1]);
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    const hours12 = hours % 12 || 12;
+    return `${hours12}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
+};
+
   return (
     <div className='w-[100%]'>
       <ToastContainer/>
@@ -90,12 +99,12 @@ const Sponsorshiporg = () => {
                                   </div>
                                   <div className=' ps-3 gap-2 py-1'>
                                     
-                                    <p>Date:         14/11/2022
+                                    <p>Date:        { new Date(data2.events?.date).toLocaleDateString('en-GB')}
 </p>
                                   </div>
                                   <div className=' ps-3 gap-2 py-1'>
                                     
-                                    <p>Time:  4:00pm</p>
+                                    <p>Time:  {data2.events?.time && convertTo12HourFormat(data2.events?.time)} </p>
                                   </div>
                                   <div className=' ps-3 gap-2 py-1'>
                                     
@@ -110,7 +119,6 @@ const Sponsorshiporg = () => {
   <div class="mb-5">
   <h1 className='font-bold text-xl text-center mb-6'>SPONSORSHIP DETAILS</h1>
     <label for="purpose" class="block mb-2 text-sm font-medium text-[#3E1B00]">Purpose</label>
-    {/* <input onChange={handleChange}  type="text" name="purpose" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required /> */}
     
     <select onChange={handleChange} name="purposeId" className="shadow-sm bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD] block p-2" required >
   <option >Select a category</option>
@@ -120,19 +128,7 @@ const Sponsorshiporg = () => {
   
 </select>
   </div>
-  {/* <div class="mb-5">
-    <label for="cvv" class="block mb-2 text-sm font-medium text-[#3E1B00]">CVV</label>
-    <input type="text" id="cvv" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
-  </div>
-  <div class="mb-5">
-    <label for="amt" class="block mb-2 text-sm font-medium text-[#3E1B00]">Amount</label>
-    <input type="text" id="amt" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
-  </div>
-   
-<div class="flex items-center pb-3">
-    <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 pb-3"></input>
-    <label for="link-checkbox" class="ms-2 text-sm text-amber-950 font-semibold ">Hide identity</label>
-</div> */}
+ 
 
   
   

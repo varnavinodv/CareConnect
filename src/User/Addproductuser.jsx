@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import toy from '../Admin/toy.png'
 import { Link,useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
 
 const Addproductuser = () => {
   let id=localStorage.getItem('id')
@@ -21,6 +22,11 @@ const Addproductuser = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
+    if(data.count<=0){
+      toast.error('Count cannot be 0')
+    }
+    else{
+          
     let formData = new FormData();
     formData.append('name', data.name);
     formData.append('category', data.category);
@@ -33,10 +39,12 @@ const Addproductuser = () => {
       }})
       console.log(response);
       navigate('/user/viewproductuser')
+    }
     
   }
   return (
     <div className='w-[100%]'>
+      <ToastContainer/>
         <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-around'>
           <div>
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>Add product</div>

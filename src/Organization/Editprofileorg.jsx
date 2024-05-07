@@ -35,12 +35,12 @@ useEffect(()=>{
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
+    try{
     if(data.cpassword!=data.password){
       toast.error('password doesnt match')
 
     }
     else{
-      toast.success('Profile updated')
       setrefresh(!refresh)
     const formData=new FormData();
     for (const key in data){
@@ -56,12 +56,16 @@ useEffect(()=>{
       }
     })
     console.log(response);
+    toast.success('Profile updated')
     setData('')
 
-    // let response=await axios.put(`http://localhost:4000/user/editprofile/${id}`,data)
-    // console.log(response);
-    
+ 
   }
+}
+catch(e){
+   
+  toast.error( e.response.data.message || e.message)
+}
     
   }
   return (

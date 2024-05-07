@@ -65,8 +65,7 @@ const Vwdonatnorg = () => {
                 {item.donation?.count}
                 </td>
                 <td class="px-6 py-4">
-                {/* { new Date(item.donation?.date).toLocaleDateString()} */}
-                 {/* {item.donation?.date} */}
+                
                  { item.donation?.date &&
 
                   new Date(item.donation?.date).toLocaleDateString('en-GB')

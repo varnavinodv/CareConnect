@@ -33,7 +33,8 @@ const Vwdeliveryboyadm = () => {
         const filtered = data.filter((item) =>
             item.Deliveryboy?.name.toLowerCase().includes(query) ||
             item.Deliveryboy?.email.toLowerCase().includes(query) ||
-            item.Organization?.name.toLowerCase().includes(query)
+            item.Organization?.name.toLowerCase().includes(query) ||
+            item.Deliveryboy?.district.toLowerCase().includes(query) 
         );
         setFilteredData(filtered);
     };

@@ -5,6 +5,7 @@ const Vwuseradm = () => {
     const [data, setData] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
+    const [refresh,setrefresh]=useState(false)
 
     useEffect(() => {
         let fetchdata = async () => {
@@ -14,7 +15,7 @@ const Vwuseradm = () => {
             setFilteredData(response.data);
         };
         fetchdata();
-    }, []);
+    }, [refresh]);
 
     const handleSearch = (event) => {
         const query = event.target.value;
@@ -28,14 +29,19 @@ const Vwuseradm = () => {
     };
 
     const handleSubmit = async (status, id) => {
+        setrefresh(!refresh)
         try {
             await axios.put(`http://localhost:4000/admin/acceptusers/${id}`, {
                 status: status
             });
             
             const response = await axios.get('http://localhost:4000/admin/viewuser');
+            
             setData(response.data);
             setFilteredData(response.data);
+            
+            
+
         } catch (error) {
             console.error('Error updating data:', error);
         }
@@ -71,7 +77,7 @@ const Vwuseradm = () => {
                                 type="search"
                                 id="default-search"
                                 className="block w-full p-4 ps-10 text-sm text-black border border-orange-500 rounded-lg bg-[#FFEFBD] focus:ring-orange-500 focus:border-orange-500 dark:placeholder-gray-400 dark:text-black"
-                                placeholder="Search Products, Category, users"
+                                placeholder="Search Users,District"
                                 value={searchQuery}
                                 onChange={handleSearch}
                                 required

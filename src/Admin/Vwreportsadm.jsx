@@ -137,7 +137,7 @@ const Vwreportsadm = () => {
                                     <td className='px-6 py-4'>{item.user?.name}</td>
                                     <td className='px-6 py-4'>{item.report?.year}</td>
                                     <td className='px-6 py-4'>
-                                        <a className='hover:text-blue-600 underline text-blue-950 hover:underline' href={`http://localhost:4000/uploads/${item.report?.report}`} download>
+                                        <a className='hover:text-blue-600 underline text-blue-950 hover:underline' target='_blank' href={`http://localhost:4000/uploads/${item.report?.report}`} download>
                                             Report
                                         </a>
                                     </td>

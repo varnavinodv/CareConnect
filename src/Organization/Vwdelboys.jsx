@@ -94,10 +94,9 @@ const Vwdelboys = () => {
                    {item.idno}
                 </td>
                 <td class="px-6 py-4">
-                <a className='hover:text-blue-600 hover:underline' href={`http://localhost:4000/uploads/${item.idproof}`} download>
+                <a className='hover:text-blue-600 hover:underline' target='_blank' href={`http://localhost:4000/uploads/${item.idproof}`} download>
                                             ID proof
                                         </a>
-                    {/* <img  className='h-14 w-14' src={item.idproof} alt="" /> */}
                 </td>
                 <td class="px-6 py-4">
                     {item.houseName} <br />
@@ -107,7 +106,6 @@ const Vwdelboys = () => {
                 </td>
 
                 <td class="px-6 py-6 flex flex-wrap justify-evenly items-center ">
-                    {/* <img className='w-[30px] h-[20px] hover:bg-blue-400' src={hide} alt="" /> */}
                     <img onClick={()=>handledelete(item._id)} className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
             </tr>

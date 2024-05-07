@@ -101,9 +101,10 @@ const Vwdonatndboy = () => {
                                             {item.orph?.phno}
                                         </td>
                                         <td className="px-6 py-4">
-                                        { new Date(item1?.date).toLocaleDateString('en-GB')}
+                                            {item1.date &&
+                                         new Date(item1?.date).toLocaleDateString('en-GB')
+                                            }
 
-                                        {/* { new Date(item1?.date).toLocaleDateString()} */}
 
                                         </td>
                                         <td className="px-6 py-4">

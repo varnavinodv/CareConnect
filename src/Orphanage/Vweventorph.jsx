@@ -105,7 +105,7 @@ const Vweventorph = () => {
                     <img onClick={()=>handledelete(item._id)}  className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 </td>
                 <td class="px-6 py-4">
-                   <Link to={`/orphanage/viewsponsorshiporph/${item._id}`}><button className='text-green-950 font-bold rounded-lg p-1'>View requests</button></Link>
+                   <Link to={`/orphanage/viewsponsorshiporph/${item._id}`}><button className='text-green-950 font-bold rounded-lg p-1'>View sponsorships</button></Link>
                 </td>
             </tr>
             ))}  

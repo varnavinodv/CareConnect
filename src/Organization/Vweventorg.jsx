@@ -16,6 +16,15 @@ const Vweventorg = () => {
         fetchdata()
      },[])
 
+     const convertTo12HourFormat = (time) => {
+      const timeParts = time.split(':');
+      const hours = parseInt(timeParts[0]);
+      const minutes = parseInt(timeParts[1]);
+      const ampm = hours >= 12 ? 'pm' : 'am';
+      const hours12 = hours % 12 || 12;
+      return `${hours12}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
+  };
+
   return (
     <div className=' w-[100%]'>
         <div className='basicbg  pt-7 ps-10 pe-10 pb-10'>
@@ -69,16 +78,17 @@ const Vweventorg = () => {
                 </td>
                 <td class="px-6 py-4">
                 {/* {item.event?.date} */}
-                14/11/2022
+                {/* 14/11/2022 */}
+                { new Date(item.event?.date).toLocaleDateString('en-GB')}
                 
                 </td>
                 <td class="px-6 py-4">
                  {/* {item.event?.time} */}
-                 4:00pm
+                 {/* 4:00pm */}
+                
+                 {item.event?.time && convertTo12HourFormat(item.event?.time)}
                 </td>
-                {/* <td class="px-6 py-4">
-               pending
-                </td> */}
+                
                 <td class="px-6 py-4">
                   
                    <Link to={`/organization/sponsorshiporg/${item.event?._id}`}> <button className='text-green-950 font-bold p-1 rounded-md hover:underline'>SPONSOR</button></Link>

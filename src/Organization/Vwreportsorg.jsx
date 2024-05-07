@@ -64,7 +64,10 @@ const Vwreportsorg = () => {
                     {item.year}
                 </td>
                 <td class="px-6 py-4 text-blue-950 font-semibold underline">
-                    Report
+                <a className='hover:text-blue-600 underline text-blue-950 hover:underline' target='_blank' href={`http://localhost:4000/uploads/${item.report}`} download>
+                                            Report
+                                        </a>
+                  
                    {/* {item.report} */}
                 </td>
                 <td class="px-6 py-4 flex flex-wrap justify-normal">

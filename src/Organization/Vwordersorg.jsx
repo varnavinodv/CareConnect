@@ -237,8 +237,10 @@ console.log(res,'reed');
                     return(
                        
                         <>
-
-                            {item1?.date} <br />
+                        { item1?.date &&
+                              new Date(item1?.date).toLocaleDateString('en-GB')
+                        }
+<br />
                             {res?.name} <br />
                         </>
                         
@@ -265,7 +267,10 @@ console.log(res,'reed');
     
     return (
       <div key={index}>
-        <p>{order?.products[0]?.date}</p>
+        <p>  { order?.products[0]?.date &&
+                              new Date(order?.products[0]?.date).toLocaleDateString('en-GB')
+                        }
+          </p>
         {/* <p>User Name: {user?.name}</p> */}
         <p>  {user?.postoffice}, {user?.district}</p>
         {/* <p>Delivery Boy Name: {deliveryBoy?.name}</p> */}

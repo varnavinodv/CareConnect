@@ -35,6 +35,15 @@ const Vweventadm = () => {
         setSearchQuery(e.target.value);
     };
 
+    const convertTo12HourFormat = (time) => {
+        const timeParts = time.split(':');
+        const hours = parseInt(timeParts[0]);
+        const minutes = parseInt(timeParts[1]);
+        const ampm = hours >= 12 ? 'pm' : 'am';
+        const hours12 = hours % 12 || 12;
+        return `${hours12}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
+    };
+
     return (
         <div className='w-[100%]'>
             <div className='basicbg   pt-7 ps-10 pe-10'>
@@ -112,7 +121,7 @@ const Vweventadm = () => {
                                     <td className='px-6 py-4'>{item.event?.name}</td>
                                     <td className='px-6 py-4'>{ new Date(item.event?.date).toLocaleDateString()}
 </td>
-                                    <td className='px-6 py-4'>4:00pm</td>
+                                    <td className='px-6 py-4'> {item.event?.time && convertTo12HourFormat(item.event?.time)} </td>
                                     <td className='px-6 py-4'>{item.event?.venue}</td>
                                     <td className='px-6 py-4'>
                                         <Link to={`/admin/viewsponsadm/${item.event?._id}`}>

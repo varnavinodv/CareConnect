@@ -55,27 +55,7 @@
       <div className='w-[100%]'>
           <div className='basicbg   pt-7 ps-10 pe-10 pb-10'>
               <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>CART</div>
-              {/* <div className='flex flex-wrap justify-evenly pt-7 pb-12'>
-                    <Link to='/organization/viewcartproductdtlorg'>
-                    {data.map((item)=>(
-                      
-                      <div className='h-fit w-[220px] bg-white'>
-                      <img  className='h-[200px] w-[200px] pt-4 ps-4' src={`http://localhost:4000/uploads/${item.product?.img}`} alt="" />
-                      <p className='text-center font-semibold pt-1'>{item.product?.name}</p>
-          
-                      <p className='text-center font-semibold  text-gray-800 text-sm'>{item.users?.name}</p>
-                      {item?.cart?.products?.map((counts)=>(
-
-                        <p className='text-center font-semibold  text-gray-800 text-sm'>Count:{counts.count}</p>
-                      ))}
-                    </div>
-                    
-                    ))}
-                    </Link>
-                    
-                    
-      
-              </div> */}
+              
 
 
   <div className='flex flex-wrap justify-evenly pt-7 pb-12'>

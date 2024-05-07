@@ -44,13 +44,11 @@ const Homeorg = () => {
               Take action, <br /></span>
                <span className='text-red-700'>DONATE TODAY </span></p>
                <p className='pt-5 headland font-bold text-sm'>We help the helpless to survive these hard time.In a world where <br /> single act of kindness can spark a chain reaction of positivity,your <br /> donation holds immense power.</p>
-               {/* <div className='ps-8 mx-96'> */}
                <button onClick={logout} className='bg-orange-500 flex flex-wrap py-1 px-3 rounded-lg my-3'>
                     <div className='text-white'>LOGOUT </div>
                     <div><img src={logout} alt="" /></div>
                 </button>
                 
-            {/* </div> */}
         </div>
         <div className='ps-12'>
           <div className=''> <img className=' h-[25rem]' src={kidsbrwn} alt="" /></div>

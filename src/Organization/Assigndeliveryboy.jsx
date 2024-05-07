@@ -77,7 +77,8 @@ const Assigndeliveryboy = () => {
                                             const res = item.orphanages.find((item3) => item3?._id === item1.orphanageId && item1.status === 'assigned');
                                             return (
                                                 <div key={item1._id}>
-                                                    {item1?.date} <br />
+                                                     { new Date(item1?.date).toLocaleDateString('en-GB')} <br />
+                                                    {/* {item1?.date} <br /> */}
                                                     {res?.name} <br />
                                                 </div>
                                             );
@@ -91,7 +92,9 @@ const Assigndeliveryboy = () => {
 
                                             return (
                                                 <div key={index}>
-                                                    <p>{order?.products[0]?.date}</p>
+                                                    <p>{order?.products[0]?.date &&
+                                                      new Date(order?.products[0]?.date).toLocaleDateString('en-GB')
+                                                    }</p>
                                                     <p> {user?.postoffice}, {user?.district}</p>
                                                     <br />
                                                 </div>
