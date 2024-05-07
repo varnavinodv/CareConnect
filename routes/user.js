@@ -161,6 +161,24 @@ router.get('/viewprofile/:id', async (req, res) => {
 
 router.put('/editprofile/:id',upload.fields([{name:'license'}]), async (req, res) => {
     try {
+        if (req.body.email){
+        const existMail = await User.findOne({ email: req.body.email });
+        if (existMail) {
+            return res.status(400).json({ message: 'Mail exists' });
+        }
+    }
+    if (req.body.phno){
+        const existphonenumber = await User.findOne({ phno: req.body.phno });
+        if (existphonenumber) {
+            return res.status(400).json({ message: 'phone number exists' });
+        }
+    }
+    if (req.body.licenseNo){
+        const existlicense = await User.findOne({ licenseNo: req.body.licenseNo });
+        if (existlicense) {
+            return res.status(400).json({ message: 'License number exists' });
+        }
+    }
         if (req.files['license']){
             const license1=req.files['license'][0].filename; 
             console.log(license1);
@@ -170,6 +188,7 @@ router.put('/editprofile/:id',upload.fields([{name:'license'}]), async (req, res
     console.log(req.body);
     let response = await User.findByIdAndUpdate(id, req.body)
     console.log(response, 'fsefesdfsffdsgsgfsg');
+    res.json(response)
     }
     catch (e) {
         res.json(e.message)
@@ -180,14 +199,46 @@ router.put('/editprofile/:id',upload.fields([{name:'license'}]), async (req, res
 router.put('/editprofileuser/:id',async(req,res)=>{
     let id = req.params.id
     console.log(req.body);
+    if (req.body.email){
+        const existMail = await User.findOne({ email: req.body.email });
+        if (existMail) {
+            return res.status(400).json({ message: 'Mail exists' });
+        }
+    }
+    if (req.body.phno){
+        const existphonenumber = await User.findOne({ phno: req.body.phno });
+        if (existphonenumber) {
+            return res.status(400).json({ message: 'phone number exists' });
+        }
+    }
+   
     let response = await User.findByIdAndUpdate(id, req.body)
     console.log(response, 'fsefesdfsffdsgsgfsg');
+    res.json(response)
 
 
 })
 
 router.put('/editprofiledboy/:id',upload.fields([{name:'idproof'}]), async (req, res) => {
     try {
+        if (req.body.email){
+            const existMail = await User.findOne({ email: req.body.email });
+            if (existMail) {
+                return res.status(400).json({ message: 'Mail exists' });
+            }
+        }
+        if (req.body.phno){
+            const existphonenumber = await User.findOne({ phno: req.body.phno });
+            if (existphonenumber) {
+                return res.status(400).json({ message: 'phone number exists' });
+            }
+        }
+        if (req.body.idno){
+            const existid = await User.findOne({ idno: req.body.idno });
+            if (existid) {
+                return res.status(400).json({ message: 'ID number exists' });
+            }
+        }
         if (req.files['idproof']){
             const idproof1=req.files['idproof'][0].filename; 
             console.log(idproof1);
@@ -197,6 +248,7 @@ router.put('/editprofiledboy/:id',upload.fields([{name:'idproof'}]), async (req,
     console.log(req.body);
     let response = await User.findByIdAndUpdate(id, req.body)
     console.log(response, 'fsefesdfsffdsgsgfsg');
+    res.json(response)
     }
     catch (e) {
         res.json(e.message)
@@ -208,7 +260,7 @@ router.put('/editprofiledboy/:id',upload.fields([{name:'idproof'}]), async (req,
 router.get('/viewproduct/:id', async (req, res) => {
     let id = req.params.id
     console.log(req.body);
-    let response = await product.find({ userId: id,count: { $gt: 0 } });
+    let response = await product.find({ userId: id,count: { $gt: 0 }, status: { $ne: "disabled" }  });
     console.log(response);
     res.json(response)
 })
