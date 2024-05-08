@@ -3,9 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const Assigndeliveryboy = () => {
-    const [data, setData] = useState([]);
-    const [data1, setData1] = useState([]);
-    const [data2, setData2] = useState([]);
+    const [mergedData, setMergedData] = useState([]);
     const [activeIndex, setActiveIndex] = useState(-1);
     const [date, setDate] = useState('');
 
@@ -13,21 +11,34 @@ const Assigndeliveryboy = () => {
     let { did } = useParams();
 
     useEffect(() => {
-        let fetchdata = async () => {
-            let response = await axios.get(`http://localhost:4000/organization/assigndboy/${lid}`);
+        let fetchData = async () => {
+            let response1 = await axios.get(`http://localhost:4000/organization/assigndboy/${lid}`);
             let response2 = await axios.get('http://localhost:4000/organization/assignorderdboy');
-            console.log(response.data);
-            setData1(response.data);
-            console.log(response2);
-            setData2(response2.data);
-        }
-        fetchdata();
-    }, []);
+            
+            // Merge data for common delivery boys
+            let mergedData = response1.data.map(item1 => {
+                let match = response2.data.find(item2 => item2.dboy._id === item1.dboy._id);
+                if (match) {
+                    return {
+                        ...item1,
+                        orders: match.orders,
+                        users: match.users,
+                        donations: item1.donations
+                    };
+                } else {
+                    return item1;
+                }
+            });
+
+            setMergedData(mergedData);
+        };
+        fetchData();
+    }, [lid]);
 
     const handleChange = (event) => {
         setDate(event.target.value);
     }
-
+console.log(mergedData,'===================s');
     const handleSubmit = async (delid) => {
         const payload = {
             date: date,
@@ -61,7 +72,7 @@ const Assigndeliveryboy = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data1.map((item, index) => (
+                            {mergedData.map((item, index) => (
                                 <tr className="bg-[#f8d2a0] border-b border-orange-600 text-black font-semibold hover:bg-[#f7b866d4]" key={index}>
                                     <td className="px-6 py-4">{index + 1}</td>
                                     <td className="px-6 py-4">{item.dboy?.name}</td>
@@ -72,24 +83,31 @@ const Assigndeliveryboy = () => {
                                         Pin:{item.dboy?.pin} <br />
                                         {item.dboy?.district}
                                     </td>
+                                    <td>
+
+                                    </td>
                                     <td className="px-6 py-4">
+                                        
                                         {item.donations?.map((item1) => {
-                                            const res = item.orphanages.find((item3) => item3?._id === item1.orphanageId && item1.status === 'assigned');
                                             return (
+                                                <>
+                                                    {item1.orphanage?.name} 
                                                 <div key={item1._id}>
-                                                     { new Date(item1?.date).toLocaleDateString('en-GB')} <br />
-                                                    {/* {item1?.date} <br /> */}
-                                                    {res?.name} <br />
+                                                     {item1?.date && new Date(item1?.date).toLocaleDateString('en-GB')} <br />
+                                        {item1.orphanage?.name}
+                                              
                                                 </div>
+                                                <div>
+                                                </div>
+                                                </>
+                                                
                                             );
                                         })}
                                     </td>
+                                    
                                     <td className="px-6 py-4">
-                                        {data2.map((item, index) => {
-                                            const order = item.orders[0]; // Assuming each item has only one order
-                                            const deliveryBoy = data1.find(userData => userData.dboy?._id === order?.products[0]?.deliveryBoyId)?.dboy;
-                                            const user = item.users[0];
-
+                                        {item.orders?.map((order, index) => {
+                                            const user = item.users[index]; // Assuming orders and users are mapped by index
                                             return (
                                                 <div key={index}>
                                                     <p>{order?.products[0]?.date &&

@@ -20,8 +20,11 @@ const Adddeliveryboy = () => {
 
   let handleSubmit=async (event)=>{
     try{
-
+      if (data.age < 18) {
+        toast.error('Age should be greater than 18')
+      } else{
       event.preventDefault()
+
       if(data.cpassword!=data.password){
         toast.error('password doesnt match')
   
@@ -53,6 +56,7 @@ const Adddeliveryboy = () => {
 
     
     }
+  }
   }
    
      
@@ -119,7 +123,7 @@ const Adddeliveryboy = () => {
            <div class="mb-2 flex flex-wrap w-[25rem] sm:pr-0 sm:pl-0 pr-[22px] pl-[22px] justify-between py-3">
            <label for="district" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">District</label>
            <select onChange={handleChange}   pattern="[A-Za-z]+" title="Only alphabets are allowed"  type="text" name="district" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[40rem] sm:w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required >
-           <option value="">Select a category</option>
+           <option value="">Select a district</option>
            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
   <option value="Kollam">Kollam</option>
   <option value="Pathanamthitta">Pathanamthitta</option>

@@ -116,7 +116,7 @@ const Vwdonatndboy = () => {
                                 }
                                             {det[`${outerIndex}-${innerIndex}`] &&
                                                 <div className='p-1 bg-white text-black text-base font-semibold rounded-lg'>
-                                                    {item1.status=='Accepted' ?
+                                                    {item1.status=='assigned' ?
                                                     <button className='hover:bg-slate-400 p-1 rounded-lg' onClick={() => handleSubmit('Out for delivery', item1._id,`0`)}>Out for delivery</button>
                                                     
                                                      : item1.status=='Out for delivery' ?

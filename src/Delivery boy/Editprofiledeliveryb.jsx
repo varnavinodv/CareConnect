@@ -32,10 +32,10 @@ const Editprofiledeliveryb = () => {
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
-    if (data.age < 18) {
-      toast.error('Age should be greater than 18')
-    } else{
     try{
+      if (data.age < 18) {
+        toast.error('Age should be greater than 18')
+      } else{
     if(data.cpassword!=data.password){
       toast.error('password doesnt match')
 
@@ -62,11 +62,12 @@ const Editprofiledeliveryb = () => {
     setData('')
   }
 }
+}
 catch(e){
    
   toast.error( e.response.data.message || e.message)
 }
-    }
+    
 
     
     

@@ -7,8 +7,6 @@ import {toast,ToastContainer} from 'react-toastify'
 const Userreg = () => {
   const navigate=useNavigate()
   const [data,setData]=useState('')
-  const [formData,setFormData]=useState('')
-  // const [data1,setData1]=useState('')
 
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
@@ -63,7 +61,7 @@ let handleSubmit=async(event)=>{
         <div>  
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3  pt-8">
            <label for="name" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Name</label>
-           <input onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed"  type="text" name="name" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange} pattern="[A-Za-z ]+" title="Only alphabets are allowed"  type="text" name="name" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="email" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Email</label>
@@ -71,7 +69,7 @@ let handleSubmit=async(event)=>{
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="hname" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">House Name</label>
-           <input onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed" type="text" name="houseName" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange} pattern="[A-Za-z ]+" title="Only alphabets are allowed" type="text" name="houseName" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="pin" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Pin </label>
@@ -93,11 +91,13 @@ let handleSubmit=async(event)=>{
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="postofc" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Post office</label>
-           <input onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed"  type="text" name="postoffice" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+           <input onChange={handleChange} pattern="[A-Za-z ]+" title="Only alphabets are allowed"  type="text" name="postoffice" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
            </div>
            <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
            <label for="district" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">District </label>
            <select onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed"  type="text" name="district" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required >
+           <option value="">---Select district---</option>
+
            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
   <option value="Kollam">Kollam</option>
   <option value="Pathanamthitta">Pathanamthitta</option>
