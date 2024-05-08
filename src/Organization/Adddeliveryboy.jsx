@@ -19,11 +19,11 @@ const Adddeliveryboy = () => {
   }
 
   let handleSubmit=async (event)=>{
+    event.preventDefault()
     try{
       if (data.age < 18) {
         toast.error('Age should be greater than 18')
       } else{
-      event.preventDefault()
 
       if(data.cpassword!=data.password){
         toast.error('password doesnt match')

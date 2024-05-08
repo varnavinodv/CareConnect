@@ -15,21 +15,59 @@ const Vwordersorg = () => {
     let date=()=>{
         setDet(!det)
     }
-  useEffect(() => {
-    let fetchdata = async () => {
-      let response = await axios.get(`http://localhost:4000/organization/vieworder/${lid}`);
-      let response1=await axios.get(`http://localhost:4000/organization/assigndboy/${lid}`)
-      let response2=await axios.get('http://localhost:4000/organization/assignorderdboy')
-      console.log(response);
-      setData(response.data);
-           console.log(response1.data);
-           setdeliverydata(response1.data)
-           console.log(response2);
-           setData2(response2.data)
+  // useEffect(() => {
+  //   let fetchdata = async () => {
+  //     let response = await axios.get(`http://localhost:4000/organization/vieworder/${lid}`);
+  //     let response1=await axios.get(`http://localhost:4000/organization/assigndboy/${lid}`)
+  //     let response2=await axios.get('http://localhost:4000/organization/assignorderdboy')
+  //     console.log(response);
+  //     setData(response.data);
+  //          console.log(response1.data);
+  //          setdeliverydata(response1.data)
+  //          console.log(response2);
+  //          setData2(response2.data)
   
+  //   };
+  //   fetchdata();
+  // }, []);
+
+  const [mergedData, setMergedData] = useState([]);
+
+  useEffect(() => {
+    let fetchData = async () => {
+      let response = await axios.get(`http://localhost:4000/organization/vieworder/${lid}`);
+
+        let response1 = await axios.get(`http://localhost:4000/organization/assigndboy/${lid}`);
+        let response2 = await axios.get('http://localhost:4000/organization/assignorderdboy');
+        console.log(response);
+        setData(response.data);
+                 console.log(response1.data);
+                 setdeliverydata(response1.data)
+                 console.log(response2);
+                 setData2(response2.data)
+
+        
+        // Merge data for common delivery boys
+        let mergedData = response1.data.map(item1 => {
+            let match = response2.data.find(item2 => item2.dboy._id === item1.dboy._id);
+            if (match) {
+                return {
+                    ...item1,
+                    orders: match.orders,
+                    users: match.users,
+                    donations: item1.donations
+                };
+            } else {
+                return item1;
+            }
+        });
+
+        setMergedData(mergedData);
     };
-    fetchdata();
-  }, []);
+    fetchData();
+}, [lid]);
+
+const [activeIndex, setActiveIndex] = useState(-1);
 
   const [assign,setassign]= useState(false)
   let assigndb=()=>{
@@ -72,6 +110,7 @@ const [dates,setDate]=useState()
         // Make the PUT request
         let response2 = await axios.put('http://localhost:4000/organization/assignorderdboy', payload);
         console.log(response2.data);
+        setActiveIndex(-1);
         console.log('jhgf');
         window.location.reload()
     } catch (error) {
@@ -150,7 +189,8 @@ const currentDate = new Date().toISOString().split('T')[0];
                     item1.productId == item.product?._id && 
                     <>
                     <td class='px-6 py-4'>{item1.count}</td>
-                  <td class='px-6 py-4'> { new Date(item1.date).toLocaleDateString()}</td>
+                  <td class='px-6 py-4'> {item1.date &&
+                   new Date(item1.date).toLocaleDateString()}</td>
                   <td class='px-6 py-4'>{item1.Ostatus}</td>
                   <td>
                     <input
@@ -200,7 +240,7 @@ const currentDate = new Date().toISOString().split('T')[0];
                    ADDRESS
                 </th>
                 <th scope="col" class="px-6 py-3">
-                   ASSIGNED DEILVERY DETAILS
+                   ASSIGNED DONATION DETAILS
                 </th>
                 <th scope="col" class="px-6 py-3">
                    ASSIGNED ORDER DETAILS
@@ -211,7 +251,7 @@ const currentDate = new Date().toISOString().split('T')[0];
             </tr>
         </thead>
         <tbody>
-        {deliveryData.map((item,index)=>(
+        {mergedData.map((item,index)=>(
             <tr class="bg-[#f8d2a0] border-b border-orange-600 text-black font-semibold hover:bg-[#f7b866d4]">
                 <td class="px-6 py-4 ">
                 {index+1}
@@ -229,7 +269,7 @@ const currentDate = new Date().toISOString().split('T')[0];
                     {item.dboy?.district}
                 
                 </td>
-                <td class="px-6 py-4">
+                {/* <td class="px-6 py-4">
                 {item.donations?.map((item1) =>{
 
                     const res = item.orphanages.find((item3)=> item3?._id === item1.orphanageId && item1.status === 'assigned' )
@@ -244,22 +284,13 @@ console.log(res,'reed');
                             {res?.name} <br />
                         </>
                         
-                            // </td>
+                         
                         
                     )
-                    // (
-                    //     item1.orphanageId == item.product?._id && 
-                    //     <>
-                    // <td class="px-6 py-4">
-                    //   Assigned delivery on (12/09/2024) <br />
-                    //   at (Address)
                     
-                    // </td>
-                    // </>
-                    //   )
                 } )}
-                </td>
-                <td className="px-6 py-4">
+                </td> */}
+                {/* <td className="px-6 py-4">
                 {data2.map((item, index) => {
     const order = item.orders[0]; // Assuming each item has only one order
     const deliveryBoy = data.find(userData => userData.dboy?._id === order?.products[0]?.deliveryBoyId)?.dboy;
@@ -271,38 +302,64 @@ console.log(res,'reed');
                               new Date(order?.products[0]?.date).toLocaleDateString('en-GB')
                         }
           </p>
-        {/* <p>User Name: {user?.name}</p> */}
+    
         <p>  {user?.postoffice}, {user?.district}</p>
-        {/* <p>Delivery Boy Name: {deliveryBoy?.name}</p> */}
-        {/* <p>Delivery Boy Address: {deliveryBoy?.houseName}, P.O {deliveryBoy?.postoffice}, Pin: {deliveryBoy?.pin}, {deliveryBoy?.district}</p> */}
-        {/* Add any other details you want to display */}
+        
         <br />
       </div>
     );
   })}
-  </td>
+  </td> */}
+  <td className="px-6 py-4">
+    {item.donations?.map((donation, index) => {
+        const orphanage = item.orphanages && item.orphanages[index];
+        return (
+            <div key={donation._id}>
+                {donation.date && (
+                    <>
+                        {new Date(donation.date).toLocaleDateString('en-GB')}
+                        <br />
+                        {orphanage.place}, {orphanage.district}
+                        <br />
+                    </>
+                )}
+            </div>
+        );
+    })}
+</td>
+  <td className="px-6 py-4">
+                                        {item.orders?.map((order, index) => {
+                                            const user = item.users[index]; // Assuming orders and users are mapped by index
+                                            return (
+                                                <div key={index}>
+                                                    <p>{order?.products[0]?.date &&
+                                                      new Date(order?.products[0]?.date).toLocaleDateString('en-GB')
+                                                    }</p>
+                                                    <p> {user?.postoffice}, {user?.district}</p>
+                                                    <br />
+                                                </div>
+                                            );
+                                        })}
+                                    </td>
                 
                 
-                <td class="px-6 py-4">
-                    <button className='bg-orange-500  text-black p-2 rounded-lg' onClick={date}>ASSIGN</button>
-                    {det &&
-                        
-                        <div className=' right-[30px] text-center sm:right-[18px] p-4 w-fit bg-white text-black text-base  font-semibold rounded-lg sm:top-[60px] '>
-                            <div className='flex flex-wrap justify-center gap-2 '>
-                               <label  htmlFor="date" className='text-amber-950'>Date</label>
-                               <input onChange={handleChange}  type="date" name="date" min={currentDate} className='border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1  dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600' ></input>
-                            
-                            </div>
-                           
-
-                                 <button className='bg-orange-500 p-1 rounded-lg 'onClick={()=>handleSubmit(item.dboy?._id)}>SUBMIT</button>
-                                
-                                {/* <Link to='/organization/viewdonationorg'> <button className='bg-orange-500 p-1 rounded-lg '>SUBMIT</button></Link> */}
-
-                           
-                          </div> 
-                     }
-                </td>
+                                    <td className="px-6 py-4">
+                                        {activeIndex === index ? (
+                                            <>
+                                                <div className=' right-[30px] text-center sm:right-[18px] p-4 w-fit bg-white text-black text-base  font-semibold rounded-lg sm:top-[60px] '>
+                                                    <div className='flex flex-wrap justify-center gap-2 '>
+                                                        <label htmlFor="date" className='text-amber-950'>Date</label>
+                                                        <input type="date" onChange={handleChange} name="date" min={currentDate} className='border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1  dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600' ></input>
+                                                    </div>
+                                                    <Link to='/organization/vieworderorg'>
+                                                        <button onClick={() => handleSubmit(item.dboy?._id)} className='bg-orange-500 p-1 rounded-lg '>SUBMIT</button>
+                                                    </Link>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <button className='bg-orange-500  text-black p-2 rounded-lg' onClick={() => setActiveIndex(index)}>ASSIGN</button>
+                                        )}
+                                    </td>
             </tr>
             ))}  
         </tbody>

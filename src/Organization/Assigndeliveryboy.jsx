@@ -66,7 +66,7 @@ console.log(mergedData,'===================s');
                                 <th scope="col" className="px-6 py-3">NAME</th>
                                 <th scope="col" className="px-6 py-3">PHONE NO.</th>
                                 <th scope="col" className="px-6 py-3">DELIVERY BOY ADDRESS</th>
-                                <th scope="col" className="px-6 py-3">ASSIGNED DELIVERY DETAILS</th>
+                                <th scope="col" className="px-6 py-3">ASSIGNED DONATION DETAILS</th>
                                 <th scope="col" className="px-6 py-3">ASSIGNED ORDER DETAILS</th>
                                 <th scope="col" className="px-6 py-3">Action</th>
                             </tr>
@@ -83,27 +83,56 @@ console.log(mergedData,'===================s');
                                         Pin:{item.dboy?.pin} <br />
                                         {item.dboy?.district}
                                     </td>
-                                    <td>
-
-                                    </td>
                                     <td className="px-6 py-4">
+    {item.donations?.map((donation, index) => {
+        const orphanage = item.orphanages && item.orphanages[index];
+        return (
+            <div key={donation._id}>
+                {donation.date && (
+                    <>
+                        {new Date(donation.date).toLocaleDateString('en-GB')}
+                        <br />
+                        {orphanage.place}, {orphanage.district}
+                        <br />
+                    </>
+                )}
+            </div>
+        );
+    })}
+</td>
+
+                                    
+                                    
+                                    {/* <td className="px-6 py-4">
                                         
                                         {item.donations?.map((item1) => {
                                             return (
                                                 <>
-                                                    {item1.orphanage?.name} 
+                                                
                                                 <div key={item1._id}>
                                                      {item1?.date && new Date(item1?.date).toLocaleDateString('en-GB')} <br />
                                         {item1.orphanage?.name}
                                               
                                                 </div>
-                                                <div>
-                                                </div>
+                                                
                                                 </>
                                                 
                                             );
                                         })}
-                                    </td>
+                                        {item.orphanages?.map((item2) => {
+                                             return(
+                                                <>
+                                                 <div key={item2._id}>
+                                                    {item2?.name}
+
+                                                 </div>
+                                                
+                                                </>
+                                             )
+                                             
+                                             })}
+                                    </td> */}
+                                    
                                     
                                     <td className="px-6 py-4">
                                         {item.orders?.map((order, index) => {
