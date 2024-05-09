@@ -21,8 +21,8 @@ const Vwdonatnrequestorph = () => {
         fetchdata()
      },[refresh])
 
-     let handledelete=(id)=>{
-        let response=axios.delete(`http://localhost:4000/orphanage/deletedonationreq/${id}`)
+     let handledelete=(rid)=>{
+        let response=axios.delete(`http://localhost:4000/orphanage/deletedonationreq/${rid}`)
         console.log(response)
         setrefresh(!refresh)
     }
@@ -94,7 +94,7 @@ const Vwdonatnrequestorph = () => {
                 <td class="px-6 py-4 flex flex-wrap justify-normal">
                 {item?.count ==item?.Bcount && (
                     
-                    <img onClick={()=>handledelete(item.response?._id)} className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
+                    <img onClick={()=>handledelete(item?._id)} className='w-[40px] h-[30px] hover:bg-red-600' src={dlt} alt="" />
                 )}
                 </td>
             </tr>

@@ -51,7 +51,7 @@ const Addreportorg = () => {
 <form onSubmit={handleSubmit} class="max-w-sm mx-auto">
   <div class="mb-5">
     <label for="year" class="block mb-2 text-sm font-medium text-[#3E1B00]">Year</label>
-    <input onChange={handleChange}  type="number" name="year" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input onChange={handleChange}  min={1000} max={9999} type="number" name="year"  title="Please enter a valid year" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   <div class="mb-5">
     <label for="report" class="block mb-2 text-sm font-medium text-[#3E1B00]">Report</label>

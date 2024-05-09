@@ -15,9 +15,11 @@ const Orgreg = () => {
     setData({...data,[event.target.name]:event.target.files[0]})
     console.log(data);
   }
+ 
 
   let handleSubmit=async(event)=>{
     try{
+      
       event.preventDefault()
       if(data.cpassword!=data.password){
         toast.error('password doesnt match')
@@ -67,6 +69,7 @@ const Orgreg = () => {
  <div className='flex flex-wrap justify-evenly '>
 
      <div>  
+
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3  pt-8">
         <label  for="name" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Name</label>
         <input onChange={handleChange} pattern="[A-Za-z ]+" title="Only alphabets are allowed" type="text" name="name" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
@@ -122,9 +125,11 @@ const Orgreg = () => {
         <input onChange={handleChange} pattern="[0-9]{6}" title="Please enter a valid 6-digit PIN code" type="text" name="pin" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
-        <label for="address" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Founding year</label>
-        <input onChange={handleChange} pattern="[0-9]{4}" title="Please enter a valid year" type="text" name="fyear" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
-        </div>
+    <label for="address" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Founding year</label>
+    <input onChange={handleChange} min={1000} max={9999} type="number" name="fyear" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />
+
+</div>
+
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="license" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">License</label>
         <input onChange={handlefile}  type="file" name="license" class="shadow-sm bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light" required />

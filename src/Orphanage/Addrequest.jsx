@@ -3,6 +3,8 @@ import toy from '../Admin/toy.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import {toast,ToastContainer} from 'react-toastify'
+
 
 const Addrequest = () => {
   let id=localStorage.getItem('id')
@@ -18,13 +20,20 @@ const Addrequest = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
+    if(data.count<=0){
+      toast.error('Count cannot be 0')
+    }
+    else{
     let response=await axios.post('http://localhost:4000/orphanage/addrequest',{...data,orphanageId:id})
     console.log(response);
     navigate('/orphanage/viewdonatnreqstorph')
+    }
     
   }
   return (
     <div className='w-[100%] '>
+            <ToastContainer/>
+
         <div className='basicbg  pt-7 ps-10 pe-10 flex flex-wrap justify-around'>
           <div>
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ADD REQUEST</div>

@@ -2,6 +2,8 @@ import React,{useEffect, useState} from 'react'
 import { Link,useNavigate, useParams } from 'react-router-dom'
 import toy from '../Admin/toy.png'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
+
 
 const Updateproductuser = () => {
   const navigate=useNavigate()
@@ -33,6 +35,10 @@ const Updateproductuser = () => {
     event.preventDefault()
     // setData(data)
     // console.log(data);
+    if(data.count<=0){
+      toast.error('Count cannot be 0')
+    }
+    else{
     navigate('/user/viewproductuser')
     const formData=new FormData();
     for (const key in data){
@@ -50,10 +56,12 @@ const Updateproductuser = () => {
     console.log(response);
     setData('')
 
-    
+  } 
   }
   return (
     <div className='w-[100%]'>
+            <ToastContainer/>
+
           <div className='basicbg   pt-7 ps-10 pe-10 flex flex-wrap justify-around'>
           <div>
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>Update product</div>

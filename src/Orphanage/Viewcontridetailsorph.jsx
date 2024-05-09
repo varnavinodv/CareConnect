@@ -47,9 +47,9 @@ const Viewcontridetailsorph = () => {
             <th scope="col" class="px-6 py-3">
               DATE
             </th>
-            <th scope="col" class="px-6 py-3">
+            {/* <th scope="col" class="px-6 py-3">
               STATUS
-            </th>
+            </th> */}
            
         </tr>
     </thead>
@@ -81,9 +81,9 @@ const Viewcontridetailsorph = () => {
             { new Date(item.contribution?.date).toLocaleDateString('en-GB')}
             {/* { new Date(item.contribution?.date).toLocaleDateString()} */}
             </td>
-            <td class="px-6 py-4">
+            {/* <td class="px-6 py-4">
             {item.contribution?.status}
-            </td>
+            </td> */}
             
         </tr>
         ))}    

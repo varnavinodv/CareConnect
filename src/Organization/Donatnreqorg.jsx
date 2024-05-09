@@ -25,8 +25,8 @@ const Donatnreqorg = () => {
     }
 
     let handleSubmit = async (did, bcount) => {
-        if (data1.count > bcount) {
-            toast.error(`only ${bcount} can be donated`);
+        if (data1.count > bcount || data1.count<=0 ) {
+            toast.error('please enter a valid count');
         } else {
             let response = await axios.post('http://localhost:4000/organization/donateproduct', { ...data1, organizationId: oid, reqId: did });
             console.log(response);
@@ -72,7 +72,7 @@ const Donatnreqorg = () => {
                                         {activeIndex === index && (
                                             <>
                                                 <label htmlFor="count" className="block mb-2 text-sm font-medium text-[#3E1B00]">Count</label>
-                                                <input onChange={handleChange} type="number" name="count" className="shadow-sm bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD] block p-2" required />
+                                                <input onChange={handleChange} type="number"  name="count" className="shadow-sm bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD] block p-2" required />
                                                 <button onClick={() => handleSubmit(item.reqs?._id, item.reqs?.Bcount)} className="font-bold text-red-600 text-left hover:underline">Submit</button>
                                             </>
                                         )}

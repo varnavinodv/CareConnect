@@ -41,9 +41,9 @@ const Vwcontriuser = () => {
                 <th scope="col" class="px-6 py-3">
                     DATE
                 </th>
-                <th scope="col" class="px-6 py-3">
+                {/* <th scope="col" class="px-6 py-3">
                    STATUS
-                </th>
+                </th> */}
                 
             </tr>
         </thead>
@@ -69,9 +69,9 @@ const Vwcontriuser = () => {
                 { new Date(item.contribution?.date).toLocaleDateString('en-GB')}
                 {/* { new Date(item.contribution?.date).toLocaleDateString()} */}
                 </td>
-                <td class="px-6 py-4">
+                {/* <td class="px-6 py-4">
                     successfull
-                </td>
+                </td> */}
                 
             </tr>
             ))} 

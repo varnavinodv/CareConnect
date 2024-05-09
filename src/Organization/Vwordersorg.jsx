@@ -128,7 +128,9 @@ const currentDate = new Date().toISOString().split('T')[0];
         <div>
         <div className='text-3xl text-[#431515] font-semibold text-center pb-7'>ORDERS</div>
         <div class='relative overflow-x-auto shadow-md sm:rounded-lg'>
-        <button className='bg-orange-500 text-black  py-2 px-2 rounded-lg float-right' onClick={assigndb}>Assign delivery boy</button>
+       {data[0] &&
+       <button className='bg-orange-500 text-black  py-2 px-2 rounded-lg float-right' onClick={assigndb}>Assign delivery boy</button>
+       } 
           <table class='w-full text-sm text-left rtl:text-right text-black dark:text-black'>
             <thead class='text-xs text-black uppercase bg-[#FDA83B] border-b-2 border-orange-600 dark:text-black'>
               <tr>
@@ -156,15 +158,18 @@ const currentDate = new Date().toISOString().split('T')[0];
                 <th scope='col' class='px-6 py-3'>
                 ASSIGNED DEILVERY DETAILS
                 </th>
-                <th scope='col' class='px-6 py-3'>
+                {/* <th scope='col' class='px-6 py-3'>
                 ASSIGNED ORDER DETAILS
-                </th>
+                </th> */}
                 
                 <th scope='col' class='px-6 py-3'>
                   STATUS
                 </th>
                 <th scope='col' class='px-6 py-3'>
                   ACTION
+                </th>
+                <th scope='col' class='px-6 py-3'>
+                  
                 </th>
                 
               </tr>
@@ -204,12 +209,7 @@ const currentDate = new Date().toISOString().split('T')[0];
 
                   ))}
 
-                  <td class='px-6 py-4'>
-                    {/* <Link to='/organization/assigndeliveryboyorg/orders'> */}
-                      {' '}
-                      {/* <button className='bg-orange-500 text-black py-2 px-2 rounded-lg' onClick={assigndb}>Assign delivery boy</button> */}
-                    {/* </Link> */}
-                  </td>
+                 
                 </tr>
               ))}
             </tbody>

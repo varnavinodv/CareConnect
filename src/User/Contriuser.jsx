@@ -37,7 +37,12 @@ console.log(check);
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
-    if(data.amount > data1.Bamount){
+    if(data.amount<=0){
+      toast.error('Amount cannot be 0')
+    }
+
+   else {
+      if(data.amount > data1.Bamount){
       toast.error(`only ${data1.Bamount} can be donated`)
     }
     else{
@@ -49,6 +54,7 @@ console.log(check);
     console.log(response);
     navigate('/user/viewcontributionuser')
     }
+  }
     
   }
   return (
@@ -90,11 +96,11 @@ console.log(check);
   <div class="mb-5">
   <h1 className='font-bold text-xl text-center mb-6'>PAYMENT DETAILS</h1>
     <label for="chname" class="block mb-2 text-sm font-medium text-[#3E1B00]">Card holder name</label>
-    <input  onChange={handleChange} type="text" name="name" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input  onChange={handleChange} type="text" name="name" pattern="[A-Za-z]+" title="Only alphabets are allowed" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   <div class="mb-5">
     <label for="cvv" class="block mb-2 text-sm font-medium text-[#3E1B00]">CVV</label>
-    <input  onChange={handleChange} type="text" name="cvv" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
+    <input  onChange={handleChange} type="text" pattern="[0-9]{3}" title="Please enter a valid cvv" name="cvv" class="shadow-sm  bg-[#FFEFBD] border w-full border-[#FFEFBD] text-black text-sm rounded-lg focus:ring-[#FFEFBD]  block  p-2      "  required />
   </div>
   <div class="mb-5">
     <label for="amt" class="block mb-2 text-sm font-medium text-[#3E1B00]">Amount</label>

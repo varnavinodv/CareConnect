@@ -48,9 +48,9 @@ const Vwcontridetailsadm = () => {
             <th scope="col" class="px-6 py-3">
               DATE
             </th>
-            <th scope="col" class="px-6 py-3">
+            {/* <th scope="col" class="px-6 py-3">
               STATUS
-            </th>
+            </th> */}
            
         </tr>
     </thead>
@@ -77,9 +77,9 @@ const Vwcontridetailsadm = () => {
             { new Date(item.contribution?.date).toLocaleDateString('en-GB')}
 
 </td>
-            <td class="px-6 py-4">
+            {/* <td class="px-6 py-4">
             {item.contributionRequest?.status}
-            </td>
+            </td> */}
             
         </tr>
           ))}   
