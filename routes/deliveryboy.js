@@ -18,7 +18,7 @@ router.get('/vieworders/:id',async(req,res)=>{
     console.log(id);
     const orders = await Orders.find({ 'products.deliveryBoyId': id ,
     $nor: [
-        { ['products.Ostatus']: 'assigned' },
+        { ['products.Ostatus']: 'Accepted' },
         { ['products.Ostatus']: 'pending' }
     ]
 
@@ -102,7 +102,7 @@ router.get('/viewdonation/:id',async(req,res)=>{
             let responseData = [];
             for (let don of donatn) {
                 const req=await donationreq.findById(don.reqId)
-                const orph=await User.findById(req.orphanageId)
+                const orph=await User.findById(req?.orphanageId)
                  responseData.push({
                                 donation:donatn,
                                 orph:orph,

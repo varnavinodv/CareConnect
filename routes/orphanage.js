@@ -54,7 +54,7 @@ router.post('/contributionRequest',async(req,res)=>{
 })
 
 router.get('/vieworganization',async(req,res)=>{
-    let response=await User.find({userType:'organization'})
+    let response=await User.find({userType:'organization',status:'Accepted'})
     console.log(response);
     res.json(response)
 })
@@ -378,7 +378,8 @@ router.delete('/deletepurpose/:id',async(req,res)=>{
 
 router.delete('/deletedonationreq/:id',async(req,res)=>{
     let id=req.params.id
-    let response=await donation.findByIdAndDelete(id)
+    let response=await donationreq.findByIdAndDelete(id)
+    console.log(response);
 
 })
 

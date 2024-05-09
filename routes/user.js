@@ -274,7 +274,7 @@ router.get('/viewcontrireq', async (req, res) => {
 
 router.get('/vieworg', async (req, res) => {
     console.log(req.body);
-    let response = await User.find({ userType: 'organization' })
+    let response = await User.find({ userType: 'organization',status:'Accepted' })
     console.log(response);
     res.json(response)
 })
@@ -308,7 +308,7 @@ router.get('/vieworgdetail/:id', async (req, res) => {
 // })
 router.get('/vieworph', async (req, res) => {
     console.log(req.body);
-    let response = await User.find({ userType: 'orphanage' })
+    let response = await User.find({ userType: 'orphanage',status:'Accepted' })
     console.log(response);
     res.json(response)
 })

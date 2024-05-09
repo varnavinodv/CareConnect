@@ -390,21 +390,24 @@ router.get('/assigndboy/:id', async (req, res) => {
                 dboy: newresponse,
                 orphanages: [], // Array to store orphanages associated with the delivery boy
                 donations: [] ,
+                req:[]
                 // orders:[],
                 // users:[]  // Array to store donations associated with the delivery boy
             };
 
-            let donations = await donation.find({ deliveryboyId: newresponse._id });
+            let donations = await donation.find({ deliveryboyId: newresponse._id , status:{ $ne: 'delivered' }});
             // let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id})
             // //console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
 // //console.log(donations,'dddddddddddddddddddddddddddddddddddd');
             
             for (const donationItem of donations) {
+                let req=await donationreq.findById(donationItem.reqId)
                 
-                let orphanage = await User.findById(donationItem.orphanageId);
+                let orphanage = await User.findById(req.orphanageId);
                 //console.log(orphanage,'pppppppppppppppppppppppppppppp');
                 deliveryBoyData.orphanages.push(orphanage);
                 deliveryBoyData.donations.push(donationItem);
+                deliveryBoyData.req.push(req);
             }
             // for (const ord of orders){
             //     deliveryBoyData.orders.push(ord)
@@ -444,7 +447,7 @@ router.get('/assignorderdboy',async(req,res)=>{
             orders:[],
             users:[]  // Array to store donations associated with the delivery boy
         };
-        let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id})
+        let orders = await Orders.find({['products.deliveryBoyId']:newresponse._id,['products.status']:{ $ne: 'delivered' }})
         //console.log(orders,'ooooooooooooooooooooooooooooooooooooo');
         for (const ord of orders){
             deliveryBoyData.orders.push(ord)
