@@ -84,7 +84,7 @@ catch(e){
     <div>  
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3  pt-8">
         <label  for="name" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Name</label>
-        <input onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed" placeholder={userData.name}  type="text" name="name" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+        <input onChange={handleChange} pattern="[A-Za-z ]+" title="Only alphabets are allowed" placeholder={userData.name}  type="text" name="name" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="phno" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Phone no.</label>
@@ -92,7 +92,7 @@ catch(e){
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="pin" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Post office</label>
-        <input onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed" placeholder={userData.postoffice} type="text" name="postoffice" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+        <input onChange={handleChange} pattern="[A-Za-z ]+" title="Only alphabets are allowed" placeholder={userData.postoffice} type="text" name="postoffice" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="district" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">District</label>
@@ -118,7 +118,7 @@ catch(e){
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="place" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Place</label>
-        <input onChange={handleChange} pattern="[A-Za-z]+" title="Only alphabets are allowed" type="text" placeholder={userData.place} name="place" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
+        <input onChange={handleChange} pattern="[A-Za-z ]+" title="Only alphabets are allowed" type="text" placeholder={userData.place} name="place" class="shadow-sm placeholder:text-black bg-[#FFE080] border-orange-500 text-black text-sm rounded-md focus:ring-orange-600 focus:border-orange-600 block w-[14rem] px-4 py-1 dark:bg-[#FFE080] dark:border-orange-600  dark:text-black dark:focus:ring-orange-600 dark:focus:border-orange-600 dark:shadow-sm-light"  />
         </div>
         <div class="mb-2 flex flex-wrap w-[25rem] justify-between py-3">
         <label for="pin" class="block mb-2 text-lg font-semibold text-amber-950 dark:text-amber-950">Pin</label>
