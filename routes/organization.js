@@ -187,20 +187,30 @@ router.post('/addtocart', async (req, res) => {
 // ------------add report
 router.post('/addreport',upload.single('report'),async(req,res)=>{
     //console.log(req.file);
+    try{
     let reportpath=req.file.filename
     const newReport = new Report({...req.body,report:reportpath})
     const savedReport = await newReport.save()
     res.json({message:"Report added",savedReport})
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 // ----------viewreport update
 router.get('/viewreportupdate/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     //console.log(id);
     let response=await Report.findById(id)
     //console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 
@@ -237,11 +247,16 @@ catch(e){
 
 // ----------viewreports
 router.get('/viewreports/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     //console.log(id);
     let response=await Report.find({UserId:id})
     //console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 
@@ -260,15 +275,20 @@ router.post('/sponsorship',async(req,res)=>{
 })
 
 router.get('/viewpurposes/:id',async(req,res)=>{
-
+try{
     let id=req.params.id
     let response=await Purpose.find({eventId:id,status:'pending'})
     //console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 router.get('/viewcart/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     //console.log(req.body);
     let response=await Cart.find({organizationId:id})
@@ -298,10 +318,14 @@ router.get('/viewcart/:id',async(req,res)=>{
         }
       //console.log(responseData);
       res.json(responseData);
+    }
+    catch(e){
+            console.log(e);
+        }
 })
 
 router.get('/viewproductorg',async(req,res)=>{
-
+try{
     //console.log(req.body);
     const response = await product.find({ count: { $gt: 0 } });
     let responseData=[]
@@ -314,9 +338,14 @@ router.get('/viewproductorg',async(req,res)=>{
     }
     //console.log(response);
     res.json(responseData)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/viewproductdltorganisation/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     //console.log(id);
     let response=await product.findById(id)
@@ -325,6 +354,10 @@ router.get('/viewproductdltorganisation/:id',async(req,res)=>{
        let users=await User.findById(response.userId)
    
      res.json({response,users});
+    }
+    catch(e){
+            console.log(e);
+        }
 })
 
 // router.get('/assigndboy', async (req, res) => {
@@ -438,6 +471,7 @@ router.get('/assigndboy/:id', async (req, res) => {
 
 //yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
 router.get('/assignorderdboy',async(req,res)=>{
+    try{
     let response = await User.find({ userType: 'deliveryboy' });
     //console.log(response,'-----------');
     let responseData2 = [];
@@ -468,6 +502,10 @@ router.get('/assignorderdboy',async(req,res)=>{
      }
      //console.log(responseData2,'yyyyyyyyyyyyyyyyyyyyyyyyyyy');
      res.json(responseData2);
+    }
+    catch(e){
+            console.log(e);
+        }
     
 
 })
@@ -480,19 +518,30 @@ router.get('/assignorderdboy',async(req,res)=>{
 // })
 
 router.get('/viewdeliveryboy/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     let response=await User.find({organizationId:id,userType:'deliveryboy',status:'pending'})
     // //console.log(response)
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/vieworphanage',async(req,res)=>{
+    try{
     let response=await User.find({userType:'orphanage'})
     // //console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/vieworphdetail/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     // //console.log(id);
     let response=await User.findById(id)
@@ -501,9 +550,14 @@ router.get('/vieworphdetail/:id',async(req,res)=>{
     let report=await Report.find({UserId:id})
     // //console.log(response);
     res.json({response,events,contrireq,report})
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/viewdonationrequests',async(req,res)=>{
+    try{
     let response=await donationreq.find({status:'pending'})
     let responseData=[];
     for (const newresponse of response){
@@ -524,10 +578,15 @@ router.get('/viewdonationrequests',async(req,res)=>{
 
     //console.log(responseData);
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 router.get('/viewevent',async(req,res)=>{
+    try{
     // //console.log(req.body);
     let response=await Event.find()
     // //console.log(response);
@@ -542,11 +601,16 @@ router.get('/viewevent',async(req,res)=>{
       }
       //console.log(responseData);
       res.json(responseData);
+    }
+    catch(e){
+            console.log(e);
+        }
 })
 
 
 
 router.get('/viewreviews/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     //console.log(id);
     let response=await Review.find({organizationId:id})
@@ -562,9 +626,14 @@ router.get('/viewreviews/:id',async(req,res)=>{
     }
     //console.log(responseData);
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/viewsponshistory/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     //console.log(id,'dsds');
     let response=await Sponsorship.find({organizationId:id})
@@ -585,10 +654,15 @@ router.get('/viewsponshistory/:id',async(req,res)=>{
   }
 
   res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 
 router.get('/viewdonation/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     //console.log(id);
     let response=await donation.find({organizationId:id})
@@ -608,14 +682,23 @@ router.get('/viewdonation/:id',async(req,res)=>{
         });
     }
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/vieworpheventdetailspons/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     //console.log(id);
     let events=await  Event.findById(id)
     let orph=await User.findById(events?.orphanageId)
     res.json({events,orph})
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 // router.get('/vieworder/:id',async(req,res)=>{
@@ -678,6 +761,7 @@ router.put('/changecartstatus/:id', async (req, res) => {
 
 
 router.get('/vieworder/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     //console.log(id);
     let response = await Orders.find({ organizationId: id, 'products.Ostatus': 'pending' });
@@ -699,10 +783,15 @@ router.get('/vieworder/:id',async(req,res)=>{
         })
          } }
     res.json(responseData)
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 
 router.get('/vieworderhistory/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     //console.log(id);
     let response = await Orders.find({ organizationId: id, 'products.Ostatus': { $ne: 'pending' } });
@@ -723,12 +812,16 @@ router.get('/vieworderhistory/:id',async(req,res)=>{
         })
          } }
     res.json(responseData)
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 
 
 router.get('/filterproducts/:category',async(req,res)=>{
-   
+   try{
     let category=req.params.category
     //console.log(category);
     if(category=='books'){
@@ -766,6 +859,10 @@ router.get('/filterproducts/:category',async(req,res)=>{
         let response=await product.find()
         //console.log(response);
     res.json(response);
+    }
+}
+catch(e){
+        console.log(e);
     }
 
 
@@ -827,15 +924,21 @@ router.put('/assignorderdboy', async (req, res) => {
 });
 
 router.put('/acceptdonation/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     // //console.log(id);
     // //console.log(req.body);
     let response=await donationreq.findByIdAndUpdate(id,req.body)
     //console.log(response);
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 router.post('/donateproduct',async(req,res)=>{
+    try{
     //console.log(req.body);
     const newdonation = new donation(req.body)
     let response = await donationreq.findById(req.body.reqId)
@@ -856,21 +959,35 @@ router.post('/donateproduct',async(req,res)=>{
     }
     const savedDonation = await newdonation.save()
     res.json({ message: "Contributed", savedDonation })
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 router.put('/assigndonationdboy/:id',async(req,res)=>{
+    try{
     let id = req.params.id
     //console.log(req.body);
     let donations=await donation.findByIdAndUpdate(id,req.body)
     res.json(donations)
+}
+catch(e){
+        console.log(e);
+    }
 
     
 })
 
 router.delete('/deletereport/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     let response=await Report.findByIdAndDelete(id)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 

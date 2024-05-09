@@ -18,7 +18,7 @@ router.get('/vieworders/:id',async(req,res)=>{
     console.log(id);
     const orders = await Orders.find({ 'products.deliveryBoyId': id ,
     $nor: [
-        { ['products.Ostatus']: 'Accepted' },
+        { ['products.Ostatus']: 'assigned' },
         { ['products.Ostatus']: 'pending' }
     ]
 

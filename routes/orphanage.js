@@ -17,25 +17,40 @@ import donation from "../models/donation.js";
 const router=express()
 
 router.post('/addevent',async(req,res)=>{
+    try{
     console.log(req.body);
     const newEvent = new Event(req.body)
     const savedEvent = await newEvent.save()
     res.json(savedEvent)
+}
+catch(e){
+        console.log(e);
+    }
     
 })
 
 router.post('/postreview',async(req,res)=>{
+    try{
     console.log(req.body);
     const newReview = new Review(req.body)
     const savedReview=await newReview.save()
     res.json({message:"review posted",savedReview})
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.post('/addrequest',async(req,res)=>{
+    try{
     console.log(req.body);
     const newRequest = new donationreq({...req.body,Bcount:req.body.count})
     const savedRequest=await newRequest.save()
     res.json({message:"request posted",savedRequest})
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 // router.post('/addreport',upload.single('report'),async(req,res)=>{
@@ -47,19 +62,30 @@ router.post('/addrequest',async(req,res)=>{
 // })
 
 router.post('/contributionRequest',async(req,res)=>{
+    try{
     console.log(req.body);
     const newContributionRequest = new ContributionRequest({...req.body,Bamount:req.body.amount})
     const savedContribution=await newContributionRequest.save()
     res.json({message:"request posted",savedContribution})
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/vieworganization',async(req,res)=>{
+    try{
     let response=await User.find({userType:'organization',status:'Accepted'})
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/vieworgdetail/:id',async(req,res)=> {
+    try{
     let id=req.params.id
     console.log(id);
     let response=await User.findById(id)
@@ -80,10 +106,15 @@ router.get('/vieworgdetail/:id',async(req,res)=> {
     
     console.log(response);
     res.json({responsedata,response,report } )
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 router.get('/viewdonation/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     console.log(id);
     let response=await donationreq.find({ orphanageId: id, })
@@ -105,9 +136,14 @@ router.get('/viewdonation/:id',async(req,res)=>{
     }
     console.log(response);
     res.json(responsedata)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/viewdonationdetails/:id',async(req,res)=>{
+    try{
     let id = req.params.id;
     let reqs=await donationreq.findById(id)
     let response=await donation.find({reqId:id})
@@ -132,6 +168,10 @@ router.get('/viewdonationdetails/:id',async(req,res)=>{
 
     console.log(responseData);
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 
@@ -139,6 +179,7 @@ router.get('/viewdonationdetails/:id',async(req,res)=>{
 
 
 router.get('/viewcontrireq/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     console.log(id);
     let response=await ContributionRequest.find({orphanageId:id})
@@ -147,9 +188,14 @@ router.get('/viewcontrireq/:id',async(req,res)=>{
     }
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/viewcontridetails/:id',async(req,res)=>{
+   try{
     let id=req.params.id
     console.log(id);
     let response=await Contribution.find({ contributionRequestId: id });
@@ -167,47 +213,74 @@ router.get('/viewcontridetails/:id',async(req,res)=>{
       }
       console.log(responseData);
       res.json(responseData);
+    }
+    catch(e){
+            console.log(e);
+        }
+
+    
 })
 
 
 router.get('/vieweventupdate/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     console.log(id);
     let response=await Event.findById(id)
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.put('/updateevent/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     console.log(id);
     console.log(req.body );
     let response=await Event.findByIdAndUpdate(id,req.body)
     console.log(response);
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 
 
 router.get('/viewevent/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     console.log(id);
     // res.json(id)
     let response=await Event.find({orphanageId:id})
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 router.get('/orgdetailonpostreview/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     console.log(id);
     let response=await User.findById(id)
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 router.get('/viewsponshistory/:id', async (req, res) => {
+    try{
     let id = req.params.id;
     console.log(id);
     let events = await Event.find({ orphanageId: id });
@@ -245,10 +318,15 @@ router.get('/viewsponshistory/:id', async (req, res) => {
     }
     console.log(responseData);
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 });
 
 
 router.get('/viewspons/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     console.log(id);
     let event =await Event.findById(id)
@@ -280,6 +358,10 @@ router.get('/viewspons/:id',async(req,res)=>{
     //   }
       console.log(responseData);
       res.json(responseData);
+    }
+    catch(e){
+            console.log(e);
+        }
 })
 
 
@@ -288,6 +370,7 @@ router.get('/viewspons/:id',async(req,res)=>{
 
 
 router.get('/donationreq/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     console.log(id);
     // res.json(id)
@@ -304,6 +387,10 @@ router.get('/donationreq/:id',async(req,res)=>{
 
 
     // console.log(response);
+}
+catch(e){
+        console.log(e);
+    }
     
 })
 
@@ -319,32 +406,52 @@ router.get('/donationreq/:id',async(req,res)=>{
 
 
 router.put('/acceptsponsrequest/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     console.log(id);
     console.log(req.body);
     let response=await Sponsorship.findByIdAndUpdate(id,req.body)
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.post('/addpurpose',async(req,res)=>{
+    try{
     console.log(req.body);
     const newpurpose = new Purpose(req.body)
     const savedpurpose=await newpurpose.save()
     res.json({message:" purpose added",savedpurpose})
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/viewpurposes/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     console.log(req.body);
     let purpose= await Purpose.find({eventId:id})
     res.json(purpose)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 router.delete('/deletecontrireq/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     let response=await ContributionRequest.findByIdAndDelete(id)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
@@ -372,14 +479,24 @@ router.delete('/deleteevent/:id', async (req, res) => {
 });
 
 router.delete('/deletepurpose/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     let response=await Purpose.findByIdAndDelete(id)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.delete('/deletedonationreq/:id',async(req,res)=>{
+    try{
     let id=req.params.id
     let response=await donationreq.findByIdAndDelete(id)
     console.log(response);
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 

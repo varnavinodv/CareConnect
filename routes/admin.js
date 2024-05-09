@@ -211,7 +211,7 @@ catch(e){
 
 
 router.get('/filterstatusorg/:status',async(req,res)=>{
-   
+   try{
     let status1=req.params.status
     console.log(status1);
     if(status1=='all'){
@@ -224,13 +224,17 @@ router.get('/filterstatusorg/:status',async(req,res)=>{
         console.log(response);
     res.json(response);
     }
+}
+catch(e){
+        console.log(e);
+    }
     
 
 })
 
 
 router.get('/filterstatusorph/:status',async(req,res)=>{
-   
+   try{
     let status1=req.params.status
     console.log(status1);
     if(status1=='all'){
@@ -242,6 +246,10 @@ router.get('/filterstatusorph/:status',async(req,res)=>{
         let response=await User.find({userType:'orphanage',status:status1})
         console.log(response);
     res.json(response);
+    }
+}
+catch(e){
+        console.log(e);
     }
     
 
@@ -292,13 +300,19 @@ router.get('/filterreport/:type', async (req, res) => {
 
 
 router.get('/vieworphanage',async(req,res)=>{
+    try{
     console.log(req.body);
     let response=await User.find({userType:'orphanage'})
     console.log(response);
     res.json(response);
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/viewproduct',async(req,res)=>{
+    try{
     console.log(req.body);
     let response=await product.find({status:'pending',count: { $gt: 0 }})
     console.log(response);
@@ -313,9 +327,14 @@ router.get('/viewproduct',async(req,res)=>{
     }
     console.log(responseData);
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/viewreports',async(req,res)=>{
+    try{
     console.log(req.body);
     let response=await Report.find()
     console.log(response);
@@ -329,8 +348,13 @@ router.get('/viewreports',async(req,res)=>{
     }
     console.log(responseData);
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 })
 router.get('/viewreview',async(req,res)=>{
+    try{
     console.log(req.body);
     let response=await Review.find()
     console.log(response);
@@ -347,12 +371,17 @@ router.get('/viewreview',async(req,res)=>{
     }
     console.log(responseData);
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 
 
 router.get('/viewdonation',async(req,res)=>{
+    try{
     console.log(req.body);
     let response=await donationreq.find()
     console.log(response);
@@ -369,6 +398,10 @@ router.get('/viewdonation',async(req,res)=>{
     }
     console.log(responseData);
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
@@ -376,6 +409,7 @@ router.get('/viewdonation',async(req,res)=>{
 
 
 router.get('/viewdonationdetails/:id',async(req,res)=>{
+    try{
     let id = req.params.id;
     let reqs=await donationreq.findById(id)
     let orph=await User.findById(reqs.orphanageId)
@@ -401,10 +435,15 @@ router.get('/viewdonationdetails/:id',async(req,res)=>{
 
     console.log(responseData);
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 
 router.get('/viewsponshistory',async(req,res)=>{
+    try{
     console.log(req.body);
     let response=await Sponsosrship.find()
     console.log(response);
@@ -426,10 +465,16 @@ router.get('/viewsponshistory',async(req,res)=>{
     }
     console.log(responseData);
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }    
+
 })
 
 
 router.get('/viewspons/:id',async(req,res)=>{
+    try{
     let id=req.params.id
 
     let response=await Purpose.find({eventId:id})
@@ -451,7 +496,11 @@ router.get('/viewspons/:id',async(req,res)=>{
             });
     }
       console.log(responseData);
-      res.json(responseData);   
+      res.json(responseData);
+    }
+    catch(e){
+            console.log(e);
+        }   
  
     
 })
@@ -459,6 +508,7 @@ router.get('/viewspons/:id',async(req,res)=>{
 
 
 router.get('/vieworders',async(req,res)=>{
+    try{
     let response=await Orders.find()   
     console.log(response);
     let responseData=[]
@@ -478,6 +528,10 @@ router.get('/vieworders',async(req,res)=>{
         })
          } }
     res.json(responseData)
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 

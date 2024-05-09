@@ -92,19 +92,29 @@ router.post('/login', async (req, res) => {
 })
 
 router.post('/addProduct', upload.single('img'), async (req, res) => {
+    try{
     console.log(req.file);
     let imagepath = req.file.filename
     const newProduct = new product({ ...req.body, img: imagepath })
     const savedProduct = await newProduct.save()
     res.json({ message: "Product added", savedProduct })
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/viewupdateproduct/:id', async (req, res) => {
+    try{
     let id = req.params.id
     console.log(id);
     let response = await product.findById(id)
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.put('/updateproduct/:id', upload.fields([{ name: 'img' }]), async (req, res) => {
@@ -127,6 +137,7 @@ router.put('/updateproduct/:id', upload.fields([{ name: 'img' }]), async (req, r
 
 
 router.post('/contribution', async (req, res) => {
+    try{
     console.log(req.body);
     const newContribution = new Contribution(req.body)
     let response = await ContributionRequest.findById(req.body.contributionRequestId)
@@ -146,16 +157,25 @@ router.post('/contribution', async (req, res) => {
     }
     const savedContribution = await newContribution.save()
     res.json({ message: "Contributed", savedContribution })
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 
 router.get('/viewprofile/:id', async (req, res) => {
+    try{
     let id = req.params.id
     console.log(id);
     let response = await User.findById(id)
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 
@@ -197,6 +217,7 @@ router.put('/editprofile/:id',upload.fields([{name:'license'}]), async (req, res
 })
 
 router.put('/editprofileuser/:id',async(req,res)=>{
+    try{
     let id = req.params.id
     console.log(req.body);
     if (req.body.email){
@@ -215,7 +236,10 @@ router.put('/editprofileuser/:id',async(req,res)=>{
     let response = await User.findByIdAndUpdate(id, req.body)
     console.log(response, 'fsefesdfsffdsgsgfsg');
     res.json(response)
-
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 
@@ -258,28 +282,44 @@ router.put('/editprofiledboy/:id',upload.fields([{name:'idproof'}]), async (req,
 
 
 router.get('/viewproduct/:id', async (req, res) => {
+    try{
     let id = req.params.id
     console.log(req.body);
     let response = await product.find({ userId: id,count: { $gt: 0 }, status: { $ne: "disabled" }  });
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/viewcontrireq', async (req, res) => {
+    try{
     console.log(req.body);
     let response = await ContributionRequest.find()
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/vieworg', async (req, res) => {
+    try{
     console.log(req.body);
     let response = await User.find({ userType: 'organization',status:'Accepted' })
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 router.get('/vieworgdetail/:id', async (req, res) => {
+    try{
     let id = req.params.id
     console.log(id);
     let response = await User.findById(id)
@@ -297,6 +337,10 @@ router.get('/vieworgdetail/:id', async (req, res) => {
     }
     // console.log(response);
     res.json({ responsedata, response,report })
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 // router.get('/viewcontributions/:id',async(req,res)=>{
@@ -307,12 +351,18 @@ router.get('/vieworgdetail/:id', async (req, res) => {
 //     res.json(response)
 // })
 router.get('/vieworph', async (req, res) => {
+    try{
     console.log(req.body);
     let response = await User.find({ userType: 'orphanage',status:'Accepted' })
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 })
 router.get('/vieworphdetail/:id', async (req, res) => {
+    try{
     let id = req.params.id
     console.log(id);
     let response = await User.findById(id)
@@ -321,12 +371,17 @@ router.get('/vieworphdetail/:id', async (req, res) => {
     let reports = await Report.find({ UserId: id })
     console.log(response);
     res.json({ response, events, contrireq, reports })
+}
+catch(e){
+        console.log(e);
+    }
 })
 
 
 
 
 router.get('/viewcontribution/:id', async (req, res) => {
+    try{
     let id = req.params.id
     console.log(id);
     let response = await Contribution.find({ userId: id })
@@ -344,6 +399,10 @@ router.get('/viewcontribution/:id', async (req, res) => {
     }
     console.log(responseData);
     res.json(responseData);
+}
+catch(e){
+        console.log(e);
+    }
 
 })
 
@@ -351,11 +410,16 @@ router.get('/viewcontribution/:id', async (req, res) => {
 
 
 router.get('/viewamountcontri/:id',async(req,res)=>{
+    try{
     let id = req.params.id
     console.log(id);
     let response = await ContributionRequest.findById(id)
     console.log(response);
     res.json(response)
+}
+catch(e){
+        console.log(e);
+    }
 
     
 
